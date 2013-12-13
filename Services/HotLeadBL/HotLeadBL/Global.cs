@@ -26,6 +26,7 @@ namespace HotLeadBL
         public static string INSTANCE_NAME3 = "CentralDBConn";
         public static string INSTANCE_NAME5 = "CarLeadsDB";
         public static string INSTANCE_NAME6 = "HrData";
+        public static string INSTANCE_NAME7 = "HrData1";
 
         public static string PASSWORD_PREFIX;
         public static string LOGIN_FAILED = @"Login Failed";
