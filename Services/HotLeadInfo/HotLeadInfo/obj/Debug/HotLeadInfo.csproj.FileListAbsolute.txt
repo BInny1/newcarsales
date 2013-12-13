@@ -1,0 +1,10 @@
+D:\Cars\CarSales\Services\HotLeadInfo\HotLeadInfo\bin\Debug\HotLeadInfo.dll
+D:\Cars\CarSales\Services\HotLeadInfo\HotLeadInfo\bin\Debug\HotLeadInfo.pdb
+D:\Cars\CarSales\Services\HotLeadInfo\HotLeadInfo\obj\Debug\ResolveAssemblyReference.cache
+D:\Cars\CarSales\Services\HotLeadInfo\HotLeadInfo\obj\Debug\HotLeadInfo.dll
+D:\Cars\CarSales\Services\HotLeadInfo\HotLeadInfo\obj\Debug\HotLeadInfo.pdb
+D:\Carsales2Project\CarSales\Services\HotLeadInfo\HotLeadInfo\bin\Debug\HotLeadInfo.dll
+D:\Carsales2Project\CarSales\Services\HotLeadInfo\HotLeadInfo\bin\Debug\HotLeadInfo.pdb
+D:\Carsales2Project\CarSales\Services\HotLeadInfo\HotLeadInfo\obj\Debug\ResolveAssemblyReference.cache
+D:\Carsales2Project\CarSales\Services\HotLeadInfo\HotLeadInfo\obj\Debug\HotLeadInfo.dll
+D:\Carsales2Project\CarSales\Services\HotLeadInfo\HotLeadInfo\obj\Debug\HotLeadInfo.pdb

@@ -1,0 +1,54 @@
+@charset "utf-8";
+/* CSS Document */
+.width150{ width:150px; }
+.width200{ width:200px; }
+.width250{ width:250px; }
+.width300{ width:300px; }
+.width350{ width:350px; }
+.width400{ width:400px; }
+.width450{ width:450px; }
+.width500{ width:500px; }
+.width550{ width:550px; }
+.width600{ width:600px; }
+.width650{ width:650px; }
+.width700{ width:700px; }
+.width750{ width:750px; }
+
+
+
+
+.floatL{ float:left; }
+.floatR{ float:right; }
+.floatN{ float:none; }
+
+.ML0{ margin-left:0px;}
+.MT0{ margin-top:0px;}
+.MR0{ margin-right:0px;}
+.MB0{ margin-bottom:0px;}
+
+.ML5{ margin-left:5px;}
+.MT5{ margin-top:5px;}
+.MR5{ margin-right:5px;}
+.MB5{ margin-bottom:5px;}
+
+.ML10{ margin-left:10px;}
+.MT10{ margin-top:10px;}
+.MR10{ margin-right:10px;}
+.MB10{ margin-bottom:10px;}
+
+
+.ML15{ margin-left:15px;}
+.MT15{ margin-top:15px;}
+.MR15{ margin-right:15px;}
+.MB15{ margin-bottom:15px;}
+
+.ML20{ margin-left:20px;}
+.MT20{ margin-top:20px;}
+.MR20{ margin-right:20px;}
+.MB20{ margin-bottom:20px;}
+
+.ML25{ margin-left:25px;}
+.MT25{ margin-top:25px;}
+.MR25{ margin-right:25px;}
+.MB25{ margin-bottom:25px;}
+

@@ -1,0 +1,90 @@
+﻿.fontClass
+{
+    padding-right: 15pt;
+    padding-left: 15pt;
+    font-weight: normal;
+    font-size: 12px;
+    padding-bottom: 10pt;
+    color: #000000;
+    padding-top: 10pt;
+    font-family: 'Arial';
+}
+.TEXTFONTCLASS
+{
+    padding-right: 15pt;
+    padding-left: 15pt;
+    font-weight: normal;
+    font-size: 12px;
+    padding-bottom: 10pt;
+    color: #000000;
+    padding-top: 10pt;
+    font-family: 'Arial';
+}
+
+.capfontClass
+{
+    padding-right: 5px;
+    padding-left: 5px;
+    font-weight: bold;
+    font-size: 13px;
+    padding-bottom: 0px;
+    color: #ffffff;
+    padding-top: 0pt;
+    font-family: Arial;
+    height: 15pt;
+}
+.capfontClass A
+{
+    font-weight: bold;
+    font-size: 13px;
+    color: #ffffff;
+    font-family: Arial;
+    text-decoration: underline;
+}
+.fgClass
+{
+    background-color: #ffffff;
+}
+.bgClass
+{
+    background-color: #dbdbdb;
+}
+.summaryfontClass
+{
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 50px;
+    padding-top: 10px;
+}
+.summarycapfontClass
+{
+    padding-right: 5px;
+    padding-left: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    padding-bottom: 0px;
+    color: #ffffff;
+    padding-top: 0pt;
+    font-family: Arial;
+    height: 25pt;
+}
+.summarycapfontClass A
+{
+    font-weight: bold;
+    font-size: 15px;
+    color: #ffffff;
+    font-family: Arial;
+    text-decoration: underline;
+}
+.summaryfgClass
+{
+    background-color: #ffffff;
+}
+.summarybgClass
+{
+	border-right: #dbdbdb 1px solid;
+    border-top: #dbdbdb 1px solid;
+    border-left: #dbdbdb 1px solid;
+    border-bottom: #dbdbdb 1px solid;
+    background-color: #ffffff;
+}

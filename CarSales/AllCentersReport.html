@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Car Sales System</title>
+<link href="css/core.css" rel="stylesheet" type="text/css"   />
+<link href="css/core.theme.css" rel="stylesheet" type="text/css"   />
+<link href="css/styleNew.css" rel="stylesheet" type="text/css"   />
+
+<script src="js/jquery-1.10.2.min.js" type="text/javascript" language="javascript"></script>
+<script src="js/jquery-1.10.2.min.js" type="text/javascript" language="javascript"></script>
+
+</head>
+
+<body>
+
+
+<!-- Main Wrapper Start  -->
+<div class="wrapper">
+    <!-- Headder Start  -->
+    <div class="head wid100p">
+        <a href="#" class="logo"></a>
+        <div class="headding" style="margin-top:6px;">
+            <h1>CAR SALES SYSTEM</h1>
+            
+        </div>
+        <div class="headright">
+            <div class="loginDet"></div>
+            <div class="menu"></div>
+        </div>
+        
+    </div>    
+    <!-- Headder End  -->
+    
+    <!-- Content Start  -->
+    <div class="content wid1000">
+    	
+       	<div class=" box1 box50p">
+        	<h1 class="hed1 hed2">Search</h1>
+            <div class="inn">
+            		<!-- Start  -->
+                    <table >
+  <tbody>
+    <tr>
+      <td style="width: 270px; padding-top: 2px;"><table style="width: 270px; float: left; border-collapse: collapse; margin-left: 0px;
+                                            margin-right: 13px;">
+          <tbody>
+            <tr>
+              <td colspan="3" align="left" style="padding: 0"><div style="border-bottom: 1px #666 solid; text-align: center; width: 240px; margin: 0 auto 2px auto;
+                                                        font-weight: bold; padding-bottom: 2px;"> Date range</div></td>
+            </tr>
+            <tr>
+              <td style="width: 45%; padding: 0; text-align: right"><input name="txtStartDate" type="text" value="11/26/2013" maxlength="10" id="txtStartDate" class="input1 " onKeyPress="return isNumberKeyForDt(event)" style="width:70px;">
+                &nbsp; <img src="images/Calender.gif" id="imgcal" style="border-right: 0px; border-top: 0px; border-left: 0px;
+                                                        border-bottom: 0px" title="Calendar Control" onClick="displayCalendar(document.forms[0].txtStartDate,'mm/dd/yyyy',this);" alt="Calendar Control" width="18"> </td>
+              <td style="width: 26px; text-align: center; padding: 0;"><b>to</b> </td>
+              <td style="text-align: left; padding: 0;"><input name="txtEndDate" type="text" value="12/02/2013" maxlength="10" id="txtEndDate" class="input1 " onKeyPress="return isNumberKeyForDt(event)" style="width:70px;">
+                &nbsp; <img src="images/Calender.gif" id="img1" style="border-right: 0px; border-top: 0px; border-left: 0px;
+                                                        border-bottom: 0px" title="Calendar Control" onClick="displayCalendar(document.forms[0].txtEndDate,'mm/dd/yyyy',this);" alt="Calendar Control" width="18"> </td>
+            </tr>
+          </tbody>
+        </table></td>
+      <td><strong>Center:</strong> <br>
+        <select name="ddlCenters" id="ddlCenters">
+          <option selected="selected" value="0">All</option>
+          <option value="4">INBH</option>
+          <option value="2">INDG</option>
+          <option value="3">PH01</option>
+          <option value="1">TEST</option>
+          <option value="5">USMP</option>
+          <option value="7">USWB</option>
+        </select>
+      </td>
+      <td style="width: 105px; padding-top: 17px; padding-left:10px;">
+          <div id="updbtnSearch">
+            <input type="submit" name="btnSearchMonth" value="Generate" onClick="return ValidateData();" id="btnSearchMonth" class="btn btn-sm btn-warning">
+          </div>
+          <div id="UpdateProgress2" style="display:none;">
+            <div id="spinner">
+              <h4>
+                <div> Processing <img src="images/loading.gif"> </div>
+              </h4>
+            </div>
+          </div>
+        </td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+                    <!-- End  -->
+            </div>
+        </div>
+        
+        <div class=" box1 box50p">
+            <h1 class="hed1 hed2">Sales Counters</h1>
+            <div class="inn">
+            	<!-- Start -->
+                <table style="height:47px;" >
+  <tbody>
+    <tr>
+      <td style="width: 140px;"><b>Total Sales:</b> </td>
+      <td style="width: 90px;"><span id="lblTotSales">8</span> </td>
+      <td style="width: 140px;"><b>Total Verifications:</b> </td>
+      <td><span id="lblTotVerif">72</span> </td>
+    </tr>
+    <tr>
+      <td><b>Total Abandon/draft(s):</b> </td>
+      <td><span id="lblTotAbandon">3</span> </td>
+      <td><b>Total Transfers Out:</b> </td>
+      <td><span id="lblTotTransfers">122</span> </td>
+    </tr>
+  </tbody>
+</table>
+                <!-- End  -->
+            </div>
+        </div>
+        <div class="clear">&nbsp;</div>
+        <div class=" box1 box50p">
+            <h1 class="hed1 hed2">Sales Sort by</h1>
+            <div class="inn">
+            	<!-- Start  -->
+                <table>
+  <tbody>
+    <tr>
+      <td style="width: 400px;"><input id="rdbtnSales" type="radio" name="Option" value="rdbtnSales" checked="checked">
+        <label for="rdbtnSales">Sales</label>
+        <input id="rdbtnVerifications" type="radio" name="Option" value="rdbtnVerifications" onclick="javascript:setTimeout('__doPostBack(\'rdbtnVerifications\',\'\')', 0)">
+        <label for="rdbtnVerifications">Verifications</label>
+        <input id="rdbtnAbandon" type="radio" name="Option" value="rdbtnAbandon" onclick="javascript:setTimeout('__doPostBack(\'rdbtnAbandon\',\'\')', 0)">
+        <label for="rdbtnAbandon">Abandons/Drafts</label>
+        <input id="rdbtnTransfers" type="radio" name="Option" value="rdbtnTransfers" onclick="javascript:setTimeout('__doPostBack(\'rdbtnTransfers\',\'\')', 0)">
+        <label for="rdbtnTransfers">Transfers</label>
+      </td>
+    </tr>
+  </tbody>
+</table>
+                <!-- Start  -->
+            </div>
+        </div>
+         <div class=" box1 box50p">
+            <h1 class="hed1 hed2">Sales Change Status</h1>
+            <div class="inn" style="height:36px">
+            	<!-- Start  -->
+                <table>
+  <tbody>
+    <tr>
+      <td style="vertical-align:middle; padding:3px 0"> Payment:
+        <select name="ddlpaymen" id="ddlpaymen" style="width:80px;">
+          <option value="0">All</option>
+          <option selected="selected" value="1">Pening</option>
+        </select>
+        &nbsp;
+        <input type="submit" name="PaymentChange" value="Change" id="PaymentChange" class="btn btn-sm btn-warning">
+      </td>
+    </tr>
+  </tbody>
+</table>
+                <!-- End  -->
+            </div>
+        </div>
+        
+        
+        <div class="clear">&nbsp;</div>
+    </div>
+    <!-- Content End  -->
+    
+    
+   	<div>
+    	<div class="inn">
+    	<div class="box1 boxBlue"> 	
+            
+       	<h1 class="hed1 hed2">Sale(s)</h1>
+       	<div class="inn">
+        	Total 8 records found
+        	<!-- Grid Start -->
+            
+<table class="table table-hover table-striped">
+  <tr class="tbHed">
+    <td >Sale ID </td>
+    <td class="headerSortDown" >Sale Dt </td>
+    <td >Agent</td>
+    <td >Verifier</td>
+    <td>Year/Make/Model</td>
+    <td>Package</td>
+    <td>QC Status</td>
+    <td>$ Paid</td>
+    <td>$ Pending</td>
+    <td>Pmnt Status</td>
+    <td>Cust Name</td>
+    <td>Phone</td>
+  </tr>
+  <tr>
+    <td>12105</td>
+    <td>11/26/13 01:46 PM</td>
+    <td>INBH:Eddie </td>
+    <td>INBH:Eddie </td>
+    <td>1999/Infiniti/Q45</td>
+    <td>GD($199.99) </td>
+    <td>QC Approved </td>
+    <td>0.00</td>
+    <td>199.99</td>
+    <td>Pending</td>
+    <td>Singh Mr.gurje...</td>
+    <td>209-839-7913</td>
+  </tr>
+  <tr>
+    <td>12105</td>
+    <td>11/26/13 01:46 PM</td>
+    <td>INBH:Eddie </td>
+    <td>INBH:Eddie </td>
+    <td>1999/Infiniti/Q45</td>
+    <td>GD($199.99) </td>
+    <td>QC Approved </td>
+    <td>0.00</td>
+    <td>199.99</td>
+    <td>Pending</td>
+    <td>Singh Mr.gurje...</td>
+    <td>209-839-7913</td>
+  </tr>
+  <tr>
+    <td>12105</td>
+    <td>11/26/13 01:46 PM</td>
+    <td>INBH:Eddie </td>
+    <td>INBH:Eddie </td>
+    <td>1999/Infiniti/Q45</td>
+    <td>GD($199.99) </td>
+    <td>QC Approved </td>
+    <td>0.00</td>
+    <td>199.99</td>
+    <td>Pending</td>
+    <td>Singh Mr.gurje...</td>
+    <td>209-839-7913</td>
+  </tr>
+  <tr>
+    <td>12105</td>
+    <td>11/26/13 01:46 PM</td>
+    <td>INBH:Eddie </td>
+    <td>INBH:Eddie </td>
+    <td>1999/Infiniti/Q45</td>
+    <td>GD($199.99) </td>
+    <td>QC Approved </td>
+    <td>0.00</td>
+    <td>199.99</td>
+    <td>Pending</td>
+    <td>Singh Mr.gurje...</td>
+    <td>209-839-7913</td>
+  </tr>
+  <tr>
+    <td>12105</td>
+    <td>11/26/13 01:46 PM</td>
+    <td>INBH:Eddie </td>
+    <td>INBH:Eddie </td>
+    <td>1999/Infiniti/Q45</td>
+    <td>GD($199.99) </td>
+    <td>QC Approved </td>
+    <td>0.00</td>
+    <td>199.99</td>
+    <td>Pending</td>
+    <td>Singh Mr.gurje...</td>
+    <td>209-839-7913</td>
+  </tr>
+  <tr>
+    <td>12105</td>
+    <td>11/26/13 01:46 PM</td>
+    <td>INBH:Eddie </td>
+    <td>INBH:Eddie </td>
+    <td>1999/Infiniti/Q45</td>
+    <td>GD($199.99) </td>
+    <td>QC Approved </td>
+    <td>0.00</td>
+    <td>199.99</td>
+    <td>Pending</td>
+    <td>Singh Mr.gurje...</td>
+    <td>209-839-7913</td>
+  </tr>
+  <tr>
+    <td>12105</td>
+    <td>11/26/13 01:46 PM</td>
+    <td>INBH:Eddie </td>
+    <td>INBH:Eddie </td>
+    <td>1999/Infiniti/Q45</td>
+    <td>GD($199.99) </td>
+    <td>QC Approved </td>
+    <td>0.00</td>
+    <td>199.99</td>
+    <td>Pending</td>
+    <td>Singh Mr.gurje...</td>
+    <td>209-839-7913</td>
+  </tr>
+  <tr>
+    <td>12105</td>
+    <td>11/26/13 01:46 PM</td>
+    <td>INBH:Eddie </td>
+    <td>INBH:Eddie </td>
+    <td>1999/Infiniti/Q45</td>
+    <td>GD($199.99) </td>
+    <td>QC Approved </td>
+    <td>0.00</td>
+    <td>199.99</td>
+    <td>Pending</td>
+    <td>Singh Mr.gurje...</td>
+    <td>209-839-7913</td>
+  </tr>
+  <tr>
+    <td>12105</td>
+    <td>11/26/13 01:46 PM</td>
+    <td>INBH:Eddie </td>
+    <td>INBH:Eddie </td>
+    <td>1999/Infiniti/Q45</td>
+    <td>GD($199.99) </td>
+    <td>QC Approved </td>
+    <td>0.00</td>
+    <td>199.99</td>
+    <td>Pending</td>
+    <td>Singh Mr.gurje...</td>
+    <td>209-839-7913</td>
+  </tr>
+
+</table>
+           
+            <!-- Grid End  -->
+        	
+        </div>
+    </div>
+    </div>
+ </div>
+    
+    
+    <div class="clear">&nbsp;</div>
+</div>
+<!-- Main Wrapper Emd  -->
+
+
+<div class="footer">
+	United Car Exchange © 2013
+</div>
+
+
+</body>
+</html>
