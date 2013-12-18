@@ -26,3 +26,17 @@ D:\Carsales2Project\CarSales\Services\HotLeadBL\HotLeadBL\bin\Debug\HotLeadInfo.
 D:\Carsales2Project\CarSales\Services\HotLeadBL\HotLeadBL\obj\Debug\ResolveAssemblyReference.cache
 D:\Carsales2Project\CarSales\Services\HotLeadBL\HotLeadBL\obj\Debug\HotLeadBL.dll
 D:\Carsales2Project\CarSales\Services\HotLeadBL\HotLeadBL\obj\Debug\HotLeadBL.pdb
+D:\CarsalesNewProject\CarSales\Services\HotLeadBL\HotLeadBL\obj\Debug\ResolveAssemblyReference.cache
+D:\CarsalesNewProject\CarSales\Services\HotLeadBL\HotLeadBL\bin\Debug\HotLeadBL.dll
+D:\CarsalesNewProject\CarSales\Services\HotLeadBL\HotLeadBL\bin\Debug\HotLeadBL.pdb
+D:\CarsalesNewProject\CarSales\Services\HotLeadBL\HotLeadBL\bin\Debug\HotLeadInfo.dll
+D:\CarsalesNewProject\CarSales\Services\HotLeadBL\HotLeadBL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Caching.dll
+D:\CarsalesNewProject\CarSales\Services\HotLeadBL\HotLeadBL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+D:\CarsalesNewProject\CarSales\Services\HotLeadBL\HotLeadBL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+D:\CarsalesNewProject\CarSales\Services\HotLeadBL\HotLeadBL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll
+D:\CarsalesNewProject\CarSales\Services\HotLeadBL\HotLeadBL\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Logging.dll
+D:\CarsalesNewProject\CarSales\Services\HotLeadBL\HotLeadBL\bin\Debug\Microsoft.Practices.ObjectBuilder2.dll
+D:\CarsalesNewProject\CarSales\Services\HotLeadBL\HotLeadBL\bin\Debug\Microsoft.Practices.Unity.dll
+D:\CarsalesNewProject\CarSales\Services\HotLeadBL\HotLeadBL\bin\Debug\HotLeadInfo.pdb
+D:\CarsalesNewProject\CarSales\Services\HotLeadBL\HotLeadBL\obj\Debug\HotLeadBL.dll
+D:\CarsalesNewProject\CarSales\Services\HotLeadBL\HotLeadBL\obj\Debug\HotLeadBL.pdb

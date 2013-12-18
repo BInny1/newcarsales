@@ -21,7 +21,7 @@ using HotLeadBL.HotLeadsTran;
 using System.Net.Mail;
 
 
-public partial class CopyPage : System.Web.UI.Page
+public partial class StatewiseLeads : System.Web.UI.Page
 {
     public GeneralFunc objGeneralFunc = new GeneralFunc();
     DropdownBL objdropdownBL = new DropdownBL();
@@ -31,6 +31,7 @@ public partial class CopyPage : System.Web.UI.Page
     CentralDBMainBL objCentralDBBL = new CentralDBMainBL();
     UserRegistrationInfo objUserregInfo = new UserRegistrationInfo();
     HotLeadsBL objHotLeadBL = new HotLeadsBL();
+    int l = 0;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -96,9 +97,22 @@ public partial class CopyPage : System.Web.UI.Page
 
                     }
 
+
+                    GetLeadsCentersList();
+
                 }
             }
         }
+    }
+
+    private void GetLeadsCentersList()
+    {
+
+        DataSet GetLeadscenterList = new DataSet();
+        GetLeadscenterList = objHotLeadBL.GetAllLocations();
+        Session["Employees"] = GetLeadscenterList;
+        Rpt_Locatons.DataSource = GetLeadscenterList.Tables[0];
+        Rpt_Locatons.DataBind();
     }
     private bool LoadIndividualUserRights()
     {
@@ -158,5 +172,95 @@ public partial class CopyPage : System.Web.UI.Page
     {
         Response.Redirect("login.aspx");
     }
+    protected void Rpt_Locatons_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        try
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
 
+                HiddenField lblLocationId = (HiddenField)e.Item.FindControl("lblLocationId");
+                string locationId = lblLocationId.Value;
+                HiddenField lblLocationName = (HiddenField)e.Item.FindControl("lbllocation");
+                string LocName = lblLocationName.Value;
+                Session["LcName"] = LocName.ToString();
+                Session["LocatioId"] = locationId.ToString();
+                DataSet DSSateWiseLoc = new DataSet();
+                DSSateWiseLoc = objHotLeadBL.StatewiseLeads(Convert.ToInt32(locationId));
+                var repeater2 = (Repeater)e.Item.FindControl("Rpt_LeadsCenters");
+                l = 0;
+                repeater2.DataSource = DSSateWiseLoc;
+                repeater2.DataBind();
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+
+
+        }
+    }
+    protected void Rpt_LeadsCenters_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        try
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+
+                Label lblStalocation = (Label)e.Item.FindControl("lblStalocation");
+                string LocName = Session["LcName"].ToString();
+                lblStalocation.Text = LocName.ToString();
+                string LocId= Session["LocatioId"].ToString();
+
+                Label lblzoneNames = (Label)e.Item.FindControl("lblZoneName");
+                HiddenField lblzoneId = (HiddenField)e.Item.FindControl("lblzoneId");
+                Label lblstates = (Label)e.Item.FindControl("lblstates");
+                Label lblcount = (Label)e.Item.FindControl("lblcount");
+                Label lblweekavgleads = (Label)e.Item.FindControl("lblweekavgleads");
+
+                string ZoneId = lblzoneId.Value;
+                DataSet dsstates = new DataSet();
+                dsstates = objHotLeadBL.StatesListBasedonZone(Convert.ToInt32(ZoneId),Convert.ToInt32(LocId));
+                string StatesList = ""; int j = 0;int Avg=1000;
+                for (int i = 0; i < dsstates.Tables[0].Rows.Count; i++)
+                {
+                    StatesList += dsstates.Tables[0].Rows[i]["StateCode"].ToString() +",";
+                    j = j + 1;
+                    l = l + 1;
+                }
+
+                if (StatesList.EndsWith(","))
+                    StatesList = StatesList.Remove(StatesList.Length - 1, 1);
+
+                lblstates.Text = StatesList.ToString();
+                lblcount.Text = j.ToString();
+                lblweekavgleads.Text = (j * Avg).ToString();
+
+                Session["l"] = l.ToString();
+
+            }
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+
+
+        }
+        try
+        {
+            if (e.Item.ItemType == ListItemType.Footer)
+            {
+                Label lblTotalCount = (Label)e.Item.FindControl("lblcount");
+                Label LabelTotalleads = (Label)e.Item.FindControl("LabelTotalleads");
+
+                int val = Convert.ToInt32(Session["l"].ToString());
+                lblTotalCount.Text = Session["l"].ToString();
+                LabelTotalleads.Text = (val * 1000).ToString();
+               
+            }
+        }
+        catch { }
+    }
 }

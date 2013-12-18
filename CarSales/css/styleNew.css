@@ -38,7 +38,10 @@ table{ width:100%; }
 
 .logo{ position:relative; z-index:5; background:url(../images/logo.png) 0 0 no-repeat; width:180px; height:49px; cursor:pointer; float:left; margin:5px 10px; }
 
-.headright{ float:right; width:auto; margin:6px 10px; text-align:right; position:relative; z-index:11; }
+.headright{ float:right; width:auto; min-width:900px; margin:6px 10px; text-align:right;  z-index: 60;
+position: absolute;
+top: 0;
+right: 0; }
 .loginDet{ margin-bottom:6px; text-align:right; }
 .menu{ text-align:right; float:right; margin-right:10px; }
 .head .headding{ position:absolute;z-index:10; width:100%; top:10px; }
@@ -48,8 +51,10 @@ table{ width:100%; }
 .floarR{ float:right }
 .floarL{ float:left }
 /* MENu */
+
+.menu{ }
 .menu ul {list-style: none;margin: 0;padding: 0;}
-.menu  ul li {position: relative;float: left;padding:0; margin: 0px; border-bottom:#EBEBEB 2px solid;}
+.menu  ul li {float: left;padding:0; margin: 0px; border-bottom:#EBEBEB 2px solid;}
 /* .menu  ul li:hover {background: #808080;} */
 .menu  ul li a {  text-align:left; font-size: 12px; line-height:20px; height:24px; color:#333;display: block;padding:0 10px 10px 10px;margin-bottom:0;z-index: 6;position: relative; text-transform:uppercase; }
 .menu  ul li:hover a {}
@@ -59,12 +64,13 @@ table{ width:100%; }
 
 .menu a{ text-decoration:none; }
 .menu ul li.parent{ position:relative; }
-.menu ul li.parent ul{ display:none; width:120px; height:auto; position:absolute; left:0; top:25px; background:#333; height:auto; padding:0; margin:0; list-style:none; }
-.menu ul li.parent ul li{ padding:0; margin:0; line-height:20px; float:none;  }
-.menu ul li.parent ul li a{ color:#eee; text-decoration:none; background:#333; display:block; padding:5px 15px; margin:0; border-bottom:#888 1px dotted; line-height:22px; font-size:13px; text-transform:capitalize;}
+.menu ul li.parent ul{ display:none; width:auto; height:35px; position:absolute; right:0px; top:26px; background:#333; padding:0; margin:0; list-style:none; }
+.menu ul li.parent ul li{ padding:0; margin:0; line-height:20px; float:none; display:table-cell; width:auto  }
+.menu ul li.parent ul li a{ text-overflow: ellipsis;
+  white-space: nowrap; color:#eee; text-decoration:none; background:#333; display:block; padding:5px 15px; margin:0;  line-height:22px; font-size:13px; text-transform:capitalize;}
 .menu ul li.parent ul li:last-child a{ border:none; }
-.menu ul li.parent li a:hover{ color:#FF4747; background:#121212;  }
-.menu ul li.parent:hover ul{ display:block;  }
+.menu ul li.parent li a:hover, .menu ul li.parent li.active a{ color:#FF4747; background:#121212;  }
+.menu ul li.parent:hover ul{ display:table; z-index:51;  }
 .menu  li.disable a, 
 .menu  li.disable a:hover,
 .menu ul li.parent li.disable a,
@@ -76,6 +82,9 @@ table{ width:100%; }
 
 .menu  ul li li a{ padding:6px 10px; height:34px; }
 .menu  ul li li { border:none; }
+.menu  ul li.current ul{ display:table; z-index:50;  }
+
+.menu ul:hover .current ul { display:none; } 
 
 
 .btn{ border-radius:2px; }
@@ -189,5 +198,5 @@ font-weight: bold;  }
 }
 .popup .content textarea{ width:98%; padding:5px; font-size:14px; font-family:Times New Roman; color:#777; line-height:20px; font-style:italic }
 
-
-
+.MB0{ margin-bottom:0 } 
+.MT20{ margin-top:20px; }

@@ -151,7 +151,7 @@
             <a href="#" class="logo"></a>
             <div class="headding">
                 <h1>
-                    Car Sales System<span>Page Name</span></h1>
+                    Car Sales System<span>Menu</span></h1>
             </div>
             <div class="headright">
                 <div class="loginDet">
@@ -166,8 +166,8 @@
                     <ul>
                         <li class="parent current"><a href="Home.aspx">Leads</a>
                             <ul>
-                                <li>
-                                    <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false"></asp:LinkButton></li><li>
+                                <li class="active">
+                                    <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false" PostBackUrl="~/LeadsUpload1.aspx"></asp:LinkButton></li><li>
                                 <li>
                                     <asp:LinkButton ID="LeadsDownLoad" runat="server" Text="Download" Enabled="false"></asp:LinkButton></li>
                                 <li>
@@ -214,18 +214,28 @@
                         <li class="parent "><a href="">Admin</a>
                             <ul>
                                 <li>
-                                    <asp:LinkButton ID="LeadsAdmin" runat="server" Text="Leads" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="SalesAdmin" runat="server" Text="Sales" PostBackUrl="~/DefaultRights.aspx" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="LeadsList" runat="server" Text="Leads Statewise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="ProcessAdmin" runat="server" Text="Process" Enabled="false"></asp:LinkButton>
+                                    <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="SalesAdmin" runat="server" Text="Sales" PostBackUrl="~/AllEmployeeRights.aspx"
+                                        Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="lnkDefaRights" runat="server" Text="Def.Rights" PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="ProcessAdmin" runat="server" Text="Process" PostBackUrl="~/ProcessP.aspx"
+                                        Enabled="false"></asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="ExecutiveAdmin" runat="server" Text="Executive" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="ExecutiveAdmin" runat="server" Text="Executive" PostBackUrl="~/Executives.aspx" Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="BrandsAdmin" runat="server" Text="Brands" PostBackUrl="~/Brands.aspx" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="BrandsAdmin" runat="server" Text="Brands" PostBackUrl="~/Brands.aspx"
+                                        Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="CentersAdmin" runat="server" Text="Centers" PostBackUrl="~/UpdateCentersList.aspx" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="CentersAdmin" runat="server" Text="Centers" PostBackUrl="~/Center.aspx"
+                                        Enabled="false"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" Enabled="false"></asp:LinkButton></li>
                                 <li>

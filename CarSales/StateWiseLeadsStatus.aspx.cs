@@ -21,7 +21,7 @@ using HotLeadBL.HotLeadsTran;
 using System.Net.Mail;
 
 
-public partial class CopyPage : System.Web.UI.Page
+public partial class StateWiseLeadsStatus : System.Web.UI.Page
 {
     public GeneralFunc objGeneralFunc = new GeneralFunc();
     DropdownBL objdropdownBL = new DropdownBL();
@@ -95,10 +95,20 @@ public partial class CopyPage : System.Web.UI.Page
                         int val1 = Convert.ToInt32(list2.Value.ToString());
 
                     }
-
+                    //USP_StateWiseLeadsStatus
+                    GetLeadsSattus();
                 }
             }
         }
+    }
+
+    private void GetLeadsSattus()
+    {
+        DataSet dsLeadsStat = new DataSet();
+        dsLeadsStat = objHotLeadBL.StateWiseLeadsStatus();
+        GrdSttalStatus.DataSource = dsLeadsStat.Tables[0];
+        GrdSttalStatus.DataBind();
+
     }
     private bool LoadIndividualUserRights()
     {
@@ -157,6 +167,11 @@ public partial class CopyPage : System.Web.UI.Page
     protected void lnkBtnLogout_Click(object sender, EventArgs e)
     {
         Response.Redirect("login.aspx");
+    }
+
+    protected void GrdSttalStatus_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+
     }
 
 }

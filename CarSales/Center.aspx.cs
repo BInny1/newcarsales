@@ -21,7 +21,7 @@ using HotLeadBL.HotLeadsTran;
 using System.Net.Mail;
 
 
-public partial class CopyPage : System.Web.UI.Page
+public partial class Center : System.Web.UI.Page
 {
     public GeneralFunc objGeneralFunc = new GeneralFunc();
     DropdownBL objdropdownBL = new DropdownBL();
@@ -31,7 +31,6 @@ public partial class CopyPage : System.Web.UI.Page
     CentralDBMainBL objCentralDBBL = new CentralDBMainBL();
     UserRegistrationInfo objUserregInfo = new UserRegistrationInfo();
     HotLeadsBL objHotLeadBL = new HotLeadsBL();
-
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session[Constants.NAME] == null)
@@ -85,21 +84,20 @@ public partial class CopyPage : System.Web.UI.Page
                             }
                             //lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString() + ")";
                         }
-                        // lnkTicker.Attributes.Add("href", "javascript:poptastic('Ticker.aspx?CID=" + Session[Constants.CenterCodeID] + "&CNAME=" + Session[Constants.CenterCode] + "');");
+                        lnksalTicker.Attributes.Add("href", "javascript:poptastic('Ticker.aspx?CID=" + Session[Constants.CenterCodeID] + "&CNAME=" + Session[Constants.CenterCode] + "');");
 
                         Session["SortDirec"] = null;
 
-
-                        ListItem list2 = new ListItem();
-                        list2.Value = Session[Constants.CenterCodeID].ToString();
-                        int val1 = Convert.ToInt32(list2.Value.ToString());
+                        GetCentersUpdateLIst();
 
                     }
 
                 }
             }
         }
+      
     }
+
     private bool LoadIndividualUserRights()
     {
         DataSet dsIndidivitualRights = new DataSet();
@@ -154,9 +152,68 @@ public partial class CopyPage : System.Web.UI.Page
         }
         return bValid;
     }
+
+
+    private void GetCentersUpdateLIst()
+    {
+        DataSet GridCentersUpa = new DataSet();
+        GridCentersUpa = objHotLeadBL.GridCentersUpa();
+        GridCentersUpades.DataSource = GridCentersUpa.Tables[0];
+        GridCentersUpades.DataBind();
+    }
     protected void lnkBtnLogout_Click(object sender, EventArgs e)
     {
         Response.Redirect("login.aspx");
     }
 
+    private void GetVehicleTypes()
+    {
+        DataSet GetVehicles = new DataSet();
+        GetVehicles = objHotLeadBL.VehicleTypes();
+        GridCentersUpades.DataSource = GetVehicles.Tables[0];
+        GridCentersUpades.DataBind();
+    }
+    protected void GridCentersUpades_RowCreated(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.Header)
+        {
+            GridView HeaderGrid = (GridView)sender;
+
+            GridViewRow HeaderGridRow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
+            TableCell HeaderCell = new TableCell();
+            HeaderCell.Text = "Center Code";
+            HeaderCell.ColumnSpan = 1;
+            HeaderGridRow.Cells.Add(HeaderCell);
+
+            HeaderCell = new TableCell();
+            HeaderCell.Text = "Leads Upoad";
+            HeaderCell.ColumnSpan = 1;
+            HeaderGridRow.Cells.Add(HeaderCell);
+
+            HeaderCell = new TableCell();
+            HeaderCell.Text = "Sales";
+            HeaderCell.ColumnSpan = 1;
+            HeaderGridRow.Cells.Add(HeaderCell);
+
+            HeaderCell = new TableCell();
+            HeaderCell.Text = "Customer Service";
+            HeaderCell.ColumnSpan = 1;
+            HeaderGridRow.Cells.Add(HeaderCell);
+
+            HeaderCell = new TableCell();
+            HeaderCell.Text = "Process";
+            HeaderCell.ColumnSpan = 1;
+            HeaderGridRow.Cells.Add(HeaderCell);
+
+            HeaderCell = new TableCell();
+            HeaderCell.Text = "Leads Download";
+            HeaderCell.ColumnSpan = 3;
+            HeaderGridRow.Cells.Add(HeaderCell);
+
+            GridCentersUpades.Controls[0].Controls.AddAt(0, HeaderGridRow);
+        }
+
+
+    }
 }
+

@@ -148,18 +148,18 @@ public partial class Brands : System.Web.UI.Page
                     }
                     catch { }
                 }
-                else
-                {
-                    string Modulename = dsIndidivitualRights.Tables[0].Rows[i]["SubModuleName"].ToString();
-                    LinkButton lbl1;
-                    lbl1 = (LinkButton)Page.FindControl(Modulename);
-                    try
-                    {
-                        lbl1.Enabled = false;
-                    }
-                    catch { }
-                }
-              
+                //else
+                //{
+                //    string Modulename = dsIndidivitualRights.Tables[0].Rows[i]["SubModuleName"].ToString();
+                //    LinkButton lbl1;
+                //    lbl1 = (LinkButton)Page.FindControl(Modulename);
+                //    try
+                //    {
+                //        lbl1.Enabled = false;
+                //    }
+                //    catch { }
+                //}
+
 
 
             }

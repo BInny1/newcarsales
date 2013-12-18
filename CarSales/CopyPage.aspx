@@ -7,19 +7,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>..:: Car Sales System ::..</title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-    
-    <link href="css/core.css" rel="stylesheet" type="text/css"   />
-    <link href="css/core.theme.css" rel="stylesheet" type="text/css"   />
-    <link href="css/styleNew.css" rel="stylesheet" type="text/css"   />
-    
-    
+    <link href="css/core.css" rel="stylesheet" type="text/css" />
+    <link href="css/core.theme.css" rel="stylesheet" type="text/css" />
+    <link href="css/styleNew.css" rel="stylesheet" type="text/css" />
     <!-- 
     <link href="css/css.css" rel="stylesheet" type="text/css" />
     -->
 
     <script type="text/javascript" language="javascript" src="js/jquery-1.7.min.js"></script>
 
- <!-- 
+    <!-- 
     <script type="text/javascript" src="js/emulatetab.joelpurra.js"></script>
 
     <script type="text/javascript" src="js/plusastab.joelpurra.js"></script>
@@ -40,7 +37,9 @@
     
     
      -->
-<script type="text/javascript" language="javascript">window.history.forward(1);</script>
+
+    <script type="text/javascript" language="javascript">window.history.forward(1);</script>
+
     <script type="text/javascript">
  function pageLoad()
    { 
@@ -125,9 +124,6 @@
 
     </script>
 
-
-
-
 </head>
 <body>
     <form id="form1" runat="server">
@@ -148,128 +144,144 @@
             </div>
         </ProgressTemplate>
     </asp:UpdateProgress>
-    
-    
-<!-- Main Wrapper Start  -->
-<div class="wrapper">
-    
-     <!-- Headder Start  -->
-    <div class="head wid100p">
-        <a href="#" class="logo"></a>
-        <div class="headding">
-            <h1>Car Sales System<span>Page Name</span></h1>  
-        </div>
-        <div class="headright">
-            <div class="loginDet">
-                Welcome &nbsp;<asp:Label ID="lblUserName" runat="server" Text="padma" CssClass="loginStat"></asp:Label>&nbsp;
-                       |&nbsp; <asp:LinkButton ID="lnkBtnLogout" runat="server" Text="Logout" OnClick="lnkBtnLogout_Click"
-                            CssClass="loginStat"></asp:LinkButton>
+    <!-- Main Wrapper Start  -->
+    <div class="wrapper">
+        <!-- Headder Start  -->
+        <div class="head wid100p">
+            <a href="#" class="logo"></a>
+            <div class="headding">
+                <h1>
+                    Car Sales System<span>Page Name</span></h1>
             </div>
-            <asp:LinkButton ID="lnksalTicker" runat="server" CssClass="btn btn-xs btn-info floarR" Text="Sales Ticker"></asp:LinkButton>
-            <div class="menu">
-                <ul >
-                                    <li class="parent current"><a href="Home.aspx">Leads</a>
-                                        <ul>
-                                            <li>
-                                                <asp:LinkButton ID="lnkbtnLeadsDownLoad" runat="server" Text="Upload" Enabled="false"></asp:LinkButton></li><li>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton22" runat="server" Text="Download" Enabled="false"></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton11" runat="server" Text="Abondon" Enabled="false"></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton21" runat="server" Text="Free Pkg" Enabled="false"></asp:LinkButton></li>
-                                        </ul>
-                                    </li>
-                                    <li class="parent "><a href="">Sales</a>
-                                        <ul>
-                                            <li class="disable">
-                                                <asp:LinkButton ID="LinkButton2" runat="server" Text="Ticker"></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton3" runat="server" Text="Intro Mial"></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton23" runat="server" Text="New Entry"></asp:LinkButton>
-                                            </li>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton1" runat="server" Text="Transfer In"></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton12" runat="server" Text="My Report"></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton17" runat="server" Text="Set Group"></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton18" runat="server" Text="Group Report"></asp:LinkButton></li>
-                                        </ul>
-                                    </li>
-                                    <li class="parent "><a href="">Process</a>
-                                        <ul>
-                                            <li>
-                                                <asp:LinkButton ID="lnkbtnIntromail" runat="server" Text="QC" Enabled="false"></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="lnkbtnNewSale" runat="server" Text="Payments" Enabled="false"></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton10" runat="server" Text="Publish" Enabled="false"></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton4" runat="server" Text="My Report" Enabled="false"></asp:LinkButton></li>
-                                        </ul>
-                                    </li>
-                                    <li class="parent "><a href="">Reports</a>
-                                        <ul>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton7" runat="server" Text="Leads" Enabled="false"></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton8" runat="server" Text="Sales" Enabled="false"></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton9" runat="server" Text="Process" Enabled="false"></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="lnkbtnDialySales" runat="server" Text="Exceutive"></asp:LinkButton></li>
-                                        </ul>
-                                    </li>
-                                    <li class="parent "><a href="">Admin</a>
-                                        <ul>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton5" runat="server" Text="Leads" Enabled="false"></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton6" runat="server" Text="Sales" PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton16" runat="server" Text="Process" Enabled="false"></asp:LinkButton>
-                                            </li>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton19" runat="server" Text="Executive" Enabled="false"></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="lnkBrands" runat="server" Text="Brands" PostBackUrl="~/Brands.aspx" ></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="lnkupdatecenters" runat="server" Text="Centers" PostBackUrl="~/UpdateCentersList.aspx"></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton26" runat="server" Text="User Log" Enabled="false"></asp:LinkButton></li>
-                                            <li>
-                                                <asp:LinkButton ID="LinkButton31" runat="server" Text="Edit Log" Enabled="false"></asp:LinkButton></li>
-                                        </ul>
-                                    </li>
-                                   
-                                </ul>
+            <div class="headright">
+                <div class="loginDet">
+                    Welcome &nbsp;<asp:Label ID="lblUserName" runat="server" Text="padma" CssClass="loginStat"></asp:Label>&nbsp;
+                    |&nbsp;
+                    <asp:LinkButton ID="lnkBtnLogout" runat="server" Text="Logout" OnClick="lnkBtnLogout_Click"
+                        CssClass="loginStat"></asp:LinkButton>
+                </div>
+                <asp:LinkButton ID="lnksalTicker" runat="server" CssClass="btn btn-xs btn-info floarR"
+                    Text="Sales Ticker"></asp:LinkButton>
+                <div class="menu">
+                    <ul>
+                        <li class="parent current"><a href="Home.aspx">Leads</a>
+                            <ul>
+                                <li>
+                                    <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false" PostBackUrl="~/LeadsUpload.aspx"></asp:LinkButton></li><li>
+                                <li>
+                                    <asp:LinkButton ID="LeadsDownLoad" runat="server" Text="Download" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="Abondoned" runat="server" Text="Abondon" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="FreePackage" runat="server" Text="Free Pkg" Enabled="false"></asp:LinkButton></li>
+                            </ul>
+                        </li>
+                        <li class="parent "><a href="">Sales</a>
+                            <ul>
+                                <li>
+                                    <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false"></asp:LinkButton>
+                                </li>
+                                <li>
+                                    <asp:LinkButton ID="Transferin" runat="server" Text="Transfer In" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="MyReport" runat="server" Text="My Report" Enabled="false"></asp:LinkButton></li>
+                            </ul>
+                        </li>
+                        <li class="parent"><a href="">Process</a>
+                            <ul>
+                                <li>
+                                    <asp:LinkButton ID="QC" runat="server" Text="QC" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="Payments" runat="server" Text="Payments" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="Publish" runat="server" Text="Publish" Enabled="false"></asp:LinkButton></li>
+                            </ul>
+                        </li>
+                        <li class="parent "><a href="">Reports</a>
+                            <ul>
+                                <li>
+                                    <asp:LinkButton ID="Leads" runat="server" Text="Leads" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="Sales" runat="server" Text="Sales" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="Process" runat="server" Text="Process" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="Executive" runat="server" Text="Exceutive" Enabled="false"></asp:LinkButton></li>
+                            </ul>
+                        </li>
+                        <li class="parent "><a href="">Admin</a>
+                            <ul>
+                                <li>
+                                    <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="LeadsList" runat="server" Text="Leads Statewise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="SalesAdmin" runat="server" Text="Sales" PostBackUrl="~/AllEmployeeRights.aspx"
+                                        Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="lnkDefaRights" runat="server" Text="Def.Rights" PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="ProcessAdmin" runat="server" Text="Process" PostBackUrl="~/ProcessP.aspx"
+                                        Enabled="false"></asp:LinkButton>
+                                </li>
+                                <li>
+                                    <asp:LinkButton ID="ExecutiveAdmin" runat="server" Text="Executive" PostBackUrl="~/Executives.aspx"
+                                        Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="BrandsAdmin" runat="server" Text="Brands" PostBackUrl="~/Brands.aspx"
+                                        Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="CentersAdmin" runat="server" Text="Centers" PostBackUrl="~/Center.aspx"
+                                        Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" Enabled="false"></asp:LinkButton></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            
         </div>
-        
-    </div>    
-    <!-- Headder End  -->
-    
-     <!-- Content Start  -->
-    <div class="content wid1000">
-      <div class="clear">&nbsp;</div>      
-     </div>
-    <!-- Content End  -->
-   
-   
-    <div class="clear">&nbsp;</div>
-</div>
-<!-- Main Wrapper Emd  -->
- 
- 
-  <!-- Footer Start  -->  
-   <div class="footer">
-	United Car Exchange © 2013
-</div>
- <!-- Footer End  -->
+        <!-- Headder End  -->
+        <!-- Content Start  -->
+        <div class="content">
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                    <div class="inn">
+                        <div class="box1 boxBlue">
+                            <h1 class="hed1 hed2">
+                                User Rights
+                            </h1>
+                            <div class="inn">
+                                <!-- Grid Start -->
+                                <asp:UpdatePanel ID="updtpnltblGrdcar" runat="server">
+                                    <ContentTemplate>
+                                        <!-- Grid                       -->
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                                <!-- Grid End  -->
+                            </div>
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            <div class="clear">
+                &nbsp;</div>
+            <!-- Content End  -->
+            <div class="clear">
+                &nbsp;</div>
+        </div>
+        <!-- Main Wrapper Emd  -->
+        <!-- Footer Start  -->
+        <div class="footer">
+            United Car Exchange © 2013
+        </div>
+        <!-- Footer End  -->
     </form>
 </body>
 </html>

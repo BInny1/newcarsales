@@ -21,7 +21,7 @@ using HotLeadBL.HotLeadsTran;
 using System.Net.Mail;
 
 
-public partial class CopyPage : System.Web.UI.Page
+public partial class Executives : System.Web.UI.Page
 {
     public GeneralFunc objGeneralFunc = new GeneralFunc();
     DropdownBL objdropdownBL = new DropdownBL();
@@ -95,10 +95,45 @@ public partial class CopyPage : System.Web.UI.Page
                         int val1 = Convert.ToInt32(list2.Value.ToString());
 
                     }
-
+                    GetAllLocations();
+                    GetLeadsSattus();
                 }
             }
         }
+    }
+    private void GetAllLocations()
+    {
+
+        try
+        {
+            DataSet dsCenters = objHotLeadBL.GetAllLocations();
+            ddlcenters.Items.Clear();
+            for (int i = 0; i < dsCenters.Tables[0].Rows.Count; i++)
+            {
+                if (dsCenters.Tables[0].Rows[i]["LocationId"].ToString() != "0")
+                {
+                    ListItem list = new ListItem();
+                    list.Text = dsCenters.Tables[0].Rows[i]["LocationName"].ToString();
+                    list.Value = dsCenters.Tables[0].Rows[i]["LocationId"].ToString();
+                    ddlcenters.Items.Add(list);
+                }
+            }
+            ddlcenters.Items.Insert(0, new ListItem("All", "0"));
+          //  ddlcenters.SelectedIndex = 1;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    private void GetLeadsSattus()
+    {
+        DataSet ExecutiveRight = new DataSet();
+        ExecutiveRight = objHotLeadBL.ExecutiveRights(Convert.ToInt32(ddlcenters.SelectedValue));
+        Session["ExecutiveRights"] = ExecutiveRight;
+        GridExecutvRights.DataSource = ExecutiveRight.Tables[0];
+        GridExecutvRights.DataBind();
+
     }
     private bool LoadIndividualUserRights()
     {
@@ -159,4 +194,59 @@ public partial class CopyPage : System.Web.UI.Page
         Response.Redirect("login.aspx");
     }
 
+    protected void GridExecutvRights_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lblEmpName = (LinkButton)e.Row.FindControl("lblEmpName");
+                LinkButton lblRole = (LinkButton)e.Row.FindControl("lblRole");
+                LinkButton lblExecut = (LinkButton)e.Row.FindControl("lblExecut");
+                DataSet dsTasks3 = (DataSet)Session["ExecutiveRights"];
+                lblEmpName.Text = dsTasks3.Tables[0].Rows[e.Row.RowIndex]["FirstName"].ToString() + " " + dsTasks3.Tables[0].Rows[e.Row.RowIndex]["lastname"].ToString();
+                lblRole.Text = dsTasks3.Tables[0].Rows[e.Row.RowIndex]["RoleName"].ToString();
+                if (dsTasks3.Tables[0].Rows[e.Row.RowIndex]["Executive"].ToString() != "")
+                {
+                    lblExecut.Text = "Y";
+                    lblExecut.ForeColor = System.Drawing.Color.Red;
+                }
+                else
+                {
+                    lblExecut.Text = "";
+                }
+                
+            }
+          
+        }
+        catch { }
+        try
+        {
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                 Label lblTotalCount = (Label)e.Row.FindControl("lblTotalCount");
+                 DataSet dsTasks4 = (DataSet)Session["ExecutiveRights"];
+                int CounVal=0;
+                for (int i = 0; i < dsTasks4.Tables[0].Rows.Count; i++)
+               {
+                   if (dsTasks4.Tables[0].Rows[i][3].ToString() != "")
+                   {
+                       CounVal = CounVal + 1;
+                   }
+                 
+                  
+               }
+
+
+               lblTotalCount.Text = CounVal.ToString();
+            }
+        }
+        catch { }
+    }
+
+
+    protected void ddlcenters_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        GetLeadsSattus();
+    }
 }

@@ -21,7 +21,7 @@ using HotLeadBL.HotLeadsTran;
 using System.Net.Mail;
 
 
-public partial class CopyPage : System.Web.UI.Page
+public partial class LeadsUserRights : System.Web.UI.Page
 {
     public GeneralFunc objGeneralFunc = new GeneralFunc();
     DropdownBL objdropdownBL = new DropdownBL();
@@ -90,14 +90,51 @@ public partial class CopyPage : System.Web.UI.Page
                         Session["SortDirec"] = null;
 
 
-                        ListItem list2 = new ListItem();
-                        list2.Value = Session[Constants.CenterCodeID].ToString();
-                        int val1 = Convert.ToInt32(list2.Value.ToString());
 
+                        GetAllLocations();
+                        GetLeadsUserRights(Convert.ToInt32(ddlcenters.SelectedValue));
                     }
 
                 }
             }
+        }
+    }
+    protected void ddlcenters_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        GetLeadsUserRights((Convert.ToInt32(ddlcenters.SelectedValue)));
+    }
+    private void GetLeadsUserRights(int LocationId)
+    {
+     
+        DataSet GetLeadsRights = new DataSet();
+        GetLeadsRights = objHotLeadBL.GetLeadsUserRights((Convert.ToInt32(ddlcenters.SelectedValue)));
+        Session["LeadsuserRights"] = GetLeadsRights;
+        GridDefaultUserRights.DataSource = GetLeadsRights.Tables[0];
+        GridDefaultUserRights.DataBind();
+    }
+    private void GetAllLocations()
+    {
+
+        try
+        {
+            DataSet dsCenters = objHotLeadBL.GetAllLocations();
+            ddlcenters.Items.Clear();
+            for (int i = 0; i < dsCenters.Tables[0].Rows.Count; i++)
+            {
+                if (dsCenters.Tables[0].Rows[i]["LocationId"].ToString() != "0")
+                {
+                    ListItem list = new ListItem();
+                    list.Text = dsCenters.Tables[0].Rows[i]["LocationName"].ToString();
+                    list.Value = dsCenters.Tables[0].Rows[i]["LocationId"].ToString();
+                    ddlcenters.Items.Add(list);
+                }
+            }
+            ddlcenters.Items.Insert(0, new ListItem("All", "0"));
+          
+        }
+        catch (Exception ex)
+        {
+            throw ex;
         }
     }
     private bool LoadIndividualUserRights()
@@ -158,5 +195,63 @@ public partial class CopyPage : System.Web.UI.Page
     {
         Response.Redirect("login.aspx");
     }
+    protected void GridDefaultUserRights_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
 
+                LinkButton lblLeadsUpload = (LinkButton)e.Row.FindControl("lblLeadsUpload");
+                LinkButton LeadsAdmin = (LinkButton)e.Row.FindControl("LeadsAdmin");
+                DataSet dsTasks3 = (DataSet)Session["LeadsuserRights"];
+                if (dsTasks3.Tables[0].Rows[e.Row.RowIndex]["Leads"].ToString() == "14")
+                {
+                    lblLeadsUpload.Text = "Y";
+                }
+                else
+                {
+                    lblLeadsUpload.Text = "";
+                }
+                if (dsTasks3.Tables[0].Rows[e.Row.RowIndex]["LeadsAdmin"].ToString() == "18")
+                {
+                    LeadsAdmin.Text = "Y";
+                }
+                else
+                {
+                    LeadsAdmin.Text = "";
+                }
+            }
+
+        }
+        catch { }
+        try
+        {
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                Label lblTotalCount = (Label)e.Row.FindControl("lblleadscoun");
+                Label lblleadsAdmincoun = (Label)e.Row.FindControl("lblleadsAdmincoun");
+                DataSet dsTasks4 = (DataSet)Session["LeadsuserRights"];
+                int CounlreadsVal = 0, CounldminVal=0;
+                for (int i = 0; i < dsTasks4.Tables[0].Rows.Count; i++)
+                {
+                    if (dsTasks4.Tables[0].Rows[i][7].ToString() == "14")
+                    {
+                        CounlreadsVal = CounlreadsVal + 1;
+                    }
+                    if (dsTasks4.Tables[0].Rows[i][8].ToString() == "18")
+                    {
+                        CounldminVal = CounldminVal + 1;
+                    }
+
+
+                }
+
+
+                lblTotalCount.Text = CounlreadsVal.ToString();
+                lblleadsAdmincoun.Text = CounldminVal.ToString();
+            }
+        }
+        catch { }
+    }
 }

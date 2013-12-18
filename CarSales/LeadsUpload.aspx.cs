@@ -260,7 +260,7 @@ public partial class Intromail : System.Web.UI.Page
         string SaveLoc = string.Empty;
         string FileExt = string.Empty;
         string hp = string.Empty;
-        string sLoc = string.Empty;
+         string sLoc = string.Empty;
 
         ArrayList RowNo = new ArrayList();
         ArrayList ColNo = new ArrayList();

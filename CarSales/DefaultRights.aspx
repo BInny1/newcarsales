@@ -7,19 +7,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>..:: Car Sales System ::..</title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-    
-    <link href="css/core.css" rel="stylesheet" type="text/css"   />
-    <link href="css/core.theme.css" rel="stylesheet" type="text/css"   />
-    <link href="css/styleNew.css" rel="stylesheet" type="text/css"   />
-    
-    
+    <link href="css/core.css" rel="stylesheet" type="text/css" />
+    <link href="css/core.theme.css" rel="stylesheet" type="text/css" />
+    <link href="css/styleNew.css" rel="stylesheet" type="text/css" />
     <!-- 
     <link href="css/css.css" rel="stylesheet" type="text/css" />
     -->
 
     <script type="text/javascript" language="javascript" src="js/jquery-1.7.min.js"></script>
 
- <!-- 
+    <!-- 
     <script type="text/javascript" src="js/emulatetab.joelpurra.js"></script>
 
     <script type="text/javascript" src="js/plusastab.joelpurra.js"></script>
@@ -40,7 +37,9 @@
     
     
      -->
-<script type="text/javascript" language="javascript">window.history.forward(1);</script>
+
+    <script type="text/javascript" language="javascript">window.history.forward(1);</script>
+
     <script type="text/javascript">
  function pageLoad()
    { 
@@ -125,9 +124,6 @@
 
     </script>
 
-
-
-
 </head>
 <body>
     <form id="form1" runat="server">
@@ -148,18 +144,16 @@
             </div>
         </ProgressTemplate>
     </asp:UpdateProgress>
-    
-    
-<!-- Main Wrapper Start  -->
-<div class="wrapper">
-    
-     <!-- Headder Start  -->
-    <div class="head wid100p">
-        <a href="#" class="logo"></a>
-        <div class="headding">
-            <h1>Car Sales System<span>Page Name</span></h1>  
-        </div>
-        <div class="headright">
+    <!-- Main Wrapper Start  -->
+    <div class="wrapper">
+        <!-- Headder Start  -->
+        <div class="head wid100p">
+            <a href="#" class="logo"></a>
+            <div class="headding">
+                <h1>
+                    Car Sales System<span>Default Rights</span></h1>
+            </div>
+            <div class="headright">
                 <div class="loginDet">
                     Welcome &nbsp;<asp:Label ID="lblUserName" runat="server" CssClass="loginStat"></asp:Label>&nbsp;
                     |&nbsp;
@@ -169,8 +163,8 @@
                 <asp:LinkButton ID="lnkTicker" runat="server" CssClass="btn btn-xs btn-info floarR"
                     Text="Sales Ticker"></asp:LinkButton>
                 <div class="menu">
-                    <ul>
-                        <li class="parent current"><a href="Home.aspx">Leads</a>
+                     <ul>
+                        <li class="parent"><a href="Home.aspx">Leads</a>
                             <ul>
                                 <li>
                                     <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false"></asp:LinkButton></li><li>
@@ -217,21 +211,31 @@
                                     <asp:LinkButton ID="Executive" runat="server" Text="Exceutive" Enabled="false"></asp:LinkButton></li>
                             </ul>
                         </li>
-                        <li class="parent "><a href="">Admin</a>
+                        <li class="parent current"><a href="">Admin</a>
                             <ul>
                                 <li>
-                                    <asp:LinkButton ID="LeadsAdmin" runat="server" Text="Leads" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="SalesAdmin" runat="server" Text="Sales" PostBackUrl="~/DefaultRights.aspx" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="LeadsList" runat="server" Text="Leads Statewise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="ProcessAdmin" runat="server" Text="Process" Enabled="false"></asp:LinkButton>
+                                    <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="SalesAdmin" runat="server" Text="Sales" PostBackUrl="~/AllEmployeeRights.aspx"
+                                        Enabled="false"></asp:LinkButton></li>
+                                <li class="active">
+                                    <asp:LinkButton ID="lnkDefaRights" runat="server" Text="Def.Rights" PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="ProcessAdmin" runat="server" Text="Process" PostBackUrl="~/AllEmployeeRights.aspx"
+                                        Enabled="false"></asp:LinkButton>
                                 </li>
                                 <li>
                                     <asp:LinkButton ID="ExecutiveAdmin" runat="server" Text="Executive" Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="BrandsAdmin" runat="server" Text="Brands" PostBackUrl="~/Brands.aspx" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="BrandsAdmin" runat="server" Text="Brands" PostBackUrl="~/Brands.aspx"
+                                        Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="CentersAdmin" runat="server" Text="Centers" PostBackUrl="~/UpdateCentersList.aspx" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="CentersAdmin" runat="server" Text="Centers" PostBackUrl="~/Center.aspx"
+                                        Enabled="false"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" Enabled="false"></asp:LinkButton></li>
                                 <li>
@@ -241,136 +245,121 @@
                     </ul>
                 </div>
             </div>
-        
-    </div>    
-    <!-- Headder End  -->
-    
-     <!-- Content Start  -->
-    <div class="content ">
-    
-    <div class="inn">
-    	<div class="box1 boxBlue"> 	
-            
-       	<h1 class="hed1 hed2">Default Rights</h1>
-       	<div class="inn">
-        
-        	<!-- Grid Start -->
-              <asp:UpdatePanel ID="updtpnltblGrdcar" runat="server">
-            <ContentTemplate>
-           
-                    <table >
-                        <tr>
-                            <td>
-                           
-                                <asp:GridView  ID="GridDefaultUserRights" runat="server" CellSpacing="0" 
-                                    CellPadding="0"  CssClass="table table-hover table-striped" AutoGenerateColumns="False" 
-                                    GridLines="None" OnRowCreated="GridDefaultUserRights_RowCreated"
-                                   OnRowDataBound="GridDefaultUserRights_RowDataBound" >
-                                    <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
-                                    <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
-                                    <HeaderStyle CssClass="tbHed" />
-                                    <PagerSettings Position="Top" />
-                                    <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                                    <RowStyle CssClass="row1" />
-                                    <Columns>
-                                        <asp:TemplateField>
-                                            <ItemTemplate>
-                                                <asp:LinkButton ID="lblRoleNamre" runat="server" Text='<%# Eval("RoleName")%>'></asp:LinkButton>
-                                                <asp:HiddenField ID="hdnRoleId" runat="server" Value='<%# Eval("RoleId")%>' />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField>
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblVehType" runat="server"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Leads" >
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblLeads" runat="server"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField   HeaderText="Transfer Ins">
-                                            <ItemTemplate>
-                                                <asp:Label ID="LblTransfers" runat="server"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField  HeaderText="Abondons">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblabondons" runat="server"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField  HeaderText="Free Posts">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblfreepots" runat="server"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField  HeaderText="Intro Mail">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblintromail" runat="server"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="New Entry">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblNeEntry" runat="server"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField    HeaderText="Transfer Out">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblTransferOut" runat="server"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField  HeaderText="Ticker">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblTicker" runat="server"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Self">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblSelf" runat="server"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField   HeaderText="Center">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblCenter" runat="server"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:TemplateField  >
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblAdmin" runat="server"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                </asp:GridView>
-                            </td>
-                        </tr>
-                    </table>
-          
-            </ContentTemplate>
-        </asp:UpdatePanel>
-
-           
-            <!-- Grid End  -->
-        	
         </div>
+        <!-- Headder End  -->
+        <!-- Content Start  -->
+        <div class="content ">
+            <div class="inn">
+                <div class="box1 boxBlue">
+                    <h1 class="hed1 hed2">
+                        Default Rights</h1>
+                    <div class="inn">
+                        <!-- Grid Start -->
+                        <asp:UpdatePanel ID="updtpnltblGrdcar" runat="server">
+                            <ContentTemplate>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <asp:GridView ID="GridDefaultUserRights" runat="server" CellSpacing="0" CellPadding="0"
+                                                CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None"
+                                                OnRowCreated="GridDefaultUserRights_RowCreated" OnRowDataBound="GridDefaultUserRights_RowDataBound">
+                                                <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
+                                                <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
+                                                <HeaderStyle CssClass="tbHed" />
+                                                <PagerSettings Position="Top" />
+                                                <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
+                                                <RowStyle CssClass="row1" />
+                                                <Columns>
+                                                    <asp:TemplateField>
+                                                        <ItemTemplate>
+                                                            <asp:LinkButton ID="lblRoleNamre" runat="server" Text='<%# Eval("RoleName")%>'></asp:LinkButton>
+                                                            <asp:HiddenField ID="hdnRoleId" runat="server" Value='<%# Eval("RoleId")%>' />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblVehType" runat="server"></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Leads">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblLeads" runat="server"></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Transfer Ins">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="LblTransfers" runat="server"></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Abondons">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblabondons" runat="server"></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Free Posts">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblfreepots" runat="server"></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Intro Mail">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblintromail" runat="server"></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="New Entry">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblNeEntry" runat="server"></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Transfer Out">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblTransferOut" runat="server"></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Ticker">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblTicker" runat="server"></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Self">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblSelf" runat="server"></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Center">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblCenter" runat="server"></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField>
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblAdmin" runat="server"></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                        <!-- Grid End  -->
+                    </div>
+                </div>
+            </div>
+            <div class="clear">
+                &nbsp;</div>
+        </div>
+        <!-- Content End  -->
+        <div class="clear">
+            &nbsp;</div>
     </div>
+    <!-- Main Wrapper Emd  -->
+    <!-- Footer Start  -->
+    <div class="footer">
+        United Car Exchange © 2013
     </div>
- 
-      <div class="clear">&nbsp;</div>      
-     </div>
-    <!-- Content End  -->
-   
-   
-   
-    <div class="clear">&nbsp;</div>
-</div>
-<!-- Main Wrapper Emd  -->
- 
- 
-  <!-- Footer Start  -->  
-   <div class="footer">
-	United Car Exchange © 2013
-</div>
- <!-- Footer End  -->
+    <!-- Footer End  -->
     </form>
 </body>
 </html>

@@ -8,7 +8,7 @@
     <title>..:: Car Sales System ::..</title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <link href="css/cssLeads.css" rel="stylesheet" type="text/css" />
-    <link href="css/css.css" rel="stylesheet" type="text/css" />
+  <link href="css/styleNew.css" rel="stylesheet" type="text/css" />
 
     <script src="js/overlibmws.js" type="text/javascript"></script>
 
@@ -22,19 +22,15 @@
 
     <script src="js/jquery.formatCurrency-1.4.0.js" type="text/javascript"></script>
 
-    <script src="Static/JS/calendar.js" type="text/javascript"></script>
-
-    <link href="Static/Css/calender.css" rel="stylesheet" type="text/css" />
-
     <script type="text/javascript" language="javascript">window.history.forward(1);</script>
 
     <script type="text/javascript" language="javascript">
  
-       function poptastic(url)
-{
+   function poptastic(url)
+   {
 	newwindow=window.open(url,'name','directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,height=420,width=300');
 	    if (window.focus) {newwindow.focus()}
-    }
+   }
         function Formatdata(e) {
             debugger
             var charCode = (e.which) ? e.which : event.keyCode
@@ -49,10 +45,10 @@
         }
         function hideSpinner() {
             $('#spinner').hide();
-        } 
-            
-    </script>
 
+   }        
+    </script>
+    
     <script type="text/javascript">
         function pageLoad() {
             $('.sample4').numeric({ allow: "-" });
@@ -85,7 +81,6 @@
                 $('#btnSubmit').val('Please Wait');
             }
             return valid;
-
         }
     </script>
 
