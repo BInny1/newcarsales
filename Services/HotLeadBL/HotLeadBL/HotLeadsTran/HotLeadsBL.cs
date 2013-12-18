@@ -5217,6 +5217,30 @@ namespace HotLeadBL.HotLeadsTran
                 throw ex;
             }
         }
+
+        public DataSet UInsertEmpandRightsss(string Empid, int RoleId, int Locationid, string CreatedBy)
+        {
+            try
+            { 
+                DataSet dsCarsData = new DataSet();
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USP_InsertEmployeeandRights";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dbDataBase.AddInParameter(dbCommand, "@Empid", System.Data.DbType.String, Empid);
+                dbDataBase.AddInParameter(dbCommand, "@RoleId", System.Data.DbType.String, @RoleId);
+                dbDataBase.AddInParameter(dbCommand, "@Locationid", System.Data.DbType.String, @Locationid);
+                dbDataBase.AddInParameter(dbCommand, "@CreatedBy", System.Data.DbType.String, @CreatedBy);
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+                return dsCarsData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }
 

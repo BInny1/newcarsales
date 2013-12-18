@@ -40,3 +40,10 @@ D:\CarsalesNewProject\CarSales\Services\HotLeadBL\HotLeadBL\bin\Debug\Microsoft.
 D:\CarsalesNewProject\CarSales\Services\HotLeadBL\HotLeadBL\bin\Debug\HotLeadInfo.pdb
 D:\CarsalesNewProject\CarSales\Services\HotLeadBL\HotLeadBL\obj\Debug\HotLeadBL.dll
 D:\CarsalesNewProject\CarSales\Services\HotLeadBL\HotLeadBL\obj\Debug\HotLeadBL.pdb
+D:\github\NewcarsalesClone\newcarsales\Services\HotLeadBL\HotLeadBL\obj\Debug\ResolveAssemblyReference.cache
+D:\github\NewcarsalesClone\newcarsales\Services\HotLeadBL\HotLeadBL\bin\Debug\HotLeadBL.dll
+D:\github\NewcarsalesClone\newcarsales\Services\HotLeadBL\HotLeadBL\bin\Debug\HotLeadBL.pdb
+D:\github\NewcarsalesClone\newcarsales\Services\HotLeadBL\HotLeadBL\bin\Debug\HotLeadInfo.dll
+D:\github\NewcarsalesClone\newcarsales\Services\HotLeadBL\HotLeadBL\bin\Debug\HotLeadInfo.pdb
+D:\github\NewcarsalesClone\newcarsales\Services\HotLeadBL\HotLeadBL\obj\Debug\HotLeadBL.dll
+D:\github\NewcarsalesClone\newcarsales\Services\HotLeadBL\HotLeadBL\obj\Debug\HotLeadBL.pdb

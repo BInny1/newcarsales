@@ -95,8 +95,17 @@ public partial class AllEmployeeRights : System.Web.UI.Page
                         list2.Value = Session[Constants.CenterCodeID].ToString();
                         int val1 = Convert.ToInt32(list2.Value.ToString());
 
-                     
+
                         GetAllLocations();
+
+                        if (CenterCode == "INDG")
+                            ddlcenters.SelectedIndex = 0;
+                        else if (CenterCode == "INBH")
+                            ddlcenters.SelectedIndex = 1;
+                        else if (CenterCode == "USMP")
+                            ddlcenters.SelectedIndex = 2;
+                        else if (CenterCode == "USWB")
+                            ddlcenters.SelectedIndex = 3;
                         GetUserDefaultRights();
                     }
 
@@ -122,8 +131,8 @@ public partial class AllEmployeeRights : System.Web.UI.Page
                     ddlcenters.Items.Add(list);
                 }
             }
-            ddlcenters.Items.Insert(0, new ListItem("All", "0"));
-           
+            //ddlcenters.Items.Insert(0, new ListItem("All", "0"));
+
         }
         catch (Exception ex)
         {
@@ -223,26 +232,26 @@ public partial class AllEmployeeRights : System.Web.UI.Page
                 {
                     Label lblTotalCount = (Label)e.Row.FindControl("lblTotalCount");
                     DataSet dsTasks4 = (DataSet)Session["Employees"];
-                 
-                    int UpLoCount=0,TrInCount=0,AbondCount=0,FreePaCopun=0,
-                       IntCount=0,NewwentCoun=0,traoucoun=0,TickeCount=0,
-                       selfCount=0,CentersCount=0,AdminCount=0;
 
-                   Label lblupload = (Label)e.Row.FindControl("lblupload");
-                   Label lbltransfin = (Label)e.Row.FindControl("lbltransfin");
-                   Label lblabond = (Label)e.Row.FindControl("lblabond");
-                   Label lblfreepack = (Label)e.Row.FindControl("lblfreepack");
+                    int UpLoCount = 0, TrInCount = 0, AbondCount = 0, FreePaCopun = 0,
+                       IntCount = 0, NewwentCoun = 0, traoucoun = 0, TickeCount = 0,
+                       selfCount = 0, CentersCount = 0, AdminCount = 0;
 
-                   Label lblintm = (Label)e.Row.FindControl("lblintm");
-                   Label lblneent = (Label)e.Row.FindControl("lblneent");
-                   Label lbltrnout = (Label)e.Row.FindControl("lbltrnout");
-                   Label lblticker = (Label)e.Row.FindControl("lblticker");
+                    Label lblupload = (Label)e.Row.FindControl("lblupload");
+                    Label lbltransfin = (Label)e.Row.FindControl("lbltransfin");
+                    Label lblabond = (Label)e.Row.FindControl("lblabond");
+                    Label lblfreepack = (Label)e.Row.FindControl("lblfreepack");
 
-                   Label lblselfs = (Label)e.Row.FindControl("lblselfs");
-                   Label lblcentrs = (Label)e.Row.FindControl("lblcentrs");
+                    Label lblintm = (Label)e.Row.FindControl("lblintm");
+                    Label lblneent = (Label)e.Row.FindControl("lblneent");
+                    Label lbltrnout = (Label)e.Row.FindControl("lbltrnout");
+                    Label lblticker = (Label)e.Row.FindControl("lblticker");
 
-                   Label lblladminsd = (Label)e.Row.FindControl("lblladminsd");
-                   
+                    Label lblselfs = (Label)e.Row.FindControl("lblselfs");
+                    Label lblcentrs = (Label)e.Row.FindControl("lblcentrs");
+
+                    Label lblladminsd = (Label)e.Row.FindControl("lblladminsd");
+
                     for (int i = 0; i < dsTasks4.Tables[0].Rows.Count; i++)
                     {
                         if (dsTasks4.Tables[0].Rows[i][2].ToString() == "Y")
@@ -296,7 +305,7 @@ public partial class AllEmployeeRights : System.Web.UI.Page
                         {
                             AdminCount = AdminCount + 1;
                         }
-                      
+
 
 
                     }
@@ -325,7 +334,7 @@ public partial class AllEmployeeRights : System.Web.UI.Page
 
         catch { }
     }
-   
+
     protected void btnAddVehicle_Click(object sender, EventArgs e)
     {
         //DataSet UserEmploRights = objHotLeadBL.UpdateUserRights(EMPID,LeadsUpload,LeadsDownLoad ,Abondoned,FreePackage ,Ticker ,IntroMail ,
@@ -338,17 +347,17 @@ public partial class AllEmployeeRights : System.Web.UI.Page
                             SalesAdmin = false, ProcessAdmin = false, ExecutiveAdmin = false, BrandsAdmin = false,
                             CentersAdmin = false, UsersLog = false, EditLog = false, Center = false, Self = false;
         string EMPID = "";
-       
+
         if (Ckleads.Items[0].Selected == true)
         {
-            LeadsUpload = true; LeadsDownLoad = true; 
+            LeadsUpload = true; LeadsDownLoad = true;
         }
         else
         {
             LeadsUpload = false; LeadsDownLoad = false;
         }
 
-        if (Ckleads.Items[1].Selected == true) Transferin = true;  else Transferin = false;
+        if (Ckleads.Items[1].Selected == true) Transferin = true; else Transferin = false;
         if (Ckleads.Items[2].Selected == true) Abondoned = true; else Abondoned = false;
         if (Ckleads.Items[3].Selected == true) FreePackage = true; else FreePackage = false;
 
@@ -405,7 +414,7 @@ public partial class AllEmployeeRights : System.Web.UI.Page
                         if (Modulename == "LeadsUpload")
                         {
                             Ckleads.Items[0].Selected = true;
-                            
+
                         }
 
                         if (Modulename == "Transferin")
@@ -435,7 +444,7 @@ public partial class AllEmployeeRights : System.Web.UI.Page
                 }
 
 
-             
+
 
             }
 
@@ -443,7 +452,7 @@ public partial class AllEmployeeRights : System.Web.UI.Page
         }
         catch { }
     }
-    
+
     protected void lnkBtnLogout_Click(object sender, EventArgs e)
     {
         Response.Redirect("login.aspx");
@@ -548,17 +557,19 @@ public partial class AllEmployeeRights : System.Web.UI.Page
             HeaderCell.Text = "Leads Download";
             HeaderCell.ColumnSpan = 4;
             HeaderGridRow.Cells.Add(HeaderCell);
+            HeaderCell.CssClass = "BL BR";
 
             HeaderCell = new TableCell();
             HeaderCell.Text = "Sales";
             HeaderCell.ColumnSpan = 4;
             HeaderGridRow.Cells.Add(HeaderCell);
-
+          
 
             HeaderCell = new TableCell();
             HeaderCell.Text = "Reports";
             HeaderCell.ColumnSpan = 2;
             HeaderGridRow.Cells.Add(HeaderCell);
+            HeaderCell.CssClass = "BL BR";
 
 
             HeaderCell = new TableCell();
@@ -572,10 +583,30 @@ public partial class AllEmployeeRights : System.Web.UI.Page
     }
     public void lnlupdatelist_Click(object sender, EventArgs e)
     {
+
         MpUserUpdatelist.Show();
-        DataSet dsSalesUpdateList = objHotLeadBL.SalesUsersUpdateList(0);
+        DataSet dsSalesUpdateList = objHotLeadBL.SalesUsersUpdateList(Convert.ToInt32(ddlcenters.SelectedValue));
         GridUserUpdateList.DataSource = dsSalesUpdateList.Tables[0];
         GridUserUpdateList.DataBind();
 
+    }
+    public void btnUpda_Click(object sender, EventArgs e)
+    {
+
+        foreach (GridViewRow row in GridUserUpdateList.Rows)
+        {
+            CheckBox chk = row.Cells[0].FindControl("chk_Check") as CheckBox;
+            if (chk != null && chk.Checked)
+            {
+                Label lblSalesEmpid = row.Cells[0].FindControl("lblSalesEmpid") as Label;
+                DropDownList lblSalesRoleId = row.Cells[0].FindControl("ddlsalesroles") as DropDownList;
+
+                DataSet InsertEmployee = objHotLeadBL.UInsertEmpandRightsss(lblSalesEmpid.Text,Convert.ToInt32(lblSalesRoleId.Text),
+                    Convert.ToInt32(ddlcenters.SelectedValue), Session[Constants.USER_NAME].ToString());
+
+            }
+        }
+        MpUserUpdatelist.Hide();
+        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Selected employees are added successfully.');", true);
     }
 }

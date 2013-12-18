@@ -13,3 +13,8 @@ D:\CarsalesNewProject\CarSales\Services\HotLeadInfo\HotLeadInfo\bin\Debug\HotLea
 D:\CarsalesNewProject\CarSales\Services\HotLeadInfo\HotLeadInfo\obj\Debug\ResolveAssemblyReference.cache
 D:\CarsalesNewProject\CarSales\Services\HotLeadInfo\HotLeadInfo\obj\Debug\HotLeadInfo.dll
 D:\CarsalesNewProject\CarSales\Services\HotLeadInfo\HotLeadInfo\obj\Debug\HotLeadInfo.pdb
+D:\github\NewcarsalesClone\newcarsales\Services\HotLeadInfo\HotLeadInfo\bin\Debug\HotLeadInfo.dll
+D:\github\NewcarsalesClone\newcarsales\Services\HotLeadInfo\HotLeadInfo\bin\Debug\HotLeadInfo.pdb
+D:\github\NewcarsalesClone\newcarsales\Services\HotLeadInfo\HotLeadInfo\obj\Debug\ResolveAssemblyReference.cache
+D:\github\NewcarsalesClone\newcarsales\Services\HotLeadInfo\HotLeadInfo\obj\Debug\HotLeadInfo.dll
+D:\github\NewcarsalesClone\newcarsales\Services\HotLeadInfo\HotLeadInfo\obj\Debug\HotLeadInfo.pdb

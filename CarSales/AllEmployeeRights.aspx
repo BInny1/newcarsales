@@ -132,6 +132,10 @@
             $find('<%= MpVechlAdd.ClientID%>').hide();
             return false;
         }
+          function ClosePopup9() {
+            $find('<%= MpUserUpdatelist.ClientID%>').hide();
+            return false;
+        }
     </script>
 
 </head>
@@ -161,11 +165,11 @@
             <a href="#" class="logo"></a>
             <div class="headding">
                 <h1>
-                    Car Sales System<span>All Employee Rights</span></h1>
+                    Car Sales System<span></span></h1>
             </div>
             <div class="headright">
                 <div class="loginDet">
-                    Welcome &nbsp;<asp:Label ID="lblUserName" runat="server" CssClass="loginStat"></asp:Label>&nbsp;
+                    &nbsp;<asp:Label ID="lblUserName" runat="server" CssClass="loginStat"></asp:Label>&nbsp;
                     |&nbsp;
                     <asp:LinkButton ID="lnkBtnLogout" runat="server" Text="Logout" OnClick="lnkBtnLogout_Click"
                         CssClass="loginStat"></asp:LinkButton>
@@ -264,7 +268,7 @@
                     <div class="inn">
                         <div class="box1 boxBlue">
                             <h1 class="hed1 hed2">
-                                User Rights
+                                Sales
                                 <asp:Label ID="lblcenters" Text="Centers" runat="server" Style="padding-left: 700px;"></asp:Label>
                                 <asp:DropDownList ID="ddlcenters" runat="server" Style="width: 150px;" OnSelectedIndexChanged="ddlcenters_SelectedIndexChanged"
                                     AutoPostBack="true">
@@ -285,7 +289,7 @@
                                                         OnRowCommand="GridDefaultUserRights_RowCommand">
                                                         <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
                                                         <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
-                                                        <HeaderStyle CssClass="tbHed" />
+                                                        <HeaderStyle CssClass="tbHed center" />
                                                         <PagerSettings Position="Top" />
                                                         <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
                                                         <Columns>
@@ -312,10 +316,11 @@
                                                                     <asp:LinkButton ID="lblVehType" runat="server" Text="Default"></asp:LinkButton>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Leads">
+                                                            <asp:TemplateField HeaderText="Leads" HeaderStyle-CssClass="BL">
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton ID="LeadsUploadXX" runat="server" Text='<%# Eval("LeadsUpload")%>'></asp:LinkButton>
                                                                 </ItemTemplate>
+                                                                  <ItemStyle CssClass="BL" />
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblupload" runat="server"></asp:Label>
                                                                 </FooterTemplate>
@@ -336,10 +341,11 @@
                                                                     <asp:Label ID="lblabond" runat="server"></asp:Label>
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Free Posts">
+                                                            <asp:TemplateField HeaderText="Free Posts" HeaderStyle-CssClass="BR">
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton ID="FreePackageXX" runat="server" Text='<%# Eval("FreePackage")%>'></asp:LinkButton>
                                                                 </ItemTemplate>
+                                                                   <ItemStyle CssClass="BR" />
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblfreepack" runat="server"></asp:Label>
                                                                 </FooterTemplate>
@@ -364,14 +370,16 @@
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton ID="lblTransferOutXX" runat="server" Text=" "></asp:LinkButton>
                                                                 </ItemTemplate>
+                                                                 
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lbltrnout" runat="server"></asp:Label>
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Ticker">
+                                                            <asp:TemplateField HeaderText="Ticker"  HeaderStyle-CssClass="BR">
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton ID="TickerXX" runat="server" Text='<%# Eval("Ticker")%>'></asp:LinkButton>
                                                                 </ItemTemplate>
+                                                                  <ItemStyle CssClass="BR" />
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblticker" runat="server"></asp:Label>
                                                                 </FooterTemplate>
@@ -384,10 +392,11 @@
                                                                     <asp:Label ID="lblselfs" runat="server"></asp:Label>
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Center">
+                                                            <asp:TemplateField HeaderText="Center"  HeaderStyle-CssClass="BR">
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton ID="CenterXX" runat="server" Text='<%# Eval("Center")%>'></asp:LinkButton>
                                                                 </ItemTemplate>
+                                                                  <ItemStyle CssClass="BR" />
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblcentrs" runat="server"></asp:Label>
                                                                 </FooterTemplate>
@@ -510,62 +519,70 @@
         BackgroundCssClass="ModalPopupBG" TargetControlID="HdnUserPoyp" CancelControlID="btnCancelPW">
     </cc1:ModalPopupExtender>
     <asp:HiddenField ID="HdnUserPoyp" runat="server" />
-    <div id="tblChangePW1" style="display: none; width: 950px;" class="popup">
+    <div id="tblChangePW1" style="display: none; width: 950px; height: 470px;" class="popup">
         <h2>
-            Employees List</h2>
-        <div class="content">
+            New Employees   </h2>
+        <div class="content" style="">
+      
+                                                    
+        <div class="scroll1">
+        
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="GridUserUpdateList" runat="server" CellSpacing="0" CellPadding="0"
-                        ShowFooter="true" CssClass="table table-hover table-striped" AutoGenerateColumns="False"
-                        GridLines="None">
-                        <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
-                        <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
-                        <HeaderStyle CssClass="tbHed" />
-                        <PagerSettings Position="Top" />
-                        <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                        <Columns>
-                            <asp:TemplateField>
-                                <ItemTemplate>
-                                    <asp:CheckBox ID="chk_Check" runat="server" />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField>
-                                <ItemTemplate>
-                                    <asp:Label ID="lblSalesEmpid" runat="server" Text='<%# Eval("EMPID")%>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField>
-                                <ItemTemplate>
-                                    <asp:Label ID="LblSalesName" runat="server" Text='<%# Eval("Names")%>' ></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField>
-                                <ItemTemplate>
-                                    <asp:DropDownList ID="ddlsalesroles" runat="server">
-                                        <asp:ListItem Value="1">Sales Agent Opener</asp:ListItem>
-                                        <asp:ListItem Value="2">Sales Agent Closer</asp:ListItem>
-                                        <asp:ListItem Value="3">Center Manager</asp:ListItem>
-                                        <asp:ListItem Value="4">SalesAssistant</asp:ListItem>
-                                        <asp:ListItem Value="5">QC Analyst</asp:ListItem>
-                                        <asp:ListItem Value="6">Billing Processor</asp:ListItem>
-                                        <asp:ListItem Value="7">Process Manager</asp:ListItem>
-                                        <asp:ListItem Value="8">Leads Source</asp:ListItem>
-                                        <asp:ListItem Value="9">Leads Manager</asp:ListItem>
-                                        <asp:ListItem Value="10">Executive</asp:ListItem>
-                                        <asp:ListItem Value="11">Admin</asp:ListItem>
-                                    </asp:DropDownList>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                             <asp:TemplateField>
-                                <ItemTemplate>
-                                    <asp:Label ID="LblSalesName" runat="server" Text='<%# Eval("DeptName")%>' ></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                           </Columns>
-                    </asp:GridView>
+                    <table>
+                        <tr>
+                            <td>
+                                <asp:GridView ID="GridUserUpdateList" runat="server" CellSpacing="0" CellPadding="0"
+                                    Style="height: 450px;" ShowFooter="true" CssClass="table table-hover table-striped"
+                                    AutoGenerateColumns="False" GridLines="None">
+                                    <Columns>
+                                        <asp:TemplateField ItemStyle-VerticalAlign="Middle">
+                                            <ItemTemplate>
+                                                <asp:CheckBox ID="chk_Check" runat="server" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="EMPID">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblSalesEmpid" runat="server" Text='<%# Eval("EMPID")%>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Name">
+                                            <ItemTemplate>
+                                                <asp:Label ID="LblSalesName" runat="server" Text='<%# Eval("Names")%>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Designation">
+                                            <ItemTemplate>
+                                                <asp:Label ID="LblSalesUpName" runat="server" Text='<%# Eval("DeptName")%>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Role">
+                                            <ItemTemplate>
+                                                <asp:DropDownList ID="ddlsalesroles" runat="server">
+                                                    <asp:ListItem Value="0">Select</asp:ListItem>
+                                                    <asp:ListItem Value="1">Sales Agent Opener</asp:ListItem>
+                                                    <asp:ListItem Value="2">Sales Agent Closer</asp:ListItem>
+                                                    <asp:ListItem Value="3">Center Manager</asp:ListItem>
+                                                    <asp:ListItem Value="4">SalesAssistant</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
+                            </td>
+                        </tr>
+                        
+                    </table>
                 </ContentTemplate>
             </asp:UpdatePanel>
+            </div>
+         <br />
+      <span class="floarC">
+           <asp:Button ID="btnUpda" class="btn btn-warning" runat="server" Text="Update"
+                                                    OnClick="btnUpda_Click" /> &nbsp;
+                                                     <asp:Button ID="btnClosp" class="btn btn-default " runat="server" Text="Cancel"
+                                        OnClientClick="return ClosePopup9();" /></span>
+                                       
         </div>
     </div>
     </form>

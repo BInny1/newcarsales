@@ -295,6 +295,7 @@ protected void  GridDefaultUserRights_RowCreated(object sender, GridViewRowEvent
         HeaderCell.ColumnSpan = 1;
         HeaderGridRow.Cells.Add(HeaderCell);
         
+        
         HeaderCell = new TableCell();
         HeaderCell.Text = "Vehicle Type(s)";
         HeaderCell.ColumnSpan = 1;
@@ -304,6 +305,7 @@ protected void  GridDefaultUserRights_RowCreated(object sender, GridViewRowEvent
         HeaderCell.Text = "Leads Download";
         HeaderCell.ColumnSpan = 4;
         HeaderGridRow.Cells.Add(HeaderCell);
+        HeaderCell.CssClass = "BL BR";
 
         HeaderCell = new TableCell();
         HeaderCell.Text = "Sales";
@@ -315,6 +317,7 @@ protected void  GridDefaultUserRights_RowCreated(object sender, GridViewRowEvent
         HeaderCell.Text = "Reports";
         HeaderCell.ColumnSpan = 2;
         HeaderGridRow.Cells.Add(HeaderCell);
+        HeaderCell.CssClass = "BL BR";
 
          
         HeaderCell = new TableCell();

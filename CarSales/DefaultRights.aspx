@@ -265,7 +265,7 @@
                                                 OnRowCreated="GridDefaultUserRights_RowCreated" OnRowDataBound="GridDefaultUserRights_RowDataBound">
                                                 <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
                                                 <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
-                                                <HeaderStyle CssClass="tbHed" />
+                                                <HeaderStyle CssClass="tbHed center" />
                                                 <PagerSettings Position="Top" />
                                                 <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
                                                 <RowStyle CssClass="row1" />
@@ -281,10 +281,11 @@
                                                             <asp:Label ID="lblVehType" runat="server"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Leads">
+                                                    <asp:TemplateField HeaderText="Leads" HeaderStyle-CssClass="BL">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblLeads" runat="server"></asp:Label>
+                                                            <asp:Label ID="lblLeads" runat="server" ></asp:Label>
                                                         </ItemTemplate>
+                                                        <ItemStyle CssClass="BL" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Transfer Ins">
                                                         <ItemTemplate>
@@ -296,10 +297,11 @@
                                                             <asp:Label ID="lblabondons" runat="server"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Free Posts">
+                                                    <asp:TemplateField HeaderText="Free Posts" HeaderStyle-CssClass="BR">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblfreepots" runat="server"></asp:Label>
+                                                            <asp:Label ID="lblfreepots" runat="server" ></asp:Label>
                                                         </ItemTemplate>
+                                                        <ItemStyle CssClass="BR" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Intro Mail">
                                                         <ItemTemplate>
@@ -316,20 +318,22 @@
                                                             <asp:Label ID="lblTransferOut" runat="server"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Ticker">
+                                                    <asp:TemplateField HeaderText="Ticker" HeaderStyle-CssClass="BR">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblTicker" runat="server"></asp:Label>
+                                                            <asp:Label ID="lblTicker" runat="server" ></asp:Label>
                                                         </ItemTemplate>
+                                                        <ItemStyle CssClass="BR" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Self">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblSelf" runat="server"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Center">
+                                                    <asp:TemplateField HeaderText="Center" HeaderStyle-CssClass="BR">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblCenter" runat="server"></asp:Label>
+                                                            <asp:Label ID="lblCenter" runat="server" ></asp:Label>
                                                         </ItemTemplate>
+                                                        <ItemStyle CssClass="BR" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField>
                                                         <ItemTemplate>
