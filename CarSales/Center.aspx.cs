@@ -84,7 +84,7 @@ public partial class Center : System.Web.UI.Page
                             }
                             //lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString() + ")";
                         }
-                        lnksalTicker.Attributes.Add("href", "javascript:poptastic('Ticker.aspx?CID=" + Session[Constants.CenterCodeID] + "&CNAME=" + Session[Constants.CenterCode] + "');");
+                        lnkTicker.Attributes.Add("href", "javascript:poptastic('Ticker.aspx?CID=" + Session[Constants.CenterCodeID] + "&CNAME=" + Session[Constants.CenterCode] + "');");
 
                         Session["SortDirec"] = null;
 

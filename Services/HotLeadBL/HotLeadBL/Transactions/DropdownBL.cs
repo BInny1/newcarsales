@@ -1382,14 +1382,14 @@ namespace HotLeadBL.Transactions
             }
         }
 
-        public DataSet USP_SmartzWelcomeCallSearch(int SelMode)
+        public DataSet USP_SmartzCallSearch(int SelMode)
         {
             try
             {
                 DataSet dsCars = new DataSet();
                 string spNameString = string.Empty;
                 Database dbDatabase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME);
-                spNameString = "USP_SmartzWelcomeCallSearch";
+                spNameString = "USP_SmartzCallSearch";
                 DbCommand dbCommand = null;
                 dbCommand = dbDatabase.GetStoredProcCommand(spNameString);
                 dbDatabase.AddInParameter(dbCommand, "@SelMode", System.Data.DbType.Int32, SelMode);

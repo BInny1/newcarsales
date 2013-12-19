@@ -1,0 +1,52 @@
+@charset "utf-8";
+/* CSS Document */
+
+.menu1{ position:relative;width::100%;min-width:1000px; height:auto; font-family:Arial, Helvetica, sans-serif; font-size:12px; float:right; top:-1px; }
+.menu1 .mainUL{ float:right; position:relative; }
+.menu1 .mainUL li.parent{ float:left; background:none; border-bottom:#ccc; position:relative;  }
+.menu1 .mainUL li.parent a{ display:block; text-align:center; padding:4px 15px; color:#333; }
+.menu1 .mainUL li.parent li a{ padding:7px 15px; }
+.menu1 .mainUL li.parent li a{ background:#555 url(../images/dev.png) right center no-repeat; border:none; color:#eee; text-align:left; }
+.menu1 .mainUL li.parent li a:hover, .menu1 .mainUL li ul li.act a{ background:#333 ; color:#FF3300; }
+
+.menu1 .mainUL li.parent li li a, .menu1 .mainUL li.parent li.act li a{ border-bottom:#eee 1px dotted; background:#555; color:#eee; }
+.menu1 .mainUL li.parent li li a:hover, .menu1 .mainUL li.parent li.act li a:hover{  background:#333; color:#eee; }
+.menu1 .mainUL li.parent li li.last a, .menu1 .mainUL li.parent li.act li.last a{ border:none; color:#eee; }
+
+.menu1 .mainUL li.parent { border-bottom:#EBEBEB 2px solid; }
+.menu1 .mainUL li.parent.active { border-bottom:#FF3300 2px solid; }
+
+.menu1 .mainUL li ul{ display:none; }
+
+.menu1 li{ list-style:none; padding:0; margin:0; }
+.menu1 li a{ text-decoration:none; }
+.menu1 .mainUL ul{ display:none; }
+
+
+
+.menu1 .mainUL li.parent.active ul.sub1{ position:absolute; right:0; top:27px; display:table; white-space:nowrap;  }
+.menu1 .mainUL li.parent.active ul.sub1 li{ float:none;  display:table-cell; white-space:nowrap; position:relative;  }
+
+.menu1 .mainUL li.parent ul.sub1 ul.sub2{ display:none; }
+
+.menu1 .mainUL li.parent.active ul.sub1 ul.sub2 { position:absolute; right:0; top:32px;   }
+.menu1 .mainUL li.parent.active ul.sub1  ul.sub2 li{ float:none;  display:list-item; white-space:nowrap;  }
+
+.cert{
+	border-top: 4px solid #404040;
+	border-left: 4px dashed rgba(0, 0, 0, 0);
+	border-right: 4px dashed rgba(0, 0, 0, 0);
+	display: inline-block;
+	margin-left: 1px;
+	vertical-align: middle;
+}
+.menu1 .mainUL li li .cert{ border-top: 4px solid #eee; }
+
+.menu1 .mainUL li.parent { background:url(../images/dev.png) right center no-repeat  }
+.menu1 .mainUL li.parent.last{ background:none; }
+
+.menu1 .mainUL li.parent a[disabled], .menu1 .mainUL li.parent a[disabled]:hover,
+.menu1 .mainUL li.parent li.act a[disabled], .menu1 .mainUL li.parent li.act a[disabled]:hover{ color:#777; cursor:default; text-decoration:none; background:#555; }
+
+
+

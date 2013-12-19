@@ -60,7 +60,7 @@
             </td>
             <td style="width: 380px; padding-top: 10px;">
                 <div class="loginStat">
-                    Welcome &nbsp;<asp:Label ID="lblUserName" runat="server" Visible="false"></asp:Label>
+                     &nbsp;<asp:Label ID="lblUserName" runat="server" Visible="false"></asp:Label>
                     <br />
                     <ul class="menu2">
                         <li><span style="font-size: 13px; font-weight: bold; cursor: pointer; color: #FFC50F">

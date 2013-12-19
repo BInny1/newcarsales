@@ -5241,6 +5241,80 @@ namespace HotLeadBL.HotLeadsTran
             }
         }
 
+        public DataSet UpdateUserRightsSales(string EMPID, bool LeadsUpload, bool LeadsDownLoad, bool Abondoned, bool FreePackage,
+         bool Ticker, bool IntroMail, bool NewEntry, bool Transferin, bool Transferout, bool Center, bool Self,  bool SalesAdmin)
+        {
+            try
+            {
+                DataSet dsCarsData = new DataSet();
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USP_UpdateUserRightsSales";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dbDataBase.AddInParameter(dbCommand, "@EMPID", System.Data.DbType.String, EMPID);
+
+                dbDataBase.AddInParameter(dbCommand, "@LeadsUpload", System.Data.DbType.Boolean, LeadsUpload);
+                dbDataBase.AddInParameter(dbCommand, "@LeadsDownLoad", System.Data.DbType.Boolean, LeadsDownLoad);
+                dbDataBase.AddInParameter(dbCommand, "@Abondoned", System.Data.DbType.Boolean, Abondoned);
+                dbDataBase.AddInParameter(dbCommand, "@FreePackage", System.Data.DbType.Boolean, FreePackage);
+
+                dbDataBase.AddInParameter(dbCommand, "@Ticker", System.Data.DbType.Boolean, Ticker);
+                dbDataBase.AddInParameter(dbCommand, "@IntroMail", System.Data.DbType.Boolean, IntroMail);
+                dbDataBase.AddInParameter(dbCommand, "@NewEntry", System.Data.DbType.Boolean, NewEntry);
+                dbDataBase.AddInParameter(dbCommand, "@Transferin", System.Data.DbType.Boolean, Transferin);
+                dbDataBase.AddInParameter(dbCommand, "@Transferout", System.Data.DbType.Boolean, Transferout);
+                
+                dbDataBase.AddInParameter(dbCommand, "@Center", System.Data.DbType.Boolean, Center);
+                dbDataBase.AddInParameter(dbCommand, "@Self", System.Data.DbType.Boolean, Self);
+                dbDataBase.AddInParameter(dbCommand, "@SalesAdmin", System.Data.DbType.Boolean, SalesAdmin);
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+                return dsCarsData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet InsertNewGroup(string NewGroup)
+        {
+            try
+            {
+                DataSet dsCarsData = new DataSet();
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USP_InsertNewGroup";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dbDataBase.AddInParameter(dbCommand, "@GroupName", System.Data.DbType.String, NewGroup);
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+                return dsCarsData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet GetAllGroups()
+        {
+            try
+            {
+                DataSet dsCarsData = new DataSet();
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USP_GetAllGroups";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+                return dsCarsData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
 

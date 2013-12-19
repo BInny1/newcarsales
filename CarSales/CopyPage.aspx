@@ -151,11 +151,11 @@
             <a href="#" class="logo"></a>
             <div class="headding">
                 <h1>
-                    Car Sales System<span>Page Name</span></h1>
+                    Car Sales System<span></span></h1>
             </div>
             <div class="headright">
                 <div class="loginDet">
-                    Welcome &nbsp;<asp:Label ID="lblUserName" runat="server" Text="padma" CssClass="loginStat"></asp:Label>&nbsp;
+                     &nbsp;<asp:Label ID="lblUserName" runat="server" Text="padma" CssClass="loginStat"></asp:Label>&nbsp;
                     |&nbsp;
                     <asp:LinkButton ID="lnkBtnLogout" runat="server" Text="Logout" OnClick="lnkBtnLogout_Click"
                         CssClass="loginStat"></asp:LinkButton>
@@ -206,7 +206,7 @@
                                 <li>
                                     <asp:LinkButton ID="Sales" runat="server" Text="Sales" Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="Process" runat="server" Text="Process" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="Process" runat="server" Text="Process" Enabled="false" PostBackUrl="~/ProcessP.aspx"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="Executive" runat="server" Text="Exceutive" Enabled="false"></asp:LinkButton></li>
                             </ul>

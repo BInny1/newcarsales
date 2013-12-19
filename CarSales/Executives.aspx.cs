@@ -96,7 +96,7 @@ public partial class Executives : System.Web.UI.Page
 
                     }
                     GetAllLocations();
-                    GetLeadsSattus();
+                    GetExecutivesList();
                 }
             }
         }
@@ -118,7 +118,7 @@ public partial class Executives : System.Web.UI.Page
                     ddlcenters.Items.Add(list);
                 }
             }
-            ddlcenters.Items.Insert(0, new ListItem("All", "0"));
+           // ddlcenters.Items.Insert(0, new ListItem("All", "0"));
           //  ddlcenters.SelectedIndex = 1;
         }
         catch (Exception ex)
@@ -126,7 +126,7 @@ public partial class Executives : System.Web.UI.Page
             throw ex;
         }
     }
-    private void GetLeadsSattus()
+    private void GetExecutivesList()
     {
         DataSet ExecutiveRight = new DataSet();
         ExecutiveRight = objHotLeadBL.ExecutiveRights(Convert.ToInt32(ddlcenters.SelectedValue));
@@ -247,6 +247,35 @@ public partial class Executives : System.Web.UI.Page
 
     protected void ddlcenters_SelectedIndexChanged(object sender, EventArgs e)
     {
-        GetLeadsSattus();
+        GetExecutivesList();
+    }
+    public void lnlupdatelist_Click(object sender, EventArgs e)
+    {
+
+        MpUserUpdatelist.Show();
+        //DataSet dsSalesUpdateList = objHotLeadBL.SalesUsersUpdateList(Convert.ToInt32(ddlcenters.SelectedValue));
+        //GridExecutivs.DataSource = dsSalesUpdateList.Tables[0];
+        //GridExecutivs.DataBind();
+
+    }
+    public void btnUpda_Click(object sender, EventArgs e)
+    {
+
+        foreach (GridViewRow row in GridUserUpdateList.Rows)
+        {
+            CheckBox chk = row.Cells[0].FindControl("chk_Check") as CheckBox;
+            if (chk != null && chk.Checked)
+            {
+                Label lblSalesEmpid = row.Cells[0].FindControl("lblSalesEmpid") as Label;
+                DropDownList lblSalesRoleId = row.Cells[0].FindControl("ddlsalesroles") as DropDownList;
+
+                DataSet InsertEmployee = objHotLeadBL.UInsertEmpandRightsss(lblSalesEmpid.Text, Convert.ToInt32(lblSalesRoleId.Text),
+                    Convert.ToInt32(ddlcenters.SelectedValue), Session[Constants.USER_NAME].ToString());
+
+            }
+        }
+       // MpUserUpdatelist.Hide();
+        GetExecutivesList();
+        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Selected employees are added successfully.');", true);
     }
 }

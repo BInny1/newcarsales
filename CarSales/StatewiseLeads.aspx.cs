@@ -97,11 +97,37 @@ public partial class StatewiseLeads : System.Web.UI.Page
 
                     }
 
-
+                    AllGroups();
                     GetLeadsCentersList();
 
                 }
             }
+        }
+    }
+
+    private void AllGroups()
+    {
+
+        try
+        {
+            DataSet dsGroups = objHotLeadBL.GetAllGroups();
+            ddlgroups.Items.Clear();
+            for (int i = 0; i < dsGroups.Tables[0].Rows.Count; i++)
+            {
+                if (dsGroups.Tables[0].Rows[i]["vehicletypeid"].ToString() != "0")
+                {
+                    ListItem list = new ListItem();
+                    list.Text = dsGroups.Tables[0].Rows[i]["VehicleTypeName"].ToString();
+                    list.Value = dsGroups.Tables[0].Rows[i]["vehicletypeid"].ToString();
+                    ddlgroups.Items.Add(list);
+                }
+            }
+            //ddlcenters.Items.Insert(0, new ListItem("All", "0"));
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
         }
     }
 
@@ -181,8 +207,9 @@ public partial class StatewiseLeads : System.Web.UI.Page
 
                 HiddenField lblLocationId = (HiddenField)e.Item.FindControl("lblLocationId");
                 string locationId = lblLocationId.Value;
-                HiddenField lblLocationName = (HiddenField)e.Item.FindControl("lbllocation");
-                string LocName = lblLocationName.Value;
+                Label lblLocationName = (Label)e.Item.FindControl("lbllocation");
+                lblLocationName.Text = lblLocationName.Text;
+                string LocName = lblLocationName.Text;
                 Session["LcName"] = LocName.ToString();
                 Session["LocatioId"] = locationId.ToString();
                 DataSet DSSateWiseLoc = new DataSet();
@@ -208,9 +235,7 @@ public partial class StatewiseLeads : System.Web.UI.Page
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
 
-                Label lblStalocation = (Label)e.Item.FindControl("lblStalocation");
-                string LocName = Session["LcName"].ToString();
-                lblStalocation.Text = LocName.ToString();
+                
                 string LocId= Session["LocatioId"].ToString();
 
                 Label lblzoneNames = (Label)e.Item.FindControl("lblZoneName");

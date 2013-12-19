@@ -39,7 +39,7 @@ public partial class Login : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-           Session[Constants.USER_ID] = null;
+            Session[Constants.USER_ID] = null;
             Session.Clear();
             Session.Abandon();
             txtUserName.Text = "";
@@ -106,7 +106,7 @@ public partial class Login : System.Web.UI.Page
                                 {
                                     if (dsUserDetails.Tables[0].Rows.Count > 0)
                                     {
-                                       Session[Constants.USER_ID] = dsUserDetails.Tables[0].Rows[0]["EMPID"].ToString();
+                                        Session[Constants.USER_ID] = dsUserDetails.Tables[0].Rows[0]["EMPID"].ToString();
                                         Session[Constants.USER_NAME] = dsUserDetails.Tables[0].Rows[0]["FirstName"].ToString();
                                         Session[Constants.NAME] = dsUserDetails.Tables[0].Rows[0]["LastName"].ToString();
                                         Session[Constants.CenterCode] = dsUserDetails.Tables[0].Rows[0]["LocationName"].ToString();
@@ -117,19 +117,19 @@ public partial class Login : System.Web.UI.Page
                                         {
                                             Response.Redirect("NewSale.aspx");
                                         }
-                                        else  if (Convert.ToInt32(Session[Constants.USER_TYPE_ID].ToString()) == 3)
+                                        else if (Convert.ToInt32(Session[Constants.USER_TYPE_ID].ToString()) == 3)
                                         {
                                             Response.Redirect("AllCenters.aspx");
                                         }
-                                        else  if (Convert.ToInt32(Session[Constants.USER_TYPE_ID].ToString()) == 5 || Convert.ToInt32(Session[Constants.USER_TYPE_ID].ToString()) == 7)
+                                        else if (Convert.ToInt32(Session[Constants.USER_TYPE_ID].ToString()) == 5 || Convert.ToInt32(Session[Constants.USER_TYPE_ID].ToString()) == 7)
                                         {
                                             Response.Redirect("QCReport.aspx");
                                         }
-                                        else  if (Convert.ToInt32(Session[Constants.USER_TYPE_ID].ToString()) == 6)
+                                        else if (Convert.ToInt32(Session[Constants.USER_TYPE_ID].ToString()) == 6)
                                         {
                                             Response.Redirect("LiveTransfers.aspx");
                                         }
-                                        else if (Convert.ToInt32(Session[Constants.USER_TYPE_ID].ToString()) == 8 ||Convert.ToInt32(Session[Constants.USER_TYPE_ID].ToString()) == 9)
+                                        else if (Convert.ToInt32(Session[Constants.USER_TYPE_ID].ToString()) == 8 || Convert.ToInt32(Session[Constants.USER_TYPE_ID].ToString()) == 9)
                                         {
                                             //Response.Redirect("LeadsUpload.aspx");
                                             Response.Redirect("Menu.aspx");
@@ -150,7 +150,7 @@ public partial class Login : System.Web.UI.Page
                                         //  Session[Constants.USER_LocationID] = dsUserLocations;                    
 
                                         Session[Constants.USER_Rights] = dsModules;
-                                       
+
                                     }
                                     else
                                     {
@@ -310,5 +310,5 @@ public partial class Login : System.Web.UI.Page
 
         return blnReturnValue;
     }
-  
+
 }

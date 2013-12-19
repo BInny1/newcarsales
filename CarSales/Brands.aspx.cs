@@ -171,6 +171,8 @@ public partial class Brands : System.Web.UI.Page
     }
     private void GetBrands()
     {
+        GridBrands.DataSource = null;
+        GridBrands.DataBind();
         DataSet GetBrands = new DataSet();
         GetBrands = objHotLeadBL.GetBrandsList();
         GridBrands.DataSource = GetBrands.Tables[0];
@@ -179,6 +181,8 @@ public partial class Brands : System.Web.UI.Page
   
     private void GetVehicleTypes()
     {
+        GridVehicletype.DataSource = null;
+        GridVehicletype.DataBind();
         DataSet GetVehicles = new DataSet();
         GetVehicles = objHotLeadBL.VehicleTypes();
         GridVehicletype.DataSource = GetVehicles.Tables[0];
@@ -187,6 +191,11 @@ public partial class Brands : System.Web.UI.Page
     protected void lnkBrndNew_Click(object sender, EventArgs e)
     {
         MpVechlAdd.Show();
+    }
+
+    protected void lnkgroups_Click(object sender, EventArgs e)
+    {
+        MPBrands.Show();
     }
     protected void btnAddVehicle_Click(object sender, EventArgs e)
     {
@@ -201,6 +210,14 @@ public partial class Brands : System.Web.UI.Page
         GetVehicleTypes();
         MpVechlAdd.Hide();
     }
-
+    protected void btngroupAdd_Click(object sender, EventArgs e)
+    {
+        objHotLeadBL.InsertNewGroup(txtgrpname.Text);
+        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('New Group is added successfully.');", true);
+        GetBrands();
+        GetVehicleTypes();
+        MpVechlAdd.Hide();
+        
+    }
 
 }

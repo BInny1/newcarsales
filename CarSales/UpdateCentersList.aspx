@@ -158,7 +158,7 @@ $(function() {
                 </td>
                 <td style="width: 490px; padding-top: 10px;">
                     <div class="loginStat">
-                        Welcome &nbsp;<asp:Label ID="lblUserName" runat="server" Text="padma" CssClass="loginStat"></asp:Label>&nbsp;
+                         &nbsp;<asp:Label ID="lblUserName" runat="server" Text="padma" CssClass="loginStat"></asp:Label>&nbsp;
                         <br />
                         <asp:LinkButton ID="lnksalTicker" runat="server" CssClass="loginStat" Text="Sales Ticker"></asp:LinkButton>&nbsp;&nbsp;&nbsp;
                         <asp:LinkButton ID="lnkBtnLogout" runat="server" Text="Logout" OnClick="lnkBtnLogout_Click"

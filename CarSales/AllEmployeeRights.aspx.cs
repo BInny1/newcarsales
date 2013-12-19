@@ -141,14 +141,10 @@ public partial class AllEmployeeRights : System.Web.UI.Page
     }
     private void GetUserDefaultRights()
     {
-        //string CenterValue = ddlcenters.SelectedValue;
-        //DataSet GetAllEmployees = new DataSet();
-        //GetAllEmployees = objHotLeadBL.GetAllEmployeesByCenetrId(Convert.ToInt32(CenterValue.ToString()));
-        //Session["Employees"] = GetAllEmployees;
-        //GridDefaultUserRights.DataSource = GetAllEmployees.Tables[0];
-        //GridDefaultUserRights.DataBind();
+      
         GridDefaultUserRights.DataSource = null;
         GridDefaultUserRights.DataBind();
+
         string CenterValue = ddlcenters.SelectedValue;
         DataSet GetAllEmployees = new DataSet();
         GetAllEmployees = objHotLeadBL.PerocessRightsStatus(Convert.ToInt32(CenterValue.ToString()));
@@ -258,7 +254,7 @@ public partial class AllEmployeeRights : System.Web.UI.Page
                         {
                             UpLoCount = UpLoCount + 1;
                         }
-                        if (dsTasks4.Tables[0].Rows[i][10].ToString() == "Y")
+                        if (dsTasks4.Tables[0].Rows[i][9].ToString() == "Y")
                         {
                             TrInCount = TrInCount + 1;
                         }
@@ -280,10 +276,10 @@ public partial class AllEmployeeRights : System.Web.UI.Page
                         {
                             NewwentCoun = NewwentCoun + 1;
                         }
-                        //if (dsTasks4.Tables[0].Rows[i][2].ToString() == "Y")
-                        //{
-                        //    traoucoun = traoucoun + 1;
-                        //}
+                        if (dsTasks4.Tables[0].Rows[i][29].ToString() == "Y")
+                        {
+                            traoucoun = traoucoun + 1;
+                        }
                         if (dsTasks4.Tables[0].Rows[i][6].ToString() == "Y")
                         {
                             TickeCount = TickeCount + 1;
@@ -301,7 +297,7 @@ public partial class AllEmployeeRights : System.Web.UI.Page
                         }
 
 
-                        if (dsTasks4.Tables[0].Rows[i][19].ToString() == "Y")
+                        if (dsTasks4.Tables[0].Rows[i][20].ToString() == "Y")
                         {
                             AdminCount = AdminCount + 1;
                         }
@@ -325,7 +321,7 @@ public partial class AllEmployeeRights : System.Web.UI.Page
 
                     lblselfs.Text = selfCount.ToString();
                     lblcentrs.Text = CentersCount.ToString();
-                    lblladminsd.Text = TickeCount.ToString();
+                    lblladminsd.Text = AdminCount.ToString();
                 }
             }
             catch { }
@@ -342,7 +338,7 @@ public partial class AllEmployeeRights : System.Web.UI.Page
         //                      SalesAdmin ,ProcessAdmin ,ExecutiveAdmin ,BrandsAdmin ,CentersAdmin ,UsersLog ,EditLog ,Center ,Self );
 
         bool LeadsUpload = false, LeadsDownLoad = false, Abondoned = false, FreePackage = false, Ticker = false, IntroMail = false,
-                            NewEntry = false, Transferin = false, MyReport = false, QC = false, Payments = false, Publish = false, MyReport1 = false,
+                            NewEntry = false, Transferin = false, TransferOut = false, QC = false, Payments = false, Publish = false, MyReport1 = false,
                             Leads = false, Sales = false, Process = false, Executive = false, LeadsAdmin = false,
                             SalesAdmin = false, ProcessAdmin = false, ExecutiveAdmin = false, BrandsAdmin = false,
                             CentersAdmin = false, UsersLog = false, EditLog = false, Center = false, Self = false;
@@ -364,7 +360,7 @@ public partial class AllEmployeeRights : System.Web.UI.Page
 
         if (chksales.Items[0].Selected == true) IntroMail = true; else IntroMail = false;
         if (chksales.Items[1].Selected == true) NewEntry = true; else NewEntry = false;
-        if (chksales.Items[2].Selected == true) IntroMail = true; else IntroMail = false;
+        if (chksales.Items[2].Selected == true) TransferOut = true; else TransferOut = false;
         if (chksales.Items[3].Selected == true) Ticker = true; else Ticker = false;
 
 
@@ -375,9 +371,10 @@ public partial class AllEmployeeRights : System.Web.UI.Page
 
 
         EMPID = Session["EMpid"].ToString();
-        DataSet UserEmploRights = objHotLeadBL.UpdateUserRights(EMPID, LeadsUpload, LeadsDownLoad, Abondoned, FreePackage, Ticker, IntroMail,
-                           NewEntry, Transferin, MyReport, QC, Payments, Publish, MyReport1, Leads, Sales, Process, Executive, LeadsAdmin,
-                           SalesAdmin, ProcessAdmin, ExecutiveAdmin, BrandsAdmin, CentersAdmin, UsersLog, EditLog, Center, Self);
+
+
+        DataSet UserEmploRights = objHotLeadBL.UpdateUserRightsSales(EMPID, LeadsUpload, LeadsDownLoad, Abondoned, FreePackage, Ticker, IntroMail,
+                           NewEntry, Transferin, TransferOut, Center, Self, SalesAdmin);
 
         MpVechlAdd.Hide();
         GetUserDefaultRights();
@@ -400,6 +397,8 @@ public partial class AllEmployeeRights : System.Web.UI.Page
                 ChkReports.Items[0].Selected = false; ChkReports.Items[1].Selected = false; ChkReports.Items[1].Selected = false;
 
                 string EmpIdva = e.CommandArgument.ToString();
+               
+
                 Session["EMpid"] = EmpIdva.ToString();
                 DataSet GetUserDefaultRight = new DataSet();
                 GetUserDefaultRight = objHotLeadBL.AllEMployeeUserRights(EmpIdva.ToString());
@@ -542,6 +541,7 @@ public partial class AllEmployeeRights : System.Web.UI.Page
             HeaderCell.Text = "Name";
             HeaderCell.ColumnSpan = 1;
             HeaderGridRow.Cells.Add(HeaderCell);
+            HeaderCell.CssClass = "BL BR";
 
             HeaderCell = new TableCell();
             HeaderCell.Text = "Role";
@@ -552,6 +552,7 @@ public partial class AllEmployeeRights : System.Web.UI.Page
             HeaderCell.Text = "Vehicle Type(s)";
             HeaderCell.ColumnSpan = 1;
             HeaderGridRow.Cells.Add(HeaderCell);
+            HeaderCell.CssClass = "BL BR";
 
             HeaderCell = new TableCell();
             HeaderCell.Text = "Leads Download";
@@ -607,6 +608,7 @@ public partial class AllEmployeeRights : System.Web.UI.Page
             }
         }
         MpUserUpdatelist.Hide();
+        GetUserDefaultRights();
         System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Selected employees are added successfully.');", true);
     }
 }
