@@ -252,30 +252,11 @@ public partial class Executives : System.Web.UI.Page
     public void lnlupdatelist_Click(object sender, EventArgs e)
     {
 
-        MpUserUpdatelist.Show();
+        //MPBrands.Show();
         //DataSet dsSalesUpdateList = objHotLeadBL.SalesUsersUpdateList(Convert.ToInt32(ddlcenters.SelectedValue));
         //GridExecutivs.DataSource = dsSalesUpdateList.Tables[0];
         //GridExecutivs.DataBind();
 
     }
-    public void btnUpda_Click(object sender, EventArgs e)
-    {
-
-        foreach (GridViewRow row in GridUserUpdateList.Rows)
-        {
-            CheckBox chk = row.Cells[0].FindControl("chk_Check") as CheckBox;
-            if (chk != null && chk.Checked)
-            {
-                Label lblSalesEmpid = row.Cells[0].FindControl("lblSalesEmpid") as Label;
-                DropDownList lblSalesRoleId = row.Cells[0].FindControl("ddlsalesroles") as DropDownList;
-
-                DataSet InsertEmployee = objHotLeadBL.UInsertEmpandRightsss(lblSalesEmpid.Text, Convert.ToInt32(lblSalesRoleId.Text),
-                    Convert.ToInt32(ddlcenters.SelectedValue), Session[Constants.USER_NAME].ToString());
-
-            }
-        }
-       // MpUserUpdatelist.Hide();
-        GetExecutivesList();
-        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Selected employees are added successfully.');", true);
-    }
+ 
 }

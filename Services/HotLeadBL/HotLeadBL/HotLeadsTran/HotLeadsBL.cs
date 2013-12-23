@@ -5244,9 +5244,10 @@ namespace HotLeadBL.HotLeadsTran
         public DataSet UpdateUserRightsSales(string EMPID, bool LeadsUpload, bool LeadsDownLoad, bool Abondoned, bool FreePackage,
          bool Ticker, bool IntroMail, bool NewEntry, bool Transferin, bool Transferout, bool Center, bool Self,  bool SalesAdmin)
         {
+            DataSet dsCarsData = new DataSet();
             try
             {
-                DataSet dsCarsData = new DataSet();
+               
                 string spNameString = string.Empty;
                 Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
                 spNameString = "USP_UpdateUserRightsSales";
@@ -5264,17 +5265,16 @@ namespace HotLeadBL.HotLeadsTran
                 dbDataBase.AddInParameter(dbCommand, "@NewEntry", System.Data.DbType.Boolean, NewEntry);
                 dbDataBase.AddInParameter(dbCommand, "@Transferin", System.Data.DbType.Boolean, Transferin);
                 dbDataBase.AddInParameter(dbCommand, "@Transferout", System.Data.DbType.Boolean, Transferout);
-                
+
                 dbDataBase.AddInParameter(dbCommand, "@Center", System.Data.DbType.Boolean, Center);
                 dbDataBase.AddInParameter(dbCommand, "@Self", System.Data.DbType.Boolean, Self);
                 dbDataBase.AddInParameter(dbCommand, "@SalesAdmin", System.Data.DbType.Boolean, SalesAdmin);
                 dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
-                return dsCarsData;
+              
+
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            catch { }
+            return dsCarsData;
         }
 
         public DataSet InsertNewGroup(string NewGroup)
@@ -5315,6 +5315,117 @@ namespace HotLeadBL.HotLeadsTran
                 throw ex;
             }
         }
+
+        //USp_CheckDeactEmployees
+
+        public DataSet CheckDeactEmployees()
+        {
+            try
+            {
+                DataSet dsCarsData = new DataSet();
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USp_CheckDeactEmployees";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+                return dsCarsData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //USp_UpdateDeactEmployees
+
+        public bool UpdateDeactEmployees()
+        {
+
+            try
+            {
+                bool bnew = false;
+                string spNameString = string.Empty;
+                Database dbDatabase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USp_UpdateDeactEmployees";
+                DbCommand dbCommand = null;
+                dbCommand = dbDatabase.GetStoredProcCommand(spNameString);
+                dbDatabase.ExecuteDataSet(dbCommand);
+                bnew = true;
+                return bnew;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+          
+        }
+        //USP_ReactiveEmp
+
+        public DataSet ReactiveEmp()
+        {
+            try
+            {
+                DataSet dsCarsData = new DataSet();
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USP_ReactiveEmp";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+                return dsCarsData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool UpdateReactiveEmp()
+        {
+
+            try
+            {
+                bool bnew = false;
+                string spNameString = string.Empty;
+                Database dbDatabase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USP_UpdateReactiveEmp";
+                DbCommand dbCommand = null;
+                dbCommand = dbDatabase.GetStoredProcCommand(spNameString);
+                dbDatabase.ExecuteDataSet(dbCommand);
+                bnew = true;
+                return bnew;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
+
+        //Get ALl Products
+        public DataSet GetAllProducts()
+        {
+            try
+            {
+                DataSet dsCarsData = new DataSet();
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "GetAllProducts";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+                return dsCarsData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }
 

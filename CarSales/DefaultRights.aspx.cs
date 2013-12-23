@@ -145,7 +145,7 @@ public partial class DefaultRights : System.Web.UI.Page
                         //1 Leads
                         if (GetUserDefaultRight.Tables[0].Rows[0]["IsActive"].ToString() == "False")
                         {
-                            LblTransfers.Text = "N"; lblabondons.Text = "N"; lblLeads.Text = "N"; lblfreepots.Text = "N";
+                            LblTransfers.Text = ""; lblabondons.Text = ""; lblLeads.Text = ""; lblfreepots.Text = "";
                         }
                         else
                         {
@@ -154,7 +154,7 @@ public partial class DefaultRights : System.Web.UI.Page
                         //Sales
                         if (GetUserDefaultRight.Tables[0].Rows[1]["IsActive"].ToString() == "False")
                         {
-                            lblintromail.Text = "N"; lblNeEntry.Text = "N"; lblTransferOut.Text = "N"; lblTicker.Text = "N";
+                            lblintromail.Text = ""; lblNeEntry.Text = ""; lblTransferOut.Text = ""; lblTicker.Text = "";
                         }
                         else
                         {
@@ -166,11 +166,11 @@ public partial class DefaultRights : System.Web.UI.Page
                         {
                             if (lblRole.Text == "Center Manager")
                             {
-                                lblSelf.Text = "N"; lblCenter.Text = "Y";
+                                lblSelf.Text = ""; lblCenter.Text = "Y";
                             }
                             else
                             {
-                                lblSelf.Text = "N"; lblCenter.Text = "N";
+                                lblSelf.Text = ""; lblCenter.Text = "";
                             }
                         }
                         else
@@ -181,13 +181,13 @@ public partial class DefaultRights : System.Web.UI.Page
                             }
                             else
                             {
-                                lblSelf.Text = "Y"; lblCenter.Text = "N";
+                                lblSelf.Text = "Y"; lblCenter.Text = "";
                             }
                         }
                         //Admin
                         if ((GetUserDefaultRight.Tables[0].Rows[4]["IsActive"].ToString() == "False"))
                         {
-                            lblAdmin.Text = "N";
+                            lblAdmin.Text = "";
                         }
                         else
                         {

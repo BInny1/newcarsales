@@ -21,7 +21,7 @@ using HotLeadBL.HotLeadsTran;
 using System.Net.Mail;
 
 
-public partial class Brands : System.Web.UI.Page
+public partial class Products : System.Web.UI.Page
 {
     public GeneralFunc objGeneralFunc = new GeneralFunc();
     DropdownBL objdropdownBL = new DropdownBL();
@@ -89,40 +89,13 @@ public partial class Brands : System.Web.UI.Page
 
                         Session["SortDirec"] = null;
 
-                        GetProducts();
                         GetBrands();
-                      
+                        GetVehicleTypes();
                     }
 
                 }
             }
         }
-    }
-
-    private void GetProducts()
-    {
-
-        //try
-        //{
-        //    DataSet dsProducts = objHotLeadBL.GetAllLocations();
-        //    ddlcenters.Items.Clear();
-        //    for (int i = 0; i < dsCenters.Tables[0].Rows.Count; i++)
-        //    {
-        //        if (dsCenters.Tables[0].Rows[i]["LocationId"].ToString() != "0")
-        //        {
-        //            ListItem list = new ListItem();
-        //            list.Text = dsCenters.Tables[0].Rows[i]["LocationName"].ToString();
-        //            list.Value = dsCenters.Tables[0].Rows[i]["LocationId"].ToString();
-        //            ddlcenters.Items.Add(list);
-        //        }
-        //    }
-        //    //ddlcenters.Items.Insert(0, new ListItem("All", "0"));
-
-        //}
-        //catch (Exception ex)
-        //{
-        //    throw ex;
-        //}
     }
     protected void lnkBtnLogout_Click(object sender, EventArgs e)
     {
@@ -206,7 +179,15 @@ public partial class Brands : System.Web.UI.Page
         GridBrands.DataBind();
     }
   
-  
+    private void GetVehicleTypes()
+    {
+        GridVehicletype.DataSource = null;
+        GridVehicletype.DataBind();
+        DataSet GetVehicles = new DataSet();
+        GetVehicles = objHotLeadBL.VehicleTypes();
+        GridVehicletype.DataSource = GetVehicles.Tables[0];
+        GridVehicletype.DataBind();
+    }
     protected void lnkBrndNew_Click(object sender, EventArgs e)
     {
         MpVechlAdd.Show();
@@ -226,7 +207,7 @@ public partial class Brands : System.Web.UI.Page
         objHotLeadBL.SaveNewBrands(txtVeckType.Text, txtBrnad.Text, Sttaus);
         System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('New Brand is added successfully.');", true);
         GetBrands();
-     
+        GetVehicleTypes();
         MpVechlAdd.Hide();
     }
     protected void btngroupAdd_Click(object sender, EventArgs e)
@@ -234,7 +215,7 @@ public partial class Brands : System.Web.UI.Page
         objHotLeadBL.InsertNewGroup(txtgrpname.Text);
         System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('New Group is added successfully.');", true);
         GetBrands();
-       
+        GetVehicleTypes();
         MpVechlAdd.Hide();
         
     }

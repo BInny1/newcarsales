@@ -10,7 +10,7 @@
     <link href="css/core.css" rel="stylesheet" type="text/css" />
     <link href="css/core.theme.css" rel="stylesheet" type="text/css" />
     <link href="css/styleNew.css" rel="stylesheet" type="text/css" />
-     <link href="css/menu1.css" rel="stylesheet" type="text/css" />
+    <link href="css/menu1.css" rel="stylesheet" type="text/css" />
     <!-- 
     <link href="css/css.css" rel="stylesheet" type="text/css" />
     -->
@@ -124,6 +124,7 @@
        
 
     </script>
+
     <script type="text/javascript" language="javascript">
 
 	var currentID = 0;	
@@ -158,26 +159,26 @@
 			
 		});
 		
-		
-		$(document).mouseup(function(e) {  // on mouse click on the document exept menu, automatically all submenus will hide and reset
-			var container = $('.mainUL');
-			if (container.has(e.target).length === 0) {
-				$('.mainUL .parent ul ').hide();
-			
-				$('.mainUL .parent a').each(function(){
-					$(this).removeClass('act');
-				});
-				
-				$('.mainUL').find('li.parent.active').removeClass('active');
-				$('.mainUL li.parent:eq('+currentID+')').addClass('active');
-				
-				
-			}
-		});
+//		
+//		$(document).mouseup(function(e) {  // on mouse click on the document exept menu, automatically all submenus will hide and reset
+//			var container = $('.mainUL');
+//			if (container.has(e.target).length === 0) {
+//				$('.mainUL .parent ul ').hide();
+//			
+//				$('.mainUL .parent a').each(function(){
+//					$(this).removeClass('act');
+//				});
+//				
+//				$('.mainUL').find('li.parent.active').removeClass('active');
+//				$('.mainUL li.parent:eq('+currentID+')').addClass('active');
+//				
+//				
+//			}
+//		});
 		
 		
 	});
-</script>
+    </script>
 
 </head>
 <body>
@@ -208,7 +209,7 @@
                 <h1>
                     Car Sales System<span></span></h1>
             </div>
-                <div class="headright">
+              <div class="headright">
                 <div class="loginDet">
                     &nbsp;<asp:Label ID="lblUserName" runat="server" CssClass="loginStat"></asp:Label>&nbsp;
                     |&nbsp;
@@ -242,6 +243,10 @@
                                     <asp:LinkButton ID="Transferin" runat="server" Text="Transfer In" Enabled="false"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="MyReport" runat="server" Text="My Report" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="lnkSetGrup" runat="server" Text="SetGroup" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="lnkGroupreport" runat="server" Text="Group Report" Enabled="false"></asp:LinkButton></li>
                             </ul>
                         </li>
                         <li class="parent"><a href="#">Process <span class="cert"></span></a>
@@ -252,6 +257,8 @@
                                     <asp:LinkButton ID="Payments" runat="server" Text="Payments" Enabled="false"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="Publish" runat="server" Text="Publish" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="lnkMmyRep" runat="server" Text="My Report" Enabled="false"></asp:LinkButton></li>
                             </ul>
                         </li>
                         <li class="parent "><a href="#">Reports <span class="cert"></span></a>
@@ -266,41 +273,45 @@
                                     <asp:LinkButton ID="Executive" runat="server" Text="Exceutive" Enabled="false"></asp:LinkButton></li>
                             </ul>
                         </li>
-                        <li class="parent active"><a href="#">Admin <span class="cert"></span></a>
+                        <li class="parent "><a href="#">Admin <span class="cert"></span></a>
                             <ul class="sub1">
-                            
-                            <li>
-                                <a href="#">Leads <span class="cert"></span></a>
-                                <ul class="sub2" >
-                                    <li>
-                                    <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
-                                <li>
-                                    <asp:LinkButton ID="LeadsList" runat="server" Text="Leads Statewise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
-                                <li class="last">
-                                    <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Sales <span class="cert"></span></a>
-                                <ul class="sub2" >
-                                    <li>
-                                    <asp:LinkButton ID="SalesAdmin" runat="server" Text="Sales" PostBackUrl="~/AllEmployeeRights.aspx"
-                                        Enabled="false"></asp:LinkButton></li>
-                                <li class="last">
-                                    <asp:LinkButton ID="lnkDefaRights" runat="server" Text="Def.Rights" PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton></li>
-                                </ul>
-                            </li>
-                                
-                                
+                                <li><a href="#">Leads <span class="cert"></span></a>
+                                    <ul class="sub2">
+                                        <li>
+                                            <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
+                                        <li>
+                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads Statewise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
+                                        <li class="last">
+                                            <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Sales <span class="cert"></span></a>
+                                    <ul class="sub2">
+                                        <li>
+                                            <asp:LinkButton ID="SalesAdmin" runat="server" Text="User Rights" PostBackUrl="~/AllEmployeeRights.aspx"
+                                                Enabled="false"></asp:LinkButton></li>
+                                        <li class="last">
+                                            <asp:LinkButton ID="lnkDefaRights" runat="server" Text="Default Rights" PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton></li>
+                                    </ul>
+                                </li>
                                 <li>
                                     <asp:LinkButton ID="ProcessAdmin" runat="server" Text="Process" PostBackUrl="~/ProcessP.aspx"
                                         Enabled="false"></asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="ExecutiveAdmin" runat="server" Text="Executive" Enabled="false" PostBackUrl="~/Executives.aspx"></asp:LinkButton></li>
-                                <li class="act">
-                                    <asp:LinkButton ID="BrandsAdmin" runat="server" Text="Brands" PostBackUrl="~/Brands.aspx"
-                                        Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="ExecutiveAdmin" runat="server" Text="Executive" Enabled="false"
+                                        PostBackUrl="~/Executives.aspx"></asp:LinkButton></li>
+                                <li  class="act"><a href="#">Brands <span class="cert"></span></a>
+                                    <ul class="sub2">
+                                        <li>
+                                            <asp:LinkButton ID="BrandsAdmin" runat="server" Text="Brands" PostBackUrl="~/Brands.aspx"
+                                                Enabled="false"></asp:LinkButton></li>
+                                        <li class="last">
+                                        <li>
+                                            <asp:LinkButton ID="BrnadsProducts" runat="server" Text="Products" PostBackUrl="~/Brands.aspx"
+                                                Enabled="true"></asp:LinkButton></li>
+                                    </ul>
+                                </li>
                                 <li>
                                     <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Center.aspx"
                                         Enabled="false"></asp:LinkButton></li>
@@ -317,31 +328,30 @@
         <!-- Headder End  -->
         <!-- Content Start  -->
         <div class="content wid1000">
-          <div class=" box1 box50p">
+            <div class=" box1 box100p">
                 <h1 class="hed1 hed2">
                     Brands <b>
-                        <asp:LinkButton ID="lnkBrndNew" runat="server" Text="New" OnClick="lnkBrndNew_Click" CssClass="floarR" ></asp:LinkButton></b>
+                        <asp:LinkButton ID="lnkBrndNew" runat="server" Text="New" OnClick="lnkBrndNew_Click"
+                            CssClass="floarR"></asp:LinkButton></b>
                 </h1>
                 <div class="inn">
                     <!-- Start -->
-               
-                    <asp:GridView ID="GridBrands" runat="server" CellSpacing="0" CellPadding="0"
-                        CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None">
+                    <asp:GridView ID="GridBrands" runat="server" CellSpacing="0" CellPadding="0" CssClass="table table-hover table-striped"
+                        AutoGenerateColumns="False" GridLines="None">
                         <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
                         <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
                         <HeaderStyle CssClass="tbHed" />
                         <PagerSettings Position="Top" />
                         <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                     
                         <Columns>
-                            <asp:TemplateField HeaderText="Group Name">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("VName") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField  HeaderText="Brand">
+                          <asp:TemplateField HeaderText="Brand">
                                 <ItemTemplate>
                                     <asp:Label ID="lblName" runat="server" Text='<%#Eval("Brands") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Product">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("VName") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Status">
@@ -354,38 +364,7 @@
                     <!-- End  -->
                 </div>
             </div>
-            <div class=" box1 box50p">
-                <h1 class="hed1 hed2">
-                    Groups <b>
-                        <asp:LinkButton ID="lnkgroups" runat="server" Text="New" OnClick="lnkgroups_Click" CssClass="floarR" ></asp:LinkButton></b>
-                        </h1>
-                <div class="inn">
-                    <!-- Start  -->
-                  
-                    <asp:GridView  ID="GridVehicletype" runat="server" CellSpacing="0" CellPadding="0"
-                        AutoGenerateColumns="False" GridLines="None" CssClass="table table-hover table-striped">
-                        <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
-                        <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
-                        <HeaderStyle CssClass="tbHed  center" />
-                        <PagerSettings Position="Top" />
-                        <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                       
-                       
-                        <Columns>
-                            <asp:TemplateField >
-                              <HeaderTemplate>
-                        <asp:Label ID="Label1" Text="Groups" runat="server"></asp:Label>
-                          </HeaderTemplate >
-                                <ItemTemplate>      
-                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("VehicleTypeName") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                    </asp:GridView>
-                    <!-- End  -->
-                </div>
-            </div>
-          
+        
             <div class="clear">
                 &nbsp;</div>
         </div>
@@ -411,10 +390,11 @@
             <table style="width: 96%; margin: 0 auto;">
                 <tr>
                     <td>
-                        Vehicle Type
+                        Product <!-- txtVeckTyp -->
                     </td>
                     <td>
-                        <asp:TextBox ID="txtVeckType" MaxLength="20" runat="server"></asp:TextBox>
+                       <asp:DropDownList ID="txtVeckType" runat="server">
+                       </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
@@ -430,36 +410,34 @@
                         Status
                     </td>
                     <td>
-                        <div style="display:inline-block; width:190px;" class="noMargin">
-                        <asp:RadioButtonList ID="rbt_VechGrop" runat="server" RepeatColumns="2">
-                            <asp:ListItem>Active</asp:ListItem>
-                            <asp:ListItem>InActive</asp:ListItem>
-                        </asp:RadioButtonList>
+                        <div style="display: inline-block; width: 190px;" class="noMargin">
+                            <asp:RadioButtonList ID="rbt_VechGrop" runat="server" RepeatColumns="2">
+                                <asp:ListItem>Active</asp:ListItem>
+                                <asp:ListItem>Inactive</asp:ListItem>
+                            </asp:RadioButtonList>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td align="right">
-                        
                     </td>
                     <td align="left">
-                        <div style=" margin: 0; padding-left: 0px; display:inline-block">
+                        <div style="margin: 0; padding-left: 0px; display: inline-block">
                             <asp:UpdatePanel ID="updtPnlChangePwd" runat="server">
                                 <ContentTemplate>
                                     <asp:Button ID="btnAddVehicle" class="btn btn-danger btn-warning" runat="server"
                                         Text="Add" OnClick="btnAddVehicle_Click" />&nbsp;
                                 </ContentTemplate>
                             </asp:UpdatePanel>
-                         </div>
+                        </div>
                         <asp:Button ID="btnCancelPW" class="btn btn-danger btn-warning" runat="server" Text="Cancel" />
                     </td>
                 </tr>
             </table>
         </div>
     </div>
-    
     <!-- New Groups Add  -->
-      <!-- New Vechlie Click -->
+    <!-- New Vechlie Click -->
     <cc1:ModalPopupExtender ID="MPBrands" runat="server" PopupControlID="tblChangePW1"
         BackgroundCssClass="ModalPopupBG" TargetControlID="HdnGroup1s" CancelControlID="btnCancelPW">
     </cc1:ModalPopupExtender>
@@ -471,7 +449,7 @@
             <table style="width: 96%; margin: 0 auto;">
                 <tr>
                     <td>
-                      GroupName
+                        GroupName
                     </td>
                     <td>
                         <asp:TextBox ID="txtgrpname" MaxLength="20" runat="server"></asp:TextBox>
@@ -479,24 +457,22 @@
                 </tr>
                 <tr>
                     <td align="right">
-                        
                     </td>
                     <td align="left">
-                        <div style=" margin: 0; padding-left: 0px; display:inline-block">
+                        <div style="margin: 0; padding-left: 0px; display: inline-block">
                             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                 <ContentTemplate>
-                                    <asp:Button ID="btngroupAdd" class="btn btn-danger btn-warning" runat="server"
-                                        Text="Add" OnClick="btngroupAdd_Click" />&nbsp;
+                                    <asp:Button ID="btngroupAdd" class="btn btn-danger btn-warning" runat="server" Text="Add"
+                                        OnClick="btngroupAdd_Click" />&nbsp;
                                 </ContentTemplate>
                             </asp:UpdatePanel>
-                         </div>
+                        </div>
                         <asp:Button ID="Button2" class="btn btn-danger btn-warning" runat="server" Text="Cancel" />
                     </td>
                 </tr>
             </table>
         </div>
     </div>
-    
     </form>
 </body>
 </html>

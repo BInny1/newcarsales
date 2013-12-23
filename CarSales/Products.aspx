@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Executives.aspx.cs" Inherits="Executives" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Products.aspx.cs" Inherits="Products" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -188,7 +188,7 @@
             <asp:ServiceReference Path="~/WebService.asmx" />
         </Services>
     </asp:ScriptManager>
-    <asp:UpdateProgress ID="UpdatePanel12" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
+    <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="0">
         <ProgressTemplate>
             <div id="spinner">
                 <h4>
@@ -292,10 +292,10 @@
                                     <asp:LinkButton ID="ProcessAdmin" runat="server" Text="Process" PostBackUrl="~/ProcessP.aspx"
                                         Enabled="false"></asp:LinkButton>
                                 </li>
-                                <li class="act">
+                                <li>
                                     <asp:LinkButton ID="ExecutiveAdmin" runat="server" Text="Executive" Enabled="false"
                                         PostBackUrl="~/Executives.aspx"></asp:LinkButton></li>
-                                <li>
+                                <li class="act">
                                     <asp:LinkButton ID="BrandsAdmin" runat="server" Text="Brands" PostBackUrl="~/Brands.aspx"
                                         Enabled="false"></asp:LinkButton></li>
                                 <li>
@@ -313,75 +313,72 @@
         </div>
         <!-- Headder End  -->
         <!-- Content Start  -->
-        <div class="content">
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                <ContentTemplate>
-                    <div class="inn">
-                        <div class="box1 boxBlue">
-                            <h1 class="hed1 hed2">
-                                Executives
-                                <asp:Label ID="lblcenters" Text="Centers" runat="server" Style="padding-left: 700px;"></asp:Label>
-                                <asp:DropDownList ID="ddlcenters" runat="server" Style="width: 150px;" OnSelectedIndexChanged="ddlcenters_SelectedIndexChanged"
-                                    AutoPostBack="true">
-                                </asp:DropDownList>
-                                &nbsp;
-                                <asp:LinkButton ID="lnlupdatelist" runat="server" Text="Update Users List" OnClick="lnlupdatelist_Click"></asp:LinkButton>
-                            </h1>
-                            <div class="inn">
-                                <!-- Grid Start -->
-                                <asp:UpdatePanel ID="updtpnltblGrdcar" runat="server">
-                                    <ContentTemplate>
-                                        <table>
-                                            <tr>
-                                                <td>
-                                                    <asp:GridView ID="GridExecutvRights" runat="server" CellSpacing="0" CellPadding="0"
-                                                        CssClass="table table-hover table-striped" AutoGenerateColumns="False" ShowFooter="true"
-                                                        GridLines="None" OnRowDataBound="GridExecutvRights_RowDataBound">
-                                                        <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
-                                                        <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
-                                                        <HeaderStyle CssClass="tbHed" />
-                                                        <PagerSettings Position="Top" />
-                                                        <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                                                        <Columns>
-                                                            <asp:TemplateField HeaderText="EID">
-                                                                <ItemTemplate>
-                                                                    <asp:LinkButton ID="lblEmpid" runat="server" Text='<%# Eval("EMPID")%>'></asp:LinkButton>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Name">
-                                                                <ItemTemplate>
-                                                                    <asp:LinkButton ID="lblEmpName" runat="server"></asp:LinkButton>
-                                                                </ItemTemplate>
-                                                                <FooterTemplate>
-                                                                    <asp:Label ID="lblCount" runat="server" Text="Count"></asp:Label>
-                                                                </FooterTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Role">
-                                                                <ItemTemplate>
-                                                                    <asp:LinkButton ID="lblRole" runat="server"></asp:LinkButton>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Executive Reports">
-                                                                <ItemTemplate>
-                                                                    <asp:LinkButton ID="lblExecut" runat="server"></asp:LinkButton>
-                                                                </ItemTemplate>
-                                                                <FooterTemplate>
-                                                                    <asp:Label ID="lblTotalCount" runat="server"></asp:Label>
-                                                                </FooterTemplate>
-                                                            </asp:TemplateField>
-                                                        </Columns>
-                                                    </asp:GridView>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>
-                                <!-- Grid End  -->
-                            </div>
-                        </div>
-                    </div>
-                </ContentTemplate>
-            </asp:UpdatePanel>
+        <div class="content wid1000">
+            <div class=" box1 box50p">
+                <h1 class="hed1 hed2">
+                    Brands <b>
+                        <asp:LinkButton ID="lnkBrndNew" runat="server" Text="New" OnClick="lnkBrndNew_Click"
+                            CssClass="floarR"></asp:LinkButton></b>
+                </h1>
+                <div class="inn">
+                    <!-- Start -->
+                    <asp:GridView ID="GridBrands" runat="server" CellSpacing="0" CellPadding="0" CssClass="table table-hover table-striped"
+                        AutoGenerateColumns="False" GridLines="None">
+                        <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
+                        <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle CssClass="tbHed" />
+                        <PagerSettings Position="Top" />
+                        <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
+                        <Columns>
+                            <asp:TemplateField HeaderText="Group Name">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("VName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Brand">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("Brands") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Status">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("Stat") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                    <!-- End  -->
+                </div>
+            </div>
+            <div class=" box1 box50p">
+                <h1 class="hed1 hed2">
+                    Groups <b>
+                        <asp:LinkButton ID="lnkgroups" runat="server" Text="New" OnClick="lnkgroups_Click"
+                            CssClass="floarR"></asp:LinkButton></b>
+                </h1>
+                <div class="inn">
+                    <!-- Start  -->
+                    <asp:GridView ID="GridVehicletype" runat="server" CellSpacing="0" CellPadding="0"
+                        AutoGenerateColumns="False" GridLines="None" CssClass="table table-hover table-striped">
+                        <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
+                        <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle CssClass="tbHed  center" />
+                        <PagerSettings Position="Top" />
+                        <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
+                        <Columns>
+                            <asp:TemplateField>
+                                <HeaderTemplate>
+                                    <asp:Label ID="Label1" Text="Groups" runat="server"></asp:Label>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("VehicleTypeName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                    <!-- End  -->
+                </div>
+            </div>
             <div class="clear">
                 &nbsp;</div>
         </div>
@@ -394,8 +391,101 @@
     <div class="footer">
         United Car Exchange © 2013
     </div>
-    <!-- User Update List -->
-  
+    <!-- Footer End  -->
+    <!-- New Vechlie Click -->
+    <cc1:ModalPopupExtender ID="MpVechlAdd" runat="server" PopupControlID="tblChangePW"
+        BackgroundCssClass="ModalPopupBG" TargetControlID="hdnChangePW" CancelControlID="btnCancelPW">
+    </cc1:ModalPopupExtender>
+    <asp:HiddenField ID="hdnChangePW" runat="server" />
+    <div id="tblChangePW" style="display: none; width: 450px;" class="popup">
+        <h2>
+            Add New Brand</h2>
+        <div class="content">
+            <table style="width: 96%; margin: 0 auto;">
+                <tr>
+                    <td>
+                        Vehicle Type
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtVeckType" MaxLength="20" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Brand
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtBrnad" MaxLength="20" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Status
+                    </td>
+                    <td>
+                        <div style="display: inline-block; width: 190px;" class="noMargin">
+                            <asp:RadioButtonList ID="rbt_VechGrop" runat="server" RepeatColumns="2">
+                                <asp:ListItem>Active</asp:ListItem>
+                                <asp:ListItem>InActive</asp:ListItem>
+                            </asp:RadioButtonList>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                    </td>
+                    <td align="left">
+                        <div style="margin: 0; padding-left: 0px; display: inline-block">
+                            <asp:UpdatePanel ID="updtPnlChangePwd" runat="server">
+                                <ContentTemplate>
+                                    <asp:Button ID="btnAddVehicle" class="btn btn-danger btn-warning" runat="server"
+                                        Text="Add" OnClick="btnAddVehicle_Click" />&nbsp;
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </div>
+                        <asp:Button ID="btnCancelPW" class="btn btn-danger btn-warning" runat="server" Text="Cancel" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!-- New Groups Add  -->
+    <!-- New Vechlie Click -->
+    <cc1:ModalPopupExtender ID="MPBrands" runat="server" PopupControlID="tblChangePW1"
+        BackgroundCssClass="ModalPopupBG" TargetControlID="HdnGroup1s" CancelControlID="btnCancelPW">
+    </cc1:ModalPopupExtender>
+    <asp:HiddenField ID="HdnGroup1s" runat="server" />
+    <div id="tblChangePW1" style="display: none; width: 450px;" class="popup">
+        <h2>
+            Add New Groups</h2>
+        <div class="content">
+            <table style="width: 96%; margin: 0 auto;">
+                <tr>
+                    <td>
+                        GroupName
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtgrpname" MaxLength="20" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                    </td>
+                    <td align="left">
+                        <div style="margin: 0; padding-left: 0px; display: inline-block">
+                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                <ContentTemplate>
+                                    <asp:Button ID="btngroupAdd" class="btn btn-danger btn-warning" runat="server" Text="Add"
+                                        OnClick="btngroupAdd_Click" />&nbsp;
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </div>
+                        <asp:Button ID="Button2" class="btn btn-danger btn-warning" runat="server" Text="Cancel" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
     </form>
 </body>
 </html>

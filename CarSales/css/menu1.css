@@ -7,7 +7,8 @@
 .menu1 .mainUL li.parent a{ display:block; text-align:center; padding:4px 15px; color:#333; }
 .menu1 .mainUL li.parent li a{ padding:7px 15px; }
 .menu1 .mainUL li.parent li a{ background:#555 url(../images/dev.png) right center no-repeat; border:none; color:#eee; text-align:left; }
-.menu1 .mainUL li.parent li a:hover, .menu1 .mainUL li ul li.act a{ background:#333 ; color:#FF3300; }
+.menu1 .mainUL li.parent li a:hover, .menu1 .mainUL li ul li.act a,
+.menu1 .mainUL li ul li.act li.act a{ background:#333 ; color:#FF3300; }
 
 .menu1 .mainUL li.parent li li a, .menu1 .mainUL li.parent li.act li a{ border-bottom:#eee 1px dotted; background:#555; color:#eee; }
 .menu1 .mainUL li.parent li li a:hover, .menu1 .mainUL li.parent li.act li a:hover{  background:#333; color:#eee; }
