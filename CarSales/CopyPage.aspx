@@ -220,7 +220,7 @@
                                 <li>
                                     <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="SalesAdmin" runat="server" Text="Sales" PostBackUrl="~/AllEmployeeRights.aspx"
+                                    <asp:LinkButton ID="SalesAdmin" runat="server" Text="Sales" PostBackUrl="~/SalesUserRights.aspx"
                                         Enabled="false"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="lnkDefaRights" runat="server" Text="Def.Rights" PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton></li>

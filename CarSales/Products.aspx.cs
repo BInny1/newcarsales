@@ -19,6 +19,7 @@ using HotLeadBL.Masters;
 using System.Collections.Generic;
 using HotLeadBL.HotLeadsTran;
 using System.Net.Mail;
+using System.Text.RegularExpressions;
 
 
 public partial class Products : System.Web.UI.Page
@@ -89,7 +90,7 @@ public partial class Products : System.Web.UI.Page
 
                         Session["SortDirec"] = null;
 
-                        GetBrands();
+                      
                         GetVehicleTypes();
                     }
 
@@ -169,16 +170,7 @@ public partial class Products : System.Web.UI.Page
         }
         return bValid;
     }
-    private void GetBrands()
-    {
-        GridBrands.DataSource = null;
-        GridBrands.DataBind();
-        DataSet GetBrands = new DataSet();
-        GetBrands = objHotLeadBL.GetBrandsList();
-        GridBrands.DataSource = GetBrands.Tables[0];
-        GridBrands.DataBind();
-    }
-  
+   
     private void GetVehicleTypes()
     {
         GridVehicletype.DataSource = null;
@@ -206,17 +198,34 @@ public partial class Products : System.Web.UI.Page
             Sttaus = false;
         objHotLeadBL.SaveNewBrands(txtVeckType.Text, txtBrnad.Text, Sttaus);
         System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('New Brand is added successfully.');", true);
-        GetBrands();
+     
         GetVehicleTypes();
         MpVechlAdd.Hide();
     }
     protected void btngroupAdd_Click(object sender, EventArgs e)
     {
-        objHotLeadBL.InsertNewGroup(txtgrpname.Text);
-        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('New Group is added successfully.');", true);
-        GetBrands();
-        GetVehicleTypes();
-        MpVechlAdd.Hide();
+        if (txtgrpname.Text != "")
+        {
+            txtgrpname.Text = Regex.Replace(txtgrpname.Text, @"\s+", "");
+            DataSet checkrecord = objHotLeadBL.CheckRecordforProductexist(txtgrpname.Text.Trim());
+            if (checkrecord.Tables[0].Rows.Count == 0)
+            {
+                objHotLeadBL.InsertNewGroup(txtgrpname.Text);
+                System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('New Product is added successfully.');", true);
+                GetVehicleTypes();
+                MPBrands.Hide();
+               
+            }
+            else
+            {
+                System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Product is already existed.');", true);
+            }
+        }
+        else
+        {
+            System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('please enter Product.');", true);
+            txtgrpname.Focus();
+        }
         
     }
 

@@ -128,19 +128,29 @@
     <script type="text/javascript" language="javascript">
 
 	var currentID = 0;	
+	var currentActiveIndex = 0;
 	
 	$(function(){
 		currentID = $('.mainUL li.active').index();
+		//sub1Act = $('.mainUL li.active li.act').index();
+		sub2Act = $('.mainUL li.active li.act li.act').index();
+		
+		
 		$('.mainUL .parent ul').hide(); // hide All Submenus
 		$('.mainUL .parent a').click(function(){
 			
 			$('.mainUL .parent ul').hide(); // hide All Submenus
 			
+			
 			$('.mainUL .parent a').each(function(){  // remove highlight for all anchor tags
 				$(this).removeClass('act');
-			});			
+			});	
+		    
+		    
+		    
+		    
 			
-			$(this).closest('ul').closest('ul').show();			
+			$(this).closest('ul').closest('ul').show();		
 			
 			
 			$(this).addClass('act'); //  highlight current clicked anchor tags
@@ -156,25 +166,29 @@
 				$(this).next().show();
 			}
 			
+			$('.mainUL li.parent:eq('+currentID+') li.act li:eq('+sub2Act+')').addClass('act');
 			
 		});
 		
 		
-//		$(document).mouseup(function(e) {  // on mouse click on the document exept menu, automatically all submenus will hide and reset
-//			var container = $('.mainUL');
-//			if (container.has(e.target).length === 0) {
-//				$('.mainUL .parent ul ').hide();
-//			
-//				$('.mainUL .parent a').each(function(){
-//					$(this).removeClass('act');
-//				});
-//				
-//				$('.mainUL').find('li.parent.active').removeClass('active');
-//				$('.mainUL li.parent:eq('+currentID+')').addClass('active');
-//				
-//				
-//			}
-//		});
+		$('.mainUL li.active a:eq(0)').click();
+		
+		$(document).mouseup(function(e) {  // on mouse click on the document exept menu, automatically all submenus will hide and reset
+			var container = $('.mainUL');
+			if (container.has(e.target).length === 0) {
+				$('.mainUL .parent ul ').hide();
+			
+				$('.mainUL .parent a').each(function(){
+					$(this).removeClass('act');
+				});
+				
+				$('.mainUL').find('li.parent.active').removeClass('active');
+				$('.mainUL li.parent:eq('+currentID+')').addClass('active');
+				
+				$('.mainUL li.active a:eq(0)').click();
+				
+			}
+		});
 		
 		
 	});
@@ -273,7 +287,7 @@
                                     <asp:LinkButton ID="Executive" runat="server" Text="Exceutive" Enabled="false"></asp:LinkButton></li>
                             </ul>
                         </li>
-                        <li class="parent "><a href="#">Admin <span class="cert"></span></a>
+                        <li class="parent active"><a href="#">Admin <span class="cert"></span></a>
                             <ul class="sub1">
                                 <li><a href="#">Leads <span class="cert"></span></a>
                                     <ul class="sub2">
@@ -288,9 +302,9 @@
                                 <li class="act"><a href="#">Sales <span class="cert"></span></a>
                                     <ul class="sub2">
                                         <li>
-                                            <asp:LinkButton ID="SalesAdmin" runat="server" Text="User Rights" PostBackUrl="~/AllEmployeeRights.aspx"
+                                            <asp:LinkButton ID="SalesAdmin" runat="server" Text="User Rights" PostBackUrl="~/SalesUserRights.aspx"
                                                 Enabled="false"></asp:LinkButton></li>
-                                        <li class="last">
+                                        <li class="act">
                                             <asp:LinkButton ID="lnkDefaRights" runat="server" Text="Default Rights" PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton></li>
                                     </ul>
                                 </li>

@@ -243,3 +243,7 @@ border: 1px solid #ccc;
 .centerB, td.centerB, th.centerB{ text-align:center; font-weight:bold; }
 a.underline {text-decoration:underline;}
 .NormalSize{width:200px;}
+
+input#textbox {
+    text-transform: uppercase;
+}

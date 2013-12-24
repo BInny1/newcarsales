@@ -188,18 +188,6 @@
             <asp:ServiceReference Path="~/WebService.asmx" />
         </Services>
     </asp:ScriptManager>
-    <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="0">
-        <ProgressTemplate>
-            <div id="spinner">
-                <h4>
-                    <div>
-                        Processing
-                        <img src="images/loading.gif" />
-                    </div>
-                </h4>
-            </div>
-        </ProgressTemplate>
-    </asp:UpdateProgress>
     <!-- Main Wrapper Start  -->
     <div class="wrapper">
         <!-- Headder Start  -->
@@ -282,7 +270,7 @@
                                 <li><a href="#">Sales <span class="cert"></span></a>
                                     <ul class="sub2">
                                         <li>
-                                            <asp:LinkButton ID="SalesAdmin" runat="server" Text="Sales" PostBackUrl="~/AllEmployeeRights.aspx"
+                                            <asp:LinkButton ID="SalesAdmin" runat="server" Text="Sales" PostBackUrl="~/SalesUserRights.aspx"
                                                 Enabled="false"></asp:LinkButton></li>
                                         <li class="last">
                                             <asp:LinkButton ID="lnkDefaRights" runat="server" Text="Def.Rights" PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton></li>
@@ -314,45 +302,9 @@
         <!-- Headder End  -->
         <!-- Content Start  -->
         <div class="content wid1000">
-            <div class=" box1 box50p">
+            <div class=" box1 box100p">
                 <h1 class="hed1 hed2">
-                    Brands <b>
-                        <asp:LinkButton ID="lnkBrndNew" runat="server" Text="New" OnClick="lnkBrndNew_Click"
-                            CssClass="floarR"></asp:LinkButton></b>
-                </h1>
-                <div class="inn">
-                    <!-- Start -->
-                    <asp:GridView ID="GridBrands" runat="server" CellSpacing="0" CellPadding="0" CssClass="table table-hover table-striped"
-                        AutoGenerateColumns="False" GridLines="None">
-                        <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
-                        <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
-                        <HeaderStyle CssClass="tbHed" />
-                        <PagerSettings Position="Top" />
-                        <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                        <Columns>
-                            <asp:TemplateField HeaderText="Group Name">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("VName") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Brand">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("Brands") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Status">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("Stat") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                    </asp:GridView>
-                    <!-- End  -->
-                </div>
-            </div>
-            <div class=" box1 box50p">
-                <h1 class="hed1 hed2">
-                    Groups <b>
+                    Products <b>
                         <asp:LinkButton ID="lnkgroups" runat="server" Text="New" OnClick="lnkgroups_Click"
                             CssClass="floarR"></asp:LinkButton></b>
                 </h1>
@@ -368,7 +320,7 @@
                         <Columns>
                             <asp:TemplateField>
                                 <HeaderTemplate>
-                                    <asp:Label ID="Label1" Text="Groups" runat="server"></asp:Label>
+                                    <asp:Label ID="Label1" Text="Products" runat="server"></asp:Label>
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblName" runat="server" Text='<%#Eval("VehicleTypeName") %>'></asp:Label>
@@ -457,15 +409,16 @@
     <asp:HiddenField ID="HdnGroup1s" runat="server" />
     <div id="tblChangePW1" style="display: none; width: 450px;" class="popup">
         <h2>
-            Add New Groups</h2>
+            Add New Product
+            <asp:ImageButton ID="img1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
         <div class="content">
             <table style="width: 96%; margin: 0 auto;">
                 <tr>
                     <td>
-                        GroupName
+                        Product
                     </td>
                     <td>
-                        <asp:TextBox ID="txtgrpname" MaxLength="20" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtgrpname" MaxLength="20" runat="server" Style="text-transform: uppercase"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -475,12 +428,10 @@
                         <div style="margin: 0; padding-left: 0px; display: inline-block">
                             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                 <ContentTemplate>
-                                    <asp:Button ID="btngroupAdd" class="btn btn-danger btn-warning" runat="server" Text="Add"
-                                        OnClick="btngroupAdd_Click" />&nbsp;
+                                    <asp:Button ID="btngroupAdd" class="btn btn-warning" runat="server" Text="Add" OnClick="btngroupAdd_Click" />&nbsp;
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>
-                        <asp:Button ID="Button2" class="btn btn-danger btn-warning" runat="server" Text="Cancel" />
                     </td>
                 </tr>
             </table>

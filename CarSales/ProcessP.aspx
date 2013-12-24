@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ProcessP.aspx.cs"
-    Inherits="ProcessP" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ProcessP.aspx.cs" Inherits="ProcessP" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -11,7 +10,7 @@
     <link href="css/core.css" rel="stylesheet" type="text/css" />
     <link href="css/core.theme.css" rel="stylesheet" type="text/css" />
     <link href="css/styleNew.css" rel="stylesheet" type="text/css" />
-     <link href="css/menu1.css" rel="stylesheet" type="text/css" />
+    <link href="css/menu1.css" rel="stylesheet" type="text/css" />
     <!-- 
     <link href="css/css.css" rel="stylesheet" type="text/css" />
     -->
@@ -125,22 +124,33 @@
        
 
     </script>
-    <script type="text/javascript" language="javascript">
+
+  <script type="text/javascript" language="javascript">
 
 	var currentID = 0;	
+	var currentActiveIndex = 0;
 	
 	$(function(){
 		currentID = $('.mainUL li.active').index();
+		//sub1Act = $('.mainUL li.active li.act').index();
+		sub2Act = $('.mainUL li.active li.act li.act').index();
+		
+		
 		$('.mainUL .parent ul').hide(); // hide All Submenus
 		$('.mainUL .parent a').click(function(){
 			
 			$('.mainUL .parent ul').hide(); // hide All Submenus
 			
+			
 			$('.mainUL .parent a').each(function(){  // remove highlight for all anchor tags
 				$(this).removeClass('act');
-			});			
+			});	
+		    
+		    
+		    
+		    
 			
-			$(this).closest('ul').closest('ul').show();			
+			$(this).closest('ul').closest('ul').show();		
 			
 			
 			$(this).addClass('act'); //  highlight current clicked anchor tags
@@ -156,9 +166,12 @@
 				$(this).next().show();
 			}
 			
+			$('.mainUL li.parent:eq('+currentID+') li.act li:eq('+sub2Act+')').addClass('act');
 			
 		});
 		
+		
+		$('.mainUL li.active a:eq(0)').click();
 		
 		$(document).mouseup(function(e) {  // on mouse click on the document exept menu, automatically all submenus will hide and reset
 			var container = $('.mainUL');
@@ -172,34 +185,24 @@
 				$('.mainUL').find('li.parent.active').removeClass('active');
 				$('.mainUL li.parent:eq('+currentID+')').addClass('active');
 				
+				$('.mainUL li.active a:eq(0)').click();
 				
 			}
 		});
 		
 		
 	});
-</script>
+    </script>
 
 </head>
 <body>
-  <form id="form1" runat="server">
+    <form id="form1" runat="server">
     <asp:ScriptManager ID="SM" runat="server" EnablePageMethods="true">
         <Services>
             <asp:ServiceReference Path="~/WebService.asmx" />
         </Services>
     </asp:ScriptManager>
-    <asp:UpdateProgress ID="UpdatePanel12" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
-        <ProgressTemplate>
-            <div id="spinner">
-                <h4>
-                    <div>
-                        Processing
-                        <img src="images/loading.gif" />
-                    </div>
-                </h4>
-            </div>
-        </ProgressTemplate>
-    </asp:UpdateProgress>
+  
     <!-- Main Wrapper Start  -->
     <div class="wrapper">
         <!-- Headder Start  -->
@@ -209,7 +212,7 @@
                 <h1>
                     Car Sales System<span></span></h1>
             </div>
-      <div class="headright">
+        <div class="headright">
                 <div class="loginDet">
                     &nbsp;<asp:Label ID="lblUserName" runat="server" CssClass="loginStat"></asp:Label>&nbsp;
                     |&nbsp;
@@ -243,6 +246,10 @@
                                     <asp:LinkButton ID="Transferin" runat="server" Text="Transfer In" Enabled="false"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="MyReport" runat="server" Text="My Report" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="lnkSetGrup" runat="server" Text="SetGroup" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="lnkGroupreport" runat="server" Text="Group Report" Enabled="false"></asp:LinkButton></li>
                             </ul>
                         </li>
                         <li class="parent"><a href="#">Process <span class="cert"></span></a>
@@ -253,6 +260,8 @@
                                     <asp:LinkButton ID="Payments" runat="server" Text="Payments" Enabled="false"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="Publish" runat="server" Text="Publish" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="lnkMmyRep" runat="server" Text="My Report" Enabled="false"></asp:LinkButton></li>
                             </ul>
                         </li>
                         <li class="parent "><a href="#">Reports <span class="cert"></span></a>
@@ -261,47 +270,51 @@
                                     <asp:LinkButton ID="Leads" runat="server" Text="Leads" Enabled="false"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="Sales" runat="server" Text="Sales" Enabled="false"></asp:LinkButton></li>
-                                <li class="act">
-                                    <asp:LinkButton ID="Process" runat="server" Text="Process" Enabled="false"  PostBackUrl="~/ProcessP.aspx"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="Process" runat="server" Text="Process" Enabled="false" PostBackUrl="~/ProcessP.aspx"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="Executive" runat="server" Text="Exceutive" Enabled="false"></asp:LinkButton></li>
                             </ul>
                         </li>
                         <li class="parent active"><a href="#">Admin <span class="cert"></span></a>
                             <ul class="sub1">
-                            
-                            <li>
-                                <a href="#">Leads <span class="cert"></span></a>
-                                <ul class="sub2" >
-                                    <li>
-                                    <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
-                                <li>
-                                    <asp:LinkButton ID="LeadsList" runat="server" Text="Leads Statewise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
-                                <li class="last">
-                                    <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Sales <span class="cert"></span></a>
-                                <ul class="sub2" >
-                                    <li>
-                                    <asp:LinkButton ID="SalesAdmin" runat="server" Text="Sales" PostBackUrl="~/AllEmployeeRights.aspx"
-                                        Enabled="false"></asp:LinkButton></li>
-                                <li class="last">
-                                    <asp:LinkButton ID="lnkDefaRights" runat="server" Text="Def.Rights" PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton></li>
-                                </ul>
-                            </li>
-                                
-                                
+                                <li><a href="#">Leads <span class="cert"></span></a>
+                                    <ul class="sub2">
+                                        <li>
+                                            <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
+                                        <li>
+                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads Statewise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
+                                        <li class="last">
+                                            <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
+                                    </ul>
+                                </li>
+                                <li ><a href="#">Sales <span class="cert"></span></a>
+                                    <ul class="sub2">
+                                        <li>
+                                            <asp:LinkButton ID="SalesAdmin" runat="server" Text="User Rights" PostBackUrl="~/SalesUserRights.aspx"
+                                                Enabled="false"></asp:LinkButton></li>
+                                        <li class="last">
+                                            <asp:LinkButton ID="lnkDefaRights" runat="server" Text="Default Rights" PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton></li>
+                                    </ul>
+                                </li>
                                 <li class="act">
                                     <asp:LinkButton ID="ProcessAdmin" runat="server" Text="Process" PostBackUrl="~/ProcessP.aspx"
                                         Enabled="false"></asp:LinkButton>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="ExecutiveAdmin" runat="server" Text="Executive" Enabled="false"></asp:LinkButton></li>
-                                <li>
-                                    <asp:LinkButton ID="BrandsAdmin" runat="server" Text="Brands" PostBackUrl="~/Brands.aspx"
-                                        Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="ExecutiveAdmin" runat="server" Text="Executive" Enabled="false"
+                                        PostBackUrl="~/Executives.aspx"></asp:LinkButton></li>
+                                <li><a href="#">Brands <span class="cert"></span></a>
+                                    <ul class="sub2">
+                                        <li>
+                                            <asp:LinkButton ID="BrandsAdmin" runat="server" Text="Brands" PostBackUrl="~/Brands.aspx"
+                                                Enabled="false"></asp:LinkButton></li>
+                                        <li class="last">
+                                        <li>
+                                            <asp:LinkButton ID="BrnadsProducts" runat="server" Text="Products" PostBackUrl="~/Brands.aspx"
+                                                Enabled="true"></asp:LinkButton></li>
+                                    </ul>
+                                </li>
                                 <li>
                                     <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Center.aspx"
                                         Enabled="false"></asp:LinkButton></li>
@@ -325,20 +338,20 @@
                             <h1 class="hed1 hed2">
                                 Process
                                 <asp:Label ID="lblcenters" Text="Centers" runat="server" Style="padding-left: 700px;"></asp:Label>
-                                <asp:DropDownList ID="ddlcenters" runat="server" Style="width: 150px;"  OnSelectedIndexChanged="ddlcenters_SelectedIndexChanged"
+                                <asp:DropDownList ID="ddlcenters" runat="server" Style="width: 150px;" OnSelectedIndexChanged="ddlcenters_SelectedIndexChanged"
                                     AutoPostBack="true">
                                 </asp:DropDownList>
                             </h1>
                             <div class="inn">
                                 <!-- Grid Start -->
-                                      <asp:UpdatePanel ID="updtpnltblGrdcar" runat="server">
+                                <asp:UpdatePanel ID="updtpnltblGrdcar" runat="server">
                                     <ContentTemplate>
                                         <table>
                                             <tr>
                                                 <td>
                                                     <asp:GridView ID="GridQcProcessStatus" runat="server" CellSpacing="0" CellPadding="0"
-                                                        CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None" ShowFooter="true"
-                                                        OnRowCreated="GridQcProcessStatus_RowCreated"   OnRowDataBound="GrdSttalStatus_RowDataBound">
+                                                        CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None"
+                                                        ShowFooter="true" OnRowCreated="GridQcProcessStatus_RowCreated" OnRowDataBound="GrdSttalStatus_RowDataBound">
                                                         <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
                                                         <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
                                                         <HeaderStyle CssClass="tbHed" />
@@ -355,7 +368,7 @@
                                                                     <asp:LinkButton ID="lblEmpName" runat="server"></asp:LinkButton>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
-                                                                <asp:Label ID="lblCount" runat="server" Text="Count"></asp:Label>
+                                                                    <asp:Label ID="lblCount" runat="server" Text="Count"></asp:Label>
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField>
@@ -363,28 +376,28 @@
                                                                     <asp:LinkButton ID="lblRole" runat="server"></asp:LinkButton>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
-                                                           <asp:TemplateField HeaderText="QC">
+                                                            <asp:TemplateField HeaderText="QC">
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton ID="lblQcProcess" runat="server"></asp:LinkButton>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
-                                                                <asp:Label ID="lblQCCount" runat="server"></asp:Label>
+                                                                    <asp:Label ID="lblQCCount" runat="server"></asp:Label>
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
-                                                           <asp:TemplateField HeaderText="Pay process">
-                                                                <ItemTemplate >
+                                                            <asp:TemplateField HeaderText="Pay process">
+                                                                <ItemTemplate>
                                                                     <asp:LinkButton ID="lblPaymentProcess" runat="server"></asp:LinkButton>
                                                                 </ItemTemplate>
-                                                                  <FooterTemplate>
-                                                                <asp:Label ID="lblPayCount" runat="server"></asp:Label>
+                                                                <FooterTemplate>
+                                                                    <asp:Label ID="lblPayCount" runat="server"></asp:Label>
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField>
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton ID="lblProcessAdmin" runat="server"></asp:LinkButton>
                                                                 </ItemTemplate>
-                                                                  <FooterTemplate>
-                                                                <asp:Label ID="lbladmin" runat="server"></asp:Label>
+                                                                <FooterTemplate>
+                                                                    <asp:Label ID="lbladmin" runat="server"></asp:Label>
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
                                                         </Columns>
@@ -412,7 +425,6 @@
     <div class="footer">
         United Car Exchange © 2013
     </div>
-    
     </form>
 </body>
 </html>

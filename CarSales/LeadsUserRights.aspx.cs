@@ -254,4 +254,148 @@ public partial class LeadsUserRights : System.Web.UI.Page
         }
         catch { }
     }
+    public void lnlupdatelist_Click(object sender, EventArgs e)
+    {
+        MpUserUpdatelist.Show();
+        String empid = ""; String empid1 = "";
+        //Deactivate Emploees from HR 
+        DataSet DeactivEMp = objHotLeadBL.CheckDeactEmployees();
+        int DeacEmpcoun = DeactivEMp.Tables[0].Rows.Count;
+        if (DeacEmpcoun >= 1)
+        {
+
+            for (int i = 0; i < DeactivEMp.Tables[0].Rows.Count; i++)
+            {
+                empid = DeactivEMp.Tables[0].Rows[0]["EMpid"].ToString() + ",";
+            }
+            if (empid.EndsWith(","))
+                empid = empid.Remove(empid.Length - 1, 1);
+
+            //Updating List
+            bool Updatelist = objHotLeadBL.UpdateDeactEmployees();
+
+
+
+        }
+        //If Reactive Employees
+
+        DataSet ReactiveEmp = objHotLeadBL.ReactiveEmp();
+        int Reacount = ReactiveEmp.Tables[0].Rows.Count;
+        if (Reacount >= 1)
+        {
+
+            for (int i = 0; i < ReactiveEmp.Tables[0].Rows.Count; i++)
+            {
+                empid1 = ReactiveEmp.Tables[0].Rows[0]["Empid"].ToString() + ",";
+            }
+            if (empid1.EndsWith(","))
+                empid1 = empid1.Remove(empid1.Length - 1, 1);
+
+            //Updating Reactive List
+            bool Updatelist = objHotLeadBL.UpdateReactiveEmp();
+
+
+        }
+        if (empid.Length > 1 && empid1.Length > 1)
+        {
+            string text = "" + empid + "  deactivate and  \\n " + empid1 + "  activated from HR System.so changing status in carsales";
+            System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('" + text + "');", true);
+        }
+        else if (empid.Length > 1 && empid1.Length < 1)
+        {
+            System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('" + empid + "  deactivate from HR System.so changing status in carsales');", true);
+        }
+        else if (empid.Length < 1 && empid1.Length > 1)
+        {
+            System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('" + empid1 + "  activated from HR System.so changing status in carsales');", true);
+        }
+
+        //if all records are complted to add
+
+        DataSet dsSalesUpdateList = objHotLeadBL.SalesUsersUpdateList(Convert.ToInt32(ddlcenters.SelectedValue));
+        int EMpcoun = dsSalesUpdateList.Tables[0].Rows.Count;
+        if (EMpcoun > 1)
+        {
+            MpUserUpdatelist.Show();
+            GridUserUpdateList.DataSource = dsSalesUpdateList.Tables[0];
+            GridUserUpdateList.DataBind();
+        }
+        else
+        {
+            System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('No More New Employees from HR System.');", true);
+        }
+
+    }
+    public void btnUpda_Click(object sender, EventArgs e)
+    {
+        int chkcount = 0; string Empis = ""; string EmpisUpdates = ""; int k = 0, l = 0;
+        foreach (GridViewRow row in GridUserUpdateList.Rows)
+        {
+            CheckBox chk = row.Cells[0].FindControl("chk_Check") as CheckBox;
+            if (chk.Checked == true)
+            {
+                chkcount = chkcount + 1;
+            }
+        }
+        if (chkcount >= 1)
+        {
+            foreach (GridViewRow row in GridUserUpdateList.Rows)
+            {
+                CheckBox chk = row.Cells[0].FindControl("chk_Check") as CheckBox;
+                if (chk != null && chk.Checked)
+                {
+                    Label lblSalesEmpid = row.Cells[0].FindControl("lblSalesEmpid") as Label;
+                    DropDownList lblSalesRoleId = row.Cells[0].FindControl("ddlsalesroles") as DropDownList;
+                    string roleid = lblSalesRoleId.Text;
+                    if (roleid != "0")
+                    {
+                        DataSet InsertEmployee = objHotLeadBL.UInsertEmpandRightsss(lblSalesEmpid.Text, Convert.ToInt32(lblSalesRoleId.Text),
+                            Convert.ToInt32(ddlcenters.SelectedValue), Session[Constants.USER_NAME].ToString());
+                        EmpisUpdates = lblSalesEmpid.Text + ",";
+                        k = k + 1;
+                    }
+                    else
+                    {
+                        Empis = lblSalesEmpid.Text + ",";
+                        l = l + 1;
+
+                    }
+
+                }
+            }
+            try
+            {
+                if (Empis.EndsWith(","))
+                    Empis = Empis.Remove(Empis.Length - 1, 1);
+
+                if (EmpisUpdates.EndsWith(","))
+                    EmpisUpdates = EmpisUpdates.Remove(EmpisUpdates.Length - 1, 1);
+
+            }
+            catch { }
+
+            if (k != 0 && l != 0)
+            {
+                string Text = "Selected  " + Empis + "  added successfully and  \\n " + EmpisUpdates + " not added select roles and update. ";
+                System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('" + Text + "');", true);
+
+            }
+            else if (k != 0 && l == 0)
+            {
+                System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Selected employee(s)  added successfully.');", true);
+                MpUserUpdatelist.Hide();
+            }
+            else if (k == 0 && l != 0)
+            {
+                System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('please select role of the employee and update.');", true);
+                MpUserUpdatelist.Show();
+            }
+        }
+        else
+        {
+            System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Please select employees and update.');", true);
+            MpUserUpdatelist.Show();
+        }
+        //GetUserDefaultRights();
+    }
 }

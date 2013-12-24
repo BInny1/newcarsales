@@ -5405,6 +5405,31 @@ namespace HotLeadBL.HotLeadsTran
 
         }
 
+
+        //Brand name is existed or not
+        public bool BrandExisted()
+        {
+
+            try
+            {
+                bool bnew = false;
+                string spNameString = string.Empty;
+                Database dbDatabase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USP_UpdateReactiveEmp";
+                DbCommand dbCommand = null;
+                dbCommand = dbDatabase.GetStoredProcCommand(spNameString);
+                dbDatabase.ExecuteDataSet(dbCommand);
+                bnew = true;
+                return bnew;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
+
         //Get ALl Products
         public DataSet GetAllProducts()
         {
@@ -5419,6 +5444,47 @@ namespace HotLeadBL.HotLeadsTran
 
                 dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
                 return dsCarsData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //check record existed or not
+        public DataSet CheckRecordexist(string Brandname)
+        {
+            try
+            {
+                DataSet dsUsers = new DataSet();
+                string spNameString = string.Empty;
+                Database dbDatabase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USp_CheckRecordexist";
+                DbCommand dbCommand = null;
+                dbCommand = dbDatabase.GetStoredProcCommand(spNameString);
+                dbDatabase.AddInParameter(dbCommand, "@BrandName", System.Data.DbType.String, Brandname);
+                dsUsers = dbDatabase.ExecuteDataSet(dbCommand);
+                return dsUsers;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        //check record existed product or not
+        public DataSet CheckRecordforProductexist(string ProductName)
+        {
+            try
+            {
+                DataSet dsUsers = new DataSet();
+                string spNameString = string.Empty;
+                Database dbDatabase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USp_CheckRecordforProductexist";
+                DbCommand dbCommand = null;
+                dbCommand = dbDatabase.GetStoredProcCommand(spNameString);
+                dbDatabase.AddInParameter(dbCommand, "@ProductName", System.Data.DbType.String, ProductName);
+                dsUsers = dbDatabase.ExecuteDataSet(dbCommand);
+                return dsUsers;
             }
             catch (Exception ex)
             {

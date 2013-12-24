@@ -22,7 +22,7 @@ using System.Net.Mail;
 using System.Drawing;
 
 
-public partial class AllEmployeeRights : System.Web.UI.Page
+public partial class SalesUserRights : System.Web.UI.Page
 {
     public GeneralFunc objGeneralFunc = new GeneralFunc();
     DropdownBL objdropdownBL = new DropdownBL();

@@ -19,6 +19,7 @@ using HotLeadBL.Masters;
 using System.Collections.Generic;
 using HotLeadBL.HotLeadsTran;
 using System.Net.Mail;
+using System.Text.RegularExpressions;
 
 
 public partial class Brands : System.Web.UI.Page
@@ -102,27 +103,27 @@ public partial class Brands : System.Web.UI.Page
     private void GetProducts()
     {
 
-        //try
-        //{
-        //    DataSet dsProducts = objHotLeadBL.GetAllLocations();
-        //    ddlcenters.Items.Clear();
-        //    for (int i = 0; i < dsCenters.Tables[0].Rows.Count; i++)
-        //    {
-        //        if (dsCenters.Tables[0].Rows[i]["LocationId"].ToString() != "0")
-        //        {
-        //            ListItem list = new ListItem();
-        //            list.Text = dsCenters.Tables[0].Rows[i]["LocationName"].ToString();
-        //            list.Value = dsCenters.Tables[0].Rows[i]["LocationId"].ToString();
-        //            ddlcenters.Items.Add(list);
-        //        }
-        //    }
-        //    //ddlcenters.Items.Insert(0, new ListItem("All", "0"));
+        try
+        {
+            DataSet dsProducts = objHotLeadBL.GetAllProducts();
+            txtVeckType.Items.Clear();
+            for (int i = 0; i < dsProducts.Tables[0].Rows.Count; i++)
+            {
+                if (dsProducts.Tables[0].Rows[i]["Vehicletypeid"].ToString() != "0")
+                {
+                    ListItem list = new ListItem();
+                    list.Text = dsProducts.Tables[0].Rows[i]["vehicletypename"].ToString();
+                    list.Value = dsProducts.Tables[0].Rows[i]["Vehicletypeid"].ToString();
+                    txtVeckType.Items.Add(list);
+                }
+            }
+            txtVeckType.Items.Insert(0, new ListItem("Select", "0"));
 
-        //}
-        //catch (Exception ex)
-        //{
-        //    throw ex;
-        //}
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
     }
     protected void lnkBtnLogout_Click(object sender, EventArgs e)
     {
@@ -210,6 +211,8 @@ public partial class Brands : System.Web.UI.Page
     protected void lnkBrndNew_Click(object sender, EventArgs e)
     {
         MpVechlAdd.Show();
+        txtVeckType.SelectedIndex = 0;
+        txtBrnad.Text = "";
     }
 
     protected void lnkgroups_Click(object sender, EventArgs e)
@@ -218,16 +221,65 @@ public partial class Brands : System.Web.UI.Page
     }
     protected void btnAddVehicle_Click(object sender, EventArgs e)
     {
-        Boolean Sttaus = false;
+        Boolean Sttaus = false, Sttaus1 = false;
         if (rbt_VechGrop.Items[0].Selected == true)
             Sttaus = true;
         else
             Sttaus = false;
-        objHotLeadBL.SaveNewBrands(txtVeckType.Text, txtBrnad.Text, Sttaus);
-        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('New Brand is added successfully.');", true);
-        GetBrands();
+        if (rbt_VechGrop.Items[1].Selected == true)
+            Sttaus1 = true;
+        else
+            Sttaus1 = false;
+
+        if (txtVeckType.Text != "0")
+        {
+            if (txtBrnad.Text != "")
+            {
+                if (Sttaus == true || Sttaus1 == true)
+                {
+                    //if brand is existed or not UCE
+
+                    txtBrnad.Text = Regex.Replace(txtBrnad.Text, @"\s+", "");
+                    DataSet checkrecord = objHotLeadBL.CheckRecordexist(txtBrnad.Text.Trim());
+                    if (checkrecord.Tables[0].Rows.Count == 0)
+                    {
+                        objHotLeadBL.SaveNewBrands(txtVeckType.Text, txtBrnad.Text, Sttaus);
+                      
+                        //System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('New Brand is added successfully.');", true);
+                        //MpVechlAdd.Hide();
+                        GetBrands();
+                       
+                    }
+                    else
+                    {
+                        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Brand already existed.');", true);
+                    }
+                  
+                }
+                else
+                {
+                    System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('please select status.');", true);
+                }
+            }
+            else
+            {
+                System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('please enter Brand.');", true);
+                MpVechlAdd.Show();
+                txtBrnad.Focus();
+            }
+
+        }
+       
+        else
+        {
+            txtVeckType.Focus();
+            System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('please select product.');", true);
+            MpVechlAdd.Show();
+        }
+       
+       
      
-        MpVechlAdd.Hide();
+       
     }
     protected void btngroupAdd_Click(object sender, EventArgs e)
     {

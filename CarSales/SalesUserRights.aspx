@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AllEmployeeRights.aspx.cs"
-    Inherits="AllEmployeeRights" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="SalesUserRights.aspx.cs"
+    Inherits="SalesUserRights" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -318,7 +318,7 @@
                                 <li class="act"><a href="#">Sales <span class="cert"></span></a>
                                     <ul class="sub2">
                                         <li class="act">
-                                            <asp:LinkButton ID="SalesAdmin" runat="server" Text="User Rights" PostBackUrl="~/AllEmployeeRights.aspx"
+                                            <asp:LinkButton ID="SalesAdmin" runat="server" Text="User Rights" PostBackUrl="~/SalesUserRights.aspx"
                                                 Enabled="false"></asp:LinkButton></li>
                                         <li class="last">
                                             <asp:LinkButton ID="lnkDefaRights" runat="server" Text="Default Rights" PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton></li>
@@ -610,13 +610,13 @@
                                 <div style="margin: 0; padding-left: 0px; display: inline-block">
                                     <asp:UpdatePanel ID="updtPnlChangePwd" runat="server">
                                         <ContentTemplate>
-                                            <asp:Button ID="btnAddVehicle" class="btn btn-danger btn-warning" runat="server"
+                                            <asp:Button ID="btnAddVehicle" CssClass="btn btn-danger btn-warning" runat="server"
                                                 Text="Update" OnClick="btnAddVehicle_Click" />&nbsp;
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </div>
-                                <asp:Button ID="btnCancelPW" class="btn btn-danger btn-warning" runat="server" Text="Cancel"
-                                    OnClientClick="return ClosePopup10();" />
+                                <asp:Button ID="btnCancelPW" CssClass="btn btn-danger btn-warning" runat="server"
+                                    Text="Cancel" OnClientClick="return ClosePopup10();" />
                             </td>
                         </tr>
                     </table>
@@ -685,9 +685,11 @@
             </div>
             <br />
             <span class="floarC">
-                <asp:Button ID="btnUpda" class="btn btn-warning" runat="server" Text="Update" OnClick="btnUpda_Click" />
+                <asp:Button ID="btnUpda" CssClass="btn btn-warning" runat="server" Text="Update"
+                    OnClick="btnUpda_Click" />
                 &nbsp;
-                <asp:Button ID="btnClosp" class="btn btn-default " runat="server" Text="Cancel" OnClientClick="return ClosePopup9();" /></span>
+                <asp:Button ID="btnClosp" CssClass="btn btn-default " runat="server" Text="Cancel"
+                    OnClientClick="return ClosePopup9();" /></span>
         </div>
     </div>
     </form>

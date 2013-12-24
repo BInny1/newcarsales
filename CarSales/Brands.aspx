@@ -124,23 +124,57 @@
        
 
     </script>
-
-    <script type="text/javascript" language="javascript">
+    
+      <script type="text/javascript" language="javascript">
+     function validateSend()
+	  {  
+        debugger     
+            var valid=true;  
+    
+           
+            if(document.getElementById('txtBrnad').value.length<1)
+            {
+                alert("Please enter the Brand.");               
+                valid=false;
+                document.getElementById("txtBrnad").focus();
+            }
+            else if(document.getElementById('txt_Fname').value.trim().length<1)
+            {
+                alert("Please enter the valid name.");               
+                valid=false;
+                document.getElementById("txt_Fname").value="";
+                document.getElementById("txt_Fname").focus();
+            }
+           
+           
+        } 
+</script>
+     <script type="text/javascript" language="javascript">
 
 	var currentID = 0;	
+	var currentActiveIndex = 0;
 	
 	$(function(){
 		currentID = $('.mainUL li.active').index();
+		//sub1Act = $('.mainUL li.active li.act').index();
+		sub2Act = $('.mainUL li.active li.act li.act').index();
+		
+		
 		$('.mainUL .parent ul').hide(); // hide All Submenus
 		$('.mainUL .parent a').click(function(){
 			
 			$('.mainUL .parent ul').hide(); // hide All Submenus
 			
+			
 			$('.mainUL .parent a').each(function(){  // remove highlight for all anchor tags
 				$(this).removeClass('act');
-			});			
+			});	
+		    
+		    
+		    
+		    
 			
-			$(this).closest('ul').closest('ul').show();			
+			$(this).closest('ul').closest('ul').show();		
 			
 			
 			$(this).addClass('act'); //  highlight current clicked anchor tags
@@ -156,25 +190,29 @@
 				$(this).next().show();
 			}
 			
+			$('.mainUL li.parent:eq('+currentID+') li.act li:eq('+sub2Act+')').addClass('act');
 			
 		});
 		
-//		
-//		$(document).mouseup(function(e) {  // on mouse click on the document exept menu, automatically all submenus will hide and reset
-//			var container = $('.mainUL');
-//			if (container.has(e.target).length === 0) {
-//				$('.mainUL .parent ul ').hide();
-//			
-//				$('.mainUL .parent a').each(function(){
-//					$(this).removeClass('act');
-//				});
-//				
-//				$('.mainUL').find('li.parent.active').removeClass('active');
-//				$('.mainUL li.parent:eq('+currentID+')').addClass('active');
-//				
-//				
-//			}
-//		});
+		
+		$('.mainUL li.active a:eq(0)').click();
+		
+		$(document).mouseup(function(e) {  // on mouse click on the document exept menu, automatically all submenus will hide and reset
+			var container = $('.mainUL');
+			if (container.has(e.target).length === 0) {
+				$('.mainUL .parent ul ').hide();
+			
+				$('.mainUL .parent a').each(function(){
+					$(this).removeClass('act');
+				});
+				
+				$('.mainUL').find('li.parent.active').removeClass('active');
+				$('.mainUL li.parent:eq('+currentID+')').addClass('active');
+				
+				$('.mainUL li.active a:eq(0)').click();
+				
+			}
+		});
 		
 		
 	});
@@ -209,7 +247,7 @@
                 <h1>
                     Car Sales System<span></span></h1>
             </div>
-              <div class="headright">
+           <div class="headright">
                 <div class="loginDet">
                     &nbsp;<asp:Label ID="lblUserName" runat="server" CssClass="loginStat"></asp:Label>&nbsp;
                     |&nbsp;
@@ -273,7 +311,7 @@
                                     <asp:LinkButton ID="Executive" runat="server" Text="Exceutive" Enabled="false"></asp:LinkButton></li>
                             </ul>
                         </li>
-                        <li class="parent "><a href="#">Admin <span class="cert"></span></a>
+                        <li class="parent active"><a href="#">Admin <span class="cert"></span></a>
                             <ul class="sub1">
                                 <li><a href="#">Leads <span class="cert"></span></a>
                                     <ul class="sub2">
@@ -288,7 +326,7 @@
                                 <li><a href="#">Sales <span class="cert"></span></a>
                                     <ul class="sub2">
                                         <li>
-                                            <asp:LinkButton ID="SalesAdmin" runat="server" Text="User Rights" PostBackUrl="~/AllEmployeeRights.aspx"
+                                            <asp:LinkButton ID="SalesAdmin" runat="server" Text="User Rights" PostBackUrl="~/SalesUserRights.aspx"
                                                 Enabled="false"></asp:LinkButton></li>
                                         <li class="last">
                                             <asp:LinkButton ID="lnkDefaRights" runat="server" Text="Default Rights" PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton></li>
@@ -303,7 +341,7 @@
                                         PostBackUrl="~/Executives.aspx"></asp:LinkButton></li>
                                 <li  class="act"><a href="#">Brands <span class="cert"></span></a>
                                     <ul class="sub2">
-                                        <li>
+                                        <li  class="act">
                                             <asp:LinkButton ID="BrandsAdmin" runat="server" Text="Brands" PostBackUrl="~/Brands.aspx"
                                                 Enabled="false"></asp:LinkButton></li>
                                         <li class="last">
@@ -344,7 +382,7 @@
                         <PagerSettings Position="Top" />
                         <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
                         <Columns>
-                          <asp:TemplateField HeaderText="Brand">
+                            <asp:TemplateField HeaderText="Brand">
                                 <ItemTemplate>
                                     <asp:Label ID="lblName" runat="server" Text='<%#Eval("Brands") %>'></asp:Label>
                                 </ItemTemplate>
@@ -364,7 +402,6 @@
                     <!-- End  -->
                 </div>
             </div>
-        
             <div class="clear">
                 &nbsp;</div>
         </div>
@@ -385,16 +422,17 @@
     <asp:HiddenField ID="hdnChangePW" runat="server" />
     <div id="tblChangePW" style="display: none; width: 450px;" class="popup">
         <h2>
-            Add New Brand</h2>
+            Add New Brand <asp:ImageButton ID="img1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
         <div class="content">
             <table style="width: 96%; margin: 0 auto;">
                 <tr>
                     <td>
-                        Product <!-- txtVeckTyp -->
+                        Product
+                        <!-- txtVeckTyp -->
                     </td>
                     <td>
-                       <asp:DropDownList ID="txtVeckType" runat="server">
-                       </asp:DropDownList>
+                        <asp:DropDownList ID="txtVeckType" runat="server">
+                        </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>
@@ -402,7 +440,7 @@
                         Brand
                     </td>
                     <td>
-                        <asp:TextBox ID="txtBrnad" MaxLength="20" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtBrnad" MaxLength="20" runat="server" Style="text-transform: uppercase"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -425,12 +463,12 @@
                         <div style="margin: 0; padding-left: 0px; display: inline-block">
                             <asp:UpdatePanel ID="updtPnlChangePwd" runat="server">
                                 <ContentTemplate>
-                                    <asp:Button ID="btnAddVehicle" class="btn btn-danger btn-warning" runat="server"
+                                    <asp:Button ID="btnAddVehicle" class="btn btn-warning" runat="server"
                                         Text="Add" OnClick="btnAddVehicle_Click" />&nbsp;
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>
-                        <asp:Button ID="btnCancelPW" class="btn btn-danger btn-warning" runat="server" Text="Cancel" />
+                        <%--<asp:Button ID="btnCancelPW" class="btn btn-default" runat="server" Text="Cancel" />--%>
                     </td>
                 </tr>
             </table>
