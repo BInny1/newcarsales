@@ -489,7 +489,7 @@
             <span class="floarC">
                 <asp:Button ID="btnUpda" class="btn btn-warning" runat="server" Text="Update" OnClick="btnUpda_Click" />
                 &nbsp;
-                <asp:Button ID="btnClosp" class="btn btn-default " runat="server" Text="Cancel" OnClientClick="return ClosePopup9();" /></span>
+                <asp:Button ID="btnClosp" class="btn btn-default " runat="server" Text="Cancel" /></span>
         </div>
     </div>
     </form>
