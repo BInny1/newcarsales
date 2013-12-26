@@ -315,7 +315,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Center.aspx"
+                                    <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Locations.aspx"
                                         Enabled="false"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" Enabled="false"></asp:LinkButton></li>
@@ -329,6 +329,10 @@
         </div>
         <!-- Headder End  -->
         <!-- Content Start  -->
+          <div>
+       <asp:LinkButton ID="lnkstlead" runat="server" Text="State wise leads status"  CssClass=" underlineBlack" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton><br />
+        <asp:LinkButton ID="lnkstleasas" runat="server" Text="leads User Rights" CssClass=" underlineBlack" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton>
+        </div>
         <div class="content wid1000">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>

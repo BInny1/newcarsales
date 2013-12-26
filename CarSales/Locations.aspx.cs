@@ -21,7 +21,7 @@ using HotLeadBL.HotLeadsTran;
 using System.Net.Mail;
 
 
-public partial class Center : System.Web.UI.Page
+public partial class Locations : System.Web.UI.Page
 {
     public GeneralFunc objGeneralFunc = new GeneralFunc();
     DropdownBL objdropdownBL = new DropdownBL();
@@ -189,6 +189,7 @@ public partial class Center : System.Web.UI.Page
             HeaderCell.Text = "Leads Upoad";
             HeaderCell.ColumnSpan = 1;
             HeaderGridRow.Cells.Add(HeaderCell);
+            HeaderCell.CssClass = "BL BR";
 
             HeaderCell = new TableCell();
             HeaderCell.Text = "Sales";
@@ -199,6 +200,7 @@ public partial class Center : System.Web.UI.Page
             HeaderCell.Text = "Customer Service";
             HeaderCell.ColumnSpan = 1;
             HeaderGridRow.Cells.Add(HeaderCell);
+            HeaderCell.CssClass = "BL BR";
 
             HeaderCell = new TableCell();
             HeaderCell.Text = "Process";

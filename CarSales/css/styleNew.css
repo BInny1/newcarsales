@@ -242,6 +242,7 @@ border: 1px solid #ccc;
 .center, td.center, th.center{ text-align:center; font-weight:normal; }
 .centerB, td.centerB, th.centerB{ text-align:center; font-weight:bold; }
 a.underline {text-decoration:underline;}
+a.underlineBlack {text-decoration:underline;color:Black;padding-left:1100px;}
 .NormalSize{width:200px;}
 
 input#textbox {

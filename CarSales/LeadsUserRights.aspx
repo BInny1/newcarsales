@@ -132,6 +132,11 @@
             $find('<%= MpUserUpdatelist.ClientID%>').hide();
             return false;
         }
+        
+          function ClosePopup10() {
+            $find('<%= MpUpdaterights.ClientID%>').hide();
+            return false;
+        }
     </script>
 
     <script type="text/javascript" language="javascript">
@@ -324,7 +329,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Center.aspx"
+                                    <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Locations.aspx"
                                         Enabled="false"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" Enabled="false"></asp:LinkButton></li>
@@ -338,6 +343,10 @@
         </div>
         <!-- Headder End  -->
         <!-- Content Start  -->
+        <div>
+        <asp:LinkButton ID="lnkstlead" runat="server" Text="State wise leads status"  CssClass=" underlineBlack" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton><br />
+        <asp:LinkButton ID="lnkstleasas" runat="server" Text="leads Assign" CssClass=" underlineBlack" PostBackUrl="~/LeadAssign.aspx"></asp:LinkButton>
+        </div>
         <div class="content">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
@@ -354,6 +363,8 @@
                                     CssClass="HedLeFont underline floarR"></asp:LinkButton>
                             </h1>
                             <div class="inn">
+                            
+                            
                                 <!-- Grid Start -->
                                 <asp:UpdatePanel ID="updtpnltblGrdcar" runat="server">
                                     <ContentTemplate>
@@ -362,22 +373,23 @@
                                                 <td>
                                                     <asp:GridView ID="GridDefaultUserRights" runat="server" CellSpacing="0" CellPadding="0"
                                                         ShowFooter="true" CssClass="table table-hover table-striped" AutoGenerateColumns="False"
-                                                        GridLines="None" OnRowDataBound="GridDefaultUserRights_RowDataBound">
+                                                        GridLines="None" OnRowDataBound="GridDefaultUserRights_RowDataBound" OnRowCommand="GridDefaultUserRights_RowCommand">
                                                         <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
                                                         <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
                                                         <HeaderStyle CssClass="tbHed" />
                                                         <PagerSettings Position="Top" />
-                                                        <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
+                                                        <FooterStyle BackColor="#C6C3C6" CssClass="tbHed center" />
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="EMPID">
                                                                 <ItemTemplate>
-                                                                    <asp:LinkButton ID="lblEmpId" runat="server" Text='<%# Eval("EMPID")%>'></asp:LinkButton>
+                                                                    <asp:LinkButton ID="lblEmpId" runat="server" Text='<%# Eval("EMPID")%>'
+                                                                    CommandArgument='<%# Eval("EMPID")%>'  CommandName="Empdeta"></asp:LinkButton>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Name" FooterText="Total">
                                                                 <ItemTemplate>
-                                                                    <asp:LinkButton ID="LblFirstName" runat="server" Text='<%# Eval("FirstName")%>'></asp:LinkButton>
-                                                                    <asp:HiddenField ID="lblLstname" runat="server" Value='<%# Eval("LastName")%>' />
+                                                                    <asp:LinkButton ID="LblFirstName" runat="server" Text='<%# Eval("Names")%>'></asp:LinkButton>
+                                                                    <%--<asp:HiddenField ID="lblLstname" runat="server" Value='<%# Eval("LastName")%>' />--%>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Role">
@@ -387,16 +399,18 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Leads Upload">
                                                                 <ItemTemplate>
-                                                                    <asp:LinkButton ID="lblLeadsUpload" runat="server" Text="N"></asp:LinkButton>
+                                                                    <asp:LinkButton ID="lblLeadsUpload" runat="server" Text='<%# Eval("LeadsUpload")%>'></asp:LinkButton>
                                                                 </ItemTemplate>
+                                                                <ItemStyle CssClass="center" />
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblleadscoun" runat="server"></asp:Label>
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Leads Admin">
                                                                 <ItemTemplate>
-                                                                    <asp:LinkButton ID="LeadsAdmin" runat="server" Text="N"></asp:LinkButton>
+                                                                    <asp:LinkButton ID="LeadsAdmin" runat="server" Text='<%# Eval("LeadsAdmin")%>'></asp:LinkButton>
                                                                 </ItemTemplate>
+                                                                <ItemStyle CssClass="center" />
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblleadsAdmincoun" runat="server"></asp:Label>
                                                                 </FooterTemplate>
@@ -427,11 +441,11 @@
         United Car Exchange © 2013
     </div>
     <!-- Footer End  -->
-    <cc1:ModalPopupExtender ID="MpUserUpdatelist" runat="server" PopupControlID="tblChangePW"
-        BackgroundCssClass="ModalPopupBG" TargetControlID="HdnUserPoyp" CancelControlID="btnCancelPW">
+    <cc1:ModalPopupExtender ID="MpUserUpdatelist" runat="server" PopupControlID="tblChangePW1"
+        BackgroundCssClass="ModalPopupBG" TargetControlID="HdnUserPoyp" CancelControlID="img1">
     </cc1:ModalPopupExtender>
     <asp:HiddenField ID="HdnUserPoyp" runat="server" />
-    <div id="tblChangePW" style="display: none; width: 950px; height: 470px;" class="popup">
+    <div id="tblChangePW1" style="width: 950px; height: 470px;" class="popup">
         <h2>
             New Employees
             <asp:ImageButton ID="img1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
@@ -470,10 +484,8 @@
                                                 <ItemTemplate>
                                                     <asp:DropDownList ID="ddlsalesroles" runat="server">
                                                         <asp:ListItem Value="0">Select</asp:ListItem>
-                                                        <asp:ListItem Value="1">Sales Agent Opener</asp:ListItem>
-                                                        <asp:ListItem Value="2">Sales Agent Closer</asp:ListItem>
-                                                        <asp:ListItem Value="3">Center Manager</asp:ListItem>
-                                                        <asp:ListItem Value="4">Sales Assistant</asp:ListItem>
+                                                        <asp:ListItem Value="8">Leads Source</asp:ListItem>
+                                                        <asp:ListItem Value="9">Leads Manager</asp:ListItem>
                                                     </asp:DropDownList>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
@@ -487,9 +499,65 @@
             </div>
             <br />
             <span class="floarC">
-                <asp:Button ID="btnUpda" class="btn btn-warning" runat="server" Text="Update" OnClick="btnUpda_Click" />
+                <asp:Button ID="btnUpda" CssClass="btn btn-warning" runat="server" Text="Update"
+                    OnClick="btnUpda_Click" />
                 &nbsp;
-                <asp:Button ID="btnClosp" class="btn btn-default " runat="server" Text="Cancel" /></span>
+                <asp:Button ID="btnClosp" CssClass="btn btn-default " runat="server" Text="Cancel"
+                    OnClientClick="return ClosePopup9();" /></span>
+        </div>
+    </div>
+    
+      <cc1:ModalPopupExtender ID="MpUpdaterights" runat="server" PopupControlID="tblChangePW"
+        BackgroundCssClass="ModalPopupBG" TargetControlID="hdnChangePW" CancelControlID="ImageButton1">
+    </cc1:ModalPopupExtender>
+    <asp:HiddenField ID="hdnChangePW" runat="server" />
+    <div id="tblChangePW" style="display: none; width: 550px;" class="popup">
+        <h2>
+            Update Rights <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
+        <div class="content">
+            <asp:UpdatePanel ID="p1" runat="server">
+                <ContentTemplate>
+                    <table style="width: 96%; margin: 0 auto;">
+                        <tr>
+                            <td>
+                                <b>Leads Upload</b>
+                            </td>
+                            <td>
+                                <asp:CheckBoxList ID="Ckleads" runat="server" RepeatDirection="Horizontal">
+                                    <asp:ListItem>Leads</asp:ListItem>
+                                </asp:CheckBoxList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Leads Admin
+                            </td>
+                            <td>
+                                <asp:CheckBoxList ID="chkleadsadmin" runat="server" RepeatDirection="Horizontal">
+                                    <asp:ListItem>Admin</asp:ListItem>
+                                </asp:CheckBoxList>
+                            </td>
+                        </tr>
+                      
+                        <tr>
+                            <td align="right">
+                            </td>
+                            <td align="left">
+                                <div style="margin: 0; padding-left: 0px; display: inline-block">
+                                    <asp:UpdatePanel ID="updtPnlChangePwd" runat="server">
+                                        <ContentTemplate>
+                                            <asp:Button ID="btnAddVehicle" CssClass="btn  btn-warning" runat="server"
+                                                Text="Update" OnClick="btnAddVehicle_Click" />&nbsp;
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                </div>
+                                <asp:Button ID="btnCancelPW" CssClass="btn btn-default" runat="server"
+                                    Text="Cancel" OnClientClick="return ClosePopup10();" />
+                            </td>
+                        </tr>
+                    </table>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
     </div>
     </form>

@@ -105,7 +105,7 @@ public partial class LeadsUserRights : System.Web.UI.Page
     }
     private void GetLeadsUserRights(int LocationId)
     {
-     
+
         DataSet GetLeadsRights = new DataSet();
         GetLeadsRights = objHotLeadBL.GetLeadsUserRights((Convert.ToInt32(ddlcenters.SelectedValue)));
         Session["LeadsuserRights"] = GetLeadsRights;
@@ -129,8 +129,8 @@ public partial class LeadsUserRights : System.Web.UI.Page
                     ddlcenters.Items.Add(list);
                 }
             }
-            ddlcenters.Items.Insert(0, new ListItem("All", "0"));
-          
+            //  ddlcenters.Items.Insert(0, new ListItem("All", "0"));
+
         }
         catch (Exception ex)
         {
@@ -197,34 +197,34 @@ public partial class LeadsUserRights : System.Web.UI.Page
     }
     protected void GridDefaultUserRights_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-        try
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
+        //try
+        //{
+        //    if (e.Row.RowType == DataControlRowType.DataRow)
+        //    {
 
-                LinkButton lblLeadsUpload = (LinkButton)e.Row.FindControl("lblLeadsUpload");
-                LinkButton LeadsAdmin = (LinkButton)e.Row.FindControl("LeadsAdmin");
-                DataSet dsTasks3 = (DataSet)Session["LeadsuserRights"];
-                if (dsTasks3.Tables[0].Rows[e.Row.RowIndex]["Leads"].ToString() == "14")
-                {
-                    lblLeadsUpload.Text = "Y";
-                }
-                else
-                {
-                    lblLeadsUpload.Text = "";
-                }
-                if (dsTasks3.Tables[0].Rows[e.Row.RowIndex]["LeadsAdmin"].ToString() == "18")
-                {
-                    LeadsAdmin.Text = "Y";
-                }
-                else
-                {
-                    LeadsAdmin.Text = "";
-                }
-            }
+        //        LinkButton lblLeadsUpload = (LinkButton)e.Row.FindControl("lblLeadsUpload");
+        //        LinkButton LeadsAdmin = (LinkButton)e.Row.FindControl("LeadsAdmin");
+        //        DataSet dsTasks3 = (DataSet)Session["LeadsuserRights"];
+        //        if (dsTasks3.Tables[0].Rows[e.Row.RowIndex]["Leads"].ToString() == "14")
+        //        {
+        //            lblLeadsUpload.Text = "Y";
+        //        }
+        //        else
+        //        {
+        //            lblLeadsUpload.Text = "";
+        //        }
+        //        if (dsTasks3.Tables[0].Rows[e.Row.RowIndex]["LeadsAdmin"].ToString() == "18")
+        //        {
+        //            LeadsAdmin.Text = "Y";
+        //        }
+        //        else
+        //        {
+        //            LeadsAdmin.Text = "";
+        //        }
+        //    }
 
-        }
-        catch { }
+        //}
+        //catch { }
         try
         {
             if (e.Row.RowType == DataControlRowType.Footer)
@@ -232,14 +232,14 @@ public partial class LeadsUserRights : System.Web.UI.Page
                 Label lblTotalCount = (Label)e.Row.FindControl("lblleadscoun");
                 Label lblleadsAdmincoun = (Label)e.Row.FindControl("lblleadsAdmincoun");
                 DataSet dsTasks4 = (DataSet)Session["LeadsuserRights"];
-                int CounlreadsVal = 0, CounldminVal=0;
+                int CounlreadsVal = 0, CounldminVal = 0;
                 for (int i = 0; i < dsTasks4.Tables[0].Rows.Count; i++)
                 {
-                    if (dsTasks4.Tables[0].Rows[i][7].ToString() == "14")
+                    if (dsTasks4.Tables[0].Rows[i][2].ToString() == "Y")
                     {
                         CounlreadsVal = CounlreadsVal + 1;
                     }
-                    if (dsTasks4.Tables[0].Rows[i][8].ToString() == "18")
+                    if (dsTasks4.Tables[0].Rows[i][3].ToString() == "Y")
                     {
                         CounldminVal = CounldminVal + 1;
                     }
@@ -256,7 +256,7 @@ public partial class LeadsUserRights : System.Web.UI.Page
     }
     public void lnlupdatelist_Click(object sender, EventArgs e)
     {
-        MpUserUpdatelist.Show();
+
         String empid = ""; String empid1 = "";
         //Deactivate Emploees from HR 
         DataSet DeactivEMp = objHotLeadBL.CheckDeactEmployees();
@@ -349,7 +349,7 @@ public partial class LeadsUserRights : System.Web.UI.Page
                     string roleid = lblSalesRoleId.Text;
                     if (roleid != "0")
                     {
-                        DataSet InsertEmployee = objHotLeadBL.UInsertEmpandRightsss(lblSalesEmpid.Text, Convert.ToInt32(lblSalesRoleId.Text),
+                        DataSet InsertEmployee = objHotLeadBL.LeadsEmployeeandRights(lblSalesEmpid.Text, Convert.ToInt32(lblSalesRoleId.Text),
                             Convert.ToInt32(ddlcenters.SelectedValue), Session[Constants.USER_NAME].ToString());
                         EmpisUpdates = lblSalesEmpid.Text + ",";
                         k = k + 1;
@@ -396,6 +396,69 @@ public partial class LeadsUserRights : System.Web.UI.Page
             System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Please select employees and update.');", true);
             MpUserUpdatelist.Show();
         }
-        //GetUserDefaultRights();
+        GetLeadsUserRights(Convert.ToInt32(ddlcenters.SelectedValue));
+    }
+    protected void GridDefaultUserRights_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        try
+        {
+            MpUpdaterights.Show();
+            if (e.CommandName == "Empdeta")
+            {
+                Ckleads.Items[0].Selected = false; chkleadsadmin.Items[0].Selected = false;
+                string EmpIdva = e.CommandArgument.ToString();
+
+                Session["EMpid"] = EmpIdva.ToString();
+                DataSet GetUserDefaultRight = new DataSet();
+                GetUserDefaultRight = objHotLeadBL.AllEMployeeUserRights(EmpIdva.ToString());
+                int count = GetUserDefaultRight.Tables[0].Rows.Count;
+
+                for (int i = 0; i < count; i++)
+                {
+                    if (GetUserDefaultRight.Tables[0].Rows[i]["Active"].ToString() == "1")
+                    {
+                        string Modulename = GetUserDefaultRight.Tables[0].Rows[i]["SubModuleName"].ToString();
+
+                        if (Modulename == "LeadsUpload")
+                            Ckleads.Items[0].Selected = true;
+
+                        if (Modulename == "LeadsAdmin")
+                            chkleadsadmin.Items[0].Selected = true;
+
+                    }
+                }
+            }
+        }
+        catch { }
+    }
+
+    protected void btnAddVehicle_Click(object sender, EventArgs e)
+    {
+
+        bool LeadsUpload = false, LeadsAdmin = false;
+        string EMPID = "";
+
+        if (Ckleads.Items[0].Selected == true)
+        {
+            LeadsUpload = true;
+        }
+        else
+        {
+            LeadsUpload = false;
+        }
+
+
+        if (chkleadsadmin.Items[0].Selected == true) LeadsAdmin = true; else LeadsAdmin = false;
+
+
+        EMPID = Session["EMpid"].ToString();
+
+
+        DataSet UserEmploRights = objHotLeadBL.UpdateLeadsRightsSales(EMPID, LeadsUpload, LeadsAdmin);
+        GetLeadsUserRights(Convert.ToInt32(ddlcenters.SelectedValue));
+        MpUpdaterights.Hide();
+        Ckleads.Items[0].Selected = false;
+        chkleadsadmin.Items[0].Selected = false;
+
     }
 }

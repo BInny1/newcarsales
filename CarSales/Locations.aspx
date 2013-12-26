@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Center.aspx.cs" Inherits="Center" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Locations.aspx.cs" Inherits="Locations" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -327,7 +327,7 @@
                                     </ul>
                                 </li>
                                 <li class="act">
-                                    <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Center.aspx"
+                                    <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Locations.aspx"
                                         Enabled="false"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" Enabled="false"></asp:LinkButton></li>
@@ -346,7 +346,7 @@
                 <div class="inn">
                     <div class="box1 boxBlue">
                         <h1 class="hed1 hed2">
-                            Update Centers
+                            Update Locations
                         </h1>
                         <div class="inn">
                             <!-- Grid Start -->
@@ -360,37 +360,41 @@
                                                     OnRowCreated="GridCentersUpades_RowCreated">
                                                     <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
                                                     <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
-                                                    <HeaderStyle CssClass="tbHed" />
+                                                    <HeaderStyle CssClass="tbHed center" />
+                                                        <FooterStyle BackColor="#C6C3C6" CssClass="tbHed center" />
                                                     <Columns>
-                                                        <asp:TemplateField>
+                                                        <asp:TemplateField FooterText="Count">
                                                             <ItemTemplate>
                                                                 <asp:LinkButton ID="lnkUName" runat="server" Text='<%# Eval("CenterCode")%>'></asp:LinkButton>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:TemplateField>
+                                                        <asp:TemplateField HeaderStyle-CssClass="BR BL">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblName" runat="server" Text='<%#Eval("LeadsUpload") %>'></asp:Label>
                                                             </ItemTemplate>
+                                                             <ItemStyle CssClass="BR BL" />
                                                         </asp:TemplateField>
                                                         <asp:TemplateField>
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lnkUName" runat="server" Text='<%# Eval("Sales")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:TemplateField>
+                                                        <asp:TemplateField  HeaderStyle-CssClass="BR BL">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblName" runat="server" Text='<%#Eval("CustomerService") %>'></asp:Label>
                                                             </ItemTemplate>
+                                                              <ItemStyle CssClass="BR BL" />
                                                         </asp:TemplateField>
                                                         <asp:TemplateField>
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lnkUName" runat="server" Text='<%# Eval("Process")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Transfers In">
+                                                        <asp:TemplateField HeaderText="Transfers In"  HeaderStyle-CssClass="BL">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblName" runat="server" Text='<%#Eval("LeadsDTranfersIn") %>'></asp:Label>
                                                             </ItemTemplate>
+                                                              <ItemStyle CssClass="BL" />
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Abondons">
                                                             <ItemTemplate>

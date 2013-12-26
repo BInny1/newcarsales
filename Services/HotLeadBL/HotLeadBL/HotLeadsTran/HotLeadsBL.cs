@@ -5221,7 +5221,7 @@ namespace HotLeadBL.HotLeadsTran
         public DataSet UInsertEmpandRightsss(string Empid, int RoleId, int Locationid, string CreatedBy)
         {
             try
-            { 
+            {
                 DataSet dsCarsData = new DataSet();
                 string spNameString = string.Empty;
                 Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
@@ -5242,12 +5242,12 @@ namespace HotLeadBL.HotLeadsTran
         }
 
         public DataSet UpdateUserRightsSales(string EMPID, bool LeadsUpload, bool LeadsDownLoad, bool Abondoned, bool FreePackage,
-         bool Ticker, bool IntroMail, bool NewEntry, bool Transferin, bool Transferout, bool Center, bool Self,  bool SalesAdmin)
+         bool Ticker, bool IntroMail, bool NewEntry, bool Transferin, bool Transferout, bool Center, bool Self, bool SalesAdmin)
         {
             DataSet dsCarsData = new DataSet();
             try
             {
-               
+
                 string spNameString = string.Empty;
                 Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
                 spNameString = "USP_UpdateUserRightsSales";
@@ -5270,7 +5270,7 @@ namespace HotLeadBL.HotLeadsTran
                 dbDataBase.AddInParameter(dbCommand, "@Self", System.Data.DbType.Boolean, Self);
                 dbDataBase.AddInParameter(dbCommand, "@SalesAdmin", System.Data.DbType.Boolean, SalesAdmin);
                 dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
-              
+
 
             }
             catch { }
@@ -5359,7 +5359,7 @@ namespace HotLeadBL.HotLeadsTran
                 throw ex;
             }
 
-          
+
         }
         //USP_ReactiveEmp
 
@@ -5492,6 +5492,140 @@ namespace HotLeadBL.HotLeadsTran
             }
         }
 
+        public DataSet LeadsEmployeeandRights(string Empid, int RoleId, int Locationid, string CreatedBy)
+        {
+            try
+            {
+                DataSet dsCarsData = new DataSet();
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USP_LeadsEmployeeandRights";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dbDataBase.AddInParameter(dbCommand, "@Empid", System.Data.DbType.String, Empid);
+                dbDataBase.AddInParameter(dbCommand, "@RoleId", System.Data.DbType.String, @RoleId);
+                dbDataBase.AddInParameter(dbCommand, "@Locationid", System.Data.DbType.String, @Locationid);
+                dbDataBase.AddInParameter(dbCommand, "@CreatedBy", System.Data.DbType.String, @CreatedBy);
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+                return dsCarsData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet InsertProcessRights(string Empid, int RoleId, int Locationid, string CreatedBy)
+        {
+            try
+            {
+                DataSet dsCarsData = new DataSet();
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USP_InsertProcessRights";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dbDataBase.AddInParameter(dbCommand, "@Empid", System.Data.DbType.String, Empid);
+                dbDataBase.AddInParameter(dbCommand, "@RoleId", System.Data.DbType.String, @RoleId);
+                dbDataBase.AddInParameter(dbCommand, "@Locationid", System.Data.DbType.String, @Locationid);
+                dbDataBase.AddInParameter(dbCommand, "@CreatedBy", System.Data.DbType.String, @CreatedBy);
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+                return dsCarsData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataSet InsertExecutiveRights(string Empid, int RoleId, int Locationid, string CreatedBy)
+        {
+            try
+            {
+                DataSet dsCarsData = new DataSet();
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USP_InsertExecutiveRights";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dbDataBase.AddInParameter(dbCommand, "@Empid", System.Data.DbType.String, Empid);
+                dbDataBase.AddInParameter(dbCommand, "@RoleId", System.Data.DbType.String, @RoleId);
+                dbDataBase.AddInParameter(dbCommand, "@Locationid", System.Data.DbType.String, @Locationid);
+                dbDataBase.AddInParameter(dbCommand, "@CreatedBy", System.Data.DbType.String, @CreatedBy);
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+                return dsCarsData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //Leadsuser Rights Update
+        public DataSet UpdateLeadsRightsSales(string EMPID, bool LeadsUpload, bool LeadsAdmin)
+        {
+            DataSet dsCarsData = new DataSet();
+            try
+            {
+
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USP_UpdateLeadsRightsSales";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dbDataBase.AddInParameter(dbCommand, "@EMPID", System.Data.DbType.String, EMPID);
+                dbDataBase.AddInParameter(dbCommand, "@LeadsUpload", System.Data.DbType.Boolean, LeadsUpload);
+                dbDataBase.AddInParameter(dbCommand, "@LeadsAdmin", System.Data.DbType.Boolean, LeadsAdmin);
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+
+
+            }
+            catch { }
+            return dsCarsData;
+        }
+        //Update Process Rights Update
+        public DataSet UpdateProcessRightsSales(string EMPID, bool Qc,bool Pay, bool ProcessAdmin)
+        {
+            DataSet dsCarsData = new DataSet();
+            try
+            {
+
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USP_UpdateProcessRightsSales";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dbDataBase.AddInParameter(dbCommand, "@EMPID", System.Data.DbType.String, EMPID);
+                dbDataBase.AddInParameter(dbCommand, "@QC", System.Data.DbType.Boolean, Qc);
+                dbDataBase.AddInParameter(dbCommand, "@Payment", System.Data.DbType.Boolean, Pay);
+                dbDataBase.AddInParameter(dbCommand, "@Processadmin", System.Data.DbType.Boolean, ProcessAdmin);
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+
+
+            }
+            catch { }
+            return dsCarsData;
+        }
+        //UpdateExecutiveRightsSales
+        public DataSet UpdateExecutiveRightsSales(string EMPID, bool Executive)
+        {
+            DataSet dsCarsData = new DataSet();
+            try
+            {
+
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USP_UpdateExecutiveRightsSales";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dbDataBase.AddInParameter(dbCommand, "@EMPID", System.Data.DbType.String, EMPID);
+                dbDataBase.AddInParameter(dbCommand, "@Executive", System.Data.DbType.Boolean, Executive);
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+
+
+            }
+            catch { }
+            return dsCarsData;
+        }
     }
 }
 

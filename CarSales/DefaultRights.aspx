@@ -327,7 +327,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Center.aspx"
+                                    <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Locations.aspx"
                                         Enabled="false"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" Enabled="false"></asp:LinkButton></li>
@@ -341,6 +341,10 @@
         </div>
         <!-- Headder End  -->
         <!-- Content Start  -->
+          <div>
+        <asp:LinkButton ID="lnkstlead" runat="server" Text="User Rights"  CssClass=" underlineBlack" PostBackUrl="~/SalesUserRights.aspx"></asp:LinkButton><br />
+       
+        </div>
         <div class="content ">
             <div class="inn">
                 <div class="box1 boxBlue">

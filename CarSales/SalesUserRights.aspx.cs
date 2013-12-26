@@ -376,9 +376,9 @@ public partial class SalesUserRights : System.Web.UI.Page
 
         DataSet UserEmploRights = objHotLeadBL.UpdateUserRightsSales(EMPID, LeadsUpload, LeadsDownLoad, Abondoned, FreePackage, Ticker, IntroMail,
                            NewEntry, Transferin, TransferOut, Center, Self, SalesAdmin);
-
-        MpVechlAdd.Hide();
         GetUserDefaultRights();
+        MpVechlAdd.Hide();
+      
     }
     protected void ddlcenters_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -428,7 +428,7 @@ public partial class SalesUserRights : System.Web.UI.Page
                             chksales.Items[0].Selected = true;
                         if (Modulename == "NewEntry")
                             chksales.Items[1].Selected = true;
-                        if (Modulename == "lblTransferOut")
+                        if (Modulename == "TransferOut")
                             chksales.Items[2].Selected = true;
                         if (Modulename == "Ticker")
                             chksales.Items[3].Selected = true;

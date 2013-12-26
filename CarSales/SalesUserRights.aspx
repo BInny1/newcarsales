@@ -357,6 +357,10 @@
         </div>
         <!-- Headder End  -->
         <!-- Content Start  -->
+        <div>
+        <asp:LinkButton ID="lnkstlead" runat="server" Text="Default Rights"  CssClass=" underlineBlack" PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton><br />
+      
+        </div>
         <div class="content">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
@@ -546,12 +550,12 @@
     </div>
     <!-- Footer End  -->
     <cc1:ModalPopupExtender ID="MpVechlAdd" runat="server" PopupControlID="tblChangePW"
-        BackgroundCssClass="ModalPopupBG" TargetControlID="hdnChangePW" CancelControlID="btnCancelPW">
+        BackgroundCssClass="ModalPopupBG" TargetControlID="hdnChangePW" CancelControlID="ImageButton1">
     </cc1:ModalPopupExtender>
     <asp:HiddenField ID="hdnChangePW" runat="server" />
     <div id="tblChangePW" style="display: none; width: 550px;" class="popup">
         <h2>
-            Update Rights</h2>
+            Update Rights  <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
         <div class="content">
             <asp:UpdatePanel ID="p1" runat="server">
                 <ContentTemplate>
@@ -626,7 +630,7 @@
     </div>
     <!-- User Update List -->
     <cc1:ModalPopupExtender ID="MpUserUpdatelist" runat="server" PopupControlID="tblChangePW1"
-        BackgroundCssClass="ModalPopupBG" TargetControlID="HdnUserPoyp" CancelControlID="btnCancelPW">
+        BackgroundCssClass="ModalPopupBG" TargetControlID="HdnUserPoyp" CancelControlID="img1">
     </cc1:ModalPopupExtender>
     <asp:HiddenField ID="HdnUserPoyp" runat="server" />
     <div id="tblChangePW1" style="display: none; width: 950px; height: 470px;" class="popup">

@@ -313,7 +313,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Center.aspx"
+                                    <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Locations.aspx"
                                         Enabled="false"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" Enabled="false"></asp:LinkButton></li>
@@ -327,6 +327,10 @@
         </div>
         <!-- Headder End  -->
         <!-- Content Start  -->
+         <div>
+       <asp:LinkButton ID="lnkstlead" runat="server" Text="Leads Assign"  CssClass=" underlineBlack" PostBackUrl="~/LeadAssign.aspx"></asp:LinkButton><br />
+        <asp:LinkButton ID="lnkstleasas" runat="server" Text="leads User Rights" CssClass=" underlineBlack" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton>
+        </div>
         <div class="content">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
@@ -335,8 +339,8 @@
                             <h1 class="hed1 hed2">
                                 Leads Status
                                 <span class="floarR">
-                                <asp:LinkButton ID="lnkleadsassign" runat="server" Text="Leads Assign" PostBackUrl="~/LeadAssign.aspx"></asp:LinkButton> &nbsp;&nbsp;
-                                <asp:LinkButton ID="LinkButton1" runat="server" Text="Leads User Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton>
+                               
+                                <asp:LinkButton ID="LinkButton1" runat="server" Text="Leads User Rights" PostBackUrl="~/LeadsUserRights.aspx" CssClass="underline"></asp:LinkButton>
                                 </span>
                             </h1>
                             <div class="inn">
