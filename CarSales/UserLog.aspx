@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="StatewiseLeads.aspx.cs" Inherits="StatewiseLeads" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserLog.aspx.cs" Inherits="UserLog" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -10,7 +10,7 @@
     <link href="css/core.css" rel="stylesheet" type="text/css" />
     <link href="css/core.theme.css" rel="stylesheet" type="text/css" />
     <link href="css/styleNew.css" rel="stylesheet" type="text/css" />
-     <link href="css/menu1.css" rel="stylesheet" type="text/css" />
+    <link href="css/menu1.css" rel="stylesheet" type="text/css" />
     <!-- 
     <link href="css/css.css" rel="stylesheet" type="text/css" />
     -->
@@ -124,7 +124,8 @@
        
 
     </script>
-   <script type="text/javascript" language="javascript">
+
+    <script type="text/javascript" language="javascript">
 
 	var currentID = 0;	
 	var currentActiveIndex = 0;
@@ -201,7 +202,6 @@
             <asp:ServiceReference Path="~/WebService.asmx" />
         </Services>
     </asp:ScriptManager>
-   
     <!-- Main Wrapper Start  -->
     <div class="wrapper">
         <!-- Headder Start  -->
@@ -211,7 +211,7 @@
                 <h1>
                     Car Sales System<span></span></h1>
             </div>
-    <div class="headright">
+            <div class="headright">
                 <div class="loginDet">
                     &nbsp;<asp:Label ID="lblUserName" runat="server" CssClass="loginStat"></asp:Label>&nbsp;
                     |&nbsp;
@@ -277,13 +277,13 @@
                         </li>
                         <li class="parent active"><a href="#">Admin <span class="cert"></span></a>
                             <ul class="sub1">
-                                <li  class="act"><a href="#">Leads <span class="cert"></span></a>
+                                <li><a href="#">Leads <span class="cert"></span></a>
                                     <ul class="sub2">
                                         <li>
                                             <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
-                                        <li >
+                                        <li>
                                             <asp:LinkButton ID="LeadsList" runat="server" Text="Leads Statewise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
-                                        <li class="act">
+                                        <li>
                                             <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
                                     </ul>
                                 </li>
@@ -317,8 +317,9 @@
                                 <li>
                                     <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Locations.aspx"
                                         Enabled="false"></asp:LinkButton></li>
-                                <li>
-                                    <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" PostBackUrl="~/UserLog.aspx" Enabled="false"></asp:LinkButton></li>
+                                <li class="act">
+                                    <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" PostBackUrl="~/UserLog.aspx"
+                                        Enabled="false"></asp:LinkButton></li>
                                 <li class="last">
                                     <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" PostBackUrl="~/EditLogs.aspx"  Enabled="false"></asp:LinkButton></li>
                             </ul>
@@ -329,117 +330,74 @@
         </div>
         <!-- Headder End  -->
         <!-- Content Start  -->
-          <div>
-       <asp:LinkButton ID="lnkstlead" runat="server" Text="State wise leads status"  CssClass=" underlineBlack" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton><br />
-        <asp:LinkButton ID="lnkstleasas" runat="server" Text="leads User Rights" CssClass=" underlineBlack" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton>
-        </div>
         <div class="content wid1000">
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                <ContentTemplate>
-                    <div class="inn">
-                        <div class="box1 boxBlue">
-                            <h1 class="hed1 hed2">
-                                State Wise Leads &nbsp;
-                              <span  class="floarR"> Brands <asp:DropDownList ID="ddlgroups" runat="server" CssClass="NormalSize">
-                                </asp:DropDownList></span>
-                            </h1>
-                            <div class="inn">
-                                <!-- Grid Start -->
-                                <asp:UpdatePanel ID="updtpnltblGrdcar" runat="server">
-                                    <ContentTemplate>
-                                        <asp:Repeater ID="Rpt_Locatons" runat="server" OnItemDataBound="Rpt_Locatons_ItemDataBound">
-                                            <ItemTemplate>
-                                              <h5 style="margin-bottom:0; margin-top:30px;">  <b>Location Code: &nbsp;<asp:Label ID="lbllocation" runat="server" Text='<%# Eval("LocationName") %>'></asp:Label></b>
-                                                <asp:HiddenField ID="lblLocationId" runat="server" Value='<%# Eval("LocationId") %>' />
-                                              <asp:LinkButton ID="lnkEdit" runat="server" Text="Edit" CssClass="floarR"></asp:LinkButton>
-                                              </h5>  
-                                              <table class="table1">
-                                                <tr>
-                                                    <td>
-                                                        <asp:Repeater ID="Rpt_LeadsCenters" runat="server" OnItemDataBound="Rpt_LeadsCenters_ItemDataBound">
-                                                    <HeaderTemplate>
-                                                        <table class="table table-hover table-striped MB0 table1">
-                                                            <tr class="tbHed">
-                                                                <td style="width: 100px">
-                                                                    Zone
-                                                                </td>
-                                                                <td style="width: 150px">
-                                                                    State
-                                                                </td>
-                                                                <td style="width: 100px">
-                                                                    #
-                                                                </td>
-                                                                <td>
-                                                                    Weekly Avg Leads
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </HeaderTemplate>
-                                                    <ItemTemplate>
-                                                        <table class="table table-hover table-striped MB0 table1">
-                                                            <tr>
-                                                                <td style="width: 100px">
-                                                                    <asp:Label ID="lblZoneName" runat="server" Text='<%# Eval("ZoneName") %>'></asp:Label>
-                                                                    <asp:HiddenField ID="lblzoneId" runat="server" Value='<%# Eval("ZoneId") %>' />
-                                                                </td>
-                                                                <td style="width: 150px">
-                                                                    <asp:Label ID="lblstates" runat="server"></asp:Label>
-                                                                </td>
-                                                                <td style="width: 100px">
-                                                                    <asp:Label ID="lblcount" runat="server"></asp:Label>
-                                                                </td>
-                                                                <td>
-                                                                    <asp:Label ID="lblweekavgleads" runat="server"></asp:Label>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </ItemTemplate>
-                                                    <FooterTemplate>
-                                                        <table class="table table-hover table-striped MB0 table1">
-                                                            <tr class="tbHed">
-                                                                <td style="width: 100px">
-                                                                    &nbsp;
-                                                                </td>
-                                                                <td style="width: 150px">
-                                                                    Total
-                                                                </td>
-                                                                <td style="width: 100px">
-                                                                    <asp:Label ID="lblcount" runat="server"></asp:Label>
-                                                                </td>
-                                                                <td>
-                                                                    <asp:Label ID="LabelTotalleads" runat="server"></asp:Label>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </FooterTemplate>
-                                                </asp:Repeater>
-                                                    </td>
-                                                </tr>
-                                              </table>
-                                                
-                                            </ItemTemplate>
-                                        </asp:Repeater>
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>
-                                <!-- Grid End  -->
-                            </div>
-                        </div>
-                    </div>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-            <div class="clear">
-                &nbsp;</div>
-            <!-- Content End  -->
+            <div class=" box1 box100p">
+                <h1 class="hed1 hed2">
+                    <asp:UpdatePanel ID="updaproducts" runat="server">
+                        <ContentTemplate>
+                            User Log
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </h1>
+                <div class="inn">
+                    <!-- Start  -->
+                    <asp:GridView ID="GriduserLog" runat="server" CellSpacing="0" CellPadding="0" AutoGenerateColumns="False"
+                        GridLines="None" CssClass="table table-hover table-striped">
+                        <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
+                        <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle CssClass="tbHed  center" />
+                        <PagerSettings Position="Top" />
+                        <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
+                        <Columns>
+                            <asp:TemplateField>
+                                <HeaderTemplate>
+                                    <asp:Label ID="Label1" Text="Emp ID" runat="server"></asp:Label>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("Uid") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <HeaderTemplate>
+                                    <asp:Label ID="Label1" Text="Name" runat="server"></asp:Label>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("Names") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <HeaderTemplate>
+                                    <asp:Label ID="Label1" Text="Ip address" runat="server"></asp:Label>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("LoginIP") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <HeaderTemplate>
+                                    <asp:Label ID="Label1" Text="Login Date" runat="server"></asp:Label>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("LoginDate") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                    <!-- End  -->
+                </div>
+            </div>
             <div class="clear">
                 &nbsp;</div>
         </div>
-        <!-- Main Wrapper Emd  -->
+        <!-- Content End  -->
+        <div class="clear">
+            &nbsp;</div>
     </div>
+    <!-- Main Wrapper Emd  -->
     <!-- Footer Start  -->
     <div class="footer">
         United Car Exchange © 2013
     </div>
-    <!-- Footer End  -->
     </form>
 </body>
 </html>

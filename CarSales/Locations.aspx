@@ -322,7 +322,7 @@
                                                 Enabled="false"></asp:LinkButton></li>
                                         <li class="last">
                                         <li>
-                                            <asp:LinkButton ID="BrnadsProducts" runat="server" Text="Products" PostBackUrl="~/Brands.aspx"
+                                            <asp:LinkButton ID="BrnadsProducts" runat="server" Text="Products" PostBackUrl="~/Products.aspx"
                                                 Enabled="true"></asp:LinkButton></li>
                                     </ul>
                                 </li>
@@ -330,9 +330,9 @@
                                     <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Locations.aspx"
                                         Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" PostBackUrl="~/UserLog.aspx" Enabled="false"></asp:LinkButton></li>
                                 <li class="last">
-                                    <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" PostBackUrl="~/EditLogs.aspx"  Enabled="false"></asp:LinkButton></li>
                             </ul>
                         </li>
                     </ul>

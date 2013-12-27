@@ -22,7 +22,7 @@ using System.Net.Mail;
 using System.Text.RegularExpressions;
 
 
-public partial class CopyPage : System.Web.UI.Page
+public partial class EditLogs : System.Web.UI.Page
 {
     public GeneralFunc objGeneralFunc = new GeneralFunc();
     DropdownBL objdropdownBL = new DropdownBL();

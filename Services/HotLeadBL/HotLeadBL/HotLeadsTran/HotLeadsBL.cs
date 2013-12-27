@@ -466,7 +466,7 @@ namespace HotLeadBL.HotLeadsTran
 
                 //Assign stored procedure parameters
                 dbDatabase.AddInParameter(dbCommand, "@Log_Id", DbType.Int64, ObjUserLog.Log_Id);
-                dbDatabase.AddInParameter(dbCommand, "@User_Id", DbType.Int64, ObjUserLog.User_Id);
+                dbDatabase.AddInParameter(dbCommand, "@User_Id", DbType.String, ObjUserLog.User_Id);
                 dbDatabase.AddInParameter(dbCommand, "@Login_Ip", DbType.String, ObjUserLog.Login_Ip);
                 dbDatabase.AddInParameter(dbCommand, "@Log_Status_Id", DbType.Int32, ObjUserLog.Log_Status_Id);
                 dbDatabase.AddInParameter(dbCommand, "@Login_DateTime", DbType.DateTime, ObjUserLog.Login_DateTime);
@@ -5625,6 +5625,29 @@ namespace HotLeadBL.HotLeadsTran
             }
             catch { }
             return dsCarsData;
+        }
+
+        public DataSet userLogDetails()
+        {
+            try
+            {
+                DataSet dsUsers = new DataSet();
+                string spNameString = string.Empty;
+                Database dbDatabase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                //Discount 21-11-2013 starts 
+                //spNameString = "USP_GetAllCentersAgentsSalesData";
+                spNameString = "USP_userLogDetails";
+                //Discount 21-11-2013 Ends
+
+                DbCommand dbCommand = null;
+                dbCommand = dbDatabase.GetStoredProcCommand(spNameString);
+                dsUsers = dbDatabase.ExecuteDataSet(dbCommand);
+                return dsUsers;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

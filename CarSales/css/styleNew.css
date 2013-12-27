@@ -248,3 +248,72 @@ a.underlineBlack {text-decoration:underline;color:Black;padding-left:1100px;}
 input#textbox {
     text-transform: uppercase;
 }
+/*Spinner*/
+
+#spinner, #spinner1
+{
+	background: url(../images/content-back.png); 
+	width: 100%; height: 100%;
+	text-align: center; 
+	padding-top: 22%; 
+	position: fixed; 
+	z-index: 19000; 
+	left: 0;
+	top: 0
+}
+.head100
+{
+	font-weight: bold; border-left: none; text-transform: uppercase;text-align: center; background: #B8BE41;	
+}
+#spinner h4, #spinner1 h4
+{
+	border: 4px solid rgba(0,0,0,0.5); 
+	-webkit-border-radius: 8px; 
+	-moz-border-radius: 8px;
+	border-radius: 8px; 
+	-webkit-box-shadow: 0 0 18px rgba(0,0,0,0.9); 
+	-moz-box-shadow: 0 0 18px rgba(0,0,0,0.9);
+	box-shadow: 0 0 18px rgba(0,0,0,0.9); 
+	width: 380px; 
+	overflow: hidden; 
+	margin: 0 auto;
+	font-size: 20px; 
+	color: #333;
+	background: #fff;
+}
+#spinner div, #spinner1 div{
+	width: 270px; 
+	height: 100%; 
+	padding: 15px; 
+	margin: 0 auto; 
+	background: #fff;
+	-webkit-border-radius: 4px; 
+	-moz-border-radius: 4px; 
+	border-radius: 4px;
+	font-size:19px;
+}
+#spinner img, #spinner1 img
+{
+	margin-left: 6px; 
+	margin-top: 6px	;
+}
+
+.imgThumb{
+	width:80px;
+	height:50px;
+	padding:2px;	
+	margin:5px 15px;
+	outline:2px solid #ccc;
+}
+.star{
+	font-size:12px;
+	color:#FF3300;
+	font-weight:bold;
+}
+
+.PopUpHolder .main .dat
+{
+		padding:0 25px;
+		width:93%;	
+		height:auto;	
+	}

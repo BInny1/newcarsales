@@ -270,7 +270,7 @@ public partial class Login : System.Web.UI.Page
 
 
             //Set current Login 
-            UserLogInfo.User_Id = int.Parse(Convert.ToInt64(Convert.ToInt32(Session[Constants.USER_ID])).ToString());
+            UserLogInfo.User_Id =(Session[Constants.USER_ID]).ToString();
             UserLogInfo.Log_Status_Id = LogoutType;
 
             FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, txtUserName.Text.Trim().ToLower(), DateTime.Now, DateTime.Now.AddMinutes(Convert.ToInt32(Constants.SESSIONEXPIRATIONTIME)), false, Session[Constants.USER_NAME].ToString().Trim(), FormsAuthentication.FormsCookiePath);

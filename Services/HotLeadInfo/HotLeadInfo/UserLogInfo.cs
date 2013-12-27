@@ -15,10 +15,10 @@ namespace HotLeadInfo
             get { return _Log_Id; }
             set { _Log_Id = value; }
         }
-        private int _User_Id;
+        private string _User_Id;
 
 
-        public int User_Id
+        public string User_Id
         {
             get { return _User_Id; }
             set { _User_Id = value; }

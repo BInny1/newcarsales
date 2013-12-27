@@ -128,19 +128,29 @@
     <script type="text/javascript" language="javascript">
 
 	var currentID = 0;	
+	var currentActiveIndex = 0;
 	
 	$(function(){
 		currentID = $('.mainUL li.active').index();
+		//sub1Act = $('.mainUL li.active li.act').index();
+		sub2Act = $('.mainUL li.active li.act li.act').index();
+		
+		
 		$('.mainUL .parent ul').hide(); // hide All Submenus
 		$('.mainUL .parent a').click(function(){
 			
 			$('.mainUL .parent ul').hide(); // hide All Submenus
 			
+			
 			$('.mainUL .parent a').each(function(){  // remove highlight for all anchor tags
 				$(this).removeClass('act');
-			});			
+			});	
+		    
+		    
+		    
+		    
 			
-			$(this).closest('ul').closest('ul').show();			
+			$(this).closest('ul').closest('ul').show();		
 			
 			
 			$(this).addClass('act'); //  highlight current clicked anchor tags
@@ -156,9 +166,12 @@
 				$(this).next().show();
 			}
 			
+			$('.mainUL li.parent:eq('+currentID+') li.act li:eq('+sub2Act+')').addClass('act');
 			
 		});
 		
+		
+		$('.mainUL li.active a:eq(0)').click();
 		
 		$(document).mouseup(function(e) {  // on mouse click on the document exept menu, automatically all submenus will hide and reset
 			var container = $('.mainUL');
@@ -172,6 +185,7 @@
 				$('.mainUL').find('li.parent.active').removeClass('active');
 				$('.mainUL li.parent:eq('+currentID+')').addClass('active');
 				
+				$('.mainUL li.active a:eq(0)').click();
 				
 			}
 		});
@@ -231,6 +245,10 @@
                                     <asp:LinkButton ID="Transferin" runat="server" Text="Transfer In" Enabled="false"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="MyReport" runat="server" Text="My Report" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="lnkSetGrup" runat="server" Text="SetGroup" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="lnkGroupreport" runat="server" Text="Group Report" Enabled="false"></asp:LinkButton></li>
                             </ul>
                         </li>
                         <li class="parent"><a href="#">Process <span class="cert"></span></a>
@@ -241,6 +259,8 @@
                                     <asp:LinkButton ID="Payments" runat="server" Text="Payments" Enabled="false"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="Publish" runat="server" Text="Publish" Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="lnkMmyRep" runat="server" Text="My Report" Enabled="false"></asp:LinkButton></li>
                             </ul>
                         </li>
                         <li class="parent "><a href="#">Reports <span class="cert"></span></a>
@@ -263,17 +283,17 @@
                                             <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                         <li>
                                             <asp:LinkButton ID="LeadsList" runat="server" Text="Leads Statewise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
-                                        <li class="last">
+                                        <li>
                                             <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Sales <span class="cert"></span></a>
                                     <ul class="sub2">
                                         <li>
-                                            <asp:LinkButton ID="SalesAdmin" runat="server" Text="Sales" PostBackUrl="~/SalesUserRights.aspx"
+                                            <asp:LinkButton ID="SalesAdmin" runat="server" Text="User Rights" PostBackUrl="~/SalesUserRights.aspx"
                                                 Enabled="false"></asp:LinkButton></li>
                                         <li class="last">
-                                            <asp:LinkButton ID="lnkDefaRights" runat="server" Text="Def.Rights" PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton></li>
+                                            <asp:LinkButton ID="lnkDefaRights" runat="server" Text="Default Rights" PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -283,16 +303,25 @@
                                 <li>
                                     <asp:LinkButton ID="ExecutiveAdmin" runat="server" Text="Executive" Enabled="false"
                                         PostBackUrl="~/Executives.aspx"></asp:LinkButton></li>
-                                <li class="act">
-                                    <asp:LinkButton ID="BrandsAdmin" runat="server" Text="Brands" PostBackUrl="~/Brands.aspx"
-                                        Enabled="false"></asp:LinkButton></li>
+                                <li class="act"><a href="#">Brands <span class="cert"></span></a>
+                                    <ul class="sub2">
+                                        <li>
+                                            <asp:LinkButton ID="BrandsAdmin" runat="server" Text="Brands" PostBackUrl="~/Brands.aspx"
+                                                Enabled="false"></asp:LinkButton></li>
+                                        <li class="last">
+                                        <li class="act">
+                                            <asp:LinkButton ID="BrnadsProducts" runat="server" Text="Products" PostBackUrl="~/Products.aspx"
+                                                Enabled="true"></asp:LinkButton></li>
+                                    </ul>
+                                </li>
                                 <li>
                                     <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Locations.aspx"
                                         Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" PostBackUrl="~/UserLog.aspx"
+                                        Enabled="false"></asp:LinkButton></li>
                                 <li class="last">
-                                    <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" PostBackUrl="~/EditLogs.aspx"  Enabled="false"></asp:LinkButton></li>
                             </ul>
                         </li>
                     </ul>
@@ -304,9 +333,13 @@
         <div class="content wid1000">
             <div class=" box1 box100p">
                 <h1 class="hed1 hed2">
-                    Products <b>
-                        <asp:LinkButton ID="lnkgroups" runat="server" Text="New" OnClick="lnkgroups_Click"
-                            CssClass="floarR"></asp:LinkButton></b>
+                    <asp:UpdatePanel ID="updaproducts" runat="server">
+                        <ContentTemplate>
+                            Products <b>
+                                <asp:LinkButton ID="lnkgroups" runat="server" Text="New" OnClick="lnkgroups_Click"
+                                    CssClass="floarR underline"></asp:LinkButton></b>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </h1>
                 <div class="inn">
                     <!-- Start  -->
@@ -404,7 +437,7 @@
     <!-- New Groups Add  -->
     <!-- New Vechlie Click -->
     <cc1:ModalPopupExtender ID="MPBrands" runat="server" PopupControlID="tblChangePW1"
-        BackgroundCssClass="ModalPopupBG" TargetControlID="HdnGroup1s" CancelControlID="btnCancelPW">
+        BackgroundCssClass="ModalPopupBG" TargetControlID="HdnGroup1s" CancelControlID="img1">
     </cc1:ModalPopupExtender>
     <asp:HiddenField ID="HdnGroup1s" runat="server" />
     <div id="tblChangePW1" style="display: none; width: 450px;" class="popup">

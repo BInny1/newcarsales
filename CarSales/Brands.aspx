@@ -124,8 +124,8 @@
        
 
     </script>
-    
-      <script type="text/javascript" language="javascript">
+
+    <script type="text/javascript" language="javascript">
      function validateSend()
 	  {  
         debugger     
@@ -148,8 +148,9 @@
            
            
         } 
-</script>
-     <script type="text/javascript" language="javascript">
+    </script>
+
+    <script type="text/javascript" language="javascript">
 
 	var currentID = 0;	
 	var currentActiveIndex = 0;
@@ -226,7 +227,7 @@
             <asp:ServiceReference Path="~/WebService.asmx" />
         </Services>
     </asp:ScriptManager>
-    <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="0">
+     <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="0" AssociatedUpdatePanelID="UpdateBe">
         <ProgressTemplate>
             <div id="spinner">
                 <h4>
@@ -247,7 +248,7 @@
                 <h1>
                     Car Sales System<span></span></h1>
             </div>
-           <div class="headright">
+            <div class="headright">
                 <div class="loginDet">
                     &nbsp;<asp:Label ID="lblUserName" runat="server" CssClass="loginStat"></asp:Label>&nbsp;
                     |&nbsp;
@@ -339,14 +340,14 @@
                                 <li>
                                     <asp:LinkButton ID="ExecutiveAdmin" runat="server" Text="Executive" Enabled="false"
                                         PostBackUrl="~/Executives.aspx"></asp:LinkButton></li>
-                                <li  class="act"><a href="#">Brands <span class="cert"></span></a>
+                                <li class="act"><a href="#">Brands <span class="cert"></span></a>
                                     <ul class="sub2">
-                                        <li  class="act">
+                                        <li class="act">
                                             <asp:LinkButton ID="BrandsAdmin" runat="server" Text="Brands" PostBackUrl="~/Brands.aspx"
                                                 Enabled="false"></asp:LinkButton></li>
                                         <li class="last">
                                         <li>
-                                            <asp:LinkButton ID="BrnadsProducts" runat="server" Text="Products" PostBackUrl="~/Brands.aspx"
+                                            <asp:LinkButton ID="BrnadsProducts" runat="server" Text="Products" PostBackUrl="~/Products.aspx"
                                                 Enabled="true"></asp:LinkButton></li>
                                     </ul>
                                 </li>
@@ -354,9 +355,9 @@
                                     <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Locations.aspx"
                                         Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" PostBackUrl="~/UserLog.aspx" Enabled="false"></asp:LinkButton></li>
                                 <li class="last">
-                                    <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" PostBackUrl="~/EditLogs.aspx"  Enabled="false"></asp:LinkButton></li>
                             </ul>
                         </li>
                     </ul>
@@ -368,9 +369,14 @@
         <div class="content wid1000">
             <div class=" box1 box100p">
                 <h1 class="hed1 hed2">
-                    Brands <b>
-                        <asp:LinkButton ID="lnkBrndNew" runat="server" Text="New" OnClick="lnkBrndNew_Click"
-                            CssClass="floarR"></asp:LinkButton></b>
+                    <asp:UpdatePanel ID="UpdateBe" runat="server">
+                        <ContentTemplate>
+                            Brands <b>
+                                <asp:LinkButton ID="lnkBrndNew" runat="server" Text="New" OnClick="lnkBrndNew_Click"
+                                    CssClass="floarR underline"></asp:LinkButton>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                    </b>
                 </h1>
                 <div class="inn">
                     <!-- Start -->
@@ -416,13 +422,14 @@
     </div>
     <!-- Footer End  -->
     <!-- New Vechlie Click -->
-    <cc1:ModalPopupExtender ID="MpVechlAdd" runat="server" PopupControlID="tblChangePW"
-        BackgroundCssClass="ModalPopupBG" TargetControlID="hdnChangePW" CancelControlID="btnCancelPW">
+    <cc1:ModalPopupExtender ID="MPBrands" runat="server" PopupControlID="tblChangePW1"
+        BackgroundCssClass="ModalPopupBG" TargetControlID="HdnGroup1s" CancelControlID="img1">
     </cc1:ModalPopupExtender>
-    <asp:HiddenField ID="hdnChangePW" runat="server" />
-    <div id="tblChangePW" style="display: none; width: 450px;" class="popup">
+    <asp:HiddenField ID="HdnGroup1s" runat="server" />
+    <div id="tblChangePW1" style="display: none; width: 450px;" class="popup">
         <h2>
-            Add New Brand <asp:ImageButton ID="img1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
+            Add New Brand
+            <asp:ImageButton ID="img1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
         <div class="content">
             <table style="width: 96%; margin: 0 auto;">
                 <tr>
@@ -463,8 +470,8 @@
                         <div style="margin: 0; padding-left: 0px; display: inline-block">
                             <asp:UpdatePanel ID="updtPnlChangePwd" runat="server">
                                 <ContentTemplate>
-                                    <asp:Button ID="btnAddVehicle" class="btn btn-warning" runat="server"
-                                        Text="Add" OnClick="btnAddVehicle_Click" />&nbsp;
+                                    <asp:Button ID="btnAddVehicle" class="btn btn-warning" runat="server" Text="Add"
+                                        OnClick="btnAddVehicle_Click" />&nbsp;
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>
@@ -474,43 +481,9 @@
             </table>
         </div>
     </div>
+    </div>
     <!-- New Groups Add  -->
     <!-- New Vechlie Click -->
-    <cc1:ModalPopupExtender ID="MPBrands" runat="server" PopupControlID="tblChangePW1"
-        BackgroundCssClass="ModalPopupBG" TargetControlID="HdnGroup1s" CancelControlID="btnCancelPW">
-    </cc1:ModalPopupExtender>
-    <asp:HiddenField ID="HdnGroup1s" runat="server" />
-    <div id="tblChangePW1" style="display: none; width: 450px;" class="popup">
-        <h2>
-            Add New Groups</h2>
-        <div class="content">
-            <table style="width: 96%; margin: 0 auto;">
-                <tr>
-                    <td>
-                        GroupName
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtgrpname" MaxLength="20" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                    </td>
-                    <td align="left">
-                        <div style="margin: 0; padding-left: 0px; display: inline-block">
-                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                <ContentTemplate>
-                                    <asp:Button ID="btngroupAdd" class="btn btn-danger btn-warning" runat="server" Text="Add"
-                                        OnClick="btngroupAdd_Click" />&nbsp;
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
-                        </div>
-                        <asp:Button ID="Button2" class="btn btn-danger btn-warning" runat="server" Text="Cancel" />
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
     </form>
 </body>
 </html>

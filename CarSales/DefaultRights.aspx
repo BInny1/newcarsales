@@ -202,18 +202,6 @@
             <asp:ServiceReference Path="~/WebService.asmx" />
         </Services>
     </asp:ScriptManager>
-    <asp:UpdateProgress ID="UpdateProgress1" runat="server" DisplayAfter="0">
-        <ProgressTemplate>
-            <div id="spinner">
-                <h4>
-                    <div>
-                        Processing
-                        <img src="images/loading.gif" />
-                    </div>
-                </h4>
-            </div>
-        </ProgressTemplate>
-    </asp:UpdateProgress>
     <!-- Main Wrapper Start  -->
     <div class="wrapper">
         <!-- Headder Start  -->
@@ -223,7 +211,7 @@
                 <h1>
                     Car Sales System<span></span></h1>
             </div>
-           <div class="headright">
+            <div class="headright">
                 <div class="loginDet">
                     &nbsp;<asp:Label ID="lblUserName" runat="server" CssClass="loginStat"></asp:Label>&nbsp;
                     |&nbsp;
@@ -322,7 +310,7 @@
                                                 Enabled="false"></asp:LinkButton></li>
                                         <li class="last">
                                         <li>
-                                            <asp:LinkButton ID="BrnadsProducts" runat="server" Text="Products" PostBackUrl="~/Brands.aspx"
+                                            <asp:LinkButton ID="BrnadsProducts" runat="server" Text="Products" PostBackUrl="~/Products.aspx"
                                                 Enabled="true"></asp:LinkButton></li>
                                     </ul>
                                 </li>
@@ -330,9 +318,9 @@
                                     <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Locations.aspx"
                                         Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" PostBackUrl="~/UserLog.aspx" Enabled="false"></asp:LinkButton></li>
                                 <li class="last">
-                                    <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" PostBackUrl="~/EditLogs.aspx"  Enabled="false"></asp:LinkButton></li>
                             </ul>
                         </li>
                     </ul>
@@ -341,9 +329,9 @@
         </div>
         <!-- Headder End  -->
         <!-- Content Start  -->
-          <div>
-        <asp:LinkButton ID="lnkstlead" runat="server" Text="User Rights"  CssClass=" underlineBlack" PostBackUrl="~/SalesUserRights.aspx"></asp:LinkButton><br />
-       
+        <div>
+            <asp:LinkButton ID="lnkstlead" runat="server" Text="User Rights" CssClass=" underlineBlack"
+                PostBackUrl="~/SalesUserRights.aspx"></asp:LinkButton><br />
         </div>
         <div class="content ">
             <div class="inn">
@@ -358,7 +346,7 @@
                                     <tr>
                                         <td>
                                             <asp:GridView ID="GridDefaultUserRights" runat="server" CellSpacing="0" CellPadding="0"
-                                                CssClass="table table-hover table-striped"  AutoGenerateColumns="False" GridLines="None"
+                                                CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None"
                                                 OnRowCreated="GridDefaultUserRights_RowCreated" OnRowDataBound="GridDefaultUserRights_RowDataBound">
                                                 <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
                                                 <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
@@ -372,7 +360,6 @@
                                                             <asp:LinkButton ID="lblRoleNamre" runat="server" Text='<%# Eval("RoleName")%>'></asp:LinkButton>
                                                             <asp:HiddenField ID="hdnRoleId" runat="server" Value='<%# Eval("RoleId")%>' />
                                                         </ItemTemplate>
-                                                         
                                                     </asp:TemplateField>
                                                     <asp:TemplateField>
                                                         <ItemTemplate>
@@ -381,69 +368,69 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Leads" HeaderStyle-CssClass="BL">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblLeads" runat="server"  ForeColor="#2286C1"></asp:Label>
+                                                            <asp:Label ID="lblLeads" runat="server" ForeColor="#2286C1"></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle CssClass="BL center" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Transfer Ins">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="LblTransfers" runat="server"  ForeColor="#2286C1"></asp:Label>
+                                                            <asp:Label ID="LblTransfers" runat="server" ForeColor="#2286C1"></asp:Label>
                                                         </ItemTemplate>
-                                                         <ItemStyle CssClass="center" />
+                                                        <ItemStyle CssClass="center" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Abondons">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblabondons" runat="server"  ForeColor="#2286C1"></asp:Label>
+                                                            <asp:Label ID="lblabondons" runat="server" ForeColor="#2286C1"></asp:Label>
                                                         </ItemTemplate>
-                                                         <ItemStyle CssClass="center" />
+                                                        <ItemStyle CssClass="center" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Free Posts" HeaderStyle-CssClass="BR">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblfreepots" runat="server"  ForeColor="#2286C1"></asp:Label>
+                                                            <asp:Label ID="lblfreepots" runat="server" ForeColor="#2286C1"></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle CssClass="BR center" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Intro Mail">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblintromail" runat="server"  ForeColor="#2286C1"></asp:Label>
+                                                            <asp:Label ID="lblintromail" runat="server" ForeColor="#2286C1"></asp:Label>
                                                         </ItemTemplate>
-                                                         <ItemStyle CssClass="center" />
+                                                        <ItemStyle CssClass="center" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="New Entry">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblNeEntry" runat="server"  ForeColor="#2286C1"></asp:Label>
+                                                            <asp:Label ID="lblNeEntry" runat="server" ForeColor="#2286C1"></asp:Label>
                                                         </ItemTemplate>
-                                                         <ItemStyle CssClass="center" />
+                                                        <ItemStyle CssClass="center" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Transfer Out">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblTransferOut" runat="server"  ForeColor="#2286C1"></asp:Label>
+                                                            <asp:Label ID="lblTransferOut" runat="server" ForeColor="#2286C1"></asp:Label>
                                                         </ItemTemplate>
-                                                         <ItemStyle CssClass="center" />
+                                                        <ItemStyle CssClass="center" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Ticker" HeaderStyle-CssClass="BR">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblTicker" runat="server"  ForeColor="#2286C1"></asp:Label>
+                                                            <asp:Label ID="lblTicker" runat="server" ForeColor="#2286C1"></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle CssClass="BR center" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Self">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblSelf" runat="server"  ForeColor="#2286C1"> </asp:Label>
+                                                            <asp:Label ID="lblSelf" runat="server" ForeColor="#2286C1"> </asp:Label>
                                                         </ItemTemplate>
-                                                         <ItemStyle CssClass="center" />
+                                                        <ItemStyle CssClass="center" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Center" HeaderStyle-CssClass="BR">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblCenter" runat="server"  ForeColor="#2286C1"></asp:Label>
+                                                            <asp:Label ID="lblCenter" runat="server" ForeColor="#2286C1"></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle CssClass="BR center" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField>
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblAdmin" runat="server"  ForeColor="#2286C1"></asp:Label>
+                                                            <asp:Label ID="lblAdmin" runat="server" ForeColor="#2286C1"></asp:Label>
                                                         </ItemTemplate>
-                                                         <ItemStyle CssClass="center" />
+                                                        <ItemStyle CssClass="center" />
                                                     </asp:TemplateField>
                                                 </Columns>
                                             </asp:GridView>

@@ -218,7 +218,7 @@
             <asp:ServiceReference Path="~/WebService.asmx" />
         </Services>
     </asp:ScriptManager>
-    <%--  <asp:UpdateProgress ID="UpdatePanel12" runat="server" AssociatedUpdatePanelID="UpdaCLocations">
+     <asp:UpdateProgress ID="UpdatePanel12" runat="server" AssociatedUpdatePanelID="UpdaCLocations">
         <ProgressTemplate>
             <div id="spinner">
                 <h4>
@@ -229,7 +229,7 @@
                 </h4>
             </div>
         </ProgressTemplate>
-    </asp:UpdateProgress>--%>
+    </asp:UpdateProgress>
     <!-- Main Wrapper Start  -->
     <div class="wrapper">
         <!-- Headder Start  -->
@@ -338,7 +338,7 @@
                                                 Enabled="false"></asp:LinkButton></li>
                                         <li class="last">
                                         <li>
-                                            <asp:LinkButton ID="BrnadsProducts" runat="server" Text="Products" PostBackUrl="~/Brands.aspx"
+                                            <asp:LinkButton ID="BrnadsProducts" runat="server" Text="Products" PostBackUrl="~/Products.aspx"
                                                 Enabled="true"></asp:LinkButton></li>
                                     </ul>
                                 </li>
@@ -346,9 +346,9 @@
                                     <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Center.aspx"
                                         Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" PostBackUrl="~/UserLog.aspx" Enabled="false"></asp:LinkButton></li>
                                 <li class="last">
-                                    <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" PostBackUrl="~/EditLogs.aspx"  Enabled="false"></asp:LinkButton></li>
                             </ul>
                         </li>
                     </ul>
@@ -358,8 +358,8 @@
         <!-- Headder End  -->
         <!-- Content Start  -->
         <div>
-        <asp:LinkButton ID="lnkstlead" runat="server" Text="Default Rights"  CssClass=" underlineBlack" PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton><br />
-      
+            <asp:LinkButton ID="lnkstlead" runat="server" Text="Default Rights" CssClass=" underlineBlack"
+                PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton><br />
         </div>
         <div class="content">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -407,12 +407,14 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField FooterText="Count" HeaderStyle-CssClass="BR">
                                                                 <ItemTemplate>
-                                                                    <asp:LinkButton ID="LblFirstName" runat="server" Text='<%# Eval("Names")%>'></asp:LinkButton>
+                                                                    <asp:LinkButton ID="LblFirstName" runat="server" Text='<%# Eval("Names")%>' CommandArgument='<%# Eval("EMPID")%>'
+                                                                        CommandName="Empdeta"></asp:LinkButton>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderStyle-CssClass="BR">
                                                                 <ItemTemplate>
-                                                                    <asp:LinkButton ID="lblRoleNamre" runat="server" Text='<%# Eval("RoleName")%>'></asp:LinkButton>
+                                                                    <asp:LinkButton ID="lblRoleNamre" runat="server" Text='<%# Eval("RoleName")%>' CommandArgument='<%# Eval("EMPID")%>'
+                                                                        CommandName="Empdeta"></asp:LinkButton>
                                                                     <asp:HiddenField ID="hdnRoleId" runat="server" Value='<%# Eval("RoleId")%>' />
                                                                 </ItemTemplate>
                                                                 <ItemStyle CssClass="BL" />
@@ -555,7 +557,8 @@
     <asp:HiddenField ID="hdnChangePW" runat="server" />
     <div id="tblChangePW" style="display: none; width: 550px;" class="popup">
         <h2>
-            Update Rights  <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
+            Update Rights
+            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
         <div class="content">
             <asp:UpdatePanel ID="p1" runat="server">
                 <ContentTemplate>

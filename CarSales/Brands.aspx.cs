@@ -210,14 +210,14 @@ public partial class Brands : System.Web.UI.Page
   
     protected void lnkBrndNew_Click(object sender, EventArgs e)
     {
-        MpVechlAdd.Show();
+        MPBrands.Show();
         txtVeckType.SelectedIndex = 0;
         txtBrnad.Text = "";
     }
 
     protected void lnkgroups_Click(object sender, EventArgs e)
     {
-        MPBrands.Show();
+       
     }
     protected void btnAddVehicle_Click(object sender, EventArgs e)
     {
@@ -264,7 +264,7 @@ public partial class Brands : System.Web.UI.Page
             else
             {
                 System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('please enter Brand.');", true);
-                MpVechlAdd.Show();
+                MPBrands.Show();
                 txtBrnad.Focus();
             }
 
@@ -274,7 +274,7 @@ public partial class Brands : System.Web.UI.Page
         {
             txtVeckType.Focus();
             System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('please select product.');", true);
-            MpVechlAdd.Show();
+            MPBrands.Show();
         }
        
        
@@ -283,12 +283,7 @@ public partial class Brands : System.Web.UI.Page
     }
     protected void btngroupAdd_Click(object sender, EventArgs e)
     {
-        objHotLeadBL.InsertNewGroup(txtgrpname.Text);
-        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('New Group is added successfully.');", true);
-        GetBrands();
        
-        MpVechlAdd.Hide();
-        
     }
 
 }
