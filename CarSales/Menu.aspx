@@ -234,7 +234,7 @@
                     Text="Sales Ticker"></asp:LinkButton>
                 <div class="menu1">
                     <ul class="mainUL">
-                        <li class="parent"><a href="#">Leads <span class="cert"></span></a>
+                        <li class="parent active"><a href="#">Leads <span class="cert"></span></a>
                             <ul class="sub1">
                                 <li>
                                     <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false"></asp:LinkButton></li><li>
@@ -287,7 +287,7 @@
                                     <asp:LinkButton ID="Executive" runat="server" Text="Exceutive" Enabled="false"></asp:LinkButton></li>
                             </ul>
                         </li>
-                        <li class="parent active"><a href="#">Admin <span class="cert"></span></a>
+                        <li class="parent "><a href="#">Admin <span class="cert"></span></a>
                             <ul class="sub1">
                                 <li><a href="#">Leads <span class="cert"></span></a>
                                     <ul class="sub2">
@@ -333,6 +333,8 @@
                                     <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" PostBackUrl="~/UserLog.aspx" Enabled="false"></asp:LinkButton></li>
                                 <li class="last">
                                     <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" PostBackUrl="~/EditLogs.aspx"  Enabled="false"></asp:LinkButton></li>
+                                     <li class="last">
+                                    <asp:LinkButton ID="SuperAdmin" runat="server" Text="Super Admin" PostBackUrl="~/EditLogs.aspx"></asp:LinkButton></li>
                             </ul>
                         </li>
                     </ul>

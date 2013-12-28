@@ -453,7 +453,12 @@ public partial class LeadsUserRights : System.Web.UI.Page
 
         EMPID = Session["EMpid"].ToString();
 
-
+        string usertypid = "";
+            try{
+                usertypid= Session[Constants.USER_TYPE_ID].ToString();
+            }
+            catch { usertypid = "1"; }
+        DataSet UserEmpRights = objHotLeadBL.EditHistoryforadmin(EMPID, LeadsUpload, LeadsAdmin, usertypid);
         DataSet UserEmploRights = objHotLeadBL.UpdateLeadsRightsSales(EMPID, LeadsUpload, LeadsAdmin);
         GetLeadsUserRights(Convert.ToInt32(ddlcenters.SelectedValue));
         MpUpdaterights.Hide();

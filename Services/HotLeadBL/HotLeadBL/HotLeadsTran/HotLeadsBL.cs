@@ -5240,9 +5240,10 @@ namespace HotLeadBL.HotLeadsTran
                 throw ex;
             }
         }
-
+     
         public DataSet UpdateUserRightsSales(string EMPID, bool LeadsUpload, bool LeadsDownLoad, bool Abondoned, bool FreePackage,
-         bool Ticker, bool IntroMail, bool NewEntry, bool Transferin, bool Transferout, bool Center, bool Self, bool SalesAdmin)
+         bool Ticker, bool IntroMail, bool NewEntry, bool Transferin, bool Transferout, bool Center, bool Self, bool SalesAdmin,
+            string usertypid, string LogPerson)
         {
             DataSet dsCarsData = new DataSet();
             try
@@ -5269,6 +5270,8 @@ namespace HotLeadBL.HotLeadsTran
                 dbDataBase.AddInParameter(dbCommand, "@Center", System.Data.DbType.Boolean, Center);
                 dbDataBase.AddInParameter(dbCommand, "@Self", System.Data.DbType.Boolean, Self);
                 dbDataBase.AddInParameter(dbCommand, "@SalesAdmin", System.Data.DbType.Boolean, SalesAdmin);
+                dbDataBase.AddInParameter(dbCommand, "@usertypid", System.Data.DbType.String, usertypid);
+                dbDataBase.AddInParameter(dbCommand, "@LogPerson", System.Data.DbType.String, LogPerson);
                 dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
 
 
@@ -5582,8 +5585,32 @@ namespace HotLeadBL.HotLeadsTran
             catch { }
             return dsCarsData;
         }
+        //Editing
+        public DataSet EditHistoryforadmin(string EMPID, bool LeadsUpload, bool LeadsAdmin, string usertypid)
+        {
+            DataSet dsCarsData = new DataSet();
+            try
+            {
+
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USp_EditHistoryforadmin";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dbDataBase.AddInParameter(dbCommand, "@EMPID", System.Data.DbType.String, EMPID);
+                dbDataBase.AddInParameter(dbCommand, "@LeadsUpload", System.Data.DbType.Boolean, LeadsUpload);
+                dbDataBase.AddInParameter(dbCommand, "@LeadsAdmin", System.Data.DbType.Boolean, LeadsAdmin);
+                dbDataBase.AddInParameter(dbCommand, "@usertypid", System.Data.DbType.String, usertypid);
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+
+
+            }
+            catch { }
+            return dsCarsData;
+        }
+
         //Update Process Rights Update
-        public DataSet UpdateProcessRightsSales(string EMPID, bool Qc,bool Pay, bool ProcessAdmin)
+        public DataSet UpdateProcessRightsSales(string EMPID, bool Qc, bool Pay, bool ProcessAdmin, string usertypid, string LogPerson)
         {
             DataSet dsCarsData = new DataSet();
             try
@@ -5598,6 +5625,9 @@ namespace HotLeadBL.HotLeadsTran
                 dbDataBase.AddInParameter(dbCommand, "@QC", System.Data.DbType.Boolean, Qc);
                 dbDataBase.AddInParameter(dbCommand, "@Payment", System.Data.DbType.Boolean, Pay);
                 dbDataBase.AddInParameter(dbCommand, "@Processadmin", System.Data.DbType.Boolean, ProcessAdmin);
+                dbDataBase.AddInParameter(dbCommand, "@usertypid", System.Data.DbType.String, usertypid);
+                dbDataBase.AddInParameter(dbCommand, "@LogPerson", System.Data.DbType.String, LogPerson);
+
                 dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
 
 
@@ -5606,7 +5636,7 @@ namespace HotLeadBL.HotLeadsTran
             return dsCarsData;
         }
         //UpdateExecutiveRightsSales
-        public DataSet UpdateExecutiveRightsSales(string EMPID, bool Executive)
+        public DataSet UpdateExecutiveRightsSales(string EMPID, bool Executive, string usertypid, string LogPerson)
         {
             DataSet dsCarsData = new DataSet();
             try
@@ -5619,6 +5649,8 @@ namespace HotLeadBL.HotLeadsTran
                 dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
                 dbDataBase.AddInParameter(dbCommand, "@EMPID", System.Data.DbType.String, EMPID);
                 dbDataBase.AddInParameter(dbCommand, "@Executive", System.Data.DbType.Boolean, Executive);
+                dbDataBase.AddInParameter(dbCommand, "@usertypid", System.Data.DbType.String, usertypid);
+                dbDataBase.AddInParameter(dbCommand, "@LogPerson", System.Data.DbType.String, LogPerson);
                 dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
 
 

@@ -507,10 +507,10 @@ public partial class ProcessP : System.Web.UI.Page
         }
         catch { }
     }
-     protected void btnAddVehicle_Click(object sender, EventArgs e)
+    protected void btnAddVehicle_Click(object sender, EventArgs e)
     {
 
-        bool QC = false,Pay=false, Processadmin = false;
+        bool QC = false, Pay = false, Processadmin = false;
         string EMPID = "";
 
         if (Ckleads.Items[0].Selected == true) QC = true; else QC = false;
@@ -520,8 +520,18 @@ public partial class ProcessP : System.Web.UI.Page
 
         EMPID = Session["EMpid"].ToString();
 
-
-        DataSet UserEmploRights = objHotLeadBL.UpdateProcessRightsSales(EMPID, QC,Pay, Processadmin);
+        string usertypid = "", LogPerson="";
+        try
+        {
+            usertypid = Session[Constants.USER_TYPE_ID].ToString();
+        }
+        catch { usertypid = "1"; }
+        try
+        {
+             LogPerson = Session[Constants.USER_ID].ToString();
+        }
+        catch { }
+        DataSet UserEmploRights = objHotLeadBL.UpdateProcessRightsSales(EMPID, QC, Pay, Processadmin, usertypid, LogPerson);
         GetLeadsSattus();
         MpUpdaterights.Hide();
         Ckleads.Items[0].Selected = false;

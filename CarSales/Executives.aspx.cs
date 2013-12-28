@@ -451,8 +451,18 @@ public partial class Executives : System.Web.UI.Page
        
         EMPID = Session["EMpid"].ToString();
 
-
-        DataSet UserEmploRights = objHotLeadBL.UpdateExecutiveRightsSales(EMPID, Executivess);
+        string usertypid = "", LogPerson = "";
+        try
+        {
+            usertypid = Session[Constants.USER_TYPE_ID].ToString();
+        }
+        catch { usertypid = "1"; }
+        try
+        {
+            LogPerson = Session[Constants.USER_ID].ToString();
+        }
+        catch { }
+        DataSet UserEmploRights = objHotLeadBL.UpdateExecutiveRightsSales(EMPID, Executivess, usertypid, LogPerson);
         GetExecutivesList();
         MpUpdaterights.Hide();
         Ckleads.Items[0].Selected = false;

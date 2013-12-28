@@ -373,9 +373,19 @@ public partial class SalesUserRights : System.Web.UI.Page
 
         EMPID = Session["EMpid"].ToString();
 
-
+        string usertypid = "", LogPerson = "";
+        try
+        {
+            usertypid = Session[Constants.USER_TYPE_ID].ToString();
+        }
+        catch { usertypid = "1"; }
+        try
+        {
+            LogPerson = Session[Constants.USER_ID].ToString();
+        }
+        catch { }
         DataSet UserEmploRights = objHotLeadBL.UpdateUserRightsSales(EMPID, LeadsUpload, LeadsDownLoad, Abondoned, FreePackage, Ticker, IntroMail,
-                           NewEntry, Transferin, TransferOut, Center, Self, SalesAdmin);
+                           NewEntry, Transferin, TransferOut, Center, Self, SalesAdmin, usertypid, LogPerson);
         GetUserDefaultRights();
         MpVechlAdd.Hide();
       
@@ -439,7 +449,7 @@ public partial class SalesUserRights : System.Web.UI.Page
                             ChkReports.Items[1].Selected = true;
 
                         if (Modulename == "LeadsAdmin")
-                            chksaleadmin.Items[1].Selected = true;
+                            chksaleadmin.Items[0].Selected = true;
                     }
                 }
 
