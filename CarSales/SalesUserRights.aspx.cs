@@ -386,6 +386,8 @@ public partial class SalesUserRights : System.Web.UI.Page
         catch { }
         DataSet UserEmploRights = objHotLeadBL.UpdateUserRightsSales(EMPID, LeadsUpload, LeadsDownLoad, Abondoned, FreePackage, Ticker, IntroMail,
                            NewEntry, Transferin, TransferOut, Center, Self, SalesAdmin, usertypid, LogPerson);
+
+        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('User Rights are updated successfully.');", true);
         GetUserDefaultRights();
         MpVechlAdd.Hide();
       

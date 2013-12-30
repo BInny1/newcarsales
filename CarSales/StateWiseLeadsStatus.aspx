@@ -268,7 +268,7 @@
                                 <li>
                                     <asp:LinkButton ID="Sales" runat="server" Text="Sales" Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="Process" runat="server" Text="Process" Enabled="false" PostBackUrl="~/ProcessP.aspx"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="Process" runat="server" Text="Process" Enabled="false" PostBackUrl="~/ProcessRights.aspx"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="Executive" runat="server" Text="Exceutive" Enabled="false"></asp:LinkButton></li>
                             </ul>
@@ -280,7 +280,7 @@
                                         <li>
                                             <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                         <li>
-                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads Statewise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
+                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
                                         <li class="act">
                                             <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
                                     </ul>
@@ -295,7 +295,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="ProcessAdmin" runat="server" Text="Process" PostBackUrl="~/ProcessP.aspx"
+                                    <asp:LinkButton ID="ProcessAdmin" runat="server" Text="Process" PostBackUrl="~/ProcessRights.aspx"
                                         Enabled="false"></asp:LinkButton>
                                 </li>
                                 <li>
@@ -317,8 +317,10 @@
                                         Enabled="false"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" PostBackUrl="~/UserLog.aspx" Enabled="false"></asp:LinkButton></li>
-                                <li class="last">
+                                <li>
                                     <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" PostBackUrl="~/EditLogs.aspx"  Enabled="false"></asp:LinkButton></li>
+                                       <li class="last">
+                                    <asp:LinkButton ID="SuperAdmin" runat="server" Text="Super Admin" PostBackUrl="~/SuperadminRights.aspx"></asp:LinkButton></li>
                             </ul>
                         </li>
                     </ul>
@@ -327,9 +329,9 @@
         </div>
         <!-- Headder End  -->
         <!-- Content Start  -->
-         <div>
-       <asp:LinkButton ID="lnkstlead" runat="server" Text="Leads Assign"  CssClass=" underlineBlack" PostBackUrl="~/LeadAssign.aspx"></asp:LinkButton><br />
-        <asp:LinkButton ID="lnkstleasas" runat="server" Text="leads User Rights" CssClass=" underlineBlack" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton>
+         <div  style=" margin:10px; text-align:right;">
+       <asp:LinkButton ID="lnkstlead" runat="server" Text="Leads Assign"  CssClass=" btn btn-primary btn-xs" PostBackUrl="~/LeadAssign.aspx"></asp:LinkButton>
+        <asp:LinkButton ID="lnkstleasas" runat="server" Text="leads User Rights" CssClass=" btn btn-primary btn-xs" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton>
         </div>
         <div class="content">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">

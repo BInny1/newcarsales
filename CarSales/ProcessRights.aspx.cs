@@ -21,7 +21,7 @@ using HotLeadBL.HotLeadsTran;
 using System.Net.Mail;
 
 
-public partial class Executives : System.Web.UI.Page
+public partial class ProcessRights : System.Web.UI.Page
 {
     public GeneralFunc objGeneralFunc = new GeneralFunc();
     DropdownBL objdropdownBL = new DropdownBL();
@@ -93,7 +93,7 @@ public partial class Executives : System.Web.UI.Page
                         ListItem list2 = new ListItem();
                         list2.Value = Session[Constants.CenterCodeID].ToString();
                         int val1 = Convert.ToInt32(list2.Value.ToString());
-
+                        GetAllLocations();
                         if (CenterCode == "INDG")
                             ddlcenters.SelectedIndex = 0;
                         else if (CenterCode == "INBH")
@@ -102,10 +102,9 @@ public partial class Executives : System.Web.UI.Page
                             ddlcenters.SelectedIndex = 2;
                         else if (CenterCode == "USWB")
                             ddlcenters.SelectedIndex = 3;
-                        GetAllLocations();
-                        GetExecutivesList();
+                        GetLeadsSattus();
                     }
-                  
+
                 }
             }
         }
@@ -127,21 +126,21 @@ public partial class Executives : System.Web.UI.Page
                     ddlcenters.Items.Add(list);
                 }
             }
-           // ddlcenters.Items.Insert(0, new ListItem("All", "0"));
-          //  ddlcenters.SelectedIndex = 1;
+            // ddlcenters.Items.Insert(0, new ListItem("All", "0"));
+
         }
         catch (Exception ex)
         {
             throw ex;
         }
     }
-    private void GetExecutivesList()
+    private void GetLeadsSattus()
     {
-        DataSet ExecutiveRight = new DataSet();
-        ExecutiveRight = objHotLeadBL.PerocessRightsStatus(Convert.ToInt32(ddlcenters.SelectedValue));
-        Session["ExecutiveRights"] = ExecutiveRight;
-        GridExecutvRights.DataSource = ExecutiveRight.Tables[0];
-        GridExecutvRights.DataBind();
+        DataSet dsLeadsStat = new DataSet();
+        dsLeadsStat = objHotLeadBL.PerocessRightsStatus(Convert.ToInt32(ddlcenters.SelectedValue));
+        Session["ProcessDataset"] = dsLeadsStat;
+        GridQcProcessStatus.DataSource = dsLeadsStat.Tables[0];
+        GridQcProcessStatus.DataBind();
 
     }
     private bool LoadIndividualUserRights()
@@ -203,7 +202,7 @@ public partial class Executives : System.Web.UI.Page
         Response.Redirect("login.aspx");
     }
 
-    protected void GridExecutvRights_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void GrdSttalStatus_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         //try
         //{
@@ -211,52 +210,123 @@ public partial class Executives : System.Web.UI.Page
         //    {
         //        LinkButton lblEmpName = (LinkButton)e.Row.FindControl("lblEmpName");
         //        LinkButton lblRole = (LinkButton)e.Row.FindControl("lblRole");
-        //        LinkButton lblExecut = (LinkButton)e.Row.FindControl("lblExecut");
-        //        DataSet dsTasks3 = (DataSet)Session["ExecutiveRights"];
+        //        LinkButton QCProcess = (LinkButton)e.Row.FindControl("lblQcProcess");
+        //        LinkButton lblPaymentProcess = (LinkButton)e.Row.FindControl("lblPaymentProcess");
+        //        LinkButton lblProcessAdmin = (LinkButton)e.Row.FindControl("lblProcessAdmin");
+        //        DataSet dsTasks3 = (DataSet)Session["ProcessDataset"];
         //        lblEmpName.Text = dsTasks3.Tables[0].Rows[e.Row.RowIndex]["FirstName"].ToString() + " " + dsTasks3.Tables[0].Rows[e.Row.RowIndex]["lastname"].ToString();
         //        lblRole.Text = dsTasks3.Tables[0].Rows[e.Row.RowIndex]["RoleName"].ToString();
-        //        if (dsTasks3.Tables[0].Rows[e.Row.RowIndex]["Executive"].ToString() != "")
+        //        if (dsTasks3.Tables[0].Rows[e.Row.RowIndex]["QC"].ToString() != "")
         //        {
-        //            lblExecut.Text = "Y";
-        //            lblExecut.ForeColor = System.Drawing.Color.Red;
+        //            QCProcess.Text = "Y";
+        //            QCProcess.ForeColor = System.Drawing.Color.Red;
         //        }
         //        else
         //        {
-        //            lblExecut.Text = "";
+        //            QCProcess.Text = "";
         //        }
-                
+        //        if (dsTasks3.Tables[0].Rows[e.Row.RowIndex]["Payment"].ToString() != "")
+        //        {
+        //            lblPaymentProcess.Text = "Y";
+        //            lblPaymentProcess.ForeColor = System.Drawing.Color.Red;
+        //        }
+        //        else
+        //        {
+        //            lblPaymentProcess.Text = "";
+        //        }
+        //        if (dsTasks3.Tables[0].Rows[e.Row.RowIndex]["ProcessAdmin"].ToString() != "")
+        //        {
+        //            lblProcessAdmin.Text = "Y";
+        //            lblProcessAdmin.ForeColor = System.Drawing.Color.Red;
+        //        }
+        //        else
+        //        {
+        //            lblProcessAdmin.Text = "";
+        //        }
         //    }
-          
         //}
         //catch { }
         try
         {
             if (e.Row.RowType == DataControlRowType.Footer)
             {
-                 Label lblTotalCount = (Label)e.Row.FindControl("lblTotalCount");
-                 DataSet dsTasks4 = (DataSet)Session["ExecutiveRights"];
-                int CounVal=0;
+                DataSet dsTasks4 = (DataSet)Session["ProcessDataset"];
+                Label lblQCCount = (Label)e.Row.FindControl("lblQCCount");
+                Label lblPayCount = (Label)e.Row.FindControl("lblPayCount");
+                Label lbladmin = (Label)e.Row.FindControl("lbladmin");
+                int CounQCVal = 0, CounPayVal = 0, CounAdminVal = 0;
                 for (int i = 0; i < dsTasks4.Tables[0].Rows.Count; i++)
-               {
-                   if (dsTasks4.Tables[0].Rows[i][22].ToString() == "Y")
-                   {
-                       CounVal = CounVal + 1;
-                   }
-                 
-                  
-               }
+                {
+
+                    if (dsTasks4.Tables[0].Rows[i][11].ToString() == "Y")
+                    {
+                        CounQCVal = CounQCVal + 1;
+                    }
+                    if (dsTasks4.Tables[0].Rows[i][12].ToString() == "Y")
+                    {
+                        CounPayVal = CounPayVal + 1;
+                    }
+                    if (dsTasks4.Tables[0].Rows[i][21].ToString() == "Y")
+                    {
+                        CounAdminVal = CounAdminVal + 1;
+                    }
 
 
-               lblTotalCount.Text = CounVal.ToString();
+                }
+
+
+                lblQCCount.Text = CounQCVal.ToString();
+                lblPayCount.Text = CounPayVal.ToString();
+                lbladmin.Text = CounAdminVal.ToString();
             }
         }
         catch { }
     }
+    protected void GridQcProcessStatus_RowCreated(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.Header)
+        {
+            GridView HeaderGrid = (GridView)sender;
+
+            GridViewRow HeaderGridRow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
+            TableCell HeaderCell = new TableCell();
+            HeaderCell.Text = "EID";
+            HeaderCell.ColumnSpan = 1;
+            HeaderGridRow.Cells.Add(HeaderCell);
+
+            HeaderCell = new TableCell();
+            HeaderCell.Text = "Name";
+            HeaderCell.ColumnSpan = 1;
+            HeaderGridRow.Cells.Add(HeaderCell);
+            HeaderCell.CssClass = "BL BR";
 
 
+            HeaderCell = new TableCell();
+            HeaderCell.Text = "Role";
+            HeaderCell.ColumnSpan = 1;
+            HeaderGridRow.Cells.Add(HeaderCell);
+
+            HeaderCell = new TableCell();
+            HeaderCell.Text = "Process";
+            HeaderCell.ColumnSpan = 2;
+            HeaderGridRow.Cells.Add(HeaderCell);
+            HeaderCell.CssClass = "BL BR";
+
+
+            HeaderCell = new TableCell();
+            HeaderCell.Text = "Process Admin";
+            HeaderCell.ColumnSpan = 1;
+            HeaderGridRow.Cells.Add(HeaderCell);
+
+            GridQcProcessStatus.Controls[0].Controls.AddAt(0, HeaderGridRow);
+        }
+
+    }
     protected void ddlcenters_SelectedIndexChanged(object sender, EventArgs e)
     {
-        GetExecutivesList();
+        GetLeadsSattus();
+
+
     }
     public void lnlupdatelist_Click(object sender, EventArgs e)
     {
@@ -347,12 +417,12 @@ public partial class Executives : System.Web.UI.Page
                 CheckBox chk = row.Cells[0].FindControl("chk_Check") as CheckBox;
                 if (chk != null && chk.Checked)
                 {
-                    Label lblSalesEmpid = row.Cells[0].FindControl("lblSalesEmpid") as Label;
+                    LinkButton lblSalesEmpid = row.Cells[0].FindControl("lblSalesEmpid") as LinkButton;
                     DropDownList lblSalesRoleId = row.Cells[0].FindControl("ddlsalesroles") as DropDownList;
                     string roleid = lblSalesRoleId.Text;
                     if (roleid != "0")
                     {
-                        DataSet InsertEmployee = objHotLeadBL.InsertExecutiveRights(lblSalesEmpid.Text, Convert.ToInt32(lblSalesRoleId.Text),
+                        DataSet InsertEmployee = objHotLeadBL.InsertProcessRights(lblSalesEmpid.Text, Convert.ToInt32(lblSalesRoleId.Text),
                             Convert.ToInt32(ddlcenters.SelectedValue), Session[Constants.USER_NAME].ToString());
                         EmpisUpdates = lblSalesEmpid.Text + ",";
                         k = k + 1;
@@ -399,16 +469,16 @@ public partial class Executives : System.Web.UI.Page
             System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Please select employees and update.');", true);
             MpUserUpdatelist.Show();
         }
-        GetExecutivesList();
+        GetLeadsSattus();
     }
-    protected void GridExecutvRights_RowCommand(object sender, GridViewCommandEventArgs e)
+    protected void GridQcProcessStatus_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         try
         {
             MpUpdaterights.Show();
             if (e.CommandName == "Empdeta")
             {
-                Ckleads.Items[0].Selected = false;
+                Ckleads.Items[0].Selected = false; Ckleads.Items[1].Selected = false; chkleadsadmin.Items[0].Selected = false;
                 string EmpIdva = e.CommandArgument.ToString();
 
                 Session["EMpid"] = EmpIdva.ToString();
@@ -422,9 +492,14 @@ public partial class Executives : System.Web.UI.Page
                     {
                         string Modulename = GetUserDefaultRight.Tables[0].Rows[i]["SubModuleName"].ToString();
 
-                        if (Modulename == "ExecutiveAdmin")
+                        if (Modulename == "QC")
                             Ckleads.Items[0].Selected = true;
 
+                        if (Modulename == "Payments")
+                            Ckleads.Items[1].Selected = true;
+
+                        if (Modulename == "ProcessAdmin")
+                            chkleadsadmin.Items[0].Selected = true;
 
                     }
                 }
@@ -435,23 +510,17 @@ public partial class Executives : System.Web.UI.Page
     protected void btnAddVehicle_Click(object sender, EventArgs e)
     {
 
-        bool Executivess = false;
+        bool QC = false, Pay = false, Processadmin = false;
         string EMPID = "";
 
-        if (Ckleads.Items[0].Selected == true)
-        {
-            Executivess = true;
-        }
-        else
-        {
-            Executivess = false;
-        }
+        if (Ckleads.Items[0].Selected == true) QC = true; else QC = false;
+        if (Ckleads.Items[1].Selected == true) Pay = true; else Pay = false;
+        if (chkleadsadmin.Items[0].Selected == true) Processadmin = true; else Processadmin = false;
 
 
-       
         EMPID = Session["EMpid"].ToString();
 
-        string usertypid = "", LogPerson = "";
+        string usertypid = "", LogPerson="";
         try
         {
             usertypid = Session[Constants.USER_TYPE_ID].ToString();
@@ -459,14 +528,15 @@ public partial class Executives : System.Web.UI.Page
         catch { usertypid = "1"; }
         try
         {
-            LogPerson = Session[Constants.USER_ID].ToString();
+             LogPerson = Session[Constants.USER_ID].ToString();
         }
         catch { }
-        DataSet UserEmploRights = objHotLeadBL.UpdateExecutiveRightsSales(EMPID, Executivess, usertypid, LogPerson);
+        DataSet UserEmploRights = objHotLeadBL.UpdateProcessRightsSales(EMPID, QC, Pay, Processadmin, usertypid, LogPerson);
         System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('User Rights are updated successfully.');", true);
-        GetExecutivesList();
+        GetLeadsSattus();
         MpUpdaterights.Hide();
         Ckleads.Items[0].Selected = false;
-     
+        chkleadsadmin.Items[0].Selected = false;
+
     }
 }

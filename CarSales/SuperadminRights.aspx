@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ProcessP.aspx.cs" Inherits="ProcessP" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="SuperadminRights.aspx.cs"
+    Inherits="SuperadminRights" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -124,7 +125,8 @@
        
 
     </script>
-  <script type="text/javascript" language="javascript">
+
+    <script type="text/javascript" language="javascript">
 
           function ClosePopup9() {
             $find('<%= MpUserUpdatelist.ClientID%>').hide();
@@ -136,6 +138,7 @@
             return false;
         }
     </script>
+
     <script type="text/javascript" language="javascript">
 
 	var currentID = 0;	
@@ -213,7 +216,7 @@
             <asp:ServiceReference Path="~/WebService.asmx" />
         </Services>
     </asp:ScriptManager>
-      <asp:UpdateProgress ID="UpdatePanel12" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
+    <asp:UpdateProgress ID="UpdatePanel12" runat="server" AssociatedUpdatePanelID="UpdatePanel1">
         <ProgressTemplate>
             <div id="spinner">
                 <h4>
@@ -293,7 +296,7 @@
                                 <li>
                                     <asp:LinkButton ID="Sales" runat="server" Text="Sales" Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="Process" runat="server" Text="Process" Enabled="false" PostBackUrl="~/ProcessP.aspx"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="Process" runat="server" Text="Process" Enabled="false" PostBackUrl="~/ProcessRights.aspx"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="Executive" runat="server" Text="Exceutive" Enabled="false"></asp:LinkButton></li>
                             </ul>
@@ -305,7 +308,7 @@
                                         <li>
                                             <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                         <li>
-                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads Statewise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
+                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
                                         <li class="last">
                                             <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
                                     </ul>
@@ -319,8 +322,8 @@
                                             <asp:LinkButton ID="lnkDefaRights" runat="server" Text="Default Rights" PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton></li>
                                     </ul>
                                 </li>
-                                <li class="act">
-                                    <asp:LinkButton ID="ProcessAdmin" runat="server" Text="Process" PostBackUrl="~/ProcessP.aspx"
+                                <li>
+                                    <asp:LinkButton ID="ProcessAdmin" runat="server" Text="Process" PostBackUrl="~/ProcessRights.aspx"
                                         Enabled="false"></asp:LinkButton>
                                 </li>
                                 <li>
@@ -341,9 +344,13 @@
                                     <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Locations.aspx"
                                         Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" PostBackUrl="~/UserLog.aspx" Enabled="false"></asp:LinkButton></li>
-                                <li class="last">
-                                    <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" PostBackUrl="~/EditLogs.aspx"  Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" PostBackUrl="~/UserLog.aspx"
+                                        Enabled="false"></asp:LinkButton></li>
+                                <li>
+                                    <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" PostBackUrl="~/EditLogs.aspx"
+                                        Enabled="false"></asp:LinkButton></li>
+                                <li class="act">
+                                    <asp:LinkButton ID="SuperAdmin" runat="server" Text="Super Admin" PostBackUrl="~/SuperadminRights.aspx"></asp:LinkButton></li>
                             </ul>
                         </li>
                     </ul>
@@ -358,7 +365,7 @@
                     <div class="inn">
                         <div class="box1 boxBlue">
                             <h1 class="hed1 hed2">
-                                Process
+                                Super Admin Rights
                                 <asp:Label ID="lblcenters" Text="Centers" runat="server" Style="padding-left: 700px;"></asp:Label>
                                 <asp:DropDownList ID="ddlcenters" runat="server" Style="width: 150px;" OnSelectedIndexChanged="ddlcenters_SelectedIndexChanged"
                                     AutoPostBack="true">
@@ -376,7 +383,7 @@
                                                 <td>
                                                     <asp:GridView ID="GridQcProcessStatus" runat="server" CellSpacing="0" CellPadding="0"
                                                         CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None"
-                                                        ShowFooter="true" OnRowCreated="GridQcProcessStatus_RowCreated" OnRowDataBound="GrdSttalStatus_RowDataBound"
+                                                        ShowFooter="true"  OnRowDataBound="GrdSttalStatus_RowDataBound"
                                                         OnRowCommand="GridQcProcessStatus_RowCommand">
                                                         <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
                                                         <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
@@ -384,50 +391,35 @@
                                                         <PagerSettings Position="Top" />
                                                         <FooterStyle BackColor="#C6C3C6" CssClass="tbHed center" />
                                                         <Columns>
-                                                            <asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="EID">
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton ID="lblEmpid" runat="server" Text='<%# Eval("EMPID")%>' CommandArgument='<%# Eval("EMPID")%>'
-                                                        CommandName="Empdeta"></asp:LinkButton>
+                                                                        CommandName="Empdeta"></asp:LinkButton>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderStyle-CssClass="BL BR">
+                                                            <asp:TemplateField HeaderStyle-CssClass="BL BR" HeaderText="Name">
                                                                 <ItemTemplate>
-                                                                    <asp:LinkButton ID="lblEmpName" runat="server" Text='<%# Eval("Names")%>'></asp:LinkButton>
+                                                                    <asp:LinkButton ID="lblEmpName" runat="server" Text='<%# Eval("Names")%>' CommandArgument='<%# Eval("EMPID")%>'
+                                                                        CommandName="Empdeta"></asp:LinkButton>
                                                                 </ItemTemplate>
                                                                 <ItemStyle CssClass="BR BL" />
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblCount" runat="server" Text="Count"></asp:Label>
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Role">
                                                                 <ItemTemplate>
-                                                                    <asp:LinkButton ID="lblRole" runat="server" Text='<%# Eval("RoleName")%>'></asp:LinkButton>
+                                                                    <asp:LinkButton ID="lblRole" runat="server" Text='<%# Eval("RoleName")%>' CommandArgument='<%# Eval("EMPID")%>'
+                                                                        CommandName="Empdeta"></asp:LinkButton>
                                                                     <asp:HiddenField ID="hdnRoleId" runat="server" Value='<%# Eval("RoleId")%>' />
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="QC" HeaderStyle-CssClass="BL">
+                                                            <asp:TemplateField HeaderStyle-CssClass="BL" HeaderText="Super Admin">
                                                                 <ItemTemplate>
-                                                                    <asp:LinkButton ID="lblQcProcess" runat="server" Text='<%# Eval("QC")%>'></asp:LinkButton>
+                                                                    <asp:LinkButton ID="lblProcessAdmin" runat="server" Text='<%#Eval("Superadmin") %>'
+                                                                        CommandArgument='<%# Eval("EMPID")%>' CommandName="Empdeta"></asp:LinkButton>
                                                                 </ItemTemplate>
                                                                 <ItemStyle CssClass="center BL" />
-                                                                <FooterTemplate>
-                                                                    <asp:Label ID="lblQCCount" runat="server"></asp:Label>
-                                                                </FooterTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Pay process" HeaderStyle-CssClass="BR ">
-                                                                <ItemTemplate>
-                                                                    <asp:LinkButton ID="lblPaymentProcess" runat="server" Text='<%#Eval("Payment")%>'></asp:LinkButton>
-                                                                </ItemTemplate>
-                                                                <ItemStyle CssClass="center BR" />
-                                                                <FooterTemplate>
-                                                                    <asp:Label ID="lblPayCount" runat="server"></asp:Label>
-                                                                </FooterTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField>
-                                                                <ItemTemplate>
-                                                                    <asp:LinkButton ID="lblProcessAdmin" runat="server" Text='<%#Eval("ProcessAdmin") %>'></asp:LinkButton>
-                                                                </ItemTemplate>
-                                                                <ItemStyle CssClass="center" />
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lbladmin" runat="server"></asp:Label>
                                                                 </FooterTemplate>
@@ -483,7 +475,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Emp ID">
                                                 <ItemTemplate>
-                                                    <asp:LinkButton ID="lblSalesEmpid" runat="server" Text='<%# Eval("EMPID")%>' ></asp:LinkButton>
+                                                    <asp:LinkButton ID="lblSalesEmpid" runat="server" Text='<%# Eval("EMPID")%>'></asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Name">
@@ -535,24 +527,14 @@
             <asp:UpdatePanel ID="p1" runat="server">
                 <ContentTemplate>
                     <table style="width: 96%; margin: 0 auto;">
+                     
                         <tr>
                             <td>
-                                <b>Process</b>
-                            </td>
-                            <td>
-                                <asp:CheckBoxList ID="Ckleads" runat="server" RepeatDirection="Horizontal">
-                                    <asp:ListItem>QC</asp:ListItem>
-                                       <asp:ListItem>Pay Process</asp:ListItem>
-                                </asp:CheckBoxList>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Leads Admin
+                                Process Admin
                             </td>
                             <td>
                                 <asp:CheckBoxList ID="chkleadsadmin" runat="server" RepeatDirection="Horizontal">
-                                    <asp:ListItem>Process Admin</asp:ListItem>
+                                    <asp:ListItem>Super Admin</asp:ListItem>
                                 </asp:CheckBoxList>
                             </td>
                         </tr>

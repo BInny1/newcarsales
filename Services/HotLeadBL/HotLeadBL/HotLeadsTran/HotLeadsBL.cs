@@ -4978,6 +4978,29 @@ namespace HotLeadBL.HotLeadsTran
             }
         }
 
+        //Get all locations by brands
+        public DataSet GetLocationByBrand(int @BrandId)
+        {
+            try
+            {
+                DataSet dsCarsData = new DataSet();
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME6);
+                spNameString = "USP_GetLocationByBrand";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dbDataBase.AddInParameter(dbCommand, "@BrandId", System.Data.DbType.String, BrandId);
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+                return dsCarsData;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        
+
         //Get All center Employees
 
         public DataSet GetAllEmployeesByCenetrId(int LocationId)
@@ -5120,6 +5143,8 @@ namespace HotLeadBL.HotLeadsTran
                 throw ex;
             }
         }
+      
+
         public DataSet ExecutiveRights(int LocationId)
         {
             try
@@ -5658,6 +5683,29 @@ namespace HotLeadBL.HotLeadsTran
             catch { }
             return dsCarsData;
         }
+        //  //USP_UpdateSupadmRightsSales supadmin rights update
+        public DataSet UpdateSupadmRightsSales(string EMPID, bool Supadmin, string usertypid, string LogPerson)
+        {
+            DataSet dsCarsData = new DataSet();
+            try
+            {
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USP_UpdateSupadmRightsSales";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dbDataBase.AddInParameter(dbCommand, "@EMPID", System.Data.DbType.String, EMPID);
+                dbDataBase.AddInParameter(dbCommand, "@Supadmin", System.Data.DbType.Boolean, Supadmin);
+                dbDataBase.AddInParameter(dbCommand, "@usertypid", System.Data.DbType.String, usertypid);
+                dbDataBase.AddInParameter(dbCommand, "@LogPerson", System.Data.DbType.String, LogPerson);
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dsCarsData;
+        }
 
         public DataSet userLogDetails()
         {
@@ -5669,6 +5717,29 @@ namespace HotLeadBL.HotLeadsTran
                 //Discount 21-11-2013 starts 
                 //spNameString = "USP_GetAllCentersAgentsSalesData";
                 spNameString = "USP_userLogDetails";
+                //Discount 21-11-2013 Ends
+
+                DbCommand dbCommand = null;
+                dbCommand = dbDatabase.GetStoredProcCommand(spNameString);
+                dsUsers = dbDatabase.ExecuteDataSet(dbCommand);
+                return dsUsers;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataSet userEditLogDetails()
+        {
+            try
+            {
+                DataSet dsUsers = new DataSet();
+                string spNameString = string.Empty;
+                Database dbDatabase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                //Discount 21-11-2013 starts 
+                //spNameString = "USP_GetAllCentersAgentsSalesData";
+                spNameString = "USP_userEditLogDetails";
                 //Discount 21-11-2013 Ends
 
                 DbCommand dbCommand = null;

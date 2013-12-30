@@ -114,11 +114,11 @@ public partial class StatewiseLeads : System.Web.UI.Page
             ddlgroups.Items.Clear();
             for (int i = 0; i < dsGroups.Tables[0].Rows.Count; i++)
             {
-                if (dsGroups.Tables[0].Rows[i]["vehicletypeid"].ToString() != "0")
+                if (dsGroups.Tables[0].Rows[i]["Brandid"].ToString() != "0")
                 {
                     ListItem list = new ListItem();
-                    list.Text = dsGroups.Tables[0].Rows[i]["VehicleTypeName"].ToString();
-                    list.Value = dsGroups.Tables[0].Rows[i]["vehicletypeid"].ToString();
+                    list.Text = dsGroups.Tables[0].Rows[i]["Brand"].ToString();
+                    list.Value = dsGroups.Tables[0].Rows[i]["Brandid"].ToString();
                     ddlgroups.Items.Add(list);
                 }
             }
@@ -135,7 +135,7 @@ public partial class StatewiseLeads : System.Web.UI.Page
     {
 
         DataSet GetLeadscenterList = new DataSet();
-        GetLeadscenterList = objHotLeadBL.GetAllLocations();
+        GetLeadscenterList = objHotLeadBL.GetLocationByBrand(Convert.ToInt32(ddlgroups.SelectedValue));
         Session["Employees"] = GetLeadscenterList;
         Rpt_Locatons.DataSource = GetLeadscenterList.Tables[0];
         Rpt_Locatons.DataBind();
@@ -235,8 +235,8 @@ public partial class StatewiseLeads : System.Web.UI.Page
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
 
-                
-                string LocId= Session["LocatioId"].ToString();
+
+                string LocId = Session["LocatioId"].ToString();
 
                 Label lblzoneNames = (Label)e.Item.FindControl("lblZoneName");
                 HiddenField lblzoneId = (HiddenField)e.Item.FindControl("lblzoneId");
@@ -246,11 +246,11 @@ public partial class StatewiseLeads : System.Web.UI.Page
 
                 string ZoneId = lblzoneId.Value;
                 DataSet dsstates = new DataSet();
-                dsstates = objHotLeadBL.StatesListBasedonZone(Convert.ToInt32(ZoneId),Convert.ToInt32(LocId));
-                string StatesList = ""; int j = 0;int Avg=1000;
+                dsstates = objHotLeadBL.StatesListBasedonZone(Convert.ToInt32(ZoneId), Convert.ToInt32(LocId));
+                string StatesList = ""; int j = 0; int Avg = 1000;
                 for (int i = 0; i < dsstates.Tables[0].Rows.Count; i++)
                 {
-                    StatesList += dsstates.Tables[0].Rows[i]["StateCode"].ToString() +",";
+                    StatesList += dsstates.Tables[0].Rows[i]["StateCode"].ToString() + ",";
                     j = j + 1;
                     l = l + 1;
                 }
@@ -283,9 +283,14 @@ public partial class StatewiseLeads : System.Web.UI.Page
                 int val = Convert.ToInt32(Session["l"].ToString());
                 lblTotalCount.Text = Session["l"].ToString();
                 LabelTotalleads.Text = (val * 1000).ToString();
-               
+
             }
         }
         catch { }
+    }
+
+    protected void ddlgroups_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        GetLeadsCentersList();
     }
 }

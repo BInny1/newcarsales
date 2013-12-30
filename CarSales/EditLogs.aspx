@@ -270,7 +270,7 @@
                                 <li>
                                     <asp:LinkButton ID="Sales" runat="server" Text="Sales" Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="Process" runat="server" Text="Process" Enabled="false" PostBackUrl="~/ProcessP.aspx"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="Process" runat="server" Text="Process" Enabled="false" PostBackUrl="~/ProcessRights.aspx"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="Executive" runat="server" Text="Exceutive" Enabled="false"></asp:LinkButton></li>
                             </ul>
@@ -282,7 +282,7 @@
                                         <li>
                                             <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                         <li>
-                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads Statewise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
+                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
                                         <li>
                                             <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
                                     </ul>
@@ -297,7 +297,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="ProcessAdmin" runat="server" Text="Process" PostBackUrl="~/ProcessP.aspx"
+                                    <asp:LinkButton ID="ProcessAdmin" runat="server" Text="Process" PostBackUrl="~/ProcessRights.aspx"
                                         Enabled="false"></asp:LinkButton>
                                 </li>
                                 <li>
@@ -322,6 +322,8 @@
                                         Enabled="false"></asp:LinkButton></li>
                                 <li class="act">
                                     <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" PostBackUrl="~/EditLogs.aspx"   Enabled="false"></asp:LinkButton></li>
+                                     <li class="last">
+                                    <asp:LinkButton ID="SuperAdmin" runat="server" Text="Super Admin" PostBackUrl="~/SuperadminRights.aspx"></asp:LinkButton></li>
                             </ul>
                         </li>
                     </ul>
@@ -354,31 +356,39 @@
                                     <asp:Label ID="Label1" Text="Emp ID" runat="server"></asp:Label>
                                 </HeaderTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lblName" runat="server" Text=""></asp:Label>
+                                    <asp:Label ID="lblName" runat="server"  Text='<%#Eval("TransactionByID") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                                <asp:TemplateField>
+                                <HeaderTemplate>
+                                    <asp:Label ID="Label1" Text="Field Name" runat="server"></asp:Label>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("FieldName") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <HeaderTemplate>
-                                    <asp:Label ID="Label1" Text="Name" runat="server"></asp:Label>
+                                    <asp:Label ID="Label1" Text="OldValue" runat="server"></asp:Label>
                                 </HeaderTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lblName" runat="server" Text=""></asp:Label>
+                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("OldValue") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <HeaderTemplate>
-                                    <asp:Label ID="Label1" Text="Ip address" runat="server"></asp:Label>
+                                    <asp:Label ID="Label1" Text="New Value" runat="server"></asp:Label>
                                 </HeaderTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lblName" runat="server" Text=""></asp:Label>
+                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("NewValue") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <HeaderTemplate>
-                                    <asp:Label ID="Label1" Text="Login Date" runat="server"></asp:Label>
+                                    <asp:Label ID="Label1" Text="Updated Date" runat="server"></asp:Label>
                                 </HeaderTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("LoginDate") %>'></asp:Label>
+                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("TransactionDate") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

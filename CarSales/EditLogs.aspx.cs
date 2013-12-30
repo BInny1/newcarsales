@@ -104,7 +104,7 @@ public partial class EditLogs : System.Web.UI.Page
         GriduserLog.DataSource = null;
         GriduserLog.DataBind();
         DataSet GetVehicles = new DataSet();
-        GetVehicles = objHotLeadBL.userLogDetails();
+        GetVehicles = objHotLeadBL.userEditLogDetails();
         GriduserLog.DataSource = GetVehicles.Tables[0];
         GriduserLog.DataBind();
     }

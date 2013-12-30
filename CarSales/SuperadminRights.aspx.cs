@@ -21,7 +21,7 @@ using HotLeadBL.HotLeadsTran;
 using System.Net.Mail;
 
 
-public partial class ProcessP : System.Web.UI.Page
+public partial class SuperadminRights : System.Web.UI.Page
 {
     public GeneralFunc objGeneralFunc = new GeneralFunc();
     DropdownBL objdropdownBL = new DropdownBL();
@@ -282,46 +282,7 @@ public partial class ProcessP : System.Web.UI.Page
         }
         catch { }
     }
-    protected void GridQcProcessStatus_RowCreated(object sender, GridViewRowEventArgs e)
-    {
-        if (e.Row.RowType == DataControlRowType.Header)
-        {
-            GridView HeaderGrid = (GridView)sender;
 
-            GridViewRow HeaderGridRow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
-            TableCell HeaderCell = new TableCell();
-            HeaderCell.Text = "EID";
-            HeaderCell.ColumnSpan = 1;
-            HeaderGridRow.Cells.Add(HeaderCell);
-
-            HeaderCell = new TableCell();
-            HeaderCell.Text = "Name";
-            HeaderCell.ColumnSpan = 1;
-            HeaderGridRow.Cells.Add(HeaderCell);
-            HeaderCell.CssClass = "BL BR";
-
-
-            HeaderCell = new TableCell();
-            HeaderCell.Text = "Role";
-            HeaderCell.ColumnSpan = 1;
-            HeaderGridRow.Cells.Add(HeaderCell);
-
-            HeaderCell = new TableCell();
-            HeaderCell.Text = "Process";
-            HeaderCell.ColumnSpan = 2;
-            HeaderGridRow.Cells.Add(HeaderCell);
-            HeaderCell.CssClass = "BL BR";
-
-
-            HeaderCell = new TableCell();
-            HeaderCell.Text = "Process Admin";
-            HeaderCell.ColumnSpan = 1;
-            HeaderGridRow.Cells.Add(HeaderCell);
-
-            GridQcProcessStatus.Controls[0].Controls.AddAt(0, HeaderGridRow);
-        }
-
-    }
     protected void ddlcenters_SelectedIndexChanged(object sender, EventArgs e)
     {
         GetLeadsSattus();
@@ -475,33 +436,37 @@ public partial class ProcessP : System.Web.UI.Page
     {
         try
         {
-            MpUpdaterights.Show();
+
             if (e.CommandName == "Empdeta")
             {
-                Ckleads.Items[0].Selected = false; Ckleads.Items[1].Selected = false; chkleadsadmin.Items[0].Selected = false;
+
+                chkleadsadmin.Items[0].Selected = false;
                 string EmpIdva = e.CommandArgument.ToString();
 
                 Session["EMpid"] = EmpIdva.ToString();
-                DataSet GetUserDefaultRight = new DataSet();
-                GetUserDefaultRight = objHotLeadBL.AllEMployeeUserRights(EmpIdva.ToString());
-                int count = GetUserDefaultRight.Tables[0].Rows.Count;
-
-                for (int i = 0; i < count; i++)
+                string EMpids = Session[Constants.USER_ID].ToString();
+                if (EMpids != EmpIdva.ToString())
                 {
-                    if (GetUserDefaultRight.Tables[0].Rows[i]["Active"].ToString() == "1")
+                    MpUpdaterights.Show();
+                    DataSet GetUserDefaultRight = new DataSet();
+                    GetUserDefaultRight = objHotLeadBL.AllEMployeeUserRights(EmpIdva.ToString());
+                    int count = GetUserDefaultRight.Tables[0].Rows.Count;
+
+                    for (int i = 0; i < count; i++)
                     {
-                        string Modulename = GetUserDefaultRight.Tables[0].Rows[i]["SubModuleName"].ToString();
+                        if (GetUserDefaultRight.Tables[0].Rows[i]["Active"].ToString() == "1")
+                        {
+                            string Modulename = GetUserDefaultRight.Tables[0].Rows[i]["SubModuleName"].ToString();
 
-                        if (Modulename == "QC")
-                            Ckleads.Items[0].Selected = true;
+                            if (Modulename == "SuperAdmin")
+                                chkleadsadmin.Items[0].Selected = true;
 
-                        if (Modulename == "Payments")
-                            Ckleads.Items[1].Selected = true;
-
-                        if (Modulename == "ProcessAdmin")
-                            chkleadsadmin.Items[0].Selected = true;
-
+                        }
                     }
+                }
+                else
+                {
+                    System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('No possibility for updating own rights');", true);
                 }
             }
         }
@@ -510,17 +475,14 @@ public partial class ProcessP : System.Web.UI.Page
     protected void btnAddVehicle_Click(object sender, EventArgs e)
     {
 
-        bool QC = false, Pay = false, Processadmin = false;
+
+        bool Superadmin = false;
         string EMPID = "";
 
-        if (Ckleads.Items[0].Selected == true) QC = true; else QC = false;
-        if (Ckleads.Items[1].Selected == true) Pay = true; else Pay = false;
-        if (chkleadsadmin.Items[0].Selected == true) Processadmin = true; else Processadmin = false;
-
+        if (chkleadsadmin.Items[0].Selected == true) Superadmin = true; else Superadmin = false;
 
         EMPID = Session["EMpid"].ToString();
-
-        string usertypid = "", LogPerson="";
+        string usertypid = "", LogPerson = "";
         try
         {
             usertypid = Session[Constants.USER_TYPE_ID].ToString();
@@ -528,13 +490,14 @@ public partial class ProcessP : System.Web.UI.Page
         catch { usertypid = "1"; }
         try
         {
-             LogPerson = Session[Constants.USER_ID].ToString();
+            LogPerson = Session[Constants.USER_ID].ToString();
         }
         catch { }
-        DataSet UserEmploRights = objHotLeadBL.UpdateProcessRightsSales(EMPID, QC, Pay, Processadmin, usertypid, LogPerson);
+        DataSet UserEmploRights = objHotLeadBL.UpdateSupadmRightsSales(EMPID, Superadmin, usertypid, LogPerson);
+        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('User Rights are updated successfully.');", true);
         GetLeadsSattus();
         MpUpdaterights.Hide();
-        Ckleads.Items[0].Selected = false;
+
         chkleadsadmin.Items[0].Selected = false;
 
     }
