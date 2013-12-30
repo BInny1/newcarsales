@@ -319,7 +319,7 @@
                                         <li>
                                             <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                         <li>
-                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
+                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State Wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
                                         <li class="last">
                                             <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
                                     </ul>
@@ -397,10 +397,11 @@
                                     <asp:Label ID="lblName" runat="server" Text='<%#Eval("Brands") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Product">
+                            <asp:TemplateField HeaderText="Product" HeaderStyle-CssClass="BL BR">
                                 <ItemTemplate>
                                     <asp:Label ID="lblName" runat="server" Text='<%#Eval("VName") %>'></asp:Label>
                                 </ItemTemplate>
+                                <ItemStyle CssClass="BR BL"/>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Status">
                                 <ItemTemplate>

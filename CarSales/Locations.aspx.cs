@@ -206,6 +206,7 @@ public partial class Locations : System.Web.UI.Page
             HeaderCell.Text = "Process";
             HeaderCell.ColumnSpan = 1;
             HeaderGridRow.Cells.Add(HeaderCell);
+            HeaderCell.CssClass = "BR ";
 
             HeaderCell = new TableCell();
             HeaderCell.Text = "Leads Download";

@@ -307,7 +307,7 @@
                                         <li>
                                             <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                         <li>
-                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
+                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State Wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
                                         <li class="last">
                                             <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
                                     </ul>
@@ -395,21 +395,23 @@
                                                                         CommandName="Empdeta"></asp:LinkButton>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Name">
+                                                            <asp:TemplateField HeaderText="Name" HeaderStyle-CssClass="BL BR" >
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton ID="lblEmpName" runat="server" Text='<%# Eval("Names")%>' CommandArgument='<%# Eval("EMPID")%>'
                                                                         CommandName="Empdeta"></asp:LinkButton>
                                                                 </ItemTemplate>
+                                                                <ItemStyle CssClass="BL BR" />
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblCount" runat="server" Text="Count"></asp:Label>
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Role">
+                                                            <asp:TemplateField HeaderText="Role" HeaderStyle-CssClass="BR">
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton ID="lblRole" runat="server" Text='<%# Eval("RoleName")%>' CommandArgument='<%# Eval("EMPID")%>'
                                                                         CommandName="Empdeta"></asp:LinkButton>
                                                                     <asp:HiddenField ID="hdnRoleId" runat="server" Value='<%# Eval("RoleId")%>' />
                                                                 </ItemTemplate>
+                                                                 <ItemStyle CssClass=" BR" />
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Executive Reports">
                                                                 <ItemTemplate>

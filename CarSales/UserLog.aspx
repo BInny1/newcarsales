@@ -282,7 +282,7 @@
                                         <li>
                                             <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                         <li>
-                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
+                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State Wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
                                         <li>
                                             <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
                                     </ul>
@@ -360,21 +360,23 @@
                                     <asp:Label ID="lblName" runat="server" Text='<%#Eval("Uid") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField>
+                            <asp:TemplateField HeaderStyle-CssClass="BL BR">
                                 <HeaderTemplate>
                                     <asp:Label ID="Label1" Text="Name" runat="server"></asp:Label>
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblName" runat="server" Text='<%#Eval("Names") %>'></asp:Label>
                                 </ItemTemplate>
+                                <ItemStyle CssClass="BL BR"/>
                             </asp:TemplateField>
-                            <asp:TemplateField>
+                            <asp:TemplateField HeaderStyle-CssClass="BR">
                                 <HeaderTemplate>
                                     <asp:Label ID="Label1" Text="Ip address" runat="server"></asp:Label>
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblName" runat="server" Text='<%#Eval("LoginIP") %>'></asp:Label>
                                 </ItemTemplate>
+                                <ItemStyle CssClass="BR"/>
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <HeaderTemplate>

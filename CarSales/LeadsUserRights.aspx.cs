@@ -460,7 +460,6 @@ public partial class LeadsUserRights : System.Web.UI.Page
             catch { usertypid = "1"; }
         DataSet UserEmpRights = objHotLeadBL.EditHistoryforadmin(EMPID, LeadsUpload, LeadsAdmin, usertypid);
         DataSet UserEmploRights = objHotLeadBL.UpdateLeadsRightsSales(EMPID, LeadsUpload, LeadsAdmin);
-        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('User Rights are updated successfully.');", true);
         GetLeadsUserRights(Convert.ToInt32(ddlcenters.SelectedValue));
         MpUpdaterights.Hide();
         Ckleads.Items[0].Selected = false;

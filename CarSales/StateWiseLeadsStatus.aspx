@@ -280,7 +280,7 @@
                                         <li>
                                             <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                         <li>
-                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
+                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State Wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
                                         <li class="act">
                                             <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
                                     </ul>
@@ -331,7 +331,7 @@
         <!-- Content Start  -->
          <div  style=" margin:10px; text-align:right;">
        <asp:LinkButton ID="lnkstlead" runat="server" Text="Leads Assign"  CssClass=" btn btn-primary btn-xs" PostBackUrl="~/LeadAssign.aspx"></asp:LinkButton>
-        <asp:LinkButton ID="lnkstleasas" runat="server" Text="leads User Rights" CssClass=" btn btn-primary btn-xs" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton>
+        <asp:LinkButton ID="lnkstleasas" runat="server" Text="Leads User Rights" CssClass=" btn btn-primary btn-xs" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton>
         </div>
         <div class="content">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -356,38 +356,40 @@
                                                         <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
                                                         <HeaderStyle CssClass="tbHed" />
                                                         <PagerSettings Position="Top" />
-                                                        <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
+                                                         <FooterStyle BackColor="#C6C3C6" CssClass="tbHed center" />
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="StateCode" FooterText="Total">
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton ID="lblstatecode" runat="server" Text='<%# Eval("StateCode")%>'></asp:LinkButton>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="1 day Leads">
+                                                            <asp:TemplateField HeaderText="1 day Leads" HeaderStyle-CssClass="BR BL">
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton ID="lbl1daysales" runat="server"></asp:LinkButton>
                                                                 </ItemTemplate>
-                                                                
+                                                                 <ItemStyle CssClass="center BR BL" />
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="7 day Leads">
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton ID="lbl7daysales" runat="server"></asp:LinkButton>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="30 day Leads">
+                                                            <asp:TemplateField HeaderText="30 day Leads" HeaderStyle-CssClass="BR BL">
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton ID="lbl30daysales" runat="server"></asp:LinkButton>
                                                                 </ItemTemplate>
+                                                                 <ItemStyle CssClass="center BR BL" />
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="60 day Leads">
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton ID="lbl60daysales" runat="server"></asp:LinkButton>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="90 day Leads">
+                                                            <asp:TemplateField HeaderText="90 day Leads" HeaderStyle-CssClass="BR BL">
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton ID="lbl90daysales" runat="server"></asp:LinkButton>
                                                                 </ItemTemplate>
+                                                                 <ItemStyle CssClass="center BR BL" />
                                                             </asp:TemplateField>
                                                         </Columns>
                                                     </asp:GridView>

@@ -8,6 +8,7 @@
     <title>..:: Car Sales System ::..</title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <link href="css/core.css" rel="stylesheet" type="text/css" />
+    
     <link href="css/core.theme.css" rel="stylesheet" type="text/css" />
     <link href="css/styleNew.css" rel="stylesheet" type="text/css" />
     <link href="css/menu1.css" rel="stylesheet" type="text/css" />
@@ -294,7 +295,7 @@
                                         <li>
                                             <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                         <li>
-                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
+                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State Wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
                                         <li class="last">
                                             <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
                                     </ul>
@@ -391,6 +392,7 @@
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lnkUName" runat="server" Text='<%# Eval("Process")%>'></asp:Label>
                                                             </ItemTemplate>
+                                                            
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Transfers In"  HeaderStyle-CssClass="BL">
                                                             <ItemTemplate>

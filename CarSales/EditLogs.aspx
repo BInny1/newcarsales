@@ -282,7 +282,7 @@
                                         <li>
                                             <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                         <li>
-                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
+                                            <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State Wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
                                         <li>
                                             <asp:LinkButton ID="LeadsSatus" runat="server" Text="Leads Status" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton></li>
                                     </ul>
@@ -359,13 +359,14 @@
                                     <asp:Label ID="lblName" runat="server"  Text='<%#Eval("TransactionByID") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                                <asp:TemplateField>
+                                <asp:TemplateField HeaderStyle-CssClass="BL BR">
                                 <HeaderTemplate>
                                     <asp:Label ID="Label1" Text="Field Name" runat="server"></asp:Label>
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblName" runat="server" Text='<%#Eval("FieldName") %>'></asp:Label>
                                 </ItemTemplate>
+                                <ItemStyle CssClass="BL BR"/>
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <HeaderTemplate>
@@ -375,15 +376,16 @@
                                     <asp:Label ID="lblName" runat="server" Text='<%#Eval("OldValue") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField>
+                            <asp:TemplateField  HeaderStyle-CssClass="BL BR">
                                 <HeaderTemplate>
                                     <asp:Label ID="Label1" Text="New Value" runat="server"></asp:Label>
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblName" runat="server" Text='<%#Eval("NewValue") %>'></asp:Label>
                                 </ItemTemplate>
+                                 <ItemStyle CssClass="BL BR"/>
                             </asp:TemplateField>
-                            <asp:TemplateField>
+                            <asp:TemplateField  >
                                 <HeaderTemplate>
                                     <asp:Label ID="Label1" Text="Updated Date" runat="server"></asp:Label>
                                 </HeaderTemplate>

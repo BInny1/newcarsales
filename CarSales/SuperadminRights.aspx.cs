@@ -251,33 +251,25 @@ public partial class SuperadminRights : System.Web.UI.Page
             if (e.Row.RowType == DataControlRowType.Footer)
             {
                 DataSet dsTasks4 = (DataSet)Session["ProcessDataset"];
-                Label lblQCCount = (Label)e.Row.FindControl("lblQCCount");
-                Label lblPayCount = (Label)e.Row.FindControl("lblPayCount");
+                Label lblQCCount = (Label)e.Row.FindControl("lblProcessAdmin");
                 Label lbladmin = (Label)e.Row.FindControl("lbladmin");
-                int CounQCVal = 0, CounPayVal = 0, CounAdminVal = 0;
+              
+                int CounQCVal = 0;
                 for (int i = 0; i < dsTasks4.Tables[0].Rows.Count; i++)
                 {
 
-                    if (dsTasks4.Tables[0].Rows[i][11].ToString() == "Y")
+                    if (dsTasks4.Tables[0].Rows[i][30].ToString() == "Y")
                     {
                         CounQCVal = CounQCVal + 1;
                     }
-                    if (dsTasks4.Tables[0].Rows[i][12].ToString() == "Y")
-                    {
-                        CounPayVal = CounPayVal + 1;
-                    }
-                    if (dsTasks4.Tables[0].Rows[i][21].ToString() == "Y")
-                    {
-                        CounAdminVal = CounAdminVal + 1;
-                    }
+                 
 
 
                 }
 
 
-                lblQCCount.Text = CounQCVal.ToString();
-                lblPayCount.Text = CounPayVal.ToString();
-                lbladmin.Text = CounAdminVal.ToString();
+                lbladmin.Text = CounQCVal.ToString();
+              
             }
         }
         catch { }
