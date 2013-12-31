@@ -61,6 +61,7 @@
             
         });
          
+$('#GridUserUpdateList tr:last-child').remove();
    }
    
     var ssTime,TimerID;
@@ -237,7 +238,7 @@
                         <li class="parent"><a href="#">Leads <span class="cert"></span></a>
                             <ul class="sub1">
                                 <li>
-                                    <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false"></asp:LinkButton></li><li>
+                                    <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false" PostBackUrl="~/LeadsUpload.aspx"></asp:LinkButton></li><li>
                                 <li>
                                     <asp:LinkButton ID="LeadsDownLoad" runat="server" Text="Download" Enabled="false"></asp:LinkButton></li>
                                 <li>
@@ -292,7 +293,7 @@
                                 <li class="act"><a href="#">Leads <span class="cert"></span></a>
                                     <ul class="sub2">
                                         <li>
-                                            <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
+                                            <asp:LinkButton ID="leadsRights" runat="server" Text="Leads User Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                         <li class="act">
                                             <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State Wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
                                         <li >
@@ -345,18 +346,12 @@
         </div>
         <!-- Headder End  -->
         <!-- Content Start  -->
-        <div  style=" margin:10px;padding-left: 850px;">
-            <asp:LinkButton ID="lnkstlead" runat="server" Text="State Wise Leads Status" CssClass="  btn btn-primary btn-xs"
-                PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton>
-            <asp:LinkButton ID="lnkstleasas" runat="server" Text="Leads User Rights" CssClass="  btn btn-primary btn-xs"
-                PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton>
-        </div>
         <div class="content wid1000">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
                     <div class="inn">
                         <div class="box1 boxBlue">
-                            <h1 class="hed1 hed2">
+                            <h1 class="hed1 hed2" style="margin-bottom:0">
                                 <asp:UpdatePanel ID="updpanbrnads" runat="server">
                                     <ContentTemplate>
                                         State Wise Leads &nbsp; <span class="floarR">Brands
@@ -367,7 +362,7 @@
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
                             </h1>
-                            <div class="inn">
+                            <div class="inn"  style="margin:0; padding:0;">
                                 <!-- Grid Start -->
                                 <asp:UpdatePanel ID="updtpnltblGrdcar" runat="server">
                                     <ContentTemplate>

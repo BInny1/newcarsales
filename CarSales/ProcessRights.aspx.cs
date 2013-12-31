@@ -417,7 +417,7 @@ public partial class ProcessRights : System.Web.UI.Page
                 CheckBox chk = row.Cells[0].FindControl("chk_Check") as CheckBox;
                 if (chk != null && chk.Checked)
                 {
-                    LinkButton lblSalesEmpid = row.Cells[0].FindControl("lblSalesEmpid") as LinkButton;
+                    Label lblSalesEmpid = row.Cells[0].FindControl("lblSalesEmpid") as Label;
                     DropDownList lblSalesRoleId = row.Cells[0].FindControl("ddlsalesroles") as DropDownList;
                     string roleid = lblSalesRoleId.Text;
                     if (roleid != "0")

@@ -317,3 +317,13 @@ input#textbox {
 		width:93%;	
 		height:auto;	
 	}
+	#overDiv{ background:#fff; padding:10px; box-shadow:0 0 7px rgba(0,0,0,0.3) }
+#overDiv td{ padding:0 0 10px 0;}
+#overDiv td td{ padding:0;}
+.tblNoborder{ border:none; margin-bottom:0 }
+.noBoxStyle{ background:none; box-shadow: none; border:none; }
+.noBoxStyle h1{background:none; border:none; border-bottom:#2286C1 1px solid; }
+.noBoxStyle .inn{ margin:15px 10px; }.
+.noBoxStyle .table{ background:#fff; box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+border: #CCC 1px solid; }
+.noBorder{ border:none; }

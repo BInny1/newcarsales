@@ -238,7 +238,7 @@
                         <li class="parent"><a href="#">Leads <span class="cert"></span></a>
                             <ul class="sub1">
                                 <li>
-                                    <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false"></asp:LinkButton></li><li>
+                                    <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false" PostBackUrl="~/LeadsUpload.aspx"></asp:LinkButton></li><li>
                                 <li>
                                     <asp:LinkButton ID="LeadsDownLoad" runat="server" Text="Download" Enabled="false"></asp:LinkButton></li>
                                 <li>
@@ -293,7 +293,7 @@
                                 <li><a href="#">Leads <span class="cert"></span></a>
                                     <ul class="sub2">
                                         <li>
-                                            <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
+                                            <asp:LinkButton ID="leadsRights" runat="server" Text="Leads User Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                         <li>
                                             <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State Wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
                                         <li class="last">
@@ -348,18 +348,16 @@
             <ContentTemplate>
                 <div class="inn">
                     <div class="box1 boxBlue">
-                        <h1 class="hed1 hed2">
+                        <h1 class="hed1 hed2" style="margin-bottom:0">
                             Update Locations
                         </h1>
-                        <div class="inn">
+                        <div class="inn"  style="margin:0; padding:0;">
                             <!-- Grid Start -->
                             <asp:UpdatePanel ID="updtpnltblGrdcar" runat="server">
                                 <ContentTemplate>
-                                    <table>
-                                        <tr>
-                                            <td>
+                                  
                                                 <asp:GridView ID="GridCentersUpades" runat="server" CellSpacing="0" CellPadding="0"
-                                                    AutoGenerateColumns="False" GridLines="None" CssClass="table table-hover table-striped"
+                                                    AutoGenerateColumns="False" GridLines="None" CssClass="table table-hover table-striped MB0 noBorder"
                                                     OnRowCreated="GridCentersUpades_RowCreated">
                                                     <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
                                                     <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
@@ -412,9 +410,7 @@
                                                         </asp:TemplateField>
                                                     </Columns>
                                                 </asp:GridView>
-                                            </td>
-                                        </tr>
-                                    </table>
+                                          
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                             <!-- Grid End  -->

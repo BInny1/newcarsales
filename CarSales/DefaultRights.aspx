@@ -225,7 +225,7 @@
                         <li class="parent"><a href="#">Leads <span class="cert"></span></a>
                             <ul class="sub1">
                                 <li>
-                                    <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false"></asp:LinkButton></li><li>
+                                    <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false" PostBackUrl="~/LeadsUpload.aspx"></asp:LinkButton></li><li>
                                 <li>
                                     <asp:LinkButton ID="LeadsDownLoad" runat="server" Text="Download" Enabled="false"></asp:LinkButton></li>
                                 <li>
@@ -280,7 +280,7 @@
                                 <li><a href="#">Leads <span class="cert"></span></a>
                                     <ul class="sub2">
                                         <li>
-                                            <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
+                                            <asp:LinkButton ID="leadsRights" runat="server" Text="Leads User Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                         <li>
                                             <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State Wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
                                         <li class="last">
@@ -331,10 +331,6 @@
         </div>
         <!-- Headder End  -->
         <!-- Content Start  -->
-        <div  style=" margin:10px; text-align:right;">
-            <asp:LinkButton ID="lnkstlead" runat="server" Text=" Sales User Rights" CssClass=" btn btn-primary btn-xs"
-                PostBackUrl="~/SalesUserRights.aspx"></asp:LinkButton>
-        </div>
         <div class="content ">
             <div class="inn">
                 <div class="box1 boxBlue">

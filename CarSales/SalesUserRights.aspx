@@ -253,7 +253,7 @@
                         <li class="parent"><a href="#">Leads <span class="cert"></span></a>
                             <ul class="sub1">
                                 <li>
-                                    <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false"></asp:LinkButton></li><li>
+                                    <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false" PostBackUrl="~/LeadsUpload.aspx"></asp:LinkButton></li><li>
                                 <li>
                                     <asp:LinkButton ID="LeadsDownLoad" runat="server" Text="Download" Enabled="false"></asp:LinkButton></li>
                                 <li>
@@ -308,7 +308,7 @@
                                 <li><a href="#">Leads <span class="cert"></span></a>
                                     <ul class="sub2">
                                         <li>
-                                            <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
+                                            <asp:LinkButton ID="leadsRights" runat="server" Text="Leads User Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                         <li>
                                             <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State Wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
                                         <li class="last">
@@ -361,24 +361,16 @@
         </div>
         <!-- Headder End  -->
         <!-- Content Start  -->
-        <div  style=" margin:10px; padding-left:1145px;">
-            <asp:UpdatePanel ID="UpDefRights" runat="server">
-                <ContentTemplate>
-                    <asp:LinkButton ID="lnkstlead" runat="server" Text="Default Rights" CssClass=" btn btn-primary btn-xs"
-                        PostBackUrl="~/DefaultRights.aspx"></asp:LinkButton>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>
         <div class="content">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
                     <div class="inn">
                         <div class="box1 boxBlue">
-                            <h1 class="hed1 hed2">
+                            <h1 class="hed1 hed2" style="margin-bottom:0">
                                 <asp:UpdatePanel ID="UpdaCLocations" runat="server">
                                     <ContentTemplate>
                                         User Rights
-                                        <asp:Label ID="lblcenters" Text="Centers" runat="server" Style="padding-left: 700px;"></asp:Label>
+                                        <asp:Label ID="lblcenters" Text="Locations" runat="server" Style="padding-left: 700px;"></asp:Label>
                                         <asp:DropDownList ID="ddlcenters" runat="server" Style="width: 150px;" OnSelectedIndexChanged="ddlcenters_SelectedIndexChanged"
                                             AutoPostBack="true">
                                         </asp:DropDownList>
@@ -388,15 +380,13 @@
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
                             </h1>
-                            <div class="inn">
+                            <div class="inn"  style="margin:0; padding:0;">
                                 <!-- Grid Start -->
                                 <asp:UpdatePanel ID="updtpnltblGrdcar" runat="server">
                                     <ContentTemplate>
-                                        <table>
-                                            <tr>
-                                                <td>
+                                       
                                                     <asp:GridView ID="GridDefaultUserRights" runat="server" CellSpacing="0" CellPadding="0"
-                                                        ShowFooter="true" CssClass="table table-hover table-striped" AutoGenerateColumns="False"
+                                                        ShowFooter="true" CssClass="table table-hover table-striped  MB0 noBorder" AutoGenerateColumns="False"
                                                         GridLines="None" OnRowCreated="GridDefaultUserRights_RowCreated" OnRowDataBound="GridDefaultUserRights_RowDataBound"
                                                         OnRowCommand="GridDefaultUserRights_RowCommand">
                                                         <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
@@ -474,7 +464,7 @@
                                                                     <asp:Label ID="lblfreepack" runat="server"></asp:Label>
                                                                 </FooterTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Intro Mail">
+                                                            <asp:TemplateField HeaderText="Intro Mail" >
                                                                 <ItemTemplate>
                                                                     <asp:LinkButton ID="IntroMailXX" runat="server" Text='<%# Eval("IntroMail")%>' CommandArgument='<%# Eval("EMPID")%>'
                                                                         CommandName="Empdeta"></asp:LinkButton>
@@ -547,9 +537,7 @@
                                                             </asp:TemplateField>
                                                         </Columns>
                                                     </asp:GridView>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                              
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
                                 <!-- Grid End  -->
@@ -589,16 +577,16 @@
                             </td>
                             <td>
                                 <asp:CheckBoxList ID="Ckleads" runat="server" RepeatDirection="Horizontal">
-                                    <asp:ListItem>Leads</asp:ListItem>
-                                    <asp:ListItem>Transfer Ins</asp:ListItem>
-                                    <asp:ListItem>Abondons</asp:ListItem>
+                                    <asp:ListItem>Leads</asp:ListItem> 
+                                    <asp:ListItem>Transfer Ins</asp:ListItem> 
+                                    <asp:ListItem>Abondons</asp:ListItem> 
                                     <asp:ListItem>Free Posts</asp:ListItem>
                                 </asp:CheckBoxList>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                Sales
+                               <b>Sales</b>
                             </td>
                             <td>
                                 <asp:CheckBoxList ID="chksales" runat="server" RepeatDirection="Horizontal">
@@ -611,7 +599,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Reports
+                              <b>Reports</b>  
                             </td>
                             <td>
                                 <asp:CheckBoxList ID="ChkReports" runat="server" RepeatDirection="Horizontal">
@@ -622,7 +610,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Sales Admin
+                               <b>Sales Admin</b> 
                             </td>
                             <td>
                                 <asp:CheckBoxList ID="chksaleadmin" runat="server" RepeatDirection="Horizontal">
@@ -639,10 +627,12 @@
                                         <ContentTemplate>
                                             <asp:Button ID="btnAddVehicle" CssClass="btn btn-warning" runat="server" Text="Update"
                                                 OnClick="btnAddVehicle_Click" />&nbsp;
+                                                 <asp:Button ID="btndelete" runat="server" Text="Delete" CssClass="btn btn-danger "
+                                                   OnClick="btndelete_Click"/>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </div>
-                                <asp:Button ID="btnCancelPW" CssClass="btn  btn-default" runat="server" Text="Cancel"
+                                <asp:Button ID="btnCancelPW" CssClass="btn  btn-default" runat="server" Text="Cancel" Visible="false"
                                     OnClientClick="return ClosePopup10();" />
                             </td>
                         </tr>
@@ -661,14 +651,12 @@
             New Employees
             <asp:ImageButton ID="img1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
         <div class="content" style="">
-            <div class="scroll1">
+            <div class="scroll1"  style="border:2px solid #CCC">
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
-                        <table>
-                            <tr>
-                                <td>
+                   
                                     <asp:GridView ID="GridUserUpdateList" runat="server" CellSpacing="0" CellPadding="0"
-                                        Style="height: 450px;" ShowFooter="true" CssClass="table table-hover table-striped"
+                                        Style="height: 450px;" ShowFooter="true" CssClass="table table-hover table-striped tblNoborder"
                                         AutoGenerateColumns="False" GridLines="None" OnRowDeleting="GridUserUpdateList_RowDeleting">
                                         <Columns>
                                             <asp:TemplateField ItemStyle-VerticalAlign="Middle">
@@ -704,9 +692,7 @@
                                             </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
-                                </td>
-                            </tr>
-                        </table>
+                               
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>

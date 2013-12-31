@@ -145,7 +145,7 @@ public partial class LeadDownLoad : System.Web.UI.Page
 
             if (Cache["Centers"] == null)
             {
-                dsVehicleTypes = objCenterBL.GetCenters();
+                dsVehicleTypes = objHotLeadBL.GetAllLocations();
                 Cache["Centers"] = dsVehicleTypes;
             }
             else
@@ -155,8 +155,8 @@ public partial class LeadDownLoad : System.Web.UI.Page
 
 
 
-            ddlCenter.DataValueField = "AgentCenterID";
-            ddlCenter.DataTextField = "AgentCenterCode";
+            ddlCenter.DataValueField = "LocationId";
+            ddlCenter.DataTextField = "LocationName";
             ddlCenter.DataSource = dsVehicleTypes.Tables[0];
             ddlCenter.DataBind();
 
@@ -175,7 +175,7 @@ public partial class LeadDownLoad : System.Web.UI.Page
     {
         DataSet dsIndidivitualRights = new DataSet();
         bool bValid = false;
-        //dsIndidivitualRights = objHotLeadBL.GetUserModules_ActiveInactive(Session[Constants.USER_ID]);
+        dsIndidivitualRights = objHotLeadBL.GetUserModules_ActiveInactive(Session[Constants.USER_ID].ToString());
         if (Session["IndividualUserRights"] == null)
         {
             dsIndidivitualRights = objHotLeadBL.GetUserModules_ActiveInactive(Session[Constants.USER_ID].ToString());
@@ -190,18 +190,38 @@ public partial class LeadDownLoad : System.Web.UI.Page
             for (int i = 0; i < dsIndidivitualRights.Tables[0].Rows.Count; i++)
             {
 
-                if (dsIndidivitualRights.Tables[0].Rows[i]["ModuleName"].ToString() == Session["CurrentPage"].ToString())
+                //if (dsIndidivitualRights.Tables[0].Rows[i]["SubModuleName"].ToString() == Session["CurrentPage"].ToString())
+                //{
+                if (dsIndidivitualRights.Tables[0].Rows[i]["active"].ToString() == "1")
                 {
-                    if (dsIndidivitualRights.Tables[0].Rows[i]["ModuleActive"].ToString() == "1")
-                    {
-                        bValid = true;
-                        break;
-                    }
+                    string Modulename = dsIndidivitualRights.Tables[0].Rows[i]["SubModuleName"].ToString();
 
+                    LinkButton lbl;
+                    lbl = (LinkButton)Page.FindControl(Modulename);
+                    try
+                    {
+                        lbl.Enabled = true;
+                    }
+                    catch { }
                 }
+                //else
+                //{
+                //    string Modulename = dsIndidivitualRights.Tables[0].Rows[i]["SubModuleName"].ToString();
+                //    LinkButton lbl1;
+                //    lbl1 = (LinkButton)Page.FindControl(Modulename);
+                //    try
+                //    {
+                //        lbl1.Enabled = false;
+                //    }
+                //    catch { }
+                //}
+
 
 
             }
+            bValid = true;
+            return bValid;
+            //}
         }
         return bValid;
     }

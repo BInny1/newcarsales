@@ -4,7 +4,7 @@
 .menu1{ position:relative;width::100%;min-width:1000px; height:auto; font-family:Arial, Helvetica, sans-serif; font-size:12px; float:right; top:-1px; }
 .menu1 .mainUL{ float:right; position:relative; }
 .menu1 .mainUL li.parent{ float:left; background:none; border-bottom:#ccc; position:relative;  }
-.menu1 .mainUL li.parent a{ display:block; text-align:center; padding:4px 15px; color:#333; }
+.menu1 .mainUL li.parent a{ display:block; text-align:center; padding:3px 15px; color:#333; }
 .menu1 .mainUL li.parent li a{ padding:7px 15px; }
 .menu1 .mainUL li.parent li a{ background:#555 url(../images/dev.png) right center no-repeat; border:none; color:#eee; text-align:left; }
 .menu1 .mainUL li.parent li a:hover, .menu1 .mainUL li ul li.act a,
@@ -15,7 +15,7 @@
 .menu1 .mainUL li.parent li li.last a, .menu1 .mainUL li.parent li.act li.last a{ border:none; color:#eee; }
 
 .menu1 .mainUL li.parent { border-bottom:#EBEBEB 2px solid; }
-.menu1 .mainUL li.parent.active { border-bottom:#FF3300 2px solid; }
+.menu1 .mainUL li.parent.active { border-bottom:#FF3300 4px solid; }
 
 .menu1 .mainUL li ul{ display:none; }
 

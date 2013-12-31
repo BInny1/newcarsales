@@ -408,7 +408,7 @@ public partial class SalesUserRights : System.Web.UI.Page
                 Ckleads.Items[0].Selected = false; Ckleads.Items[1].Selected = false; Ckleads.Items[2].Selected = false; Ckleads.Items[3].Selected = false;
                 chksales.Items[0].Selected = false; chksales.Items[1].Selected = false; chksales.Items[2].Selected = false; chksales.Items[3].Selected = false;
                 ChkReports.Items[0].Selected = false; ChkReports.Items[1].Selected = false; ChkReports.Items[1].Selected = false;
-
+                chksaleadmin.Items[0].Selected = false;
                 string EmpIdva = e.CommandArgument.ToString();
 
 
@@ -450,7 +450,7 @@ public partial class SalesUserRights : System.Web.UI.Page
                         if (Modulename == "Center")
                             ChkReports.Items[1].Selected = true;
 
-                        if (Modulename == "LeadsAdmin")
+                        if (Modulename == "SalesAdmin")
                             chksaleadmin.Items[0].Selected = true;
                     }
                 }
@@ -744,5 +744,8 @@ public partial class SalesUserRights : System.Web.UI.Page
             MpUserUpdatelist.Show();
         }
         GetUserDefaultRights();
+    }
+    public void btndelete_Click(object sender, EventArgs e)
+    {
     }
 }

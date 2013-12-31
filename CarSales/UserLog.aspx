@@ -225,7 +225,7 @@
                         <li class="parent"><a href="#">Leads <span class="cert"></span></a>
                             <ul class="sub1">
                                 <li>
-                                    <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false"></asp:LinkButton></li><li>
+                                    <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false" PostBackUrl="~/LeadsUpload.aspx"></asp:LinkButton></li><li>
                                 <li>
                                     <asp:LinkButton ID="LeadsDownLoad" runat="server" Text="Download" Enabled="false"></asp:LinkButton></li>
                                 <li>
@@ -280,7 +280,7 @@
                                 <li><a href="#">Leads <span class="cert"></span></a>
                                     <ul class="sub2">
                                         <li>
-                                            <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
+                                            <asp:LinkButton ID="leadsRights" runat="server" Text="Leads User Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                         <li>
                                             <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State Wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
                                         <li>
@@ -345,7 +345,7 @@
                 <div class="inn">
                     <!-- Start  -->
                     <asp:GridView ID="GriduserLog" runat="server" CellSpacing="0" CellPadding="0" AutoGenerateColumns="False"
-                        GridLines="None" CssClass="table table-hover table-striped">
+                        GridLines="None" CssClass="table table-hover table-striped  MB0 noBorder">
                         <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
                         <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
                         <HeaderStyle CssClass="tbHed  center" />

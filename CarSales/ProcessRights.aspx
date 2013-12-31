@@ -60,7 +60,7 @@
             $('#txtStartDate').val((date.getMonth()+1)+'/'+date.getDate()+'/'+date.getFullYear());            
             
         });
-         
+           $('#GridUserUpdateList tr:last-child').remove();
    }
    
     var ssTime,TimerID;
@@ -250,7 +250,7 @@
                         <li class="parent"><a href="#">Leads <span class="cert"></span></a>
                             <ul class="sub1">
                                 <li>
-                                    <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false"></asp:LinkButton></li><li>
+                                    <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false" PostBackUrl="~/LeadsUpload.aspx"></asp:LinkButton></li><li>
                                 <li>
                                     <asp:LinkButton ID="LeadsDownLoad" runat="server" Text="Download" Enabled="false"></asp:LinkButton></li>
                                 <li>
@@ -305,7 +305,7 @@
                                 <li><a href="#">Leads <span class="cert"></span></a>
                                     <ul class="sub2">
                                         <li>
-                                            <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
+                                            <asp:LinkButton ID="leadsRights" runat="server" Text="Leads User Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                         <li>
                                             <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State Wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
                                         <li class="last">
@@ -363,9 +363,9 @@
                 <ContentTemplate>
                     <div class="inn">
                         <div class="box1 boxBlue">
-                            <h1 class="hed1 hed2">
+                            <h1 class="hed1 hed2" style="margin-bottom:0">
                                 Process
-                                <asp:Label ID="lblcenters" Text="Centers" runat="server" Style="padding-left: 700px;"></asp:Label>
+                                <asp:Label ID="lblcenters" Text="Locations" runat="server" Style="padding-left: 700px;"></asp:Label>
                                 <asp:DropDownList ID="ddlcenters" runat="server" Style="width: 150px;" OnSelectedIndexChanged="ddlcenters_SelectedIndexChanged"
                                     AutoPostBack="true">
                                 </asp:DropDownList>
@@ -373,15 +373,13 @@
                                 <asp:LinkButton ID="lnlupdatelist" runat="server" Text="Update Users List" OnClick="lnlupdatelist_Click"
                                     CssClass="HedLeFont underline floarR"></asp:LinkButton>
                             </h1>
-                            <div class="inn">
+                            <div class="inn" style="margin:0; padding:0;">
                                 <!-- Grid Start -->
                                 <asp:UpdatePanel ID="updtpnltblGrdcar" runat="server">
                                     <ContentTemplate>
-                                        <table>
-                                            <tr>
-                                                <td>
+                                        
                                                     <asp:GridView ID="GridQcProcessStatus" runat="server" CellSpacing="0" CellPadding="0"
-                                                        CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None"
+                                                        CssClass="table table-hover table-striped MB0 noBorder" AutoGenerateColumns="False" GridLines="None"
                                                         ShowFooter="true" OnRowCreated="GridQcProcessStatus_RowCreated" OnRowDataBound="GrdSttalStatus_RowDataBound"
                                                         OnRowCommand="GridQcProcessStatus_RowCommand">
                                                         <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
@@ -445,9 +443,7 @@
                                                             </asp:TemplateField>
                                                         </Columns>
                                                     </asp:GridView>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                                
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
                                 <!-- Grid End  -->
@@ -477,14 +473,12 @@
             New Employees
             <asp:ImageButton ID="img1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
         <div class="content" style="">
-            <div class="scroll1">
+            <div class="scroll1" style="border:2px solid #CCC" >
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
-                        <table>
-                            <tr>
-                                <td>
+                       
                                     <asp:GridView ID="GridUserUpdateList" runat="server" CellSpacing="0" CellPadding="0"
-                                        Style="height: 450px;" ShowFooter="true" CssClass="table table-hover table-striped"
+                                        Style="height: 450px;" ShowFooter="true"  CssClass="table table-hover table-striped tblNoborder"
                                         AutoGenerateColumns="False" GridLines="None">
                                         <Columns>
                                             <asp:TemplateField ItemStyle-VerticalAlign="Middle">
@@ -494,8 +488,9 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Emp ID">
                                                 <ItemTemplate>
-                                                    <asp:LinkButton ID="lblSalesEmpid" runat="server" Text='<%# Eval("EMPID")%>'></asp:LinkButton>
+                                                    <asp:Label ID="lblSalesEmpid" runat="server" Text='<%# Eval("EMPID")%>'></asp:Label>
                                                 </ItemTemplate>
+                                             <ItemStyle ForeColor="Black"/>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Name">
                                                 <ItemTemplate>
@@ -519,9 +514,7 @@
                                             </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
-                                </td>
-                            </tr>
-                        </table>
+                                
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>

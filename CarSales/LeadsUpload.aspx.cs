@@ -14,19 +14,18 @@ using HotLeadBL;
 using HotLeadInfo;
 using HotLeadBL.Transactions;
 using HotLeadBL.CentralDBTransactions;
-using HotLeadInfo;
 using HotLeadBL.Masters;
 using System.Collections.Generic;
 using HotLeadBL.HotLeadsTran;
 using System.Net.Mail;
+using System.Text.RegularExpressions;
 using HotLeadBL.Leads;
-using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 using System.Data.Common;
 
-public partial class Intromail : System.Web.UI.Page
+
+public partial class LeADSuPs : System.Web.UI.Page
 {
     public GeneralFunc GenFunc = new GeneralFunc();
-
     DropdownBL objdropdownBL = new DropdownBL();
     DataSet CarsDetails = new DataSet();
     DataSet dsDropDown = new DataSet();
@@ -45,14 +44,14 @@ public partial class Intromail : System.Web.UI.Page
         {
             if (!IsPostBack)
             {
-                Session["CurrentPage"] = "Leads";
+                Session["CurrentPage"] = "Brands";
 
-                //if (LoadIndividualUserRights() == false)
-                //{
-                //    Response.Redirect("Login.aspx");
-                //}
-                //else
-                //{
+                if (LoadIndividualUserRights() == false)
+                {
+                    Response.Redirect("Login.aspx");
+                }
+                else
+                {
                     if (Session[Constants.NAME] == null)
                     {
                         lnkBtnLogout.Visible = false;
@@ -61,65 +60,48 @@ public partial class Intromail : System.Web.UI.Page
                     else
                     {
 
-                      //  LoadUserRights();
+                        // LoadUserRights();
                         lnkBtnLogout.Visible = true;
                         lblUserName.Visible = true;
                         string LogUsername = Session[Constants.NAME].ToString();
                         string CenterCode = Session[Constants.CenterCode].ToString();
                         string UserLogName = Session[Constants.USER_NAME].ToString();
+                        string Name = LogUsername + " " + UserLogName;
+                        LogUsername = Name;
                         if (LogUsername.Length > 20)
                         {
                             lblUserName.Text = LogUsername.ToString().Substring(0, 20);
-                            //if (CenterCode.Length > 5)
-                            //{
-                            //    lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString().Substring(0, 5) + ")";
-                            //}
-                            //else
-                            //{
-                            lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString() + ")-" + UserLogName.ToString();
-                            //}
+                            lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString() + ")";
+
                         }
                         else
                         {
                             lblUserName.Text = LogUsername;
-                            //if (CenterCode.Length > 5)
-                            //{
-                            //    lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString().Substring(0, 5) + ")";
-                            //}
-                            //else
-                            //{
-                            //    lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString() + ")";
-                            //}
-                            lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString() + ")-" + UserLogName.ToString();
+                            if (CenterCode.Length > 5)
+                            {
+                                lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString().Substring(0, 5) + ")";
+                            }
+                            else
+                            {
+                                lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString() + ")";
+                            }
+                            //lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString() + ")";
                         }
                         lnkTicker.Attributes.Add("href", "javascript:poptastic('Ticker.aspx?CID=" + Session[Constants.CenterCodeID] + "&CNAME=" + Session[Constants.CenterCode] + "');");
 
                         Session["SortDirec"] = null;
-                        //LoadVehicletype();
 
-                        btnSubmit.Attributes.Add("onclick", DisableSaveButton(this.Page, btnSubmit));
-                  //  }
+
+
+                    }
+
                 }
             }
         }
     }
-
     protected void lnkBtnLogout_Click(object sender, EventArgs e)
     {
-        try
-        {
-            HotLeadsBL objHotLeadsBL = new HotLeadsBL();
-            DataSet dsDatetime = objHotLeadBL.GetDatetime();
-            DateTime dtNow = Convert.ToDateTime(dsDatetime.Tables[0].Rows[0]["Datetime"].ToString());
-            objHotLeadsBL.Perform_LogOut(Convert.ToInt32(Session[Constants.USER_ID]), dtNow, Convert.ToInt32(Session[Constants.USERLOG_ID]), 2);
-            Session.Abandon();
-            Response.Redirect("Login.aspx");
-        }
-        catch (Exception ex)
-        {
-        }
-
-   
+        Response.Redirect("login.aspx");
     }
     private void LoadUserRights()
     {
@@ -128,7 +110,6 @@ public partial class Intromail : System.Web.UI.Page
 
         if (dsSession.Tables[0].Rows[0]["SessionID"].ToString() != HttpContext.Current.Session.SessionID.ToString())
         {
-            // objUserlog.Perform_LogOut(Convert.ToInt32(Session[Constants.USER_ID]), System.DateTime.Now, Convert.ToInt32(Session[Constants.USERLOG_ID]), 8);
 
             Session["SessionTimeOut"] = 1;
             Response.Redirect("Login.aspx");
@@ -140,7 +121,7 @@ public partial class Intromail : System.Web.UI.Page
     {
         DataSet dsIndidivitualRights = new DataSet();
         bool bValid = false;
-        //dsIndidivitualRights = objHotLeadBL.GetUserModules_ActiveInactive(Session[Constants.USER_ID]);
+        dsIndidivitualRights = objHotLeadBL.GetUserModules_ActiveInactive(Session[Constants.USER_ID].ToString());
         if (Session["IndividualUserRights"] == null)
         {
             dsIndidivitualRights = objHotLeadBL.GetUserModules_ActiveInactive(Session[Constants.USER_ID].ToString());
@@ -155,97 +136,41 @@ public partial class Intromail : System.Web.UI.Page
             for (int i = 0; i < dsIndidivitualRights.Tables[0].Rows.Count; i++)
             {
 
-                if (dsIndidivitualRights.Tables[0].Rows[i]["ModuleName"].ToString() == Session["CurrentPage"].ToString())
+                //if (dsIndidivitualRights.Tables[0].Rows[i]["SubModuleName"].ToString() == Session["CurrentPage"].ToString())
+                //{
+                if (dsIndidivitualRights.Tables[0].Rows[i]["active"].ToString() == "1")
                 {
-                    if (dsIndidivitualRights.Tables[0].Rows[i]["ModuleActive"].ToString() == "1")
-                    {
-                        bValid = true;
-                        break;
-                    }
+                    string Modulename = dsIndidivitualRights.Tables[0].Rows[i]["SubModuleName"].ToString();
 
+                    LinkButton lbl;
+                    lbl = (LinkButton)Page.FindControl(Modulename);
+                    try
+                    {
+                        lbl.Enabled = true;
+                    }
+                    catch { }
                 }
+                //else
+                //{
+                //    string Modulename = dsIndidivitualRights.Tables[0].Rows[i]["SubModuleName"].ToString();
+                //    LinkButton lbl1;
+                //    lbl1 = (LinkButton)Page.FindControl(Modulename);
+                //    try
+                //    {
+                //        lbl1.Enabled = false;
+                //    }
+                //    catch { }
+                //}
+
 
 
             }
+            bValid = true;
+            return bValid;
+            //}
         }
         return bValid;
     }
-
-    #region UserRights
-
-    private string DisableSaveButton(Control pge, Control btn)
-    {
-
-        System.Text.StringBuilder sb = new System.Text.StringBuilder();
-
-        sb.Append("if (typeof(Page_ClientValidate) == 'function') {");
-
-        sb.Append("if (Page_ClientValidate() == false) { return false; }} ");
-
-        sb.Append("if (ValidateUpload() == false) { return false; } ");
-
-        sb.Append("this.value = 'Please wait';");
-
-        sb.Append("this.disabled = true;");
-
-        sb.Append(pge.Page.GetPostBackEventReference(btn));
-
-        sb.Append(";");
-
-        return sb.ToString();
-
-    }
-
-
-
-    protected void btnRefresh_Click(object sender, EventArgs e)
-    {
-        try
-        {
-
-            Session.Timeout = 180;
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-
-    }
-    #endregion UserRights
-
-    private void LoadVehicletype()
-    {
-        try
-        {
-            VehicleTypeBL objVehicleTypeBL = new VehicleTypeBL();
-
-            DataSet dsVehicleTypes = new DataSet();
-
-            if (Cache["VehicleType"] == null)
-            {
-                dsVehicleTypes = objVehicleTypeBL.GetVehicleType();
-                Cache["VehicleType"] = dsVehicleTypes;
-            }
-            else
-            {
-                dsVehicleTypes = (DataSet)Cache["VehicleType"];
-            }
-
-
-
-            ddlVehicleType.DataValueField = "VehicleTypeID";
-            ddlVehicleType.DataTextField = "VehicleType";
-            ddlVehicleType.DataSource = dsVehicleTypes.Tables[0];
-            ddlVehicleType.DataBind();
-
-
-        }
-        catch (Exception ex)
-        {
-
-        }
-    }
-
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
@@ -260,7 +185,7 @@ public partial class Intromail : System.Web.UI.Page
         string SaveLoc = string.Empty;
         string FileExt = string.Empty;
         string hp = string.Empty;
-         string sLoc = string.Empty;
+        string sLoc = string.Empty;
 
         ArrayList RowNo = new ArrayList();
         ArrayList ColNo = new ArrayList();
@@ -357,7 +282,6 @@ public partial class Intromail : System.Web.UI.Page
             }
         }
     }
-
     private void ReadExcelData(string sFileName)
     {
         ArrayList RowNo = new ArrayList();
@@ -725,154 +649,41 @@ public partial class Intromail : System.Web.UI.Page
 
         }
     }
-
-    public string GetStateId(string StateCode)
+    private bool CheckBTN(string BTN)
     {
-
-        string StateId = string.Empty;
-
-        DataTable dt = new DataTable();
-
-        DataSet ds = new DataSet();
-
-        DataView dv = new DataView();
-
         try
         {
-            if (StateCode != "")
+            bool bFalse = false;
+            LeadsBL ObjLeads = new LeadsBL();
+            DataSet dsLeads = new DataSet();
+
+            if (Session["LeadBTNs"] == null)
             {
-
-                if (Cache["DsDropDown"] == null)
-                {
-                    dsDropDown = objdropdownBL.Usp_Get_DropDown();
-                    Cache["DsDropDown"] = dsDropDown;
-                }
-                else
-                {
-                    dsDropDown = (DataSet)Cache["DsDropDown"];
-
-                }
-
-                dv = dsDropDown.Tables[1].DefaultView;
-
-                //State_Code
-
-                dv.RowFilter = "State_Code ='" + StateCode + "'";
-
-                dt = dv.ToTable();
-
-                if (dt.Rows.Count > 0)
-                {
-                    StateId = dt.Rows[0]["State_Id"].ToString();
-                }
-                if (StateId == "")
-                {
-
-                    StateId = "0";
-                }
+                dsLeads = ObjLeads.LeadsCheckBTN();
+                Session["LeadBTNs"] = dsLeads;
             }
-        }
-
-        catch (Exception ex)
-        {
-
-            throw ex;
-            //Redirecting to error message page
-        }
-        return StateId;
-    }
-
-    public object GetStateId(object StateCode)
-    {
-        string StateId = string.Empty;
-
-        DataTable dt = new DataTable();
-
-        DataSet ds = new DataSet();
-
-        DataView dv = new DataView();
-
-        try
-        {
-            if (StateCode != "")
+            else
             {
-                if (Cache["DsDropDown"] == null)
-                {
-                    dsDropDown = objdropdownBL.Usp_Get_DropDown();
-                    Cache["DsDropDown"] = dsDropDown;
-                }
-                else
-                {
-                    dsDropDown = (DataSet)Cache["DsDropDown"];
-
-                }
-
-                dv = dsDropDown.Tables[1].DefaultView;
-                dv.RowFilter = "State_Code = '" + StateCode + "'";
-
-                dt = dv.ToTable();
-
-                if (dt.Rows.Count > 0)
-                {
-                    StateId = dt.Rows[0]["State_Id"].ToString();
-                }
-                if (StateId == "")
-                {
-
-                    StateId = "0";
-                }
+                dsLeads = (DataSet)Session["LeadBTNs"];
             }
-        }
 
-        catch (Exception ex)
-        {
-            throw ex;
-            //Redirecting to error message page
-        }
-        return StateId;
-    }
+            DataView dv = new DataView();
+            DataTable dt = new DataTable();
+            dv = dsLeads.Tables[0].DefaultView;
+            dv.RowFilter = "Phone=" + BTN + "";
+            dt = dv.ToTable();
 
-    private void SalesfilesUpload(int RecordCount, string sFileName)
-    {
-        try
-        {
-            Int64 Return = 0;
-
-            LeadBatchFile objLeadBatchFile = new LeadBatchFile();
-            LeadsBL objLeadsBL = new LeadsBL();
-
-            objLeadBatchFile.Leaddate = System.DateTime.Now.ToString();
-            objLeadBatchFile.LeadFile = sFileName;
-            objLeadBatchFile.RecordCount = RecordCount.ToString();
-            objLeadBatchFile.LeadUploadedBy = Convert.ToInt32(Session[Constants.USER_ID]).ToString();
-            objLeadBatchFile.Leadsource = "1";
-
-
-            DataSet ds = new DataSet();
-
-
-            ds = objLeadsBL.SaveFileDetails(objLeadBatchFile, ref Return, ddlVehicleType.SelectedItem.Value);
-
-
-
-            Session["FileId"] = ds.Tables[0].Rows[0][0].ToString();
-
-
-
+            if (dt.Rows.Count > 0)
+            {
+                bFalse = true;
+            }
+            return bFalse;
         }
         catch (Exception ex)
         {
-            //bool rethrow = ExceptionPolicy.HandleException(ex, ConstantClass.StrCRMUIPolicy);
             throw ex;
-            //if (rethrow)
-            //    throw;
-
-            //Redirecting to error message page
-            //Server.Transfer(ConstantClass.StrErrorPageURL);
         }
-
     }
-
     protected void btnUpload_Click(object sender, EventArgs e)
     {
         //LeadsInfo objLeadsInfo=new LeadsInfo(); 
@@ -1058,41 +869,150 @@ public partial class Intromail : System.Web.UI.Page
         }
         return refOut;
     }
-    private bool CheckBTN(string BTN)
+    private void SalesfilesUpload(int RecordCount, string sFileName)
     {
         try
         {
-            bool bFalse = false;
-            LeadsBL ObjLeads = new LeadsBL();
-            DataSet dsLeads = new DataSet();
+            Int64 Return = 0;
 
-            if (Session["LeadBTNs"] == null)
-            {
-                dsLeads = ObjLeads.LeadsCheckBTN();
-                Session["LeadBTNs"] = dsLeads;
-            }
-            else
-            {
-                dsLeads = (DataSet)Session["LeadBTNs"];
-            }
+            LeadBatchFile objLeadBatchFile = new LeadBatchFile();
+            LeadsBL objLeadsBL = new LeadsBL();
 
-            DataView dv = new DataView();
-            DataTable dt = new DataTable();
-            dv = dsLeads.Tables[0].DefaultView;
-            dv.RowFilter = "Phone=" + BTN + "";
-            dt = dv.ToTable();
+            objLeadBatchFile.Leaddate = System.DateTime.Now.ToString();
+            objLeadBatchFile.LeadFile = sFileName;
+            objLeadBatchFile.RecordCount = RecordCount.ToString();
+            objLeadBatchFile.LeadUploadedBy = Convert.ToInt32(Session[Constants.USER_ID]).ToString();
+            objLeadBatchFile.Leadsource = "1";
 
-            if (dt.Rows.Count > 0)
-            {
-                bFalse = true;
-            }
-            return bFalse;
+
+            DataSet ds = new DataSet();
+
+
+            ds = objLeadsBL.SaveFileDetails(objLeadBatchFile, ref Return, ddlVehicleType.SelectedItem.Value);
+
+
+
+            Session["FileId"] = ds.Tables[0].Rows[0][0].ToString();
+
+
+
         }
         catch (Exception ex)
         {
+            //bool rethrow = ExceptionPolicy.HandleException(ex, ConstantClass.StrCRMUIPolicy);
             throw ex;
+            //if (rethrow)
+            //    throw;
+
+            //Redirecting to error message page
+            //Server.Transfer(ConstantClass.StrErrorPageURL);
         }
+
+    }
+    public string GetStateId(string StateCode)
+    {
+
+        string StateId = string.Empty;
+
+        DataTable dt = new DataTable();
+
+        DataSet ds = new DataSet();
+
+        DataView dv = new DataView();
+
+        try
+        {
+            if (StateCode != "")
+            {
+
+                if (Cache["DsDropDown"] == null)
+                {
+                    dsDropDown = objdropdownBL.Usp_Get_DropDown();
+                    Cache["DsDropDown"] = dsDropDown;
+                }
+                else
+                {
+                    dsDropDown = (DataSet)Cache["DsDropDown"];
+
+                }
+
+                dv = dsDropDown.Tables[1].DefaultView;
+
+                //State_Code
+
+                dv.RowFilter = "State_Code ='" + StateCode + "'";
+
+                dt = dv.ToTable();
+
+                if (dt.Rows.Count > 0)
+                {
+                    StateId = dt.Rows[0]["State_Id"].ToString();
+                }
+                if (StateId == "")
+                {
+
+                    StateId = "0";
+                }
+            }
+        }
+
+        catch (Exception ex)
+        {
+
+            throw ex;
+            //Redirecting to error message page
+        }
+        return StateId;
     }
 
+    public object GetStateId(object StateCode)
+    {
+        string StateId = string.Empty;
+
+        DataTable dt = new DataTable();
+
+        DataSet ds = new DataSet();
+
+        DataView dv = new DataView();
+
+        try
+        {
+            if (StateCode != "")
+            {
+                if (Cache["DsDropDown"] == null)
+                {
+                    dsDropDown = objdropdownBL.Usp_Get_DropDown();
+                    Cache["DsDropDown"] = dsDropDown;
+                }
+                else
+                {
+                    dsDropDown = (DataSet)Cache["DsDropDown"];
+
+                }
+
+                dv = dsDropDown.Tables[1].DefaultView;
+                dv.RowFilter = "State_Code = '" + StateCode + "'";
+
+                dt = dv.ToTable();
+
+                if (dt.Rows.Count > 0)
+                {
+                    StateId = dt.Rows[0]["State_Id"].ToString();
+                }
+                if (StateId == "")
+                {
+
+                    StateId = "0";
+                }
+            }
+        }
+
+        catch (Exception ex)
+        {
+            throw ex;
+            //Redirecting to error message page
+        }
+        return StateId;
+    }
 
 }

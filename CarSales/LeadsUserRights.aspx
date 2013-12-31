@@ -61,7 +61,7 @@
             $('#txtStartDate').val((date.getMonth()+1)+'/'+date.getDate()+'/'+date.getFullYear());            
             
         });
-         
+          $('#GridUserUpdateList tr:last-child').remove();
    }
    
     var ssTime,TimerID;
@@ -251,7 +251,7 @@
                         <li class="parent"><a href="#">Leads <span class="cert"></span></a>
                             <ul class="sub1">
                                 <li>
-                                    <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false"></asp:LinkButton></li><li>
+                                    <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false" PostBackUrl="~/LeadsUpload.aspx"></asp:LinkButton></li><li>
                                 <li>
                                     <asp:LinkButton ID="LeadsDownLoad" runat="server" Text="Download" Enabled="false"></asp:LinkButton></li>
                                 <li>
@@ -296,7 +296,7 @@
                                 <li>
                                     <asp:LinkButton ID="Sales" runat="server" Text="Sales" Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="Process" runat="server" Text="Process" Enabled="false" PostBackUrl="~/ProcessP.aspx"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="Process" runat="server" Text="Process" Enabled="false" PostBackUrl="~/ProcessRights.aspx"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="Executive" runat="server" Text="Exceutive" Enabled="false"></asp:LinkButton></li>
                             </ul>
@@ -306,7 +306,7 @@
                                 <li class="act"><a href="#">Leads <span class="cert"></span></a>
                                     <ul class="sub2">
                                         <li class="act">
-                                            <asp:LinkButton ID="leadsRights" runat="server" Text="Leads Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
+                                            <asp:LinkButton ID="leadsRights" runat="server" Text="Leads User Rights" PostBackUrl="~/LeadsUserRights.aspx"></asp:LinkButton></li>
                                         <li>
                                             <asp:LinkButton ID="LeadsList" runat="server" Text="Leads State Wise" PostBackUrl="~/StatewiseLeads.aspx"></asp:LinkButton></li>
                                         <li class="last">
@@ -323,7 +323,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <asp:LinkButton ID="ProcessAdmin" runat="server" Text="Process" PostBackUrl="~/ProcessP.aspx"
+                                    <asp:LinkButton ID="ProcessAdmin" runat="server" Text="Process" PostBackUrl="~/ProcessRights.aspx"
                                         Enabled="false"></asp:LinkButton>
                                 </li>
                                 <li>
@@ -357,18 +357,15 @@
         </div>
         <!-- Headder End  -->
         <!-- Content Start  -->
-        <div  style=" margin:10px; text-align:right;">
-        <asp:LinkButton ID="lnkstlead" runat="server" Text="State Wise Leads Status"  CssClass=" btn btn-primary btn-xs" PostBackUrl="~/StateWiseLeadsStatus.aspx"></asp:LinkButton>
-        <asp:LinkButton ID="lnkstleasas" runat="server" Text="Leads Assign" CssClass=" btn btn-primary btn-xs" PostBackUrl="~/LeadAssign.aspx"></asp:LinkButton>
-        </div>
+     
         <div class="content">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
                     <div class="inn">
                         <div class="box1 boxBlue">
-                            <h1 class="hed1 hed2">
+                            <h1 class="hed1 hed2 " style="margin-bottom:0">
                                 Leads User Rights
-                                <asp:Label ID="lblcenters" Text="Centers" runat="server" Style="padding-left: 700px;"></asp:Label>
+                                <asp:Label ID="lblcenters" Text="Locations" runat="server" Style="padding-left: 700px;"></asp:Label>
                                 <asp:DropDownList ID="ddlcenters" runat="server" Style="width: 150px;" OnSelectedIndexChanged="ddlcenters_SelectedIndexChanged"
                                     AutoPostBack="true">
                                 </asp:DropDownList>
@@ -376,17 +373,15 @@
                                 <asp:LinkButton ID="lnlupdatelist" runat="server" Text="Update Users List" OnClick="lnlupdatelist_Click"
                                     CssClass="HedLeFont underline floarR"></asp:LinkButton>
                             </h1>
-                            <div class="inn">
+                            <div class="inn"  style="margin:0; padding:0;">
                             
                             
                                 <!-- Grid Start -->
                                 <asp:UpdatePanel ID="updtpnltblGrdcar" runat="server">
                                     <ContentTemplate>
-                                        <table>
-                                            <tr>
-                                                <td>
+                                      
                                                     <asp:GridView ID="GridDefaultUserRights" runat="server" CellSpacing="0" CellPadding="0"
-                                                        ShowFooter="true" CssClass="table table-hover table-striped" AutoGenerateColumns="False"
+                                                        ShowFooter="true" CssClass="table table-hover table-striped  MB0 noBorder" AutoGenerateColumns="False"
                                                         GridLines="None" OnRowDataBound="GridDefaultUserRights_RowDataBound" OnRowCommand="GridDefaultUserRights_RowCommand">
                                                         <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
                                                         <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
@@ -402,19 +397,22 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Name" FooterText="Total" HeaderStyle-CssClass="BL BR">
                                                                 <ItemTemplate>
-                                                                    <asp:LinkButton ID="LblFirstName" runat="server" Text='<%# Eval("Names")%>'></asp:LinkButton>
+                                                                    <asp:LinkButton ID="LblFirstName" runat="server" Text='<%# Eval("Names")%>'
+                                                                     CommandArgument='<%# Eval("EMPID")%>'  CommandName="Empdeta"></asp:LinkButton>
                                                                     <%--<asp:HiddenField ID="lblLstname" runat="server" Value='<%# Eval("LastName")%>' />--%>
                                                                 </ItemTemplate>
                                                                 <ItemStyle CssClass="BL BR" />
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Role">
                                                                 <ItemTemplate>
-                                                                    <asp:LinkButton ID="lblRoleNamre" runat="server" Text='<%# Eval("RoleName")%>'></asp:LinkButton>
+                                                                    <asp:LinkButton ID="lblRoleNamre" runat="server" Text='<%# Eval("RoleName")%>' 
+                                                                     CommandArgument='<%# Eval("EMPID")%>'  CommandName="Empdeta"></asp:LinkButton>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Leads Upload" HeaderStyle-CssClass="BL BR">
                                                                 <ItemTemplate>
-                                                                    <asp:LinkButton ID="lblLeadsUpload" runat="server" Text='<%# Eval("LeadsUpload")%>'></asp:LinkButton>
+                                                                    <asp:LinkButton ID="lblLeadsUpload" runat="server" Text='<%# Eval("LeadsUpload")%>' 
+                                                                     CommandArgument='<%# Eval("EMPID")%>'  CommandName="Empdeta"></asp:LinkButton>
                                                                 </ItemTemplate>
                                                                 <ItemStyle CssClass="center BR BL" />
                                                                 <FooterTemplate>
@@ -423,7 +421,8 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Leads Admin">
                                                                 <ItemTemplate>
-                                                                    <asp:LinkButton ID="LeadsAdmin" runat="server" Text='<%# Eval("LeadsAdmin")%>'></asp:LinkButton>
+                                                                    <asp:LinkButton ID="LeadsAdmin" runat="server" Text='<%# Eval("LeadsAdmin")%>' 
+                                                                     CommandArgument='<%# Eval("EMPID")%>'  CommandName="Empdeta"></asp:LinkButton>
                                                                 </ItemTemplate>
                                                                 <ItemStyle CssClass="center" />
                                                                 <FooterTemplate>
@@ -432,9 +431,7 @@
                                                             </asp:TemplateField>
                                                         </Columns>
                                                     </asp:GridView>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                              
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
                                 <!-- Grid End  -->
@@ -465,14 +462,12 @@
             New Employees
             <asp:ImageButton ID="img1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
         <div class="content" style="">
-            <div class="scroll1">
+            <div class="scroll1" style="border:2px solid #CCC"  >
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
-                        <table>
-                            <tr>
-                                <td>
-                                    <asp:GridView ID="GridUserUpdateList" runat="server" CellSpacing="0" CellPadding="0"
-                                        Style="height: 450px;" ShowFooter="true" CssClass="table table-hover table-striped"
+                     
+                                     <asp:GridView ID="GridUserUpdateList" runat="server" CellSpacing="0" CellPadding="0"
+                                        Style="height: 450px;" ShowFooter="true"  CssClass="table table-hover table-striped tblNoborder"
                                         AutoGenerateColumns="False" GridLines="None">
                                         <Columns>
                                             <asp:TemplateField ItemStyle-VerticalAlign="Middle">
@@ -506,9 +501,7 @@
                                             </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
-                                </td>
-                            </tr>
-                        </table>
+                           
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
@@ -545,7 +538,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Leads Admin
+                               <b>Leads Admin</b> 
                             </td>
                             <td>
                                 <asp:CheckBoxList ID="chkleadsadmin" runat="server" RepeatDirection="Horizontal">
