@@ -569,10 +569,11 @@
                                         <ContentTemplate>
                                             <asp:Button ID="btnAddVehicle" CssClass="btn  btn-warning" runat="server" Text="Update"
                                                 OnClick="btnAddVehicle_Click" />&nbsp;
+                                                  <asp:Button ID="btndelete" runat="server" Text="Delete" CssClass="btn btn-danger" OnClick="btndelete_Click"/>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </div>
-                                <asp:Button ID="btnCancelPW" CssClass="btn btn-default" runat="server" Text="Cancel"
+                                <asp:Button ID="btnCancelPW" CssClass="btn btn-default" runat="server" Text="Cancel" Visible="false"
                                     OnClientClick="return ClosePopup10();" />
                             </td>
                         </tr>

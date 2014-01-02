@@ -335,7 +335,7 @@
         <!-- Content Start  -->
         <div class="content wid1000">
             <div class=" box1 box100p">
-                <h1 class="hed1 hed2" style="margin-bottom:0">
+                <h1 class="hed1 hed2" style="margin-bottom: 0">
                     <asp:UpdatePanel ID="updaproducts" runat="server">
                         <ContentTemplate>
                             <b>Products <b>
@@ -344,9 +344,9 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </h1>
-                <div class="inn" style="margin:0; padding:0;">
+                <div class="inn" style="margin: 0; padding: 0;">
                     <!-- Start  -->
-                    <asp:GridView ID="GridVehicletype" runat="server" CellSpacing="0" CellPadding="0"
+                    <asp:GridView ID="GridVehicletype" runat="server" CellSpacing="0" CellPadding="0" OnRowCommand= "GridVehicletype_RowCommand"
                         AutoGenerateColumns="False" GridLines="None" CssClass="table table-hover table-striped  MB0 noBorder">
                         <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
                         <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
@@ -359,7 +359,9 @@
                                     <asp:Label ID="Label1" Text="Products" runat="server"></asp:Label>
                                 </HeaderTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("VehicleTypeName") %>'></asp:Label>
+                                    <asp:LinkButton ID="lblName" runat="server" Text='<%#Eval("VehicleTypeName") %>' 
+                                    CommandArgument='<%#Eval("VehicleTypeName") + ";" +Eval("TypeId")%>' 
+                                      CommandName="vehick"></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
@@ -379,65 +381,7 @@
     <div class="footer">
         United Car Exchange © 2013
     </div>
-    <!-- Footer End  -->
-    <!-- New Vechlie Click -->
-    <cc1:ModalPopupExtender ID="MpVechlAdd" runat="server" PopupControlID="tblChangePW"
-        BackgroundCssClass="ModalPopupBG" TargetControlID="hdnChangePW" CancelControlID="btnCancelPW">
-    </cc1:ModalPopupExtender>
-    <asp:HiddenField ID="hdnChangePW" runat="server" />
-    <div id="tblChangePW" style="display: none; width: 450px;" class="popup">
-        <h2>
-            Add New Brand</h2>
-        <div class="content">
-            <table style="width: 96%; margin: 0 auto;">
-                <tr>
-                    <td>
-                        Vehicle Type
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtVeckType" MaxLength="20" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Brand
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtBrnad" MaxLength="20" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Status
-                    </td>
-                    <td>
-                        <div style="display: inline-block; width: 190px;" class="noMargin">
-                            <asp:RadioButtonList ID="rbt_VechGrop" runat="server" RepeatColumns="2">
-                                <asp:ListItem>Active</asp:ListItem>
-                                <asp:ListItem>InActive</asp:ListItem>
-                            </asp:RadioButtonList>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                    </td>
-                    <td align="left">
-                        <div style="margin: 0; padding-left: 0px; display: inline-block">
-                            <asp:UpdatePanel ID="updtPnlChangePwd" runat="server">
-                                <ContentTemplate>
-                                    <asp:Button ID="btnAddVehicle" class="btn btn-warning" runat="server" Text="Add"
-                                        OnClick="btnAddVehicle_Click" />&nbsp;
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
-                        </div>
-                        <asp:Button ID="btnCancelPW" class="btn btn-default" runat="server" Text="Cancel" />
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    <!-- New Groups Add  -->
+   
     <!-- New Vechlie Click -->
     <cc1:ModalPopupExtender ID="MPBrands" runat="server" PopupControlID="tblChangePW1"
         BackgroundCssClass="ModalPopupBG" TargetControlID="HdnGroup1s" CancelControlID="img1">
@@ -473,6 +417,43 @@
             </table>
         </div>
     </div>
+    
+    <!-- Editing -->
+       <cc1:ModalPopupExtender ID="MdpEditProduc" runat="server" PopupControlID="tblChangePW2"
+        BackgroundCssClass="ModalPopupBG" TargetControlID="HiddenField1" CancelControlID="ImageButton1">
+    </cc1:ModalPopupExtender>
+    <asp:HiddenField ID="HiddenField1" runat="server" />
+    <div id="tblChangePW2" style="display: none; width: 450px;" class="popup">
+        <h2>
+            Edit Product
+            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
+        <div class="content">
+            <table style="width: 96%; margin: 0 auto;">
+                <tr>
+                    <td>
+                        Product
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtEdit" MaxLength="20" runat="server" Style="text-transform: uppercase"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                    </td>
+                    <td align="left">
+                        <div style="margin: 0; padding-left: 0px; display: inline-block">
+                            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                <ContentTemplate>
+                                    <asp:Button ID="BtnEdit" class="btn btn-warning" runat="server" Text="Update" OnClick="BtnEdit_Click" />&nbsp;
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
     </form>
 </body>
 </html>

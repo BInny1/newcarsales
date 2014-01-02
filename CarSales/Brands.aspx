@@ -371,21 +371,20 @@
         <!-- Headder End  -->
         <!-- Content Start  -->
         <div class="content wid1000">
-            <div class=" box1 box100p">
-                <h1 class="hed1 hed2" style="margin-bottom:0">
+            <div class=" box1 box100p boxBlue">
+                <h1 class="hed1 hed2" style="margin-bottom: 0">
                     <asp:UpdatePanel ID="UpdateBe" runat="server">
                         <ContentTemplate>
-                        <h1 class="hed1 hed2" style="margin-bottom:0">
-                            Brands <b>
-                                <asp:LinkButton ID="lnkBrndNew" runat="server" Text="New" OnClick="lnkBrndNew_Click"
-                                    CssClass="floarR underline"></asp:LinkButton>
+                            Brands
+                            <asp:LinkButton ID="lnkBrndNew" runat="server" Text="New" OnClick="lnkBrndNew_Click"
+                                CssClass="floarR underline"></asp:LinkButton>
                         </ContentTemplate>
                     </asp:UpdatePanel>
-                    </b>
                 </h1>
-                <div class="inn"  style="margin:0; padding:0;">
+                <div class="inn" style="margin: 0; padding: 0;">
                     <!-- Start -->
-                    <asp:GridView ID="GridBrands" runat="server" CellSpacing="0" CellPadding="0" CssClass="table table-hover table-striped  MB0 noBorder"
+                    <asp:GridView ID="GridBrands" runat="server" CellSpacing="0" CellPadding="0"
+                     CssClass="table table-hover table-striped  MB0 noBorder" OnRowCommand="GridBrands_RowCommand"
                         AutoGenerateColumns="False" GridLines="None">
                         <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
                         <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
@@ -395,18 +394,25 @@
                         <Columns>
                             <asp:TemplateField HeaderText="Brand">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("Brands") %>'></asp:Label>
+                                    <asp:LinkButton ID="lblName" runat="server" Text='<%#Eval("Brands") %>' ForeColor="Black"
+                                        CommandArgument='<%#Eval("BId") %>' CommandName="BrandId"></asp:LinkButton>
                                 </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Brand" HeaderStyle-CssClass="BL">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblNames" runat="server" Text='<%#Eval("BName") %>'></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle CssClass="BL" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Product" HeaderStyle-CssClass="BL BR">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("VName") %>'></asp:Label>
+                                    <asp:Label ID="lblVName" runat="server" Text='<%#Eval("VName") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle CssClass="BR BL"/>
+                                <ItemStyle CssClass="BR BL" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Status">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("Stat") %>'></asp:Label>
+                                    <asp:Label ID="lblStat" runat="server" Text='<%#Eval("Stat") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
@@ -440,20 +446,20 @@
             <table style="width: 96%; margin: 0 auto;">
                 <tr>
                     <td>
+                        Brand
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtBrnad" MaxLength="20" runat="server" Style="text-transform: uppercase"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         Product
                         <!-- txtVeckTyp -->
                     </td>
                     <td>
                         <asp:DropDownList ID="txtVeckType" runat="server">
                         </asp:DropDownList>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Brand
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtBrnad" MaxLength="20" runat="server" Style="text-transform: uppercase"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -489,7 +495,73 @@
     </div>
     </div>
     <!-- New Groups Add  -->
-    <!-- New Vechlie Click -->
+    <!-- Edit Brands -->
+     <cc1:ModalPopupExtender ID="MpEditBran" runat="server" PopupControlID="tblChangePW2"
+        BackgroundCssClass="ModalPopupBG" TargetControlID="HiddenField1" CancelControlID="imag2">
+    </cc1:ModalPopupExtender>
+    <asp:HiddenField ID="HiddenField1" runat="server" />
+    <div id="tblChangePW2" style="display: none; width: 450px;" class="popup">
+        <h2>Edit Brand
+            <asp:ImageButton ID="imag2" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
+        <div class="content">
+            <table style="width: 96%; margin: 0 auto;">
+                <tr>
+                    <td>
+                        Brand
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtBrandUp" MaxLength="20" runat="server" Style="text-transform: uppercase"></asp:TextBox>
+                    </td>
+                </tr>
+                  <tr>
+                    <td>
+                        Brand Name
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtBrandNsupdate" MaxLength="20" runat="server" Style="text-transform: uppercase"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Product
+                        <!-- txtVeckTyp -->
+                    </td>
+                    <td>
+                        <asp:DropDownList ID="ddlProdUp" runat="server">
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Status
+                    </td>
+                    <td>
+                        <div style="display: inline-block; width: 190px;" class="noMargin">
+                            <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatColumns="2">
+                                <asp:ListItem>Active</asp:ListItem>
+                                <asp:ListItem>Inactive</asp:ListItem>
+                            </asp:RadioButtonList>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                    </td>
+                    <td align="left">
+                        <div style="margin: 0; padding-left: 0px; display: inline-block">
+                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                <ContentTemplate>
+                                    <asp:Button ID="btnEdit" class="btn btn-warning" runat="server" Text="Update"
+                                        OnClick="btnEdit_Click" />&nbsp;
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </div>
+                        <%--<asp:Button ID="btnCancelPW" class="btn btn-default" runat="server" Text="Cancel" />--%>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
     </form>
 </body>
 </html>

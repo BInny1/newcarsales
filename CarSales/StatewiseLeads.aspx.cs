@@ -110,15 +110,15 @@ public partial class StatewiseLeads : System.Web.UI.Page
 
         try
         {
-            DataSet dsGroups = objHotLeadBL.GetAllGroups();
+            DataSet dsGroups = objHotLeadBL.GetAllProducts();
             ddlgroups.Items.Clear();
             for (int i = 0; i < dsGroups.Tables[0].Rows.Count; i++)
             {
-                if (dsGroups.Tables[0].Rows[i]["Brandid"].ToString() != "0")
+                if (dsGroups.Tables[0].Rows[i]["Vehicletypeid"].ToString() != "0")
                 {
                     ListItem list = new ListItem();
-                    list.Text = dsGroups.Tables[0].Rows[i]["Brand"].ToString();
-                    list.Value = dsGroups.Tables[0].Rows[i]["Brandid"].ToString();
+                    list.Text = dsGroups.Tables[0].Rows[i]["vehicletypename"].ToString();
+                    list.Value = dsGroups.Tables[0].Rows[i]["Vehicletypeid"].ToString();
                     ddlgroups.Items.Add(list);
                 }
             }

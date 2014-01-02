@@ -354,7 +354,7 @@ $('#GridUserUpdateList tr:last-child').remove();
                             <h1 class="hed1 hed2" style="margin-bottom:0">
                                 <asp:UpdatePanel ID="updpanbrnads" runat="server">
                                     <ContentTemplate>
-                                        State Wise Leads &nbsp; <span class="floarR">Brands
+                                        State Wise Leads &nbsp; <span class="floarR">Products
                                             <asp:DropDownList ID="ddlgroups" runat="server" CssClass="NormalSize" style="height:22px;" OnSelectedIndexChanged="ddlgroups_SelectedIndexChanged"
                                                 AutoPostBack="true">
                                             </asp:DropDownList>

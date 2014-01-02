@@ -640,6 +640,7 @@ public partial class SalesUserRights : System.Web.UI.Page
         {
             string text = "" + empid + "  deactivate and  \\n " + empid1 + "  activated from HR System.so changing status in carsales";
             System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('"+text+"');", true);
+
         }
         else if (empid.Length > 1 && empid1.Length < 1)
         {
@@ -662,6 +663,7 @@ public partial class SalesUserRights : System.Web.UI.Page
         }
         else
         {
+
             System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('No More New Employees from HR System.');", true);
         }
 
@@ -745,7 +747,25 @@ public partial class SalesUserRights : System.Web.UI.Page
         }
         GetUserDefaultRights();
     }
-    public void btndelete_Click(object sender, EventArgs e)
+  
+    public void OnConfirm(object sender, EventArgs e)
     {
+        string confirmValue = Request.Form["confirm_value"];
+        if (confirmValue == "Yes")
+        {
+
+            //Deactivating Empid from carsales.
+            string EMpid = Session["EMpid"].ToString();
+            DataSet dsSalesUpdateList = objHotLeadBL.DeleteEmployee(EMpid);
+            System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('" + EMpid + " has been deleted succesfully.');", true);
+            MpVechlAdd.Hide();
+            GetUserDefaultRights();
+        }
+        else
+        {
+          
+        }
     }
+    
+  
 }

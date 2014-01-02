@@ -105,7 +105,7 @@ public partial class Executives : System.Web.UI.Page
                         GetAllLocations();
                         GetExecutivesList();
                     }
-                  
+
                 }
             }
         }
@@ -127,8 +127,8 @@ public partial class Executives : System.Web.UI.Page
                     ddlcenters.Items.Add(list);
                 }
             }
-           // ddlcenters.Items.Insert(0, new ListItem("All", "0"));
-          //  ddlcenters.SelectedIndex = 1;
+            // ddlcenters.Items.Insert(0, new ListItem("All", "0"));
+            //  ddlcenters.SelectedIndex = 1;
         }
         catch (Exception ex)
         {
@@ -224,30 +224,30 @@ public partial class Executives : System.Web.UI.Page
         //        {
         //            lblExecut.Text = "";
         //        }
-                
+
         //    }
-          
+
         //}
         //catch { }
         try
         {
             if (e.Row.RowType == DataControlRowType.Footer)
             {
-                 Label lblTotalCount = (Label)e.Row.FindControl("lblTotalCount");
-                 DataSet dsTasks4 = (DataSet)Session["ExecutiveRights"];
-                int CounVal=0;
+                Label lblTotalCount = (Label)e.Row.FindControl("lblTotalCount");
+                DataSet dsTasks4 = (DataSet)Session["ExecutiveRights"];
+                int CounVal = 0;
                 for (int i = 0; i < dsTasks4.Tables[0].Rows.Count; i++)
-               {
-                   if (dsTasks4.Tables[0].Rows[i][22].ToString() == "Y")
-                   {
-                       CounVal = CounVal + 1;
-                   }
-                 
-                  
-               }
+                {
+                    if (dsTasks4.Tables[0].Rows[i][22].ToString() == "Y")
+                    {
+                        CounVal = CounVal + 1;
+                    }
 
 
-               lblTotalCount.Text = CounVal.ToString();
+                }
+
+
+                lblTotalCount.Text = CounVal.ToString();
             }
         }
         catch { }
@@ -448,7 +448,7 @@ public partial class Executives : System.Web.UI.Page
         }
 
 
-       
+
         EMPID = Session["EMpid"].ToString();
 
         string usertypid = "", LogPerson = "";
@@ -467,6 +467,17 @@ public partial class Executives : System.Web.UI.Page
         GetExecutivesList();
         MpUpdaterights.Hide();
         Ckleads.Items[0].Selected = false;
-     
+
     }
+    public void btndelete_Click(object sender, EventArgs e)
+    {
+
+        //Deactivating Empid from carsales.
+        string EMpid = Session["EMpid"].ToString();
+        DataSet dsSalesUpdateList = objHotLeadBL.DeleteEmployee(EMpid);
+        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('" + EMpid + " has been deleted succesfully.');", true);
+        MpUpdaterights.Hide();
+        GetExecutivesList();
+    }
+
 }

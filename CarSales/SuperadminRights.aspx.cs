@@ -253,7 +253,7 @@ public partial class SuperadminRights : System.Web.UI.Page
                 DataSet dsTasks4 = (DataSet)Session["ProcessDataset"];
                 Label lblQCCount = (Label)e.Row.FindControl("lblProcessAdmin");
                 Label lbladmin = (Label)e.Row.FindControl("lbladmin");
-              
+
                 int CounQCVal = 0;
                 for (int i = 0; i < dsTasks4.Tables[0].Rows.Count; i++)
                 {
@@ -262,14 +262,14 @@ public partial class SuperadminRights : System.Web.UI.Page
                     {
                         CounQCVal = CounQCVal + 1;
                     }
-                 
+
 
 
                 }
 
 
                 lbladmin.Text = CounQCVal.ToString();
-              
+
             }
         }
         catch { }
@@ -493,4 +493,16 @@ public partial class SuperadminRights : System.Web.UI.Page
         chkleadsadmin.Items[0].Selected = false;
 
     }
+    public void btndelete_Click(object sender, EventArgs e)
+    {
+
+        //Deactivating Empid from carsales.
+        string EMpid = Session["EMpid"].ToString();
+        DataSet dsSalesUpdateList = objHotLeadBL.DeleteEmployee(EMpid);
+        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('" + EMpid + " has been deleted succesfully.');", true);
+        MpUpdaterights.Hide();
+        GetLeadsSattus();
+    }
+
+
 }

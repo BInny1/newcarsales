@@ -408,8 +408,7 @@
                 </h1>
                 <div class="inn">
                     <!-- Start  -->
-                    <asp:UpdatePanel ID="updtpnltblGrdcar" runat="server">
-                        <ContentTemplate>
+             
                             <table style="width: 98%;">
                                 <tr>
                                     <td>
@@ -607,8 +606,7 @@
                                     </td>
                                 </tr>
                             </table>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
+                   
                     <!-- End  -->
                 </div>
             </div>

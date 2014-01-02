@@ -335,14 +335,14 @@
         <!-- Content Start  -->
         <div class="content wid1000">
             <div class=" box1 box100p">
-                <h1 class="hed1 hed2">
+                <h1 class="hed1 hed2 style="margin-bottom: 0"">
                     <asp:UpdatePanel ID="updaproducts" runat="server">
                         <ContentTemplate>
                             User Log
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </h1>
-                <div class="inn">
+                <div  class="inn" style="margin: 0; padding: 0;">
                     <!-- Start  -->
                     <asp:GridView ID="GriduserLog" runat="server" CellSpacing="0" CellPadding="0" AutoGenerateColumns="False"
                         GridLines="None" CssClass="table table-hover table-striped  MB0 noBorder">

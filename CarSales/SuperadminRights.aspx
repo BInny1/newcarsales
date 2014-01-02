@@ -383,8 +383,7 @@
                                                 <td>
                                                     <asp:GridView ID="GridQcProcessStatus" runat="server" CellSpacing="0" CellPadding="0"
                                                         CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None"
-                                                        ShowFooter="true"  OnRowDataBound="GrdSttalStatus_RowDataBound"
-                                                        OnRowCommand="GridQcProcessStatus_RowCommand">
+                                                        ShowFooter="true" OnRowDataBound="GrdSttalStatus_RowDataBound" OnRowCommand="GridQcProcessStatus_RowCommand">
                                                         <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
                                                         <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
                                                         <HeaderStyle CssClass="tbHed center" />
@@ -527,7 +526,6 @@
             <asp:UpdatePanel ID="p1" runat="server">
                 <ContentTemplate>
                     <table style="width: 96%; margin: 0 auto;">
-                     
                         <tr>
                             <td>
                                 Process Admin
@@ -547,10 +545,12 @@
                                         <ContentTemplate>
                                             <asp:Button ID="btnAddVehicle" CssClass="btn  btn-warning" runat="server" Text="Update"
                                                 OnClick="btnAddVehicle_Click" />&nbsp;
+                                            <asp:Button ID="btndelete" runat="server" Text="Delete" CssClass="btn btn-danger "
+                                                OnClick="btndelete_Click" />
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </div>
-                                <asp:Button ID="btnCancelPW" CssClass="btn btn-default" runat="server" Text="Cancel"
+                                <asp:Button ID="btnCancelPW" CssClass="btn btn-default" runat="server" Text="Cancel" Visible="false"
                                     OnClientClick="return ClosePopup10();" />
                             </td>
                         </tr>

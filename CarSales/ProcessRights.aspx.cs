@@ -520,7 +520,7 @@ public partial class ProcessRights : System.Web.UI.Page
 
         EMPID = Session["EMpid"].ToString();
 
-        string usertypid = "", LogPerson="";
+        string usertypid = "", LogPerson = "";
         try
         {
             usertypid = Session[Constants.USER_TYPE_ID].ToString();
@@ -528,7 +528,7 @@ public partial class ProcessRights : System.Web.UI.Page
         catch { usertypid = "1"; }
         try
         {
-             LogPerson = Session[Constants.USER_ID].ToString();
+            LogPerson = Session[Constants.USER_ID].ToString();
         }
         catch { }
         DataSet UserEmploRights = objHotLeadBL.UpdateProcessRightsSales(EMPID, QC, Pay, Processadmin, usertypid, LogPerson);
@@ -539,4 +539,14 @@ public partial class ProcessRights : System.Web.UI.Page
         chkleadsadmin.Items[0].Selected = false;
 
     }
+    public void btndelete_Click(object sender, EventArgs e)
+    {
+        //Deactivating Empid from carsales.
+        string EMpid = Session["EMpid"].ToString();
+        DataSet dsSalesUpdateList = objHotLeadBL.DeleteEmployee(EMpid);
+        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('" + EMpid + " has been deleted succesfully.');", true);
+        MpUpdaterights.Hide();
+        GetLeadsSattus();
+    }
+
 }

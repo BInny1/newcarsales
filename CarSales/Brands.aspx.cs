@@ -59,7 +59,7 @@ public partial class Brands : System.Web.UI.Page
                     else
                     {
 
-                       // LoadUserRights();
+                        // LoadUserRights();
                         lnkBtnLogout.Visible = true;
                         lblUserName.Visible = true;
                         string LogUsername = Session[Constants.NAME].ToString();
@@ -92,7 +92,7 @@ public partial class Brands : System.Web.UI.Page
 
                         GetProducts();
                         GetBrands();
-                      
+
                     }
 
                 }
@@ -118,6 +118,31 @@ public partial class Brands : System.Web.UI.Page
                 }
             }
             txtVeckType.Items.Insert(0, new ListItem("Select", "0"));
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    private void GetProducts1()
+    {
+
+        try
+        {
+            DataSet dsProducts = objHotLeadBL.GetAllProducts();
+            ddlProdUp.Items.Clear();
+            for (int i = 0; i < dsProducts.Tables[0].Rows.Count; i++)
+            {
+                if (dsProducts.Tables[0].Rows[i]["Vehicletypeid"].ToString() != "0")
+                {
+                    ListItem list = new ListItem();
+                    list.Text = dsProducts.Tables[0].Rows[i]["vehicletypename"].ToString();
+                    list.Value = dsProducts.Tables[0].Rows[i]["Vehicletypeid"].ToString();
+                    ddlProdUp.Items.Add(list);
+                }
+            }
+            ddlProdUp.Items.Insert(0, new ListItem("Select", "0"));
 
         }
         catch (Exception ex)
@@ -206,8 +231,8 @@ public partial class Brands : System.Web.UI.Page
         GridBrands.DataSource = GetBrands.Tables[0];
         GridBrands.DataBind();
     }
-  
-  
+
+
     protected void lnkBrndNew_Click(object sender, EventArgs e)
     {
         MPBrands.Show();
@@ -217,7 +242,7 @@ public partial class Brands : System.Web.UI.Page
 
     protected void lnkgroups_Click(object sender, EventArgs e)
     {
-       
+
     }
     protected void btnAddVehicle_Click(object sender, EventArgs e)
     {
@@ -244,17 +269,17 @@ public partial class Brands : System.Web.UI.Page
                     if (checkrecord.Tables[0].Rows.Count == 0)
                     {
                         objHotLeadBL.SaveNewBrands(txtVeckType.Text, txtBrnad.Text, Sttaus);
-                      
-                        //System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('New Brand is added successfully.');", true);
-                        //MpVechlAdd.Hide();
+
+                        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('New Brand is added successfully.');", true);
+                        MPBrands.Hide();
                         GetBrands();
-                       
+
                     }
                     else
                     {
                         System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Brand already existed.');", true);
                     }
-                  
+
                 }
                 else
                 {
@@ -269,21 +294,56 @@ public partial class Brands : System.Web.UI.Page
             }
 
         }
-       
+
         else
         {
             txtVeckType.Focus();
             System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('please select product.');", true);
             MPBrands.Show();
         }
-       
-       
-     
-       
+
+
+
+
     }
     protected void btngroupAdd_Click(object sender, EventArgs e)
     {
-       
-    }
 
+    }
+    protected void GridBrands_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        try
+        {
+            MpEditBran.Show();
+            if (e.CommandName == "BrandId")
+            {
+                GetProducts1();
+                string BrandId = e.CommandArgument.ToString();
+                Session["BrandId"] = BrandId.ToString();
+                DataSet BrandData = objHotLeadBL.BrandListWithBrand(Convert.ToInt32(BrandId));
+                txtBrandUp.Text = BrandData.Tables[0].Rows[0]["Brands"].ToString();
+                txtBrandNsupdate.Text = BrandData.Tables[0].Rows[0]["BName"].ToString();
+                ddlProdUp.SelectedIndex = Convert.ToInt32(BrandData.Tables[0].Rows[0]["vid"].ToString());
+                string activeM = BrandData.Tables[0].Rows[0]["Stat"].ToString();
+                if (activeM == "active")
+                    RadioButtonList1.Items[0].Selected = true;
+                else if (activeM == "Inactive")
+                    RadioButtonList1.Items[1].Selected = true;
+
+            }
+        }
+        catch { }
+    }
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        bool Isactive=false;
+        if(RadioButtonList1.Items[0].Selected == true)Isactive=true;
+        else Isactive=false;
+        DataSet BrandData = objHotLeadBL.UpdateBrandsDetails(Convert.ToInt32(Session["BrandId"].ToString()), txtBrandUp.Text, txtBrandNsupdate.Text,
+            ddlProdUp.SelectedIndex, Isactive);
+        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Brand is Updated successfuly.');", true);
+        MpEditBran.Hide();
+        GetBrands();
+
+    }
 }

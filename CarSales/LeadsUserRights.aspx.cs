@@ -466,4 +466,14 @@ public partial class LeadsUserRights : System.Web.UI.Page
         chkleadsadmin.Items[0].Selected = false;
 
     }
+    public void btndelete_Click(object sender, EventArgs e)
+    {
+
+        //Deactivating Empid from carsales.
+        string EMpid = Session["EMpid"].ToString();
+        DataSet dsSalesUpdateList = objHotLeadBL.DeleteEmployee(EMpid);
+        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('" + EMpid + " has been deleted succesfully.');", true);
+        MpUpdaterights.Hide();
+        GetLeadsUserRights(Convert.ToInt32(ddlcenters.SelectedValue));
+    }
 }

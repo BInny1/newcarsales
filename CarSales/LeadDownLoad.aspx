@@ -14,15 +14,10 @@
 
     <script src="js/overlibmws.js" type="text/javascript"></script>
     
-    <script src="Static/JS/calendar.js" type="text/javascript"></script>
-
-    <link href="Static/Css/calender.css" rel="stylesheet" type="text/css" />
-
+   
     <script type="text/javascript" language="javascript">window.history.forward(1);</script>
 
-    <script src="Test/Calendar.js" type="text/javascript"></script>
-
-    <link href="Test/Calendar.css" rel="stylesheet" type="text/css" />
+     <script src="Test/Calendar.js" type="text/javascript"></script>
 
     <script type="text/javascript" language="javascript" src="js/jquery-1.7.min.js"></script>
 

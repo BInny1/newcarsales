@@ -467,14 +467,13 @@ namespace HotLeadBL.HotLeadsTran
                 //Assign stored procedure parameters
                 dbDatabase.AddInParameter(dbCommand, "@Log_Id", DbType.Int64, ObjUserLog.Log_Id);
                 dbDatabase.AddInParameter(dbCommand, "@User_Id", DbType.String, ObjUserLog.User_Id);
-                dbDatabase.AddInParameter(dbCommand, "@Login_Ip", DbType.String, ObjUserLog.Login_Ip);
-                dbDatabase.AddInParameter(dbCommand, "@Log_Status_Id", DbType.Int32, ObjUserLog.Log_Status_Id);
                 dbDatabase.AddInParameter(dbCommand, "@Login_DateTime", DbType.DateTime, ObjUserLog.Login_DateTime);
+                dbDatabase.AddInParameter(dbCommand, "@Login_Ip", DbType.String, ObjUserLog.Login_Ip);
                 dbDatabase.AddInParameter(dbCommand, "@Logout_time", DbType.DateTime, ObjUserLog.Logout_time);
+                dbDatabase.AddInParameter(dbCommand, "@Log_Status_Id", DbType.Int32, ObjUserLog.Log_Status_Id);
                 dbDatabase.AddInParameter(dbCommand, "@Session_Id", DbType.String, ObjUserLog.Session_Id);
                 dbDatabase.AddInParameter(dbCommand, "@CookieID", DbType.String, ObjUserLog.CookieID);
                 dbDatabase.AddInParameter(dbCommand, "@bNew", DbType.Boolean, bNew);
-
                 dbDatabase.AddOutParameter(dbCommand, "@ID", DbType.Int64, 1);
 
                 dbDatabase.ExecuteNonQuery(dbCommand);
@@ -4999,7 +4998,7 @@ namespace HotLeadBL.HotLeadsTran
             }
         }
 
-        
+
 
         //Get All center Employees
 
@@ -5143,7 +5142,7 @@ namespace HotLeadBL.HotLeadsTran
                 throw ex;
             }
         }
-      
+
 
         public DataSet ExecutiveRights(int LocationId)
         {
@@ -5265,7 +5264,7 @@ namespace HotLeadBL.HotLeadsTran
                 throw ex;
             }
         }
-     
+
         public DataSet UpdateUserRightsSales(string EMPID, bool LeadsUpload, bool LeadsDownLoad, bool Abondoned, bool FreePackage,
          bool Ticker, bool IntroMail, bool NewEntry, bool Transferin, bool Transferout, bool Center, bool Self, bool SalesAdmin,
             string usertypid, string LogPerson)
@@ -5751,6 +5750,96 @@ namespace HotLeadBL.HotLeadsTran
             {
                 throw ex;
             }
+        }
+
+        //USp_DeleteEmployee
+
+        public DataSet DeleteEmployee(string empid)
+        {
+            DataSet dsCarsData = new DataSet();
+            try
+            {
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USp_DeleteEmployee";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dbDataBase.AddInParameter(dbCommand, "@empid", System.Data.DbType.String, empid);
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dsCarsData;
+
+        }
+        //USP_BrandListWithBrand
+        public DataSet BrandListWithBrand(int Brandid)
+        {
+            DataSet dsCarsData = new DataSet();
+            try
+            {
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USP_BrandListWithBrand";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dbDataBase.AddInParameter(dbCommand, "@Brandid", System.Data.DbType.Int32, Brandid);
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dsCarsData;
+
+        }
+        public DataSet UpdateBrandsDetails(int bRandid,string Brand, string BrandName, Int32 Product,bool Status)
+        {
+            DataSet dsCarsData = new DataSet();
+            try
+            {
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USP_UpdateBrandsDetails";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dbDataBase.AddInParameter(dbCommand, "@bRandid", System.Data.DbType.String, bRandid);
+                dbDataBase.AddInParameter(dbCommand, "@Brand", System.Data.DbType.String, Brand);
+                dbDataBase.AddInParameter(dbCommand, "@BrandName", System.Data.DbType.String, BrandName);
+                dbDataBase.AddInParameter(dbCommand, "@Product", System.Data.DbType.Int32, Product);
+                dbDataBase.AddInParameter(dbCommand, "@Status", System.Data.DbType.Boolean, Status);
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dsCarsData;
+        }
+
+
+        public DataSet UpdateEditProduct(string Product, Int32 Productid)
+        {
+            DataSet dsCarsData = new DataSet();
+            try
+            {
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "Usp_UpdateEditProduct";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dbDataBase.AddInParameter(dbCommand, "@VName", System.Data.DbType.String, Product);
+                dbDataBase.AddInParameter(dbCommand, "@Vid", System.Data.DbType.String, Productid);
+             
+                dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dsCarsData;
         }
     }
 }

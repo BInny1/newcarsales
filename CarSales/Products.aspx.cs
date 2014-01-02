@@ -180,28 +180,13 @@ public partial class Products : System.Web.UI.Page
         GridVehicletype.DataSource = GetVehicles.Tables[0];
         GridVehicletype.DataBind();
     }
-    protected void lnkBrndNew_Click(object sender, EventArgs e)
-    {
-        MpVechlAdd.Show();
-    }
+   
 
     protected void lnkgroups_Click(object sender, EventArgs e)
     {
         MPBrands.Show();
     }
-    protected void btnAddVehicle_Click(object sender, EventArgs e)
-    {
-        Boolean Sttaus = false;
-        if (rbt_VechGrop.Items[0].Selected == true)
-            Sttaus = true;
-        else
-            Sttaus = false;
-        objHotLeadBL.SaveNewBrands(txtVeckType.Text, txtBrnad.Text, Sttaus);
-        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('New Brand is added successfully.');", true);
-     
-        GetVehicleTypes();
-        MpVechlAdd.Hide();
-    }
+  
     protected void btngroupAdd_Click(object sender, EventArgs e)
     {
         if (txtgrpname.Text != "")
@@ -227,6 +212,34 @@ public partial class Products : System.Web.UI.Page
             txtgrpname.Focus();
         }
         
+    }
+    public void BtnEdit_Click(object sender, EventArgs e)
+    {
+        //Update
+        DataSet UpdateProduct = objHotLeadBL.UpdateEditProduct(txtEdit.Text,Convert.ToInt32( Session["VehId"].ToString()));
+        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Product updaed successfully.');", true);
+        MdpEditProduc.Hide();
+        GetVehicleTypes();
+    }
+    protected void GridVehicletype_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        try
+        {
+            MdpEditProduc.Show();
+            if (e.CommandName == "vehick")
+            {
+
+                string Vehclnam = e.CommandArgument.ToString();
+                string[] strArr = Vehclnam.Split(';');
+                Session["VehName"] = strArr[0].ToString();
+                Session["VehId"] = strArr[1].ToString();
+
+                txtEdit.Text = Session["VehName"].ToString();
+
+
+            }
+        }
+        catch { }
     }
 
 }
