@@ -18,10 +18,12 @@ using HotLeadInfo;
 using HotLeadBL.Masters;
 using System.Collections.Generic;
 using HotLeadBL.HotLeadsTran;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
 using HotLeadBL.Leads;
-using HotLeadBL.Masters;
 
-public partial class LeadsUploadHistory : System.Web.UI.Page
+
+public partial class CopyPage : System.Web.UI.Page
 {
     public GeneralFunc objGeneralFunc = new GeneralFunc();
     DropdownBL objdropdownBL = new DropdownBL();
@@ -50,7 +52,7 @@ public partial class LeadsUploadHistory : System.Web.UI.Page
                 }
                 else
                 {
-                    LoadUserRights();
+                    LoadIndividualUserRights();
                     lnkBtnLogout.Visible = true;
                     lblUserName.Visible = true;
                     string LogUsername = Session[Constants.NAME].ToString();
@@ -118,7 +120,7 @@ public partial class LeadsUploadHistory : System.Web.UI.Page
     {
         DataSet dsIndidivitualRights = new DataSet();
         bool bValid = false;
-        //dsIndidivitualRights = objHotLeadBL.GetUserModules_ActiveInactive(Session[Constants.USER_ID]);
+        dsIndidivitualRights = objHotLeadBL.GetUserModules_ActiveInactive(Session[Constants.USER_ID].ToString());
         if (Session["IndividualUserRights"] == null)
         {
             dsIndidivitualRights = objHotLeadBL.GetUserModules_ActiveInactive(Session[Constants.USER_ID].ToString());
@@ -133,25 +135,33 @@ public partial class LeadsUploadHistory : System.Web.UI.Page
             for (int i = 0; i < dsIndidivitualRights.Tables[0].Rows.Count; i++)
             {
 
-                if (dsIndidivitualRights.Tables[0].Rows[i]["ModuleName"].ToString() == Session["CurrentPage"].ToString())
+                //if (dsIndidivitualRights.Tables[0].Rows[i]["SubModuleName"].ToString() == Session["CurrentPage"].ToString())
+                //{
+                if (dsIndidivitualRights.Tables[0].Rows[i]["active"].ToString() == "1")
                 {
-                    if (dsIndidivitualRights.Tables[0].Rows[i]["ModuleActive"].ToString() == "1")
+                    string Modulename = dsIndidivitualRights.Tables[0].Rows[i]["SubModuleName"].ToString();
+
+                    LinkButton lbl;
+                    lbl = (LinkButton)Page.FindControl(Modulename);
+                    try
                     {
-                        bValid = true;
-                        break;
+                        lbl.Enabled = true;
                     }
-
+                    catch { }
                 }
-
-
+              
             }
+            bValid = true;
+            return bValid;
+            //}
         }
         return bValid;
     }
     private void LoadUserRights()
     {
+
         DataSet dsSession = new DataSet();
-        dsSession = objHotLeadBL.GetUserSession(Convert.ToInt32(Session[Constants.USER_ID]));
+        dsSession = objHotLeadBL.GetUserSession(Session[Constants.USER_ID].ToString());
 
         if (dsSession.Tables[0].Rows[0]["SessionID"].ToString() != HttpContext.Current.Session.SessionID.ToString())
         {

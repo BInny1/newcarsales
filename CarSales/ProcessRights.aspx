@@ -252,7 +252,7 @@
                                 <li>
                                     <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false" PostBackUrl="~/LeadsUpload.aspx"></asp:LinkButton></li><li>
                                 <li>
-                                    <asp:LinkButton ID="LeadsDownLoad" runat="server" Text="Download" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="LeadsDownLoad"  runat="server"   Text="Download"  Enabled="false"    PostBackUrl="~/LeadDownLoad.aspx"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="Abondoned" runat="server" Text="Abondon" Enabled="false"></asp:LinkButton></li>
                                 <li>

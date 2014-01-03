@@ -228,7 +228,7 @@ public partial class LeadDownLoad : System.Web.UI.Page
     private void LoadUserRights()
     {
         DataSet dsSession = new DataSet();
-        dsSession = objHotLeadBL.GetUserSession(Convert.ToInt32(Session[Constants.USER_ID]));
+        dsSession = objHotLeadBL.GetUserSession((Session[Constants.USER_ID].ToString()));
 
         if (dsSession.Tables[0].Rows[0]["SessionID"].ToString() != HttpContext.Current.Session.SessionID.ToString())
         {
@@ -363,7 +363,7 @@ public partial class LeadDownLoad : System.Web.UI.Page
         }
         if (strStateID != "")
         {
-            DataSet dsLeadsDownload = objLeadDownload.GetAllcotedLeadsDownload(ddlVehicleType.SelectedItem.Value, ddlCenter.SelectedItem.Value, txtStartDate.Text, txtEndDate.Text, strStateID, Convert.ToInt32(Session[Constants.USER_ID]).ToString());
+            DataSet dsLeadsDownload = objLeadDownload.GetAllcotedLeadsDownload(ddlVehicleType.SelectedItem.Value, ddlCenter.SelectedItem.Value, txtStartDate.Text, txtEndDate.Text, strStateID,Session[Constants.USER_ID].ToString());
 
             if (dsLeadsDownload != null)
             {
@@ -453,7 +453,7 @@ public partial class LeadDownLoad : System.Web.UI.Page
             }
         }
 
-        DataSet dsLeadsDownload = objLeadDownload.GetAllcotedLeadsDownload(ddlVehicleType.SelectedItem.Value, ddlCenter.SelectedItem.Value, txtStartDate.Text, txtEndDate.Text, strStateID, Convert.ToInt32(Session[Constants.USER_ID]).ToString());
+        DataSet dsLeadsDownload = objLeadDownload.GetAllcotedLeadsDownload(ddlVehicleType.SelectedItem.Value, ddlCenter.SelectedItem.Value, txtStartDate.Text, txtEndDate.Text, strStateID, (Session[Constants.USER_ID]).ToString());
 
         if (dsLeadsDownload != null)
         {
@@ -461,7 +461,7 @@ public partial class LeadDownLoad : System.Web.UI.Page
             {
                 if (dsLeadsDownload.Tables[0].Rows.Count > 0)
                 {
-                    objLeadDownload.UpdateLeadsAllcotedLeadsStatus(ddlVehicleType.SelectedItem.Value, ddlCenter.SelectedItem.Value, txtStartDate.Text, txtEndDate.Text, strStateID, Convert.ToInt32(Session[Constants.USER_ID]).ToString(), dsLeadsDownload.Tables[0].Rows.Count.ToString());
+                    objLeadDownload.UpdateLeadsAllcotedLeadsStatus(ddlVehicleType.SelectedItem.Value, ddlCenter.SelectedItem.Value, txtStartDate.Text, txtEndDate.Text, strStateID,(Session[Constants.USER_ID]).ToString(), dsLeadsDownload.Tables[0].Rows.Count.ToString());
                     //GetResultsData();
                     //DataSetToExcel.Convert(dsLeadsDownload, "UCE-CarLeads-" + ddlCenter.SelectedItem.Text + "-" + String.Format("{0:yyyy-MM-dd}", System.DateTime.Now.ToString()) + ".xls");
                     MpeShowLeads.Hide();

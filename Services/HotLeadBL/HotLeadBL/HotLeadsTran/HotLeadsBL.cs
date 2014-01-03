@@ -1587,7 +1587,7 @@ namespace HotLeadBL.HotLeadsTran
             }
         }
 
-        public DataSet GetUserSession(int USER_ID)
+        public DataSet GetUserSession(string USER_ID)
         {
             //Decalaring Users object collection
             DataSet dsUserModules = new DataSet();
@@ -1608,7 +1608,7 @@ namespace HotLeadBL.HotLeadsTran
                 //Set stored procedure to the command object
                 dbCommand = dbDatabase.GetStoredProcCommand(spNameString);
 
-                dbDatabase.AddInParameter(dbCommand, "@USER_ID", DbType.Int32, USER_ID);
+                dbDatabase.AddInParameter(dbCommand, "@USER_ID", DbType.String, USER_ID);
 
 
                 //Executing stored procedure

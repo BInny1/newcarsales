@@ -13,11 +13,10 @@
     <link href="css/menu1.css" rel="stylesheet" type="text/css" />
 
     <script src="js/overlibmws.js" type="text/javascript"></script>
-    
-   
+
     <script type="text/javascript" language="javascript">window.history.forward(1);</script>
 
-     <script src="Test/Calendar.js" type="text/javascript"></script>
+    <script src="Test/Calendar.js" type="text/javascript"></script>
 
     <script type="text/javascript" language="javascript" src="js/jquery-1.7.min.js"></script>
 
@@ -383,10 +382,11 @@ function checkAll(cb)
                     <ul class="mainUL">
                         <li class="parent active"><a href="#">Leads <span class="cert"></span></a>
                             <ul class="sub1">
-                                <li >
+                                <li>
                                     <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false" PostBackUrl="~/LeadsUpload.aspx"></asp:LinkButton></li><li>
                                 <li class="act">
-                                    <asp:LinkButton ID="LeadsDownLoad" runat="server" Text="Download" Enabled="false"   PostBackUrl="~/LeadDownLoad.aspx"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="LeadsDownLoad" runat="server" Text="Download" Enabled="false"
+                                        PostBackUrl="~/LeadDownLoad.aspx"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="Abondoned" runat="server" Text="Abondon" Enabled="false"></asp:LinkButton></li>
                                 <li>
@@ -492,7 +492,7 @@ function checkAll(cb)
         </div>
         <!-- Headder End  -->
         <!-- Content Start  -->
-        <div class="content">
+        <div class="content wid1000">
             <div class=" box1 box100p">
                 <h1 class="hed1 hed2">
                     <asp:UpdatePanel ID="updaproducts" runat="server">
@@ -525,8 +525,8 @@ function checkAll(cb)
                                                     </asp:DropDownList>
                                                 </td>
                                                 <td style="width: 90px;">
-                                                    Center location
-                                                   &nbsp; <asp:DropDownList ID="ddlCenter" runat="server">
+                                                    Center location &nbsp;
+                                                    <asp:DropDownList ID="ddlCenter" runat="server">
                                                     </asp:DropDownList>
                                                 </td>
                                                 <td style="width: 270px; padding-top: 2px;">
@@ -571,8 +571,8 @@ function checkAll(cb)
                                                 </td>
                                                 <td>
                                                     <br />
-                                                    <asp:Button runat="server" ID="btnGet" Text="Get" class="btn btn warning"
-                                                        OnClientClick="return Validate();" OnClick="btnGet_Click" />
+                                                    <asp:Button runat="server" ID="btnGet" Text="Get" class="btn btn-warning" OnClientClick="return Validate();"
+                                                        OnClick="btnGet_Click" />
                                                 </td>
                                             </tr>
                                         </table>
@@ -583,20 +583,19 @@ function checkAll(cb)
                                     <td>
                                         <br />
                                         <div id="dvLeads" runat="server" style="width: 450px; float: left;" visible="false">
-                                            <h3>
-                                                Center wise leads</h3>
-                                            <div style="float: right">
-                                                <asp:Button runat="server" ID="btnView" Text="Lead to view/download" class="g-button g-button-submit"
-                                                    OnClick="btnView_Click" OnClientClick="return ClientCheck();" />&nbsp;
-                                                <%--    <asp:Button runat="server" ID="AllDownloaded" Text="Download All" class="g-button g-button-submit"
-                                                    OnClick="AllDownloaded_Click" />--%>
-                                            </div>
+                                            <h4>
+                                                Center wise leads  <asp:Button runat="server" ID="btnView" Text="Lead to view/download" class="btn btn-default floarR"
+                                                    OnClick="btnView_Click" OnClientClick="return ClientCheck();" />&nbsp;</h4>
+                                           
                                             <br />
-                                            <table style="width: 450px;" class="scrollTable noPad">
+                                            <table style="width: 450px;" class="table table-hover table-striped MB0 table1">
                                                 <asp:Repeater ID="rptrDownload" runat="server" OnItemCommand="rptrDownload_ItemCommand"
                                                     OnItemDataBound="rptrDownload_ItemDataBound">
                                                     <HeaderTemplate>
-                                                        <tr>
+                                                        <tr class="tbHed">
+                                                         <th>
+                                                                <asp:CheckBox ID="chkBxHeader" onclick="javascript:checkAll(this);" runat="server" />
+                                                            </th>
                                                             <th style="width: 40px;">
                                                                 State
                                                             </th>
@@ -609,13 +608,14 @@ function checkAll(cb)
                                                             <th>
                                                                 Leads to download
                                                             </th>
-                                                            <th>
-                                                                <asp:CheckBox ID="chkBxHeader" onclick="javascript:checkAll(this);" runat="server" />
-                                                            </th>
+                                                           
                                                         </tr>
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
-                                                        <tr>
+                                                        <tr >
+                                                         <td>
+                                                                <asp:CheckBox ID="chk" runat="server"></asp:CheckBox>
+                                                            </td>
                                                             <td>
                                                                 <asp:Label ID="lblStateCode" runat="server" Text='<%# Bind("State") %>'></asp:Label>
                                                                 <asp:HiddenField ID="lblStateID" runat="server" Value='<%# Bind("State_ID") %>'>
@@ -630,9 +630,7 @@ function checkAll(cb)
                                                             <td>
                                                                 <asp:Label ID="lblTobeDownload" runat="server" Text='<%# Bind("ToDownload") %>'></asp:Label>
                                                             </td>
-                                                            <td>
-                                                                <asp:CheckBox ID="chk" runat="server"></asp:CheckBox>
-                                                            </td>
+                                                           
                                                         </tr>
                                                     </ItemTemplate>
                                                 </asp:Repeater>
@@ -657,105 +655,6 @@ function checkAll(cb)
             &nbsp;</div>
         <div style="height: 10px;">
         </div>
-        <div class="main">
-            <table style="width: 720px;">
-                <tr>
-                    <td style="vertical-align: top;">
-                    </td>
-                </tr>
-            </table>
-            <cc1:ModalPopupExtender ID="MpeShowLeads" runat="server" PopupControlID="QcAdding"
-                BackgroundCssClass="ModalPopupBG" TargetControlID="hdnQcAdding" CancelControlID="btnCancel">
-            </cc1:ModalPopupExtender>
-            <asp:HiddenField ID="hdnQcAdding" runat="server" />
-            <div id="QcAdding" class="PopUpHolder" style="display: none;">
-                <div class="main" style="width: 1080px; margin: 60px auto 0 auto;">
-                    <h4>
-                        <div style="float: left">
-                            Lead View
-                        </div>
-                        Total of
-                        <asp:Label ID="lblLeadCnt" runat="server"></asp:Label>
-                        leads
-                        <div style="float: right">
-                            <asp:Button ID="btnDownload" runat="server" Text="Download" CssClass="g-button g-button-submit"
-                                OnClick="btnDownload_Click" />&nbsp;
-                            <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="g-button g-button-submit" />
-                        </div>
-                    </h4>
-                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                        <ContentTemplate>
-                            <table style="width: 100%;" cellpadding="0" cellspacing="0">
-                                <tr>
-                                    <td>
-                                        <asp:Repeater ID="rptrLeads" runat="server" OnItemDataBound="rptrLeads_ItemDataBound">
-                                            <HeaderTemplate>
-                                                <tr>
-                                                    <th style="width: 80px;">
-                                                        Phone#
-                                                    </th>
-                                                    <th>
-                                                        Price
-                                                    </th>
-                                                    <th>
-                                                        Mileage
-                                                    </th>
-                                                    <th>
-                                                        State
-                                                    </th>
-                                                    <th>
-                                                        City
-                                                    </th>
-                                                    <th>
-                                                        Zip
-                                                    </th>
-                                                    <th>
-                                                        URL
-                                                    </th>
-                                                    <th>
-                                                        Heading
-                                                    </th>
-                                                </tr>
-                                            </HeaderTemplate>
-                                            <ItemTemplate>
-                                                <tr>
-                                                    <td>
-                                                        <asp:LinkButton ID="lblIssuanceBatchID" runat="server" Text='<%# Bind("Phone") %>'></asp:LinkButton>
-                                                    </td>
-                                                    <td>
-                                                        <asp:Label ID="lblTobeDownload" runat="server" Text='<%# Bind("Price") %>'></asp:Label>
-                                                    </td>
-                                                    <td>
-                                                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("Mileage") %>'></asp:Label>
-                                                    </td>
-                                                    <td>
-                                                        <asp:Label ID="Label3" runat="server" Text='<%# Bind("State") %>'></asp:Label>
-                                                    </td>
-                                                    <td>
-                                                        <asp:Label ID="Label4" runat="server" Text='<%# Bind("City") %>'></asp:Label>
-                                                    </td>
-                                                    <td>
-                                                        <asp:Label ID="Label5" runat="server" Text='<%# Bind("Zip") %>'></asp:Label>
-                                                    </td>
-                                                    <td>
-                                                        <asp:Label ID="Label6" runat="server" Text='<%# Bind("URL") %>'></asp:Label>
-                                                    </td>
-                                                    <td>
-                                                        <asp:Label ID="Label8" runat="server" Text='<%# Bind("Heading") %>'></asp:Label>
-                                                    </td>
-                                                </tr>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
-                                    </td>
-                                </tr>
-                            </table>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                    <div class="clearFix">
-                        &nbsp;</div>
-                </div>
-            </div>
-        </div>
     </div>
     <!-- Footer Start  -->
     <div class="footer">
@@ -767,14 +666,15 @@ function checkAll(cb)
         CancelControlID="btnOk">
     </cc1:ModalPopupExtender>
     <asp:HiddenField ID="hdnExists" runat="server" />
-    <div id="divExists" class="alert" style="display: none">
-        <h4 id="H2">
+    <div id="divExists" class="popup" style="display: none; width: 450px;" >
+        <h2 id="H2">
             Alert
-            <asp:Button ID="btnExustCls" class="cls" runat="server" Text="" BorderWidth="0" />
+        
+                <asp:ImageButton ID="btnExustCls" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
             <!-- <div class="cls">
             </div> -->
-        </h4>
-        <div class="data">
+      
+        <div class="content">
             <p>
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
@@ -783,6 +683,95 @@ function checkAll(cb)
                 </asp:UpdatePanel>
             </p>
             <asp:Button ID="btnOk" class="btn" runat="server" Text="Ok" />
+        </div>
+    </div>
+    <!-- Starts -->
+    <cc1:ModalPopupExtender ID="MpeShowLeads" runat="server" PopupControlID="tblChangePW2"
+        BackgroundCssClass="ModalPopupBG" TargetControlID="HiddenField1" CancelControlID="ImageButton1">
+    </cc1:ModalPopupExtender>
+    <asp:HiddenField ID="HiddenField1" runat="server" />
+    <div id="tblChangePW2" style="display: none; width: 1000px; height: 450px;" class="popup">
+        <h2>
+            Lead View Total of
+            <asp:Label ID="lblLeadCnt" runat="server"></asp:Label>
+            leads
+          
+            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
+        <div class="content">
+            <div class="scroll1" style="border: 2px solid #CCC">
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                        <table class="table table-hover table-striped MB0 table1">
+                            <tr> 
+                                <td>
+                                    <asp:Repeater ID="rptrLeads" runat="server" OnItemDataBound="rptrLeads_ItemDataBound">
+                                        <HeaderTemplate>
+                                            <tr  class="tbHed">
+                                                <th style="width: 80px;">
+                                                    Phone#
+                                                </th>
+                                                <th>
+                                                    Price
+                                                </th>
+                                                <th>
+                                                    Mileage
+                                                </th>
+                                                <th>
+                                                    State
+                                                </th>
+                                                <th>
+                                                    City
+                                                </th>
+                                                <th>
+                                                    Zip
+                                                </th>
+                                                <th>
+                                                    URL
+                                                </th>
+                                                <th>
+                                                    Heading
+                                                </th>
+                                            </tr>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <tr>
+                                                <td>
+                                                    <asp:LinkButton ID="lblIssuanceBatchID" runat="server" Text='<%# Bind("Phone") %>'></asp:LinkButton>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="lblTobeDownload" runat="server" Text='<%# Bind("Price") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("Mileage") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("State") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("City") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="Label5" runat="server" Text='<%# Bind("Zip") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="Label6" runat="server" Text='<%# Bind("URL") %>'></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label ID="Label8" runat="server" Text='<%# Bind("Heading") %>'></asp:Label>
+                                                </td>
+                                            </tr>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </td>
+                            </tr>
+                        </table>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+            <div>
+              <asp:Button ID="btnDownload" runat="server" Text="Download" CssClass="btn btn-warning " 
+                OnClick="btnDownload_Click" />&nbsp;
+            </div>
         </div>
     </div>
     </form>

@@ -291,7 +291,8 @@
                                 <li class="act">
                                     <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false" PostBackUrl="~/LeadsUpload.aspx"></asp:LinkButton></li><li>
                                 <li>
-                                    <asp:LinkButton ID="LeadsDownLoad" runat="server" Text="Download" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="LeadsDownLoad" runat="server" Text="Download" Enabled="false"
+                                        PostBackUrl="~/LeadDownLoad.aspx"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="Abondoned" runat="server" Text="Abondon" Enabled="false"></asp:LinkButton></li>
                                 <li>
@@ -406,207 +407,201 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </h1>
+                <div class="content wid1000">
+                    <div class=" box1 box100p">
+                        <table>
+                            <tr>
+                                <td  align="center">
+                                    Vehicle Category <span class="star">*</span>
+                                </td>
+                                <td style="width:200px;">
+                                    <asp:DropDownList ID="ddlVehicleType" runat="server" AppendDataBoundItems="true">
+                                        <asp:ListItem Text="Select" Value="0"></asp:ListItem>
+                                        <asp:ListItem Text="Cars" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="RVs" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="Bikes" Value="3"></asp:ListItem>
+                                        <asp:ListItem Text="Boats" Value="4"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </td>
+                                <td>
+                                    <asp:LinkButton runat="server" ID="LinkButton4" Text="Leads UpLoad History" PostBackUrl="~/LeadsUploadHistory.aspx"
+                                        Style="color: blue; text-decoration: underline;" CssClass="floarR"></asp:LinkButton>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td  align="center">
+                                    Select Sale file <span class="star">*</span>
+                                </td>
+                                <td >
+                                    <asp:FileUpload ID="fuAttachments" runat="server" />
+                                    &nbsp;
+                                    <asp:LinkButton runat="server" ID="lnkRefQCText" Text="Help" onmouseover="return overlib1(document.getElementById('SalesUploadHelp').innerHTML,STICKY, MOUSEOFF, CENTER, ABOVE,OFFSETX,30,  WIDTH, 260,  CSSCLASS,TEXTFONTCLASS,'summaryfontClass',FGCLASS,'summaryfgClass',BGCLASS,'summarybgClass',CAPTIONFONTCLASS,'summarycapfontClass', CLOSEFONTCLASS, 'summarycapfontClass');"
+                                        onmouseout="return nd1(4000);" Font-Size="11px"></asp:LinkButton>
+                                    <br />
+                                    <small style="color: #777"><i>( Max 8000 records can upload )</i></small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                    # of Records <span class="star">*</span>
+                                </td>
+                                <td colspan="2">
+                                    <asp:TextBox ID="txtNoofRecords" runat="server" Width="145px" CssClass="sample4"
+                                        MaxLength="4"></asp:TextBox><br />
+                                    <asp:Label ID="lblErrorMsg" runat="server" Style="color: red; display: inline-block;
+                                        line-height: 30px;"></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    &nbsp;
+                                </td>
+                                <td>
+                                    <asp:Button runat="server" ID="btnSubmit" Text="Process" CssClass="btn btn-warning"
+                                        OnClick="btnSubmit_Click" />
+                                    <asp:Button runat="server" ID="btnUpload" Text="Upload" Enabled="false" CssClass="btn btn-default"
+                                        OnClick="btnUpload_Click" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
                 <div class="inn">
                     <!-- Start  -->
-             
-                            <table style="width: 98%;">
-                                <tr>
-                                    <td>
-                                        <table width="97%">
-                                            <tr>
-                                                <td style="vertical-align: top; width: 200px;">
-                                                    Vehicle Category <span class="star">*</span>
+                    <table style="width: 98%;">
+                        <tr>
+                            <td>
+                                <div style="width: 100%;" id="divresults" runat="server">
+                                    <div style="width: 750px; position: relative; padding: 0 3px; height: 1px" class=" "
+                                        class="table table-hover table-striped">
+                                        <table id="Header" class="table table-hover table-striped MB0 table1">
+                                            <tr class="tbHed">
+                                                <td width="200px">
+                                                    <asp:Label ID="lblPhoneno" runat="server" Text="Phoneno"></asp:Label>
                                                 </td>
-                                                <td style="vertical-align: top; width: 200px;">
-                                                    <asp:DropDownList ID="ddlVehicleType" runat="server" AppendDataBoundItems="true">
-                                                        <asp:ListItem Text="Select" Value="0"></asp:ListItem>
-                                                        <asp:ListItem Text="Cars" Value="1"></asp:ListItem>
-                                                        <asp:ListItem Text="RVs" Value="2"></asp:ListItem>
-                                                        <asp:ListItem Text="Bikes" Value="3"></asp:ListItem>
-                                                        <asp:ListItem Text="Boats" Value="4"></asp:ListItem>
-                                                    </asp:DropDownList>
+                                                <td width="180px">
+                                                    Price
                                                 </td>
-                                                <td style="width: 350px; text-align: right" rowspan="4">
-                                                    <asp:LinkButton runat="server" ID="LinkButton4" Text="Leads UpLoad History" PostBackUrl="~/LeadsUploadHistory.aspx"
-                                                        Style="color: blue; text-decoration: underline;"></asp:LinkButton>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="vertical-align: top; width: 200px;">
-                                                    Select Sale file <span class="star">*</span>
-                                                </td>
-                                                <td style="vertical-align: top; width: 200px;">
-                                                    <asp:FileUpload ID="fuAttachments" runat="server" />
-                                                    &nbsp;
-                                                    <asp:LinkButton runat="server" ID="lnkRefQCText" Text="Help" onmouseover="return overlib1(document.getElementById('SalesUploadHelp').innerHTML,STICKY, MOUSEOFF, CENTER, ABOVE,OFFSETX,30,  WIDTH, 260,  CSSCLASS,TEXTFONTCLASS,'summaryfontClass',FGCLASS,'summaryfgClass',BGCLASS,'summarybgClass',CAPTIONFONTCLASS,'summarycapfontClass', CLOSEFONTCLASS, 'summarycapfontClass');"
-                                                        onmouseout="return nd1(4000);" Font-Size="11px"></asp:LinkButton>
-                                                    <br />
-                                                    <small style="color: #777"><i>( Max 8000 records can upload )</i></small>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
+                                                <td width="250px">
+                                                    <asp:Label ID="lblHeader" runat="server" Text="Header"></asp:Label>
                                                 </td>
                                                 <td>
+                                                    <asp:Label ID="lnkCustomerEmail" runat="server" Text="Description"></asp:Label>
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    # of Records <span class="star">*</span>
+                                                <td width="600px">
+                                                    <asp:Label ID="lnkLanguage" runat="server" Text="URL"></asp:Label>
                                                 </td>
-                                                <td colspan="2">
-                                                    <asp:TextBox ID="txtNoofRecords" runat="server" Width="145px" CssClass="sample4"
-                                                        MaxLength="4"></asp:TextBox><br />
-                                                    <asp:Label ID="lblErrorMsg" runat="server" Style="color: red; display: inline-block;
-                                                        line-height: 30px;"></asp:Label>
+                                                <td width="200px">
+                                                    <asp:Label ID="lblCity" runat="server" Text="City"></asp:Label>
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    &nbsp;
-                                                </td>
-                                                <td>
-                                                    <asp:Button runat="server" ID="btnSubmit" Text="Process" CssClass="btn btn-warning"
-                                                        OnClick="btnSubmit_Click" />
-                                                    <asp:Button runat="server" ID="btnUpload" Text="Upload" Enabled="false" CssClass="btn btn-default"
-                                                        OnClick="btnUpload_Click" />
+                                                <td width="160px">
+                                                    <asp:Label ID="lblState" runat="server" Text="State"></asp:Label>
                                                 </td>
                                             </tr>
                                         </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div style="width: 100%;" id="divresults" runat="server">
-                                            <div style="width: 750px; position: relative; padding: 0 3px; height: 1px" class=" "
-                                                cssclass="table table-hover table-striped"">
-                                                <table id="Header" runat="server" cssclass="table table-hover table-striped" cellpadding="0"
-                                                    cellspacing="0" style="position: absolute; top: 2px; width: 950px; background: #fff;
-                                                    border-top: #fff 2px solid;">
-                                                    <tr class="tbHed">
-                                                        <td width="100px">
-                                                            <asp:Label ID="lblPhoneno" runat="server" Text="Phoneno"></asp:Label>
-                                                        </td>
-                                                        <td width="80px">
-                                                            Price
-                                                        </td>
-                                                        <td width="150px">
-                                                            <asp:Label ID="lblHeader" runat="server" Text="Header"></asp:Label>
-                                                        </td>
-                                                        <td>
-                                                            <asp:Label ID="lnkCustomerEmail" runat="server" Text="Description"></asp:Label>
-                                                        </td>
-                                                        <td width="160px">
-                                                            <asp:Label ID="lnkLanguage" runat="server" Text="URL"></asp:Label>
-                                                        </td>
-                                                        <td width="100px">
-                                                            <asp:Label ID="lblCity" runat="server" Text="City"></asp:Label>
-                                                        </td>
-                                                        <td width="60px">
-                                                            <asp:Label ID="lblState" runat="server" Text="State"></asp:Label>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                            <div style="width: 100%; overflow-y: scroll; overflow-x: hidden; padding: 26px 3px 3px 3px;
-                                                border: #ccc 1px solid; height: 400px">
-                                                <asp:Panel ID="pnl1" Width="100%" runat="server">
-                                                    <asp:UpdatePanel ID="UpdPnlGrid" runat="server">
-                                                        <ContentTemplate>
-                                                            <asp:GridView ID="grdErrors" runat="server" CellPadding="0" TabIndex="8" CssClass="scrollTable"
-                                                                Width="99%" GridLines="Both" AutoGenerateColumns="False">
-                                                                <HeaderStyle CssClass="table table-hover table-striped" />
-                                                                <PagerSettings Position="Top" />
-                                                                <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                                                                <RowStyle CssClass="row1" />
-                                                                <AlternatingRowStyle CssClass="row2" />
-                                                                <Columns>
-                                                                    <asp:BoundField DataField="RowNo" HeaderText="Row No" HeaderStyle-ForeColor="black"
-                                                                        HtmlEncode="False" meta:resourcekey="RowNo" SortExpression="RowNo">
-                                                                        <ItemStyle Width="10%" HorizontalAlign="Center" />
-                                                                    </asp:BoundField>
-                                                                    <asp:BoundField DataField="Phoneno" HeaderText="Phone No" HeaderStyle-ForeColor="black"
-                                                                        HtmlEncode="False">
-                                                                        <ItemStyle Width="10%" />
-                                                                    </asp:BoundField>
-                                                                    <asp:BoundField DataField="Error" HeaderText="Error" HeaderStyle-ForeColor="black"
-                                                                        HtmlEncode="False" meta:resourcekey="Error" SortExpression="Error">
-                                                                        <ItemStyle Width="50%" HorizontalAlign="Left" />
-                                                                    </asp:BoundField>
-                                                                </Columns>
-                                                            </asp:GridView>
-                                                            <input style="width: 91px" id="txthdnSortOrder" type="hidden" runat="server" enableviewstate="true" />
-                                                            <input style="width: 40px" id="txthdnSortColumnId" type="hidden" runat="server" enableviewstate="true" />
-                                                            <asp:GridView Width="950px" ID="grdIntroInfo" runat="server" CellSpacing="0" CellPadding="0"
-                                                                AutoGenerateColumns="False" GridLines="Both" ShowHeader="false">
-                                                                <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
-                                                                <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
-                                                                <PagerSettings Position="Top" />
-                                                                <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
-                                                                <HeaderStyle CssClass="table table-hover table-striped" />
-                                                                <PagerSettings Position="Top" />
-                                                                <RowStyle CssClass="row1" />
-                                                                <AlternatingRowStyle CssClass="row2" />
-                                                                <Columns>
-                                                                    <asp:TemplateField>
-                                                                        <ItemTemplate>
-                                                                            <asp:Label ID="lblPhoneno" runat="server" Text='<%# Bind("PhoneNo") %>'></asp:Label>
-                                                                        </ItemTemplate>
-                                                                        <ItemStyle HorizontalAlign="Left" Width="100px" />
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField>
-                                                                        <ItemTemplate>
-                                                                            <asp:Label ID="lblPrice" runat="server" Text='<%# Bind("Price") %>'></asp:Label>
-                                                                        </ItemTemplate>
-                                                                        <ItemStyle HorizontalAlign="Left" Width="80px" />
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField>
-                                                                        <ItemTemplate>
-                                                                            <asp:Label ID="lblHeader" runat="server" Text='<%# GenFunc.WrapTextByMaxCharacters(Eval("Header"),20)%>'></asp:Label>
-                                                                        </ItemTemplate>
-                                                                        <ItemStyle HorizontalAlign="Left" Width="150px" />
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField>
-                                                                        <ItemTemplate>
-                                                                            <asp:Label ID="lblDescription" runat="server" Text='<%# GenFunc.WrapTextByMaxCharacters(Eval("Description"),35)%>'></asp:Label>
-                                                                            <asp:HiddenField ID="hdnDescription" runat="server" Value='<%# Eval("Description")%>'>
-                                                                            </asp:HiddenField>
-                                                                        </ItemTemplate>
-                                                                        <ItemStyle HorizontalAlign="Left" />
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField>
-                                                                        <ItemTemplate>
-                                                                            <asp:HyperLink ID="lblURL" runat="server" NavigateUrl='<%# Eval("URL")%>' Text='<%# GenFunc.WrapTextByMaxCharacters(Eval("URL"),25)%>'></asp:HyperLink>
-                                                                        </ItemTemplate>
-                                                                        <ItemStyle HorizontalAlign="Left" Width="160px" />
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField>
-                                                                        <ItemTemplate>
-                                                                            <asp:Label ID="lblCity" runat="server" Text='<%# Eval("City")%>'></asp:Label>
-                                                                        </ItemTemplate>
-                                                                        <ItemStyle HorizontalAlign="Left" Width="100px" />
-                                                                    </asp:TemplateField>
-                                                                    <asp:TemplateField>
-                                                                        <ItemTemplate>
-                                                                            <asp:Label ID="lblState" runat="server" Text='<%# Eval("State")%>'></asp:Label>
-                                                                        </ItemTemplate>
-                                                                        <ItemStyle HorizontalAlign="Left" Width="60px" />
-                                                                    </asp:TemplateField>
-                                                                </Columns>
-                                                            </asp:GridView>
-                                                        </ContentTemplate>
-                                                    </asp:UpdatePanel>
-                                                </asp:Panel>
-                                            </div>
-                                            <div class="clear" style="height: 12px;">
-                                                &nbsp;</div>
-                                            <asp:UpdatePanel ID="UpdatePane1BtnRefresh" runat="server">
+                                    </div>
+                                    <div style="width: 100%; overflow-y: scroll; overflow-x: hidden; padding: 26px 3px 3px 3px;
+                                        border: #ccc 1px solid; height: 400px">
+                                        <asp:Panel ID="pnl1" Width="100%" runat="server">
+                                            <asp:UpdatePanel ID="UpdPnlGrid" runat="server">
+                                                <ContentTemplate>
+                                                    <asp:GridView ID="grdErrors" runat="server" CellPadding="0" TabIndex="8" CssClass="scrollTable table table-hover table-striped"
+                                                        Width="99%" GridLines="Both" AutoGenerateColumns="False">
+                                                        <HeaderStyle CssClass="" />
+                                                        <PagerSettings Position="Top" />
+                                                        <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
+                                                        <RowStyle CssClass="row1" />
+                                                        <AlternatingRowStyle CssClass="row2" />
+                                                        <Columns>
+                                                            <asp:BoundField DataField="RowNo" HeaderText="Row No" HeaderStyle-ForeColor="black"
+                                                                HtmlEncode="False" meta:resourcekey="RowNo" SortExpression="RowNo">
+                                                                <ItemStyle Width="10%" HorizontalAlign="Center" />
+                                                            </asp:BoundField>
+                                                            <asp:BoundField DataField="Phoneno" HeaderText="Phone No" HeaderStyle-ForeColor="black"
+                                                                HtmlEncode="False">
+                                                                <ItemStyle Width="10%" />
+                                                            </asp:BoundField>
+                                                            <asp:BoundField DataField="Error" HeaderText="Error" HeaderStyle-ForeColor="black"
+                                                                HtmlEncode="False" meta:resourcekey="Error" SortExpression="Error">
+                                                                <ItemStyle Width="50%" HorizontalAlign="Left" />
+                                                            </asp:BoundField>
+                                                        </Columns>
+                                                    </asp:GridView>
+                                                    <input style="width: 91px" id="txthdnSortOrder" type="hidden" runat="server" enableviewstate="true" />
+                                                    <input style="width: 40px" id="txthdnSortColumnId" type="hidden" runat="server" enableviewstate="true" />
+                                                    <asp:GridView Width="950px" ID="grdIntroInfo" runat="server" CellSpacing="0" CellPadding="0"
+                                                        CssClass="table table-hover table-striped  MB0 noBorder" AutoGenerateColumns="False"
+                                                        ShowFooter="true" GridLines="None">
+                                                        <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
+                                                        <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
+                                                        <HeaderStyle CssClass="tbHed" />
+                                                        <PagerSettings Position="Top" />
+                                                        <FooterStyle BackColor="#C6C3C6" CssClass="tbHed center" />
+                                                        <Columns>
+                                                            <asp:TemplateField>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblPhoneno" runat="server" Text='<%# Bind("PhoneNo") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Left" Width="100px" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblPrice" runat="server" Text='<%# Bind("Price") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Left" Width="80px" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblHeader" runat="server" Text='<%# GenFunc.WrapTextByMaxCharacters(Eval("Header"),20)%>'></asp:Label>
+                                                                </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Left" Width="150px" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblDescription" runat="server" Text='<%# GenFunc.WrapTextByMaxCharacters(Eval("Description"),35)%>'></asp:Label>
+                                                                    <asp:HiddenField ID="hdnDescription" runat="server" Value='<%# Eval("Description")%>'>
+                                                                    </asp:HiddenField>
+                                                                </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Left" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField>
+                                                                <ItemTemplate>
+                                                                    <asp:HyperLink ID="lblURL" runat="server" NavigateUrl='<%# Eval("URL")%>' Text='<%# GenFunc.WrapTextByMaxCharacters(Eval("URL"),25)%>'></asp:HyperLink>
+                                                                </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Left" Width="1000px" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblCity" runat="server" Text='<%# Eval("City")%>'></asp:Label>
+                                                                </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Left" Width="100px" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblState" runat="server" Text='<%# Eval("State")%>'></asp:Label>
+                                                                </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Left" Width="60px" />
+                                                            </asp:TemplateField>
+                                                        </Columns>
+                                                    </asp:GridView>
+                                                </ContentTemplate>
                                             </asp:UpdatePanel>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                   
+                                        </asp:Panel>
+                                    </div>
+                                    <div class="clear" style="height: 12px;">
+                                        &nbsp;</div>
+                                    <asp:UpdatePanel ID="UpdatePane1BtnRefresh" runat="server">
+                                    </asp:UpdatePanel>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                     <!-- End  -->
                 </div>
             </div>

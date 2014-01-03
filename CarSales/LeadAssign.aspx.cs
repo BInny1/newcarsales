@@ -175,7 +175,7 @@ public partial class LeadAssign1 : System.Web.UI.Page
     private void LoadUserRights()
     {
         DataSet dsSession = new DataSet();
-        dsSession = objHotLeadBL.GetUserSession(Convert.ToInt32(Session[Constants.USER_ID]));
+        dsSession = objHotLeadBL.GetUserSession((Session[Constants.USER_ID].ToString()));
 
         if (dsSession.Tables[0].Rows[0]["SessionID"].ToString() != HttpContext.Current.Session.SessionID.ToString())
         {
