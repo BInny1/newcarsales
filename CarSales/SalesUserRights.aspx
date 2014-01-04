@@ -130,7 +130,7 @@
 
     <script type="text/javascript">
         function Confirm() {
-     var   confirm_value = document.createElement("INPUT");
+            var confirm_value = document.createElement("INPUT");
             confirm_value.type = "hidden";
             confirm_value.name = "confirm_value";
             if (confirm("Do you want to save data?")) {
@@ -386,7 +386,7 @@
                                 <asp:UpdatePanel ID="UpdaCLocations" runat="server">
                                     <ContentTemplate>
                                         User Rights
-                                        <asp:Label ID="lblcenters" Text="Locations" runat="server" Style="padding-left: 700px;"></asp:Label>
+                                        <asp:Label ID="lblcenters" Text="Location" runat="server" Style="padding-left: 700px;"></asp:Label>
                                         <asp:DropDownList ID="ddlcenters" runat="server" Style="width: 150px;" OnSelectedIndexChanged="ddlcenters_SelectedIndexChanged"
                                             AutoPostBack="true">
                                         </asp:DropDownList>
@@ -580,6 +580,9 @@
     <div id="tblChangePW" style="display: none; width: 550px;" class="popup">
         <h2>
             Update Rights
+             <asp:LinkButton ID="btndelete" runat="server" Text="Delete User" CssClass=" underline"
+                       style="padding-left: 255px;font-size: 14px;"  OnClick="OnConfirm" OnClientClick="Confirm()" ></asp:LinkButton>
+            
             <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
         <div class="content">
             <asp:UpdatePanel ID="p1" runat="server">
@@ -641,8 +644,7 @@
                                         <ContentTemplate>
                                             <asp:Button ID="btnAddVehicle" CssClass="btn btn-warning" runat="server" Text="Update"
                                                 OnClick="btnAddVehicle_Click" />&nbsp;
-                                            <asp:Button ID="btndelete" runat="server" Text="Delete" CssClass="btn btn-danger "
-                                                OnClick="OnConfirm" OnClientClick="Confirm()" />
+                                           
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </div>
@@ -663,6 +665,7 @@
     <div id="tblChangePW1" style="display: none; width: 950px; height: 470px;" class="popup">
         <h2>
             New Employees
+            
             <asp:ImageButton ID="img1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
         <div class="content" style="">
             <div class="scroll1" style="border: 2px solid #CCC">

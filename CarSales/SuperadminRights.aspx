@@ -366,7 +366,7 @@
                         <div class="box1 boxBlue">
                             <h1 class="hed1 hed2">
                                 Super Admin Rights
-                                <asp:Label ID="lblcenters" Text="Locations" runat="server" Style="padding-left: 700px;"></asp:Label>
+                                <asp:Label ID="lblcenters" Text="Location" runat="server" Style="padding-left: 700px;"></asp:Label>
                                 <asp:DropDownList ID="ddlcenters" runat="server" Style="width: 150px;" OnSelectedIndexChanged="ddlcenters_SelectedIndexChanged"
                                     AutoPostBack="true">
                                 </asp:DropDownList>

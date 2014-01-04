@@ -493,7 +493,7 @@ function checkAll(cb)
         <!-- Headder End  -->
         <!-- Content Start  -->
         <div class="content wid1000">
-            <div class=" box1 box100p">
+            <div class=" box1 boxBlue">
                 <h1 class="hed1 hed2">
                     <asp:UpdatePanel ID="updaproducts" runat="server">
                         <ContentTemplate>

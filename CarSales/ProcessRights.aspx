@@ -365,7 +365,7 @@
                         <div class="box1 boxBlue">
                             <h1 class="hed1 hed2" style="margin-bottom:0">
                                 Process
-                                <asp:Label ID="lblcenters" Text="Locations" runat="server" Style="padding-left: 700px;"></asp:Label>
+                                <asp:Label ID="lblcenters" Text="Location" runat="server" Style="padding-left: 700px;"></asp:Label>
                                 <asp:DropDownList ID="ddlcenters" runat="server" Style="width: 150px;" OnSelectedIndexChanged="ddlcenters_SelectedIndexChanged"
                                     AutoPostBack="true">
                                 </asp:DropDownList>
@@ -534,6 +534,8 @@
     <div id="tblChangePW" style="display: none; width: 550px;" class="popup">
         <h2>
             Update Rights
+             <asp:LinkButton ID="btndelete" runat="server" Text="Delete User" style="padding-left: 255px;font-size: 14px;"
+                                     CssClass="underline"           OnClick="btndelete_Click" ></asp:LinkButton>
             <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
         <div class="content">
             <asp:UpdatePanel ID="p1" runat="server">
@@ -569,11 +571,11 @@
                                         <ContentTemplate>
                                             <asp:Button ID="btnAddVehicle" CssClass="btn  btn-warning" runat="server" Text="Update"
                                                 OnClick="btnAddVehicle_Click" />&nbsp;
-                                                  <asp:Button ID="btndelete" runat="server" Text="Delete" CssClass="btn btn-danger" OnClick="btndelete_Click"/>
+                                                  
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </div>
-                                <asp:Button ID="btnCancelPW" CssClass="btn btn-default" runat="server" Text="Cancel" Visible="false"
+                                <asp:Button ID="btnCancelPW" CssClass="btn btn-default" runat="server" Text="Cancel" 
                                     OnClientClick="return ClosePopup10();" />
                             </td>
                         </tr>

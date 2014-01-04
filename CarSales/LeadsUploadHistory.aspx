@@ -223,9 +223,9 @@
                     Text="Sales Ticker"></asp:LinkButton>
                 <div class="menu1">
                     <ul class="mainUL">
-                        <li class="parent"><a href="#">Leads <span class="cert"></span></a>
+                        <li class="parent active"><a href="#">Leads <span class="cert"></span></a>
                             <ul class="sub1">
-                                <li>
+                                <li class="act">
                                     <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false" PostBackUrl="~/LeadsUpload.aspx"></asp:LinkButton></li><li>
                                 <li>
                                     <asp:LinkButton ID="LeadsDownLoad"  runat="server"   Text="Download"  Enabled="false"    PostBackUrl="~/LeadDownLoad.aspx"></asp:LinkButton></li>
@@ -276,7 +276,7 @@
                                     <asp:LinkButton ID="Executive" runat="server" Text="Exceutive" Enabled="false"></asp:LinkButton></li>
                             </ul>
                         </li>
-                        <li class="parent active"><a href="#">Admin <span class="cert"></span></a>
+                        <li class="parent "><a href="#">Admin <span class="cert"></span></a>
                             <ul class="sub1">
                                 <li><a href="#">Leads <span class="cert"></span></a>
                                     <ul class="sub2">
@@ -310,7 +310,7 @@
                                             <asp:LinkButton ID="BrandsAdmin" runat="server" Text="Brands" PostBackUrl="~/Brands.aspx"
                                                 Enabled="false"></asp:LinkButton></li>
                                         <li class="last">
-                                        <li class="act">
+                                        <li >
                                             <asp:LinkButton ID="BrnadsProducts" runat="server" Text="Products" PostBackUrl="~/Products.aspx"
                                                 Enabled="true"></asp:LinkButton></li>
                                     </ul>
@@ -334,18 +334,18 @@
         </div>
         <!-- Headder End  -->
         <!-- Content Start  -->
-        <div class="content wid1000">
-            <div class=" box1 box100p">
-                <h1 class="hed1 hed2">
+        <div class="content ">
+            <div class=" box1 boxBlue">
+                <h1 class="hed1 hed2 "  style="margin-bottom: 0 ">
                     <asp:UpdatePanel ID="updaproducts" runat="server">
                         <ContentTemplate>
                             Leads Upload
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </h1>
-                <div class="inn">
+                <div class="inn"  >
                     <!-- Start  -->
-                    <table style="width: 720px;">
+                    <table style="width: 720px;" >
                         <tr>
                             <td style="vertical-align: top;">
                                 <table style="width: 100%;" cellpadding="0" cellspacing="0">

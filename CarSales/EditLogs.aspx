@@ -39,6 +39,10 @@
     
      -->
 
+    <script src="Static/JS/calendar.js" type="text/javascript"></script>
+
+    <link href="Static/Css/calender.css" rel="stylesheet" type="text/css" />
+
     <script type="text/javascript" language="javascript">window.history.forward(1);</script>
 
     <script type="text/javascript">
@@ -122,6 +126,88 @@
      return false;
    }
        
+      
+ function ValidateData() {
+            var valid = true;
+            var today = new Date();
+            var month = today.getMonth() + 1
+            var day = today.getDate()
+            var year = today.getFullYear()
+            today = month + "/" + day + "/" + year
+            var today = new Date(today);
+            var SDate = document.getElementById('<%= txtStartDate.ClientID %>').value;
+            var EDate = document.getElementById('<%= txtEndDate.ClientID %>').value;
+            var endDate = new Date(EDate);
+            var startDate = new Date(SDate);
+            var Startmonth = startDate.getMonth() + 1
+            var Startday = startDate.getDate()
+            var Startyear = startDate.getFullYear()
+            startDate = Startmonth + "/" + Startday + "/" + Startyear
+            var startDate = new Date(startDate);
+
+            var Endmonth = endDate.getMonth() + 1
+            var Endday = endDate.getDate()
+            var Endyear = endDate.getFullYear()
+            var oneDay = 24 * 60 * 60 * 1000;
+
+            endDate = Endmonth + "/" + Endday + "/" + Endyear
+
+            var endDate = new Date(endDate);
+
+            var ValidOldData = Math.abs((startDate.getTime() - today.getTime()) / (oneDay));
+            var ValidDates = Math.abs((startDate.getTime() - endDate.getTime()) / (oneDay));
+            
+          
+            if (SDate == '') {
+                alert("Please enter start date");
+
+                valid = false;
+                return valid;
+            }
+            if (EDate == '') {
+
+                alert("Please enter end date");
+                valid = false;
+                return valid;
+            }
+            var dtFromDt = document.getElementById('<%=txtStartDate.ClientID%>').value;
+            if (isDate(dtFromDt) == false) {
+                document.getElementById('<%=txtStartDate.ClientID%>').focus();
+                valid = false;
+                return valid;
+            }
+
+            var dtTodt = document.getElementById('<%=txtEndDate.ClientID%>').value;
+            if (isDate(dtTodt) == false) {
+                document.getElementById('<%=txtEndDate.ClientID%>').focus();
+                valid = false;
+                return valid;
+            }                   
+            
+            if (SDate != '' && EDate != '' && startDate > endDate) {
+                alert("Start date is greater than end date");
+                valid = false;
+                return valid;
+            }
+            if (startDate > today) {
+                alert("Start date should not be greater Than current date");
+                valid = false;
+                return valid;
+            }
+            if (endDate > today) {
+
+                alert("End date should not be greater than current date");
+                valid = false;
+                return valid;
+            }
+            if (ValidOldData >= 365) {
+                alert("Report can be generated for maximum of one year prior. Please change the dates and resubmit again");
+                document.getElementById("<%=txtStartDate.ClientID%>").focus();
+                valid = false;
+                return valid;
+            }
+            return valid;
+        }
 
     </script>
 
@@ -227,7 +313,8 @@
                                 <li>
                                     <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false" PostBackUrl="~/LeadsUpload.aspx"></asp:LinkButton></li><li>
                                 <li>
-                                    <asp:LinkButton ID="LeadsDownLoad"  runat="server"   Text="Download"  Enabled="false"    PostBackUrl="~/LeadDownLoad.aspx"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="LeadsDownLoad" runat="server" Text="Download" Enabled="false"
+                                        PostBackUrl="~/LeadDownLoad.aspx"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="Abondoned" runat="server" Text="Abondon" Enabled="false"></asp:LinkButton></li>
                                 <li>
@@ -321,8 +408,9 @@
                                     <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" PostBackUrl="~/UserLog.aspx"
                                         Enabled="false"></asp:LinkButton></li>
                                 <li class="act">
-                                    <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" PostBackUrl="~/EditLogs.aspx"   Enabled="false"></asp:LinkButton></li>
-                                     <li class="last">
+                                    <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" PostBackUrl="~/EditLogs.aspx"
+                                        Enabled="false"></asp:LinkButton></li>
+                                <li class="last">
                                     <asp:LinkButton ID="SuperAdmin" runat="server" Text="Super Admin" PostBackUrl="~/SuperadminRights.aspx"></asp:LinkButton></li>
                             </ul>
                         </li>
@@ -333,18 +421,61 @@
         <!-- Headder End  -->
         <!-- Content Start  -->
         <div class="content wid1000">
-            <div class=" box1 box100p">
-                <h1 class="hed1 hed2">
+            <div class=" box1 boxBlue">
+                <h1 class="hed1 hed2  style="margin-bottom: 0"">
                     <asp:UpdatePanel ID="updaproducts" runat="server">
                         <ContentTemplate>
-                            Edit Log
+                            <table>
+                                <tr>
+                                    <td>
+                                        Edit Log
+                                    </td>
+                                    <td>
+                                        <div class="floarR">
+                                            <b>Date From</b>
+                                            <asp:TextBox ID="txtStartDate" runat="server" class="input1 " MaxLength="10" onkeypress="return isNumberKeyForDt(event)"
+                                                Width="70px"></asp:TextBox>&nbsp;
+                                            <img id="imgcal" runat="server" style="border-right: 0px; border-top: 0px; border-left: 0px;
+                                                border-bottom: 0px" title="Calendar Control" onclick="displayCalendar(document.forms[0].txtStartDate,'mm/dd/yyyy',this);"
+                                                alt="Calendar Control" src="images/Calender.gif" width="18" />
+                                            &nbsp;<b>To</b>
+                                            <asp:TextBox ID="txtEndDate" runat="server" class="input1 " MaxLength="10" onkeypress="return isNumberKeyForDt(event)"
+                                                Width="70px"></asp:TextBox>&nbsp;
+                                            <img id="img1" runat="server" style="border-right: 0px; border-top: 0px; border-left: 0px;
+                                                border-bottom: 0px" title="Calendar Control" onclick="displayCalendar(document.forms[0].txtEndDate,'mm/dd/yyyy',this);"
+                                                alt="Calendar Control" src="images/Calender.gif" width="18" />
+                                            <div style="float: left; width: 100px;">
+                                                <asp:UpdatePanel ID="updbtnSearch" runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:Button ID="btnSearchMonth" runat="server" CssClass="btn btn-warning" Text="Generate"
+                                                            OnClientClick="return ValidateData();" OnClick="btnSearchMonth_Click" />
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
+                                                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="updbtnSearch"
+                                                    DisplayAfter="0">
+                                                    <ProgressTemplate>
+                                                        <div id="spinner">
+                                                            <h4>
+                                                                <div>
+                                                                    Processing
+                                                                    <img src="images/loading.gif" />
+                                                                </div>
+                                                            </h4>
+                                                        </div>
+                                                    </ProgressTemplate>
+                                                </asp:UpdateProgress>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </h1>
-                <div class="inn">
+                <div class="inn"  class="inn" style="margin: 0; padding: 0;">
                     <!-- Start  -->
                     <asp:GridView ID="GriduserLog" runat="server" CellSpacing="0" CellPadding="0" AutoGenerateColumns="False"
-                        GridLines="None" CssClass="table table-hover table-striped">
+                        GridLines="None" CssClass="table table-hover table-striped  MB0 noBorder">
                         <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
                         <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
                         <HeaderStyle CssClass="tbHed  center" />
@@ -356,17 +487,17 @@
                                     <asp:Label ID="Label1" Text="Emp ID" runat="server"></asp:Label>
                                 </HeaderTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lblName" runat="server"  Text='<%#Eval("TransactionByID") %>'></asp:Label>
+                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("TransactionByID") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                                <asp:TemplateField HeaderStyle-CssClass="BL BR">
+                            <asp:TemplateField HeaderStyle-CssClass="BL BR">
                                 <HeaderTemplate>
                                     <asp:Label ID="Label1" Text="Field Name" runat="server"></asp:Label>
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblName" runat="server" Text='<%#Eval("FieldName") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle CssClass="BL BR"/>
+                                <ItemStyle CssClass="BL BR" />
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <HeaderTemplate>
@@ -376,16 +507,16 @@
                                     <asp:Label ID="lblName" runat="server" Text='<%#Eval("OldValue") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField  HeaderStyle-CssClass="BL BR">
+                            <asp:TemplateField HeaderStyle-CssClass="BL BR">
                                 <HeaderTemplate>
                                     <asp:Label ID="Label1" Text="New Value" runat="server"></asp:Label>
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblName" runat="server" Text='<%#Eval("NewValue") %>'></asp:Label>
                                 </ItemTemplate>
-                                 <ItemStyle CssClass="BL BR"/>
+                                <ItemStyle CssClass="BL BR" />
                             </asp:TemplateField>
-                            <asp:TemplateField  >
+                            <asp:TemplateField>
                                 <HeaderTemplate>
                                     <asp:Label ID="Label1" Text="Updated Date" runat="server"></asp:Label>
                                 </HeaderTemplate>

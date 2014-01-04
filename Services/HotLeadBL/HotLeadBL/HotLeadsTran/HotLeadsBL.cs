@@ -5706,7 +5706,7 @@ namespace HotLeadBL.HotLeadsTran
             return dsCarsData;
         }
 
-        public DataSet userLogDetails()
+        public DataSet userLogDetails(DateTime FromDate, DateTime ToDate)
         {
             try
             {
@@ -5720,6 +5720,8 @@ namespace HotLeadBL.HotLeadsTran
 
                 DbCommand dbCommand = null;
                 dbCommand = dbDatabase.GetStoredProcCommand(spNameString);
+                dbDatabase.AddInParameter(dbCommand, "@FromDate", System.Data.DbType.DateTime, FromDate);
+                dbDatabase.AddInParameter(dbCommand, "@ToDate", System.Data.DbType.DateTime, ToDate);
                 dsUsers = dbDatabase.ExecuteDataSet(dbCommand);
                 return dsUsers;
             }
@@ -5729,7 +5731,7 @@ namespace HotLeadBL.HotLeadsTran
             }
         }
 
-        public DataSet userEditLogDetails()
+        public DataSet userEditLogDetails(DateTime FromDate, DateTime ToDate)
         {
             try
             {
@@ -5743,6 +5745,8 @@ namespace HotLeadBL.HotLeadsTran
 
                 DbCommand dbCommand = null;
                 dbCommand = dbDatabase.GetStoredProcCommand(spNameString);
+                dbDatabase.AddInParameter(dbCommand, "@FromDate", System.Data.DbType.DateTime, FromDate);
+                dbDatabase.AddInParameter(dbCommand, "@ToDate", System.Data.DbType.DateTime, ToDate);
                 dsUsers = dbDatabase.ExecuteDataSet(dbCommand);
                 return dsUsers;
             }
@@ -5795,7 +5799,7 @@ namespace HotLeadBL.HotLeadsTran
             return dsCarsData;
 
         }
-        public DataSet UpdateBrandsDetails(int bRandid,string Brand, string BrandName, Int32 Product,bool Status)
+        public DataSet UpdateBrandsDetails(int bRandid, string Brand, string BrandName, Int32 Product, bool Status)
         {
             DataSet dsCarsData = new DataSet();
             try
@@ -5832,7 +5836,7 @@ namespace HotLeadBL.HotLeadsTran
                 dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
                 dbDataBase.AddInParameter(dbCommand, "@VName", System.Data.DbType.String, Product);
                 dbDataBase.AddInParameter(dbCommand, "@Vid", System.Data.DbType.String, Productid);
-             
+
                 dsCarsData = dbDataBase.ExecuteDataSet(dbCommand);
             }
             catch (Exception ex)

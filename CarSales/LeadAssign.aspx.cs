@@ -29,69 +29,69 @@ public partial class LeadAssign1 : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //if (Session[Constants.NAME] == null)
-        //{
-        //    Response.Redirect("Login.aspx");
-        //}
-        //else if (!IsPostBack)
-        //{
+        if (Session[Constants.NAME] == null)
+        {
+            Response.Redirect("Login.aspx");
+        }
+        else if (!IsPostBack)
+        {
 
-        //    Session["CurrentPage"] = "Central report";
+            Session["CurrentPage"] = "Central report";
 
-        //    if (LoadIndividualUserRights() == false)
-        //    {
-        //        Response.Redirect("Login.aspx");
-        //    }
-        //    else
-        //    {
-        //        if (Session[Constants.NAME] == null)
-        //        {
-        //            lnkBtnLogout.Visible = false;
-        //            lblUserName.Visible = false;
-        //        }
-        //        else
-        //        {
+            if (LoadIndividualUserRights() == false)
+            {
+                Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                if (Session[Constants.NAME] == null)
+                {
+                    lnkBtnLogout.Visible = false;
+                    lblUserName.Visible = false;
+                }
+                else
+                {
 
-        //            LoadUserRights();
-        //            lnkBtnLogout.Visible = true;
-        //            lblUserName.Visible = true;
-        //            string LogUsername = Session[Constants.NAME].ToString();
-        //            string CenterCode = Session[Constants.CenterCode].ToString();
-        //            string UserLogName = Session[Constants.USER_NAME].ToString();
-        //            if (LogUsername.Length > 20)
-        //            {
-        //                lblUserName.Text = LogUsername.ToString().Substring(0, 20);
-        //                //if (CenterCode.Length > 5)
-        //                //{
-        //                //    lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString().Substring(0, 5) + ")";
-        //                //}
-        //                //else
-        //                //{
-        //                lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString() + ")-" + UserLogName.ToString();
-        //                //}
-        //            }
-        //            else
-        //            {
-        //                lblUserName.Text = LogUsername;
-        //                //if (CenterCode.Length > 5)
-        //                //{
-        //                //    lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString().Substring(0, 5) + ")";
-        //                //}
-        //                //else
-        //                //{
-        //                //    lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString() + ")";
-        //                //}
-        //                lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString() + ")-" + UserLogName.ToString();
-        //            }
-        //            lnkTicker.Attributes.Add("href", "javascript:poptastic('Ticker.aspx?CID=" + Session[Constants.CenterCodeID] + "&CNAME=" + Session[Constants.CenterCode] + "');");
+                    LoadUserRights();
+                    lnkBtnLogout.Visible = true;
+                    lblUserName.Visible = true;
+                    string LogUsername = Session[Constants.NAME].ToString();
+                    string CenterCode = Session[Constants.CenterCode].ToString();
+                    string UserLogName = Session[Constants.USER_NAME].ToString();
+                    if (LogUsername.Length > 20)
+                    {
+                        lblUserName.Text = LogUsername.ToString().Substring(0, 20);
+                        //if (CenterCode.Length > 5)
+                        //{
+                        //    lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString().Substring(0, 5) + ")";
+                        //}
+                        //else
+                        //{
+                        lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString() + ")-" + UserLogName.ToString();
+                        //}
+                    }
+                    else
+                    {
+                        lblUserName.Text = LogUsername;
+                        //if (CenterCode.Length > 5)
+                        //{
+                        //    lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString().Substring(0, 5) + ")";
+                        //}
+                        //else
+                        //{
+                        //    lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString() + ")";
+                        //}
+                        lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString() + ")-" + UserLogName.ToString();
+                    }
+                    lnkTicker.Attributes.Add("href", "javascript:poptastic('Ticker.aspx?CID=" + Session[Constants.CenterCodeID] + "&CNAME=" + Session[Constants.CenterCode] + "');");
 
-        //            FillCenters();
-        //            FillStates();
-        //            divDetails.Visible = true;
+                    FillCenters();
+                    FillStates();
+                    divDetails.Visible = true;
 
-        //        }
-        //    }
-        //}
+                }
+            }
+        }
 
     }
 
@@ -191,7 +191,7 @@ public partial class LeadAssign1 : System.Web.UI.Page
     {
         DataSet dsIndidivitualRights = new DataSet();
         bool bValid = false;
-        //dsIndidivitualRights = objHotLeadBL.GetUserModules_ActiveInactive(Session[Constants.USER_ID]);
+        dsIndidivitualRights = objHotLeadBL.GetUserModules_ActiveInactive(Session[Constants.USER_ID].ToString());
         if (Session["IndividualUserRights"] == null)
         {
             dsIndidivitualRights = objHotLeadBL.GetUserModules_ActiveInactive(Session[Constants.USER_ID].ToString());
@@ -201,24 +201,43 @@ public partial class LeadAssign1 : System.Web.UI.Page
         {
             dsIndidivitualRights = Session["IndividualUserRights"] as DataSet;
         }
-
         if (dsIndidivitualRights.Tables[0].Rows.Count > 0)
         {
             for (int i = 0; i < dsIndidivitualRights.Tables[0].Rows.Count; i++)
             {
 
-                if (dsIndidivitualRights.Tables[0].Rows[i]["ModuleName"].ToString() == Session["CurrentPage"].ToString())
+                //if (dsIndidivitualRights.Tables[0].Rows[i]["SubModuleName"].ToString() == Session["CurrentPage"].ToString())
+                //{
+                if (dsIndidivitualRights.Tables[0].Rows[i]["active"].ToString() == "1")
                 {
-                    if (dsIndidivitualRights.Tables[0].Rows[i]["ModuleActive"].ToString() == "1")
-                    {
-                        bValid = true;
-                        break;
-                    }
+                    string Modulename = dsIndidivitualRights.Tables[0].Rows[i]["SubModuleName"].ToString();
 
+                    LinkButton lbl;
+                    lbl = (LinkButton)Page.FindControl(Modulename);
+                    try
+                    {
+                        lbl.Enabled = true;
+                    }
+                    catch { }
+                }
+                else
+                {
+                    string Modulename = dsIndidivitualRights.Tables[0].Rows[i]["SubModuleName"].ToString();
+                    LinkButton lbl1;
+                    lbl1 = (LinkButton)Page.FindControl(Modulename);
+                    try
+                    {
+                        lbl1.Enabled = false;
+                    }
+                    catch { }
                 }
 
 
+
             }
+            bValid = true;
+            return bValid;
+            //}
         }
         return bValid;
     }

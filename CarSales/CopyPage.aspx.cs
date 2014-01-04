@@ -101,12 +101,12 @@ public partial class CopyPage : System.Web.UI.Page
 
     private void GetUserLogDetails()
     {
-        GriduserLog.DataSource = null;
-        GriduserLog.DataBind();
-        DataSet GetVehicles = new DataSet();
-        GetVehicles = objHotLeadBL.userLogDetails();
-        GriduserLog.DataSource = GetVehicles.Tables[0];
-        GriduserLog.DataBind();
+        //GriduserLog.DataSource = null;
+        //GriduserLog.DataBind();
+        //DataSet GetVehicles = new DataSet();
+        //GetVehicles = objHotLeadBL.userLogDetails();
+        //GriduserLog.DataSource = GetVehicles.Tables[0];
+        //GriduserLog.DataBind();
     }
     protected void lnkBtnLogout_Click(object sender, EventArgs e)
     {

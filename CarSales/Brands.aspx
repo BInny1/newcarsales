@@ -394,11 +394,11 @@
                         <Columns>
                             <asp:TemplateField HeaderText="Brand">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lblName" runat="server" Text='<%#Eval("Brands") %>' ForeColor="Black"
+                                    <asp:LinkButton ID="lblName" runat="server" Text='<%#Eval("Brands") %>' 
                                         CommandArgument='<%#Eval("BId") %>' CommandName="BrandId"></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Brand" HeaderStyle-CssClass="BL">
+                            <asp:TemplateField HeaderText="Brand Name" HeaderStyle-CssClass="BL">
                                 <ItemTemplate>
                                     <asp:Label ID="lblNames" runat="server" Text='<%#Eval("BName") %>'></asp:Label>
                                 </ItemTemplate>
@@ -510,7 +510,7 @@
                         Brand
                     </td>
                     <td>
-                        <asp:TextBox ID="txtBrandUp" MaxLength="20" runat="server" Style="text-transform: uppercase"></asp:TextBox>
+                        <asp:TextBox ID="txtBrandUp" MaxLength="20" runat="server" Style="text-transform: uppercase" ReadOnly="true"></asp:TextBox>
                     </td>
                 </tr>
                   <tr>
@@ -556,7 +556,7 @@
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>
-                        <%--<asp:Button ID="btnCancelPW" class="btn btn-default" runat="server" Text="Cancel" />--%>
+                        <asp:Button ID="btnCancelPW" class="btn btn-default" runat="server" Text="Cancel" />
                     </td>
                 </tr>
             </table>

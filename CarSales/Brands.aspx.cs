@@ -342,8 +342,9 @@ public partial class Brands : System.Web.UI.Page
         DataSet BrandData = objHotLeadBL.UpdateBrandsDetails(Convert.ToInt32(Session["BrandId"].ToString()), txtBrandUp.Text, txtBrandNsupdate.Text,
             ddlProdUp.SelectedIndex, Isactive);
         System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('Brand is Updated successfuly.');", true);
-        MpEditBran.Hide();
+       
         GetBrands();
+        MpEditBran.Hide();
 
     }
 }

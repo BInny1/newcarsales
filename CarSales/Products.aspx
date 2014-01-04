@@ -445,6 +445,7 @@
                             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                 <ContentTemplate>
                                     <asp:Button ID="BtnEdit" class="btn btn-warning" runat="server" Text="Update" OnClick="BtnEdit_Click" />&nbsp;
+                                      <asp:Button ID="btnCancelPW" class="btn btn-default" runat="server" Text="Cancel" />
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                         </div>

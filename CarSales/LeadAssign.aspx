@@ -133,7 +133,8 @@
                                 <li>
                                     <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false" PostBackUrl="~/LeadsUpload.aspx"></asp:LinkButton></li><li>
                                 <li>
-                                    <asp:LinkButton ID="LeadsDownLoad"  runat="server"   Text="Download"  Enabled="false"    PostBackUrl="~/LeadDownLoad.aspx"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="LeadsDownLoad" runat="server" Text="Download" Enabled="false"
+                                        PostBackUrl="~/LeadDownLoad.aspx"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="Abondoned" runat="server" Text="Abondon" Enabled="false"></asp:LinkButton></li>
                                 <li>
@@ -240,96 +241,96 @@
         <div class="content ">
             <div class="inn">
                 <div class="box1 boxBlue">
-                    <h1 class="hed1 hed2">
-                      Leads Assign</h1>
+                    <h1 class="hed1 hed2" style="margin-bottom: 0">
+                        Leads Assign</h1>
                     <div class="inn">
                         <div style="height: 10px;">
                             &nbsp;
                         </div>
-                          <div class="main">
-            <table style="width: 94%;">
-                <tr>
-                    <td style="width: 100%">
-                        <div style="float: right">
-                            <asp:LinkButton ID="lbtnQcShow" Text="Lead rejection criteria" runat="server" OnClick="lbtnQcShow_Click"></asp:LinkButton>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="vertical-align: top;">
-                        <table style="width: 100%;" cellpadding="0" cellspacing="0">
-                            <tr>
-                                <td colspan="2">
-                                    <asp:Label ID="lblCenterCode" runat="server" Font-Bold="true"></asp:Label>
-                                    <br />
-                                    <label style="padding-right: 10px; float: left; line-height: 26px;">
-                                        Vehicle Category</label>
-                                    <div style="width: 95px; float: left">
-                                        <asp:DropDownList ID="ddlVehicleType1" runat="server" AppendDataBoundItems="true">
-                                            <asp:ListItem Text="Cars" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="RVs" Value="2"></asp:ListItem>
-                                            <asp:ListItem Text="Bikes" Value="3"></asp:ListItem>
-                                            <asp:ListItem Text="Boats" Value="4"></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                    <div style="width: 120px; float: left">
-                                        <asp:Button ID="btnShow" runat="server" Style="width: 100px;" Text="Show" CssClass="g-button g-button-submit"
-                                            OnClick="btnShow_Click"></asp:Button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                </td>
-                                <td width="50%">
-                                    <asp:Label ID="lblResHead" runat="server"></asp:Label>
-                                </td>
-                            </tr>
-                        </table>
-                        <div id="divDetails" runat="server" style="width: 1000px;" visible="false">
-                            <h3>
-                                Center wise lead allocation</h3>
-                            <table>
+                        <div class="inn" style="margin: 0; padding: 0; "">
+                            <table style="width: 94%;">
                                 <tr>
-                                    <td style="width: 750px;">
-                                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                                            <ContentTemplate>
-                                                <asp:DataList ID="grdAssign" runat="server" AutoGenerateColumns="false" RepeatColumns="12"
-                                                    Width="99%" OnItemDataBound="grdAssign_ItemDataBound" OnItemCommand="grdAssign_ItemCommand1">
-                                                    <ItemTemplate>
-                                                        <asp:LinkButton ID="lblStateCode" runat="server" Text='<%# Bind("State_Code") %>'
-                                                            CommandArgument='<%# Bind("State_ID") %>' CommandName="State"></asp:LinkButton>
-                                                        <asp:HiddenField ID="hdnStateID" runat="server" Value='<%# Bind("State_ID") %>'>
-                                                        </asp:HiddenField>
-                                                        <asp:HiddenField ID="hdnCenterID" runat="server"></asp:HiddenField>
-                                                        <asp:HiddenField ID="hdnCSID" runat="server"></asp:HiddenField>
-                                                        <asp:Label ID="lblCenterName" runat="server">
-                                                        </asp:Label><br />
-                                                        <span style="font-size: 9px;">(<asp:Label ID="lblTimeZone" runat="server" Text='<%# Bind("TimeZone") %>'>
-                                                        </asp:Label>)</span>
-                                                    </ItemTemplate>
-                                                </asp:DataList>
-                                            </ContentTemplate>
-                                            <Triggers>
-                                                <asp:PostBackTrigger ControlID="btnShow" />
-                                            </Triggers>
-                                        </asp:UpdatePanel>
-                                    </td>
-                                    <td>
-                                        <div style="width: 350px; float: left">
-                                            <img src="images/timezones.png" style="width: 350px; height: auto; padding: 2px;
-                                                background: #fff; border: #ccc 1px solid" />
+                                    <td style="width: 100%">
+                                        <div style="float: right">
+                                            <asp:LinkButton ID="lbtnQcShow" Text="Lead rejection criteria" runat="server" OnClick="lbtnQcShow_Click"></asp:LinkButton>
                                         </div>
                                     </td>
-                                    <td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top;">
+                                        <table style="width: 100%;" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td colspan="2">
+                                                    <asp:Label ID="lblCenterCode" runat="server" Font-Bold="true"></asp:Label>
+                                                    <br />
+                                                    <label style="padding-right: 10px; float: left; line-height: 26px;">
+                                                        Vehicle Category</label>
+                                                    <div style="width: 95px; float: left">
+                                                        <asp:DropDownList ID="ddlVehicleType1" runat="server" AppendDataBoundItems="true">
+                                                            <asp:ListItem Text="Cars" Value="1"></asp:ListItem>
+                                                            <asp:ListItem Text="RVs" Value="2"></asp:ListItem>
+                                                            <asp:ListItem Text="Bikes" Value="3"></asp:ListItem>
+                                                            <asp:ListItem Text="Boats" Value="4"></asp:ListItem>
+                                                        </asp:DropDownList>
+                                                    </div>
+                                                    <div style="width: 120px; float: left">
+                                                        <asp:Button ID="btnShow" runat="server" Style="width: 100px;" Text="Show" CssClass="g-button g-button-submit"
+                                                            OnClick="btnShow_Click"></asp:Button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                </td>
+                                                <td width="50%">
+                                                    <asp:Label ID="lblResHead" runat="server"></asp:Label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div id="divDetails" runat="server" style="width: 1000px;" visible="false">
+                                            <h4>
+                                                Center wise lead allocation</h4>
+                                            <table class="table table-hover table-striped ">
+                                                <tr>
+                                                    <td style="width: 750px;">
+                                                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                                            <ContentTemplate>
+                                                                <asp:DataList ID="grdAssign" runat="server" AutoGenerateColumns="false" RepeatColumns="12"
+                                                                    Width="99%" OnItemDataBound="grdAssign_ItemDataBound" OnItemCommand="grdAssign_ItemCommand1">
+                                                                    <ItemTemplate>
+                                                                        <asp:LinkButton ID="lblStateCode" runat="server" Text='<%# Bind("State_Code") %>'
+                                                                            CommandArgument='<%# Bind("State_ID") %>' CommandName="State"></asp:LinkButton>
+                                                                        <asp:HiddenField ID="hdnStateID" runat="server" Value='<%# Bind("State_ID") %>'>
+                                                                        </asp:HiddenField>
+                                                                        <asp:HiddenField ID="hdnCenterID" runat="server"></asp:HiddenField>
+                                                                        <asp:HiddenField ID="hdnCSID" runat="server"></asp:HiddenField>
+                                                                        <asp:Label ID="lblCenterName" runat="server">
+                                                                        </asp:Label><br />
+                                                                        <span style="font-size: 9px;">(<asp:Label ID="lblTimeZone" runat="server" Text='<%# Bind("TimeZone") %>'>
+                                                                        </asp:Label>)</span>
+                                                                    </ItemTemplate>
+                                                                </asp:DataList>
+                                                            </ContentTemplate>
+                                                            <Triggers>
+                                                                <asp:PostBackTrigger ControlID="btnShow" />
+                                                            </Triggers>
+                                                        </asp:UpdatePanel>
+                                                    </td>
+                                                    <td>
+                                                        <div style="width: 350px; float: left">
+                                                            <img src="images/timezones.png" style="width: 350px; height: auto; padding: 2px;
+                                                                background: #fff; border: #ccc 1px solid" />
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </td>
                                 </tr>
                             </table>
                         </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
                     </div>
                 </div>
             </div>
@@ -338,16 +339,16 @@
         </div>
         <div style="height: 10px;">
         </div>
-      
         <cc1:ModalPopupExtender ID="mpelblUerExist" runat="server" PopupControlID="tblUpdate"
-            BackgroundCssClass="ModalPopupBG" TargetControlID="hdnlblUerExist" CancelControlID="btnCancelAssign">
+            BackgroundCssClass="ModalPopupBG" TargetControlID="hdnlblUerExist" CancelControlID="ImageButton1">
         </cc1:ModalPopupExtender>
         <asp:HiddenField ID="hdnlblUerExist" runat="server" />
-        <div id="tblUpdate" class="PopUpHolder" style="display: none;">
-            <div class="main" style="width: 600px; margin: 60px auto 0 auto;">
-                <h4>
-                    Assign leads to a center
-                </h4>
+        <div id="tblUpdate" style="display: none; width: 550px;" class="popup">
+            <h2>
+                Assign leads to a center
+                <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
+            </h2>
+            <div class="content">
                 <asp:UpdatePanel ID="updpnl" runat="server">
                     <ContentTemplate>
                         <table style="width: 100%;" cellpadding="0" cellspacing="0">
@@ -390,32 +391,30 @@
                         </table>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-                <asp:Button ID="btnGo" runat="server" Text="Ok" CssClass="g-button g-button-submit"
-                    OnClientClick="return Validate();" OnClick="btnGo_Click" />
-                <asp:Button ID="btnCancelAssign" runat="server" Text="Cancel" CssClass="g-button g-button-submit" />
+                <asp:Button ID="btnGo" runat="server" Text="Ok" CssClass="btn btn-warning" OnClientClick="return Validate();"
+                    OnClick="btnGo_Click" />
+                <asp:Button ID="btnCancelAssign" runat="server" Text="Cancel" CssClass="btn btn-default"
+                    Visible="false" />
                 <div class="clearFix">
                     &nbsp</div>
             </div>
         </div>
         <cc1:ModalPopupExtender ID="MpeQcPopUp" runat="server" PopupControlID="QcAdding"
-            BackgroundCssClass="ModalPopupBG" TargetControlID="hdnQcPop">
+            BackgroundCssClass="ModalPopupBG" TargetControlID="hdnQcPop" CancelControlID="ImageButton1">
         </cc1:ModalPopupExtender>
         <asp:HiddenField ID="hdnQcPop" runat="server" />
-        <div id="QcAdding" class="PopUpHolder" style="display: none; height: 700px">
-            <div class="main" style="width: 600px; margin: 60px auto 0 auto;">
-                <h4>
-                    <div style="float: left;">
-                        Lead rejection criteria
-                    </div>
-                    <div style="float: right; font-size: 10px">
-                        (QC fails for matching any of the following conditions)
-                    </div>
-                </h4>
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
-                        <fieldset class="popFieldset" style="width: 96%;">
-                            <legend>Phone # range</legend>
-                            <table style="width: 90%; margin: 0 auto;" cellpadding="0" cellspacing="0">
+        <div id="QcAdding" style="display: none; width: 1000px; height: 450px;" class="popup">
+            <h2>
+                <span style="float: left;">Lead rejection criteria</span> <span style="float: right;
+                    font-size: 10px">(QC fails for matching any of the following conditions)</span>
+                <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
+            <div class="content">
+                <div class="scroll1" style="border: 2px solid #CCC">
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <h1 class="hed1 hed2" style="margin-bottom: 0">
+                                Phone # range</h1>
+                            <table>
                                 <tr>
                                     <td style="width: 150px;">
                                         NPA Range
@@ -473,12 +472,11 @@
                                     </td>
                                 </tr>
                             </table>
-                        </fieldset>
-                        <table style="width: 100%;">
-                            <tr>
-                                <td style="width: 50%;">
-                                    <fieldset class="popFieldset">
-                                        <legend>Price range</legend>
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="width: 50%;">
+                                        <h1 class="hed1 hed2" style="margin-bottom: 0">
+                                            Price range</h1>
                                         <table style="width: 90%; margin: 0 auto;" cellpadding="0" cellspacing="0">
                                             <tr>
                                                 <td>
@@ -497,11 +495,10 @@
                                                 </td>
                                             </tr>
                                         </table>
-                                    </fieldset>
-                                </td>
-                                <td>
-                                    <fieldset class="popFieldset">
-                                        <legend>Model year range</legend>
+                                    </td>
+                                    <td>
+                                        <h1 class="hed1 hed2" style="margin-bottom: 0">
+                                            Model year range</h1>
                                         <table style="width: 90%; margin: 0 auto;" cellpadding="0" cellspacing="0">
                                             <tr>
                                                 <td>
@@ -520,13 +517,12 @@
                                                 </td>
                                             </tr>
                                         </table>
-                                    </fieldset>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <fieldset class="popFieldset">
-                                        <legend>Mileage range</legend>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h1 class="hed1 hed2" style="margin-bottom: 0">
+                                            Mileage range</h1>
                                         <table style="width: 90%; margin: 0 auto;" cellpadding="0" cellspacing="0">
                                             <tr>
                                                 <td>
@@ -545,11 +541,10 @@
                                                 </td>
                                             </tr>
                                         </table>
-                                    </fieldset>
-                                </td>
-                                <td>
-                                    <fieldset class="popFieldset">
-                                        <legend>Lead date range</legend>
+                                    </td>
+                                    <td>
+                                        <h1 class="hed1 hed2" style="margin-bottom: 0">
+                                            Lead date range</h1>
                                         <table style="width: 90%; margin: 0 auto;" cellpadding="0" cellspacing="0">
                                             <tr>
                                                 <td>
@@ -568,30 +563,30 @@
                                                 </td>
                                             </tr>
                                         </table>
-                                    </fieldset>
-                                </td>
-                            </tr>
-                        </table>
-                        <table style="width: 90%; margin: 0 auto;" cellpadding="0" cellspacing="0">
-                            <tr>
-                                <td>
-                                    &nbsp;
-                                </td>
-                                <td colspan="2">
-                                    <span>
-                                        <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="g-button g-button-submit"
-                                            OnClick="btnSave_Click" /></span> <span>
-                                                <asp:Button ID="btnCANCEL" Text="CANCEL" runat="server" CssClass="g-button g-button-submit"
-                                                    OnClick="btnCANCEL_Click" /></span> <span>
-                                                        <asp:Button ID="btnApplytoexistingDB" Text="Save/Apply to existing DB" runat="server"
-                                                            CssClass="g-button g-button-submit" /></span>
-                                </td>
-                            </tr>
-                        </table>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-                <div class="clearFix">
-                    &nbsp</div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table style="width: 90%; margin: 0 auto;" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                    <td colspan="2">
+                                        <span>
+                                            <asp:Button ID="btnSave" Text="Save" runat="server" CssClass="btn btn-warning" OnClick="btnSave_Click" /></span>
+                                        <span>
+                                            <asp:Button ID="btnCANCEL" Text="CANCEL" runat="server" CssClass="btn btn-danger"
+                                                OnClick="btnCANCEL_Click" /></span> <span>
+                                                    <asp:Button ID="btnApplytoexistingDB" Text="Save/Apply to existing DB" runat="server"
+                                                        CssClass="btn bt-default" /></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                    <div class="clearFix">
+                        &nbsp</div>
+                </div>
             </div>
         </div>
         <cc1:ModalPopupExtender ID="mpealteruserUpdated" runat="server" PopupControlID="AlertUserUpdated"
@@ -599,12 +594,11 @@
             OkControlID="btnYesUpdated">
         </cc1:ModalPopupExtender>
         <asp:HiddenField ID="hdnAlertuserUpdated" runat="server" />
-        <div id="AlertUserUpdated" class="alert" style="display: none">
-            <h4 id="H3">
+        <div id="AlertUserUpdated"  style="display: none; width: 550px;" class="popup">
+            <h2 id="H3">
                 Alert
-                <asp:Button ID="BtnClsUpdated" class="cls" runat="server" Text="" BorderWidth="0" />
-            </h4>
-            <div class="data">
+                  <asp:ImageButton ID="BtnClsUpdated" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
+            <div class="content">
                 <p>
                     <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                         <ContentTemplate>

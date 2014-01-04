@@ -91,7 +91,13 @@ public partial class EditLogs : System.Web.UI.Page
                         Session["SortDirec"] = null;
 
 
-                        GetUserLogDetails();
+                        txtEndDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
+                        txtStartDate.Text = DateTime.Now.AddDays(-7).ToString("MM/dd/yyyy");
+
+
+                        DateTime StartDate = Convert.ToDateTime(txtStartDate.Text.ToString());
+                        DateTime EndDate = Convert.ToDateTime(txtEndDate.Text.ToString());
+                        GetUserLogDetails(StartDate, EndDate);
                     }
 
                 }
@@ -99,12 +105,12 @@ public partial class EditLogs : System.Web.UI.Page
         }
     }
 
-    private void GetUserLogDetails()
+    private void GetUserLogDetails(DateTime startdate, DateTime Enddate)
     {
         GriduserLog.DataSource = null;
         GriduserLog.DataBind();
         DataSet GetVehicles = new DataSet();
-        GetVehicles = objHotLeadBL.userEditLogDetails();
+        GetVehicles = objHotLeadBL.userEditLogDetails(startdate, Enddate);
         GriduserLog.DataSource = GetVehicles.Tables[0];
         GriduserLog.DataBind();
     }
@@ -180,7 +186,7 @@ public partial class EditLogs : System.Web.UI.Page
         }
         return bValid;
     }
-   
+
     private void GetVehicleTypes()
     {
         GriduserLog.DataSource = null;
@@ -190,6 +196,19 @@ public partial class EditLogs : System.Web.UI.Page
         GriduserLog.DataSource = GetVehicles.Tables[0];
         GriduserLog.DataBind();
     }
-   
-  
+    protected void btnSearchMonth_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            DateTime StartDate = Convert.ToDateTime(txtStartDate.Text.ToString());
+            DateTime EndDate = Convert.ToDateTime(txtEndDate.Text.ToString());
+            GetUserLogDetails(StartDate, EndDate);
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+
 }
