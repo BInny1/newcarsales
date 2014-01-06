@@ -327,3 +327,7 @@ input#textbox {
 .noBoxStyle .table{ background:#fff; box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 border: #CCC 1px solid; }
 .noBorder{ border:none; }
+
+
+.mCenter{ margin: auto; }
+.table2 td{  padding-bottom:10px; vertical-align:middle }

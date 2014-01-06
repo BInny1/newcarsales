@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Locations.aspx.cs" Inherits="Locations" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="LocationsPrev.aspx.cs" Inherits="LocationsPrev" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -252,7 +252,7 @@
                                 <li>
                                     <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false"></asp:LinkButton>
+                                    <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false" PostBackUrl="~/NewEntrys.aspx"></asp:LinkButton>
                                 </li>
                                 <li>
                                     <asp:LinkButton ID="Transferin" runat="server" Text="Transfer In" Enabled="false"></asp:LinkButton></li>
@@ -350,7 +350,6 @@
                     <div class="box1 boxBlue">
                         <h1 class="hed1 hed2" style="margin-bottom:0">
                             Update Locations
-                            <%--<asp:Button id="btnl" runat="server" OnClick="btnl_click" Text="check"/>--%>
                         </h1>
                         <div class="inn"  style="margin:0; padding:0;">
                             <!-- Grid Start -->
@@ -359,8 +358,7 @@
                                   
                                                 <asp:GridView ID="GridCentersUpades" runat="server" CellSpacing="0" CellPadding="0"
                                                     AutoGenerateColumns="False" GridLines="None" CssClass="table table-hover table-striped MB0 noBorder"
-                                                    OnRowCreated="GridCentersUpades_RowCreated" OnRowDataBound="GridCentersUpades_RowDataBound"
-                                                    OnRowCommand="GridCentersUpades_RowCommand">
+                                                    OnRowCreated="GridCentersUpades_RowCreated">
                                                     <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
                                                     <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
                                                     <HeaderStyle CssClass="tbHed center" />
@@ -368,47 +366,46 @@
                                                     <Columns>
                                                         <asp:TemplateField FooterText="Count">
                                                             <ItemTemplate>
-                                                                <asp:LinkButton ID="lnkUName1" runat="server" Text='<%# Eval("LocationName")%>' CommandName="PLoc" CommandArgument='<%# Eval("LocationId")%>'></asp:LinkButton>
-                                                                 <asp:HiddenField ID="centerid" runat="server" Value='<%# Eval("LocationId")%>' />
+                                                                <asp:LinkButton ID="lnkUName" runat="server" Text='<%# Eval("CenterCode")%>'></asp:LinkButton>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderStyle-CssClass="BR BL">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="LeadsUpload" runat="server" ></asp:Label>
+                                                                <asp:Label ID="lblName" runat="server" Text='<%#Eval("LeadsUpload") %>'></asp:Label>
                                                             </ItemTemplate>
                                                              <ItemStyle CssClass="BR BL" />
                                                         </asp:TemplateField>
                                                         <asp:TemplateField>
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblSales" runat="server"></asp:Label>
+                                                                <asp:Label ID="lnkUName" runat="server" Text='<%# Eval("Sales")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField  HeaderStyle-CssClass="BR BL">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblcustmerserv" runat="server" ></asp:Label>
+                                                                <asp:Label ID="lblName" runat="server" Text='<%#Eval("CustomerService") %>'></asp:Label>
                                                             </ItemTemplate>
                                                               <ItemStyle CssClass="BR BL" />
                                                         </asp:TemplateField>
                                                         <asp:TemplateField>
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblprocess" runat="server"></asp:Label>
+                                                                <asp:Label ID="lnkUName" runat="server" Text='<%# Eval("Process")%>'></asp:Label>
                                                             </ItemTemplate>
                                                             
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Transfers In"  HeaderStyle-CssClass="BL">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lbltransin" runat="server"></asp:Label>
+                                                                <asp:Label ID="lblName" runat="server" Text='<%#Eval("LeadsDTranfersIn") %>'></asp:Label>
                                                             </ItemTemplate>
                                                               <ItemStyle CssClass="BL" />
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Abondons">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblabonds" runat="server" ></asp:Label>
+                                                                <asp:Label ID="lnkUName" runat="server" Text='<%# Eval("LeadsDAbondons")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Free Posts">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblfreeposts" runat="server" ></asp:Label>
+                                                                <asp:Label ID="lblName" runat="server" Text='<%#Eval("LeadsFreePosts") %>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                     </Columns>
@@ -428,198 +425,6 @@
     <!-- Content End  -->
     <div class="clear">
         &nbsp;</div>
-    </div>
-    
-      <cc1:ModalPopupExtender ID="MpUpdaterights" runat="server" PopupControlID="tblChangePW"
-        BackgroundCssClass="ModalPopupBG" TargetControlID="hdnChangePW" CancelControlID="ImageButton1">
-    </cc1:ModalPopupExtender>
-    <asp:HiddenField ID="hdnChangePW" runat="server" />
-    <div id="tblChangePW" style="display: none; width: 550px;" class="popup">
-        <h2>
-            Update Rights
-             <asp:LinkButton ID="btndelete" runat="server" Text="Delete User" style="padding-left: 255px;font-size: 14px;"
-                                     CssClass="underline" ></asp:LinkButton>
-            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
-        <div class="content">
-            <asp:UpdatePanel ID="p1" runat="server">
-                <ContentTemplate>
-                    <table style="width: 96%; margin: 0 auto;">
-                        <tr>
-                            <td>
-                                <b>Leads Upload</b>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="txtldupload" runat="server" Text="Leads Upload"></asp:TextBox>
-                            </td>
-                        </tr>
-                           <tr>
-                            <td>
-                                <b>Sales</b>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="txtsales" runat="server" Text="Sales"></asp:TextBox>
-                            </td>
-                        </tr>
-                           <tr>
-                            <td>
-                                <b></b>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="TextBox2" runat="server" Text="Leads Upload"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="right">
-                            </td>
-                            <td align="left">
-                                <div style="margin: 0; padding-left: 0px; display: inline-block">
-                                    <asp:UpdatePanel ID="updtPnlChangePwd" runat="server">
-                                        <ContentTemplate>
-                                            <asp:Button ID="btnAddVehicle" CssClass="btn  btn-warning" runat="server" Text="Update"
-                                                 />&nbsp;
-                                          
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
-                                </div>
-                                <asp:Button ID="btnCancelPW" CssClass="btn btn-default" runat="server" Text="Cancel"
-                                   OnClientClick="return ClosePopup10();" />
-                            </td>
-                        </tr>
-                    </table>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>
-    </div>
-    
-    <cc1:ModalPopupExtender ID="ModalPopupExtender2" runat="server" PopupControlID="updateLoc"
-        BackgroundCssClass="ModalPopupBG" TargetControlID="hdnChangePW" CancelControlID="btnCancel">
-    </cc1:ModalPopupExtender>
-    <div id="updateLoc" style="display: none; width: 550px;" class="popup">
-    <h2>
-            
-             <asp:LinkButton ID="LinkButton1" runat="server"  style="padding-left: 255px;font-size: 14px;"
-                                     CssClass="underline" ></asp:LinkButton>
-            <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
-        <div class="content">
-            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                <ContentTemplate>
-                    <table style="width: 96%; margin: 0 auto;">
-                        <tr>
-                            <td>
-                                <b>Leads Upload</b>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="TextBox1" runat="server" Text=""></asp:TextBox>
-                            </td>
-                             <td>
-                                <asp:DropDownList ID="DropDownList1" runat="server" ></asp:DropDownList>
-                            </td>
-                             <td>
-                                <asp:Button ID="btn_Add1" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add1_Click"></asp:Button>
-                            </td>
-                        </tr>
-                           <tr>
-                            <td>
-                                <b>Sales</b>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="TextBox3" runat="server" Text=""></asp:TextBox>
-                            </td>
-                             <td>
-                                <asp:DropDownList ID="DropDownList2" runat="server" ></asp:DropDownList>
-                            </td>
-                             <td>
-                                <asp:Button ID="btn_Add2" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add2_Click"></asp:Button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <b>Customer Service</b>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="TextBox4" runat="server" Text=""></asp:TextBox>
-                            </td>
-                             <td>
-                                <asp:DropDownList ID="DropDownList3" runat="server" ></asp:DropDownList>
-                            </td>
-                             <td>
-                                <asp:Button ID="btn_Add3" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add3_Click" ></asp:Button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <b>Process</b>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="TextBox7" runat="server" Text=""></asp:TextBox>
-                            </td>
-                             <td>
-                                <asp:DropDownList ID="DropDownList4" runat="server" ></asp:DropDownList>
-                            </td>
-                             <td>
-                                <asp:Button ID="btn_Add4" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add4_Click"></asp:Button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <b>Transfers In</b>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="TextBox8" runat="server" Text=""></asp:TextBox>
-                            </td>
-                             <td>
-                                <asp:DropDownList ID="DropDownList5" runat="server" ></asp:DropDownList>
-                            </td>
-                             <td>
-                                <asp:Button ID="btn_Add5" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add5_Click"></asp:Button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <b>Abondons</b>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="TextBox9" runat="server" Text=""></asp:TextBox>
-                            </td>
-                             <td>
-                                <asp:DropDownList ID="DropDownList6" runat="server" ></asp:DropDownList>
-                            </td>
-                             <td>
-                                <asp:Button ID="btn_Add6" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add6_Click"></asp:Button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <b>Free Posts</b>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="TextBox10" runat="server" Text=""></asp:TextBox>
-                            </td>
-                             <td>
-                                <asp:DropDownList ID="DropDownList7" runat="server" ></asp:DropDownList>
-                            </td>
-                             <td>
-                                <asp:Button ID="btn_Add7" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add7_Click"></asp:Button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                
-                            </td>
-                            <td>
-                                <asp:Button ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click"></asp:Button>
-                            </td>
-                             <td>
-                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click"></asp:Button>
-                            </td>
-                             <td>
-                                
-                            </td>
-                        </tr>
-                    </table>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>
     </div>
     <!-- Main Wrapper Emd  -->
     <!-- Footer Start  -->

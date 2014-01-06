@@ -239,7 +239,7 @@
                                 <li>
                                     <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false"></asp:LinkButton>
+                                    <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false" PostBackUrl="~/NewEntrys.aspx"></asp:LinkButton>
                                 </li>
                                 <li>
                                     <asp:LinkButton ID="Transferin" runat="server" Text="Transfer In" Enabled="false"></asp:LinkButton></li>
@@ -336,7 +336,7 @@
                 <div class="box1 boxBlue">
                     <h1 class="hed1 hed2">
                         Default Rights</h1>
-                    <div class="inn">
+                    <div class="inn"  style="margin: 0; padding: 0;">
                         <!-- Grid Start -->
                         <asp:UpdatePanel ID="updtpnltblGrdcar" runat="server">
                             <ContentTemplate>
@@ -344,7 +344,7 @@
                                     <tr>
                                         <td>
                                             <asp:GridView ID="GridDefaultUserRights" runat="server" CellSpacing="0" CellPadding="0"
-                                                CssClass="table table-hover table-striped" AutoGenerateColumns="False" GridLines="None"
+                                                CssClass="table table-hover table-striped MB0 noBorder"  AutoGenerateColumns="False" GridLines="None"
                                                 OnRowCreated="GridDefaultUserRights_RowCreated" OnRowDataBound="GridDefaultUserRights_RowDataBound">
                                                 <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
                                                 <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />

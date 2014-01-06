@@ -252,7 +252,7 @@ $('#GridUserUpdateList tr:last-child').remove();
                                 <li>
                                     <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false"></asp:LinkButton>
+                                    <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false" PostBackUrl="~/NewEntrys.aspx"></asp:LinkButton>
                                 </li>
                                 <li>
                                     <asp:LinkButton ID="Transferin" runat="server" Text="Transfer In" Enabled="false"></asp:LinkButton></li>
@@ -368,7 +368,7 @@ $('#GridUserUpdateList tr:last-child').remove();
                                     <ContentTemplate>
                                         <asp:Repeater ID="Rpt_Locatons" runat="server" OnItemDataBound="Rpt_Locatons_ItemDataBound">
                                             <ItemTemplate>
-                                                <h5 style="margin-bottom: 0; margin-top: 30px;">
+                                                <h5 style="margin-bottom: 0; margin-top: 30px;padding:0 10px 10px 10px;">
                                                     <b>Location Code: &nbsp;<asp:Label ID="lbllocation" runat="server" Text='<%# Eval("LocationName") %>'></asp:Label></b>
                                                     <asp:HiddenField ID="lblLocationId" runat="server" Value='<%# Eval("LocationId") %>' />
                                                     <asp:LinkButton ID="lnkEdit" runat="server" Text="Edit" CssClass="floarR"></asp:LinkButton>

@@ -5845,6 +5845,48 @@ namespace HotLeadBL.HotLeadsTran
             }
             return dsCarsData;
         }
+        public DataSet UpdatecentersById(int CeneterId,int Moudleid)
+        {
+            try
+            {
+                DataSet dsUsers = new DataSet();
+                string spNameString = string.Empty;
+                Database dbDatabase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USp_UpdatecentersById";
+                DbCommand dbCommand = null;
+                dbCommand = dbDatabase.GetStoredProcCommand(spNameString);
+                dbDatabase.AddInParameter(dbCommand, "@ceneterId", System.Data.DbType.Int32, CeneterId);
+                   dbDatabase.AddInParameter(dbCommand, "@ModuleId", System.Data.DbType.Int32, Moudleid);
+                dsUsers = dbDatabase.ExecuteDataSet(dbCommand);
+                return dsUsers;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void UpdateCentersList(int ModulesId, int BrandId, int ProductID, int CeneterId)
+        {
+            try
+            {
+                string spNameString = string.Empty;
+                Database dbDataBase = DatabaseFactory.CreateDatabase(Global.INSTANCE_NAME4);
+                spNameString = "USP_UpdateCentersList";
+                DbCommand dbCommand = null;
+                dbCommand = dbDataBase.GetStoredProcCommand(spNameString);
+                dbDataBase.AddInParameter(dbCommand, "@ModulesId", System.Data.DbType.Int32, ModulesId);
+                dbDataBase.AddInParameter(dbCommand, "@BrandId", System.Data.DbType.Int32, BrandId);
+                dbDataBase.AddInParameter(dbCommand, "@ProductID", System.Data.DbType.Int32, ProductID);
+                dbDataBase.AddInParameter(dbCommand, "@CeneterId", System.Data.DbType.Int32, CeneterId);
+
+                dbDataBase.ExecuteDataSet(dbCommand);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
+
 

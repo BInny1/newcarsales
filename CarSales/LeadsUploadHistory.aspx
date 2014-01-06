@@ -240,7 +240,7 @@
                                 <li>
                                     <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false"></asp:LinkButton>
+                                    <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false" PostBackUrl="~/NewEntrys.aspx"></asp:LinkButton>
                                 </li>
                                 <li>
                                     <asp:LinkButton ID="Transferin" runat="server" Text="Transfer In" Enabled="false"></asp:LinkButton></li>
@@ -334,21 +334,13 @@
         </div>
         <!-- Headder End  -->
         <!-- Content Start  -->
-        <div class="content ">
-            <div class=" box1 boxBlue">
-                <h1 class="hed1 hed2 "  style="margin-bottom: 0 ">
-                    <asp:UpdatePanel ID="updaproducts" runat="server">
-                        <ContentTemplate>
-                            Leads Upload
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                </h1>
-                <div class="inn"  >
-                    <!-- Start  -->
-                    <table style="width: 720px;" >
-                        <tr>
-                            <td style="vertical-align: top;">
-                                <table style="width: 100%;" cellpadding="0" cellspacing="0">
+        
+         <div class="content wid1000">
+            <div class=" box1 box75p" style="margin-left:auto; margin-right:auto; float:none;">
+                <h1 class="hed1 hed2">Leads Upload</h1>
+                <div class="inn">
+                
+                  <table style="width: 100%;" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td>
                                             <asp:Label ID="lblCenterCode" runat="server" Font-Bold="true"></asp:Label>
@@ -368,7 +360,7 @@
                                                         </asp:DropDownList>
                                                     </td>
                                                     <td>
-                                                        <asp:Button runat="server" ID="btnGet" Text="Get" class="btn btn-warning"
+                                                        <asp:Button runat="server" ID="btnGet" Text="Get" class="btn btn-warning btn-sm"
                                                          style="width:80px;"  OnClick="btnGet_Click" />
                                                     </td>
                                                 </tr>
@@ -386,8 +378,8 @@
                                     <tr>
                                         <td>
                                             <div style="width: 450px; float: left;">
-                                                <h3>
-                                                    <asp:Label ID="ldsHeading" runat="server"></asp:Label></h3>
+                                                <h4>
+                                                    <asp:Label ID="ldsHeading" runat="server"></asp:Label></h4>
                                                 <table  class="table table-hover table-striped MB0 table1">
                                                     <asp:Repeater ID="rptrDownload" runat="server" OnItemCommand="rptrDownload_ItemCommand">
                                                         <HeaderTemplate>
@@ -434,15 +426,13 @@
                                         </td>
                                     </tr>
                                 </table>
-                            </td>
-                        </tr>
-                    </table>
-                    <!-- End  -->
-                </div>
+                    </div>
             </div>
             <div class="clear">
-                &nbsp;</div>
+            &nbsp;</div>
         </div>
+        
+   
         <!-- Content End  -->
         <div class="clear">
             &nbsp;</div>

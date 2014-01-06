@@ -398,7 +398,7 @@ function checkAll(cb)
                                 <li>
                                     <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false"></asp:LinkButton>
+                                    <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false" PostBackUrl="~/NewEntrys.aspx"></asp:LinkButton>
                                 </li>
                                 <li>
                                     <asp:LinkButton ID="Transferin" runat="server" Text="Transfer In" Enabled="false"></asp:LinkButton></li>
@@ -493,16 +493,10 @@ function checkAll(cb)
         <!-- Headder End  -->
         <!-- Content Start  -->
         <div class="content wid1000">
-            <div class=" box1 boxBlue">
+            <div class=" box1 box75p" style="margin-left: auto; margin-right: auto; float: none;">
                 <h1 class="hed1 hed2">
-                    <asp:UpdatePanel ID="updaproducts" runat="server">
-                        <ContentTemplate>
-                            Leads Upload
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                </h1>
+                    Leads Download</h1>
                 <div class="inn">
-                    <!-- Start  -->
                     <asp:UpdatePanel ID="updtpnldata" runat="server">
                         <ContentTemplate>
                             <table style="width: 100%;" cellpadding="0" cellspacing="0">
@@ -571,7 +565,7 @@ function checkAll(cb)
                                                 </td>
                                                 <td>
                                                     <br />
-                                                    <asp:Button runat="server" ID="btnGet" Text="Get" class="btn btn-warning" OnClientClick="return Validate();"
+                                                    <asp:Button runat="server" ID="btnGet" Text="Get" class="btn btn-warning btn-sm" OnClientClick="return Validate();"
                                                         OnClick="btnGet_Click" />
                                                 </td>
                                             </tr>
@@ -584,16 +578,16 @@ function checkAll(cb)
                                         <br />
                                         <div id="dvLeads" runat="server" style="width: 450px; float: left;" visible="false">
                                             <h4>
-                                                Center wise leads  <asp:Button runat="server" ID="btnView" Text="Lead to view/download" class="btn btn-default floarR"
+                                                Center wise leads
+                                                <asp:Button runat="server" ID="btnView" Text="Lead to view/download" class="btn btn-default btn-sm floarR"
                                                     OnClick="btnView_Click" OnClientClick="return ClientCheck();" />&nbsp;</h4>
-                                           
                                             <br />
                                             <table style="width: 450px;" class="table table-hover table-striped MB0 table1">
                                                 <asp:Repeater ID="rptrDownload" runat="server" OnItemCommand="rptrDownload_ItemCommand"
                                                     OnItemDataBound="rptrDownload_ItemDataBound">
                                                     <HeaderTemplate>
                                                         <tr class="tbHed">
-                                                         <th>
+                                                            <th>
                                                                 <asp:CheckBox ID="chkBxHeader" onclick="javascript:checkAll(this);" runat="server" />
                                                             </th>
                                                             <th style="width: 40px;">
@@ -608,12 +602,11 @@ function checkAll(cb)
                                                             <th>
                                                                 Leads to download
                                                             </th>
-                                                           
                                                         </tr>
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
-                                                        <tr >
-                                                         <td>
+                                                        <tr>
+                                                            <td>
                                                                 <asp:CheckBox ID="chk" runat="server"></asp:CheckBox>
                                                             </td>
                                                             <td>
@@ -630,7 +623,6 @@ function checkAll(cb)
                                                             <td>
                                                                 <asp:Label ID="lblTobeDownload" runat="server" Text='<%# Bind("ToDownload") %>'></asp:Label>
                                                             </td>
-                                                           
                                                         </tr>
                                                     </ItemTemplate>
                                                 </asp:Repeater>
@@ -644,7 +636,6 @@ function checkAll(cb)
                             <asp:PostBackTrigger ControlID="btnView" />
                         </Triggers>
                     </asp:UpdatePanel>
-                    <!-- End  -->
                 </div>
             </div>
             <div class="clear">
@@ -666,14 +657,12 @@ function checkAll(cb)
         CancelControlID="btnOk">
     </cc1:ModalPopupExtender>
     <asp:HiddenField ID="hdnExists" runat="server" />
-    <div id="divExists" class="popup" style="display: none; width: 450px;" >
+    <div id="divExists" class="popup" style="display: none; width: 450px;">
         <h2 id="H2">
             Alert
-        
-                <asp:ImageButton ID="btnExustCls" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
-            <!-- <div class="cls">
+            <asp:ImageButton ID="btnExustCls" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
+        <!-- <div class="cls">
             </div> -->
-      
         <div class="content">
             <p>
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
@@ -695,18 +684,17 @@ function checkAll(cb)
             Lead View Total of
             <asp:Label ID="lblLeadCnt" runat="server"></asp:Label>
             leads
-          
             <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
         <div class="content">
             <div class="scroll1" style="border: 2px solid #CCC">
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
                         <table class="table table-hover table-striped MB0 table1">
-                            <tr> 
+                            <tr>
                                 <td>
                                     <asp:Repeater ID="rptrLeads" runat="server" OnItemDataBound="rptrLeads_ItemDataBound">
                                         <HeaderTemplate>
-                                            <tr  class="tbHed">
+                                            <tr class="tbHed">
                                                 <th style="width: 80px;">
                                                     Phone#
                                                 </th>
@@ -769,8 +757,8 @@ function checkAll(cb)
                 </asp:UpdatePanel>
             </div>
             <div>
-              <asp:Button ID="btnDownload" runat="server" Text="Download" CssClass="btn btn-warning " 
-                OnClick="btnDownload_Click" />&nbsp;
+                <asp:Button ID="btnDownload" runat="server" Text="Download" CssClass="btn btn-warning "
+                    OnClick="btnDownload_Click" />&nbsp;
             </div>
         </div>
     </div>

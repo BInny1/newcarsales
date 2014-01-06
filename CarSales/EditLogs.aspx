@@ -326,7 +326,7 @@
                                 <li>
                                     <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false"></asp:LinkButton>
+                                    <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false" PostBackUrl="~/NewEntrys.aspx"></asp:LinkButton>
                                 </li>
                                 <li>
                                     <asp:LinkButton ID="Transferin" runat="server" Text="Transfer In" Enabled="false"></asp:LinkButton></li>
@@ -444,13 +444,14 @@
                                             <img id="img1" runat="server" style="border-right: 0px; border-top: 0px; border-left: 0px;
                                                 border-bottom: 0px" title="Calendar Control" onclick="displayCalendar(document.forms[0].txtEndDate,'mm/dd/yyyy',this);"
                                                 alt="Calendar Control" src="images/Calender.gif" width="18" />
-                                            <div style="float: left; width: 100px;">
+                                            <div style="display:inline-block; width: 100px;">
                                                 <asp:UpdatePanel ID="updbtnSearch" runat="server">
                                                     <ContentTemplate>
-                                                        <asp:Button ID="btnSearchMonth" runat="server" CssClass="btn btn-warning" Text="Generate"
+                                                        <asp:Button ID="btnSearchMonth" runat="server" CssClass="btn btn-warning btn-sm" Text="Generate"
                                                             OnClientClick="return ValidateData();" OnClick="btnSearchMonth_Click" />
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
+                                                
                                                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="updbtnSearch"
                                                     DisplayAfter="0">
                                                     <ProgressTemplate>
