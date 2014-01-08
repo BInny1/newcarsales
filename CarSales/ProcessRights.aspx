@@ -125,6 +125,22 @@
 
     </script>
 
+    <script type="text/javascript">
+        function Confirm() {
+            var confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
+            if (confirm("Do you want to delete Emplyee?")) {
+            confirm_value.value ="";
+                confirm_value.value = "Yes";
+            } else {
+          
+                confirm_value.value = "No";
+            }
+            document.forms[0].appendChild(confirm_value);
+        }
+    </script>
+    
     <script type="text/javascript" language="javascript">
 
           function ClosePopup9() {
@@ -262,7 +278,7 @@
                         <li class="parent "><a href="#">Sales <span class="cert"></span></a>
                             <ul class="sub1">
                                 <li>
-                                    <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false" PostBackUrl="~/IntroMails.aspx"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false" PostBackUrl="~/NewEntrys.aspx"></asp:LinkButton>
                                 </li>
@@ -535,7 +551,7 @@
         <h2>
             Update Rights
              <asp:LinkButton ID="btndelete" runat="server" Text="Delete User" style="padding-left: 255px;font-size: 14px;"
-                                     CssClass="underline"           OnClick="btndelete_Click" ></asp:LinkButton>
+                                     CssClass="underline"           OnClick="OnConfirm" OnClientClick="Confirm()" ></asp:LinkButton>
             <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
         <div class="content">
             <asp:UpdatePanel ID="p1" runat="server">

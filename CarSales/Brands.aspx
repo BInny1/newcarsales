@@ -274,7 +274,7 @@
                         <li class="parent "><a href="#">Sales <span class="cert"></span></a>
                             <ul class="sub1">
                                 <li>
-                                    <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false" PostBackUrl="~/IntroMails.aspx"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false" PostBackUrl="~/NewEntrys.aspx"></asp:LinkButton>
                                 </li>
@@ -381,7 +381,9 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </h1>
-                <div class="inn" style="margin: 0; padding: 0;">
+                <asp:UpdatePanel ID="Updatep1" runat="server">
+                <ContentTemplate>
+                    <div class="inn" style="margin: 0; padding: 0;">
                     <!-- Start -->
                     <asp:GridView ID="GridBrands" runat="server" CellSpacing="0" CellPadding="0"
                      CssClass="table table-hover table-striped  MB0 noBorder" OnRowCommand="GridBrands_RowCommand"
@@ -419,6 +421,9 @@
                     </asp:GridView>
                     <!-- End  -->
                 </div>
+                </ContentTemplate>
+                </asp:UpdatePanel>
+            
             </div>
             <div class="clear">
                 &nbsp;</div>

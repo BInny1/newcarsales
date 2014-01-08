@@ -1464,7 +1464,7 @@ namespace HotLeadBL.HotLeadsTran
                 throw ex;
             }
         }
-        public DataSet USP_GetIntroMailDetailsFor15Days(int AgentUID)
+        public DataSet USP_GetIntroMailDetailsFor15Days(string AgentUID)
         {
             try
             {
@@ -1474,7 +1474,7 @@ namespace HotLeadBL.HotLeadsTran
                 spNameString = "USP_GetIntroMailDetailsFor15Days";
                 DbCommand dbCommand = null;
                 dbCommand = dbDatabase.GetStoredProcCommand(spNameString);
-                dbDatabase.AddInParameter(dbCommand, "@AgentUID", System.Data.DbType.Int32, AgentUID);
+                dbDatabase.AddInParameter(dbCommand, "@AgentUID", System.Data.DbType.String, AgentUID);
                 dsMails = dbDatabase.ExecuteDataSet(dbCommand);
                 return dsMails;
             }
@@ -1563,7 +1563,7 @@ namespace HotLeadBL.HotLeadsTran
                 throw ex;
             }
         }
-        public bool USP_SaveIntroMailDetails(string MarketSpecialist, string CustomerEmail, int AgentUID, string Language)
+        public bool USP_SaveIntroMailDetails(string MarketSpecialist, string CustomerEmail, string AgentUID, string Language)
         {
             try
             {
@@ -1575,7 +1575,7 @@ namespace HotLeadBL.HotLeadsTran
                 dbCommand = dbDatabase.GetStoredProcCommand(spNameString);
                 dbDatabase.AddInParameter(dbCommand, "@MarketSpecialist", System.Data.DbType.String, MarketSpecialist);
                 dbDatabase.AddInParameter(dbCommand, "@CustomerEmail", System.Data.DbType.String, CustomerEmail);
-                dbDatabase.AddInParameter(dbCommand, "@AgentUID", System.Data.DbType.Int32, AgentUID);
+                dbDatabase.AddInParameter(dbCommand, "@AgentUID", System.Data.DbType.String, AgentUID);
                 dbDatabase.AddInParameter(dbCommand, "@Language", System.Data.DbType.String, Language);
                 dbDatabase.ExecuteDataSet(dbCommand);
                 bnew = true;

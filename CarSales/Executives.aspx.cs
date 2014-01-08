@@ -469,15 +469,24 @@ public partial class Executives : System.Web.UI.Page
         Ckleads.Items[0].Selected = false;
 
     }
-    public void btndelete_Click(object sender, EventArgs e)
+    public void OnConfirm(object sender, EventArgs e)
     {
+        string confirmValue = Request.Form["confirm_value"];
+        if (confirmValue == "Yes")
+        {
 
-        //Deactivating Empid from carsales.
-        string EMpid = Session["EMpid"].ToString();
-        DataSet dsSalesUpdateList = objHotLeadBL.DeleteEmployee(EMpid);
-        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('" + EMpid + " has been deleted succesfully.');", true);
-        MpUpdaterights.Hide();
-        GetExecutivesList();
+            //Deactivating Empid from carsales.
+            string EMpid = Session["EMpid"].ToString();
+            DataSet dsSalesUpdateList = objHotLeadBL.DeleteEmployee(EMpid);
+            System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('" + EMpid + " has been deleted succesfully.');", true);
+            MpUpdaterights.Hide();
+            GetExecutivesList();
+           // GetUserDefaultRights();
+        }
+        else
+        {
+
+        }
     }
 
 }

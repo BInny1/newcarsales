@@ -91,7 +91,8 @@ public partial class NewEntrys : System.Web.UI.Page
                         else
                         {
                             lblUserName.Text = LogUsername;
-                            lblUserName.Text = lblUserName.Text + " (" + CenterCode.ToString() + ")-" + UserLogName.ToString();
+                            
+                            lblUserName.Text = lblUserName.Text + " (" + UserLogName.ToString() + ")-" + CenterCode.ToString();
                         }
 
                     }
@@ -586,345 +587,357 @@ public partial class NewEntrys : System.Web.UI.Page
     }
     protected void btnTransfer_Click(object sender, EventArgs e)
     {
-        //try
-        //{
-        //    int LeadStatus = Convert.ToInt32(4);
-        //    string SellerPhone = txtPhone.Text;
-        //    SellerPhone = SellerPhone.Replace("-", "");
-        //    SellerPhone = SellerPhone.Replace("-", "");
-        //    DataSet dsReturnExists = objHotLeadBL.ChkUserPhoneNumberExistsForReturned(SellerPhone);
-        //    if (dsReturnExists.Tables[0].Rows.Count > 0)
-        //    {
-        //        Session["NewSaleCarID"] = dsReturnExists.Tables[0].Rows[0]["carid"].ToString();
-        //        Session["NewSaleUID"] = dsReturnExists.Tables[0].Rows[0]["uid"].ToString();
-        //        Session["NewSalePostingID"] = dsReturnExists.Tables[0].Rows[0]["postingID"].ToString();
-        //        Session["NewSaleUserPackID"] = dsReturnExists.Tables[0].Rows[0]["UserPackID"].ToString();
-        //        Session["NewSaleSellerID"] = dsReturnExists.Tables[0].Rows[0]["sellerID"].ToString();
-        //        Session["NewSalePSID1"] = dsReturnExists.Tables[0].Rows[0]["PSID1"].ToString();
-        //        if (dsReturnExists.Tables[0].Rows[0]["PSID2"].ToString() != "")
-        //        {
-        //            Session["NewSalePSID2"] = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["PSID2"].ToString());
-        //        }
-        //        if (dsReturnExists.Tables[0].Rows[0]["PaymentID"].ToString() != "")
-        //        {
-        //            Session["NewSalePaymentID"] = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["PaymentID"].ToString());
-        //        }
-        //        int SaleAgentID = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["SaleAgentID"].ToString());
-        //        SaveInfo(LeadStatus, SaleAgentID);
-        //        Session["AbandonSalePostingID"] = null;
-        //        mpealteruserUpdated.Show();
-        //        lblErrUpdated.Visible = true;
-        //        lblErrUpdated.Text = "The previous record is being updated and successfully saved with sale id " + Session["NewSaleCarID"].ToString();
-        //    }
-        //    else
-        //    {
-        //        DataSet dsUserExists = objHotLeadBL.ChkUserPhoneNumberExistsForSale(SellerPhone);
-        //        if (dsUserExists.Tables[0].Rows.Count > 0)
-        //        {
-        //            mdepAlertExists.Show();
-        //            lblErrorExists.Visible = true;
-        //            lblErrorExists.Text = "Phone " + txtPhone.Text + " already exists.<br />Please change phone # to transfer";
-        //        }
-        //        else
-        //        {
-        //            DataSet dsUserDraftExists = objHotLeadBL.ChkUserPhoneNumberExists(SellerPhone);
-        //            if (dsUserDraftExists.Tables[0].Rows.Count > 0)
-        //            {
-        //                Session["NewSaleCarID"] = dsUserDraftExists.Tables[0].Rows[0]["carid"].ToString();
-        //                Session["NewSaleUID"] = dsUserDraftExists.Tables[0].Rows[0]["uid"].ToString();
-        //                Session["NewSalePostingID"] = dsUserDraftExists.Tables[0].Rows[0]["postingID"].ToString();
-        //                Session["NewSaleUserPackID"] = dsUserDraftExists.Tables[0].Rows[0]["UserPackID"].ToString();
-        //                Session["NewSaleSellerID"] = dsUserDraftExists.Tables[0].Rows[0]["sellerID"].ToString();
-        //                Session["NewSalePSID1"] = dsUserDraftExists.Tables[0].Rows[0]["PSID1"].ToString();
-        //                if (dsUserDraftExists.Tables[0].Rows[0]["PSID2"].ToString() != "")
-        //                {
-        //                    Session["NewSalePSID2"] = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["PSID2"].ToString());
-        //                }
-        //                if (dsUserDraftExists.Tables[0].Rows[0]["PaymentID"].ToString() != "")
-        //                {
-        //                    Session["NewSalePaymentID"] = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["PaymentID"].ToString());
-        //                }
-        //                int SaleAgentID = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["SaleAgentID"].ToString());
-        //                SaveInfo(LeadStatus, SaleAgentID);
-        //                Session["AbandonSalePostingID"] = null;
-        //                mpealteruserUpdated.Show();
-        //                lblErrUpdated.Visible = true;
-        //                lblErrUpdated.Text = "The previous record is being updated and successfully saved with sale id " + Session["NewSaleCarID"].ToString();
-        //            }
-        //            else
-        //            {
-        //                int SaleAgentID = 0;
-        //                SaveInfo(LeadStatus, SaleAgentID);
-        //                Session["AbandonSalePostingID"] = null;
-        //                Response.Redirect("NewSale.aspx");
-        //            }
-        //        }
-        //    }
-        //}
-        //catch (Exception ex)
-        //{
-        //    throw ex;
-        //}
+        try
+        {
+            int LeadStatus = Convert.ToInt32(4);
+            string SellerPhone = txtPhone.Text;
+            SellerPhone = SellerPhone.Replace("-", "");
+            SellerPhone = SellerPhone.Replace("-", "");
+            DataSet dsReturnExists = objHotLeadBL.ChkUserPhoneNumberExistsForReturned(SellerPhone);
+            if (dsReturnExists.Tables[0].Rows.Count > 0)
+            {
+                Session["NewSaleCarID"] = dsReturnExists.Tables[0].Rows[0]["carid"].ToString();
+                Session["NewSaleUID"] = dsReturnExists.Tables[0].Rows[0]["uid"].ToString();
+                Session["NewSalePostingID"] = dsReturnExists.Tables[0].Rows[0]["postingID"].ToString();
+                Session["NewSaleUserPackID"] = dsReturnExists.Tables[0].Rows[0]["UserPackID"].ToString();
+                Session["NewSaleSellerID"] = dsReturnExists.Tables[0].Rows[0]["sellerID"].ToString();
+                Session["NewSalePSID1"] = dsReturnExists.Tables[0].Rows[0]["PSID1"].ToString();
+                if (dsReturnExists.Tables[0].Rows[0]["PSID2"].ToString() != "")
+                {
+                    Session["NewSalePSID2"] = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["PSID2"].ToString());
+                }
+                if (dsReturnExists.Tables[0].Rows[0]["PaymentID"].ToString() != "")
+                {
+                    Session["NewSalePaymentID"] = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["PaymentID"].ToString());
+                }
+                int SaleAgentID = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["SaleAgentID"].ToString());
+                SaveInfo(LeadStatus, SaleAgentID);
+                Session["AbandonSalePostingID"] = null;
+                mpealteruserUpdated.Show();
+                lblErrUpdated.Visible = true;
+                lblErrUpdated.Text = "The previous record is being updated and successfully saved with sale id " + Session["NewSaleCarID"].ToString();
+            }
+            else
+            {
+                DataSet dsUserExists = objHotLeadBL.ChkUserPhoneNumberExistsForSale(SellerPhone);
+                if (dsUserExists.Tables[0].Rows.Count > 0)
+                {
+                    mdepAlertExists.Show();
+                    lblErrorExists.Visible = true;
+                    lblErrorExists.Text = "Phone " + txtPhone.Text + " already exists.<br />Please change phone # to transfer";
+                }
+                else
+                {
+                    DataSet dsUserDraftExists = objHotLeadBL.ChkUserPhoneNumberExists(SellerPhone);
+                    if (dsUserDraftExists.Tables[0].Rows.Count > 0)
+                    {
+                        Session["NewSaleCarID"] = dsUserDraftExists.Tables[0].Rows[0]["carid"].ToString();
+                        Session["NewSaleUID"] = dsUserDraftExists.Tables[0].Rows[0]["uid"].ToString();
+                        Session["NewSalePostingID"] = dsUserDraftExists.Tables[0].Rows[0]["postingID"].ToString();
+                        Session["NewSaleUserPackID"] = dsUserDraftExists.Tables[0].Rows[0]["UserPackID"].ToString();
+                        Session["NewSaleSellerID"] = dsUserDraftExists.Tables[0].Rows[0]["sellerID"].ToString();
+                        Session["NewSalePSID1"] = dsUserDraftExists.Tables[0].Rows[0]["PSID1"].ToString();
+                        if (dsUserDraftExists.Tables[0].Rows[0]["PSID2"].ToString() != "")
+                        {
+                            Session["NewSalePSID2"] = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["PSID2"].ToString());
+                        }
+                        if (dsUserDraftExists.Tables[0].Rows[0]["PaymentID"].ToString() != "")
+                        {
+                            Session["NewSalePaymentID"] = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["PaymentID"].ToString());
+                        }
+                        int SaleAgentID = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["SaleAgentID"].ToString());
+                        SaveInfo(LeadStatus, SaleAgentID);
+                        Session["AbandonSalePostingID"] = null;
+                        mpealteruserUpdated.Show();
+                        lblErrUpdated.Visible = true;
+                        lblErrUpdated.Text = "The previous record is being updated and successfully saved with sale id " + Session["NewSaleCarID"].ToString();
+                    }
+                    else
+                    {
+                        int SaleAgentID = 0;
+                        SaveInfo(LeadStatus, SaleAgentID);
+                        Session["AbandonSalePostingID"] = null;
+                        Response.Redirect("NewSale.aspx");
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    protected void BtnClsUpdated_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            Session["AbandonSalePostingID"] = null;
+            Response.Redirect("NewSale.aspx");
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
     }
     protected void btnSale_Click(object sender, EventArgs e)
     {
-        //try
-        //{
-        //    int LeadStatus = Convert.ToInt32(1);
-        //    string SellerPhone = txtPhone.Text;
-        //    SellerPhone = SellerPhone.Replace("-", "");
-        //    SellerPhone = SellerPhone.Replace("-", "");
-        //    DataSet dsReturnExists = objHotLeadBL.ChkUserPhoneNumberExistsForReturned(SellerPhone);
-        //    if (dsReturnExists.Tables[0].Rows.Count > 0)
-        //    {
-        //        Session["NewSaleCarID"] = dsReturnExists.Tables[0].Rows[0]["carid"].ToString();
-        //        Session["NewSaleUID"] = dsReturnExists.Tables[0].Rows[0]["uid"].ToString();
-        //        Session["NewSalePostingID"] = dsReturnExists.Tables[0].Rows[0]["postingID"].ToString();
-        //        Session["NewSaleUserPackID"] = dsReturnExists.Tables[0].Rows[0]["UserPackID"].ToString();
-        //        Session["NewSaleSellerID"] = dsReturnExists.Tables[0].Rows[0]["sellerID"].ToString();
-        //        Session["NewSalePSID1"] = dsReturnExists.Tables[0].Rows[0]["PSID1"].ToString();
-        //        if (dsReturnExists.Tables[0].Rows[0]["PSID2"].ToString() != "")
-        //        {
-        //            Session["NewSalePSID2"] = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["PSID2"].ToString());
-        //        }
-        //        if (dsReturnExists.Tables[0].Rows[0]["PaymentID"].ToString() != "")
-        //        {
-        //            Session["NewSalePaymentID"] = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["PaymentID"].ToString());
-        //        }
-        //        int SaleAgentID = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["SaleAgentID"].ToString());
-        //        SaveInfo(LeadStatus, SaleAgentID);
-        //        Session["AbandonSalePostingID"] = null;
-        //        //mpealteruserUpdated.Show();
-        //        //lblErrUpdated.Visible = true;
-        //        //lblErrUpdated.Text = "The previous record is being updated and successfully saved with sale id " + Session["NewSaleCarID"].ToString();
-        //        mdepAlertAfterSave.Show();
-        //        lblAlertAfterSave.Visible = true;
-        //        lblAlertAfterSave.Text = "The previous record is being updated and successfully saved with sale id " + Session["NewSaleCarID"].ToString() + "<br />Do you want to add another car for this customer?";
-        //    }
-        //    else
-        //    {
-        //        DataSet dsUserExists = objHotLeadBL.ChkUserPhoneNumberExistsForSale(SellerPhone);
-        //        if (dsUserExists.Tables[0].Rows.Count > 0)
-        //        {
-        //            mdepAlertExists.Show();
-        //            lblErrorExists.Visible = true;
-        //            lblErrorExists.Text = "Phone " + txtPhone.Text + " already exists.<br />Please change phone # to save";
-        //        }
-        //        else
-        //        {
-        //            DataSet dsUserDraftExists = objHotLeadBL.ChkUserPhoneNumberExists(SellerPhone);
-        //            if (dsUserDraftExists.Tables[0].Rows.Count > 0)
-        //            {
-        //                Session["NewSaleCarID"] = dsUserDraftExists.Tables[0].Rows[0]["carid"].ToString();
-        //                Session["NewSaleUID"] = dsUserDraftExists.Tables[0].Rows[0]["uid"].ToString();
-        //                Session["NewSalePostingID"] = dsUserDraftExists.Tables[0].Rows[0]["postingID"].ToString();
-        //                Session["NewSaleUserPackID"] = dsUserDraftExists.Tables[0].Rows[0]["UserPackID"].ToString();
-        //                Session["NewSaleSellerID"] = dsUserDraftExists.Tables[0].Rows[0]["sellerID"].ToString();
-        //                Session["NewSalePSID1"] = dsUserDraftExists.Tables[0].Rows[0]["PSID1"].ToString();
-        //                if (dsUserDraftExists.Tables[0].Rows[0]["PSID2"].ToString() != "")
-        //                {
-        //                    Session["NewSalePSID2"] = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["PSID2"].ToString());
-        //                }
-        //                if (dsUserDraftExists.Tables[0].Rows[0]["PaymentID"].ToString() != "")
-        //                {
-        //                    Session["NewSalePaymentID"] = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["PaymentID"].ToString());
-        //                }
-        //                int SaleAgentID = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["SaleAgentID"].ToString());
-        //                SaveInfo(LeadStatus, SaleAgentID);
-        //                Session["AbandonSalePostingID"] = null;
-        //                //mpealteruserUpdated.Show();
-        //                //lblErrUpdated.Visible = true;
-        //                //lblErrUpdated.Text = "The previous record is being updated and successfully saved with sale id " + Session["NewSaleCarID"].ToString();
-        //                mdepAlertAfterSave.Show();
-        //                lblAlertAfterSave.Visible = true;
-        //                lblAlertAfterSave.Text = "The previous record is being updated and successfully saved with sale id " + Session["NewSaleCarID"].ToString() + "<br />Do you want to add another car for this customer?";
-        //            }
-        //            else
-        //            {
-        //                int SaleAgentID = 0;
-        //                SaveInfo(LeadStatus, SaleAgentID);
-        //                Session["AbandonSalePostingID"] = null;
-        //                //mpealteruserUpdated.Show();
-        //                //lblErrUpdated.Visible = true;
-        //                //lblErrUpdated.Text = "Customer details saved successfully with sale id " + Session["NewSaleCarID"].ToString();
-        //                mdepAlertAfterSave.Show();
-        //                lblAlertAfterSave.Visible = true;
-        //                lblAlertAfterSave.Text = "Customer details saved successfully with sale id " + Session["NewSaleCarID"].ToString() + "<br />Do you want to add another car for this customer?";
-        //            }
-        //        }
-        //    }
-        //}
-        //catch (Exception ex)
-        //{
-        //    throw ex;
-        //}
+        try
+        {
+            int LeadStatus = Convert.ToInt32(1);
+            string SellerPhone = txtPhone.Text;
+            SellerPhone = SellerPhone.Replace("-", "");
+            SellerPhone = SellerPhone.Replace("-", "");
+            DataSet dsReturnExists = objHotLeadBL.ChkUserPhoneNumberExistsForReturned(SellerPhone);
+            if (dsReturnExists.Tables[0].Rows.Count > 0)
+            {
+                Session["NewSaleCarID"] = dsReturnExists.Tables[0].Rows[0]["carid"].ToString();
+                Session["NewSaleUID"] = dsReturnExists.Tables[0].Rows[0]["uid"].ToString();
+                Session["NewSalePostingID"] = dsReturnExists.Tables[0].Rows[0]["postingID"].ToString();
+                Session["NewSaleUserPackID"] = dsReturnExists.Tables[0].Rows[0]["UserPackID"].ToString();
+                Session["NewSaleSellerID"] = dsReturnExists.Tables[0].Rows[0]["sellerID"].ToString();
+                Session["NewSalePSID1"] = dsReturnExists.Tables[0].Rows[0]["PSID1"].ToString();
+                if (dsReturnExists.Tables[0].Rows[0]["PSID2"].ToString() != "")
+                {
+                    Session["NewSalePSID2"] = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["PSID2"].ToString());
+                }
+                if (dsReturnExists.Tables[0].Rows[0]["PaymentID"].ToString() != "")
+                {
+                    Session["NewSalePaymentID"] = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["PaymentID"].ToString());
+                }
+                int SaleAgentID = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["SaleAgentID"].ToString());
+                SaveInfo(LeadStatus, SaleAgentID);
+                Session["AbandonSalePostingID"] = null;
+                //mpealteruserUpdated.Show();
+                //lblErrUpdated.Visible = true;
+                //lblErrUpdated.Text = "The previous record is being updated and successfully saved with sale id " + Session["NewSaleCarID"].ToString();
+                mdepAlertAfterSave.Show();
+                lblAlertAfterSave.Visible = true;
+                lblAlertAfterSave.Text = "The previous record is being updated and successfully saved with sale id " + Session["NewSaleCarID"].ToString() + "<br />Do you want to add another car for this customer?";
+            }
+            else
+            {
+                DataSet dsUserExists = objHotLeadBL.ChkUserPhoneNumberExistsForSale(SellerPhone);
+                if (dsUserExists.Tables[0].Rows.Count > 0)
+                {
+                    mdepAlertExists.Show();
+                    lblErrorExists.Visible = true;
+                    lblErrorExists.Text = "Phone " + txtPhone.Text + " already exists.<br />Please change phone # to save";
+                }
+                else
+                {
+                    DataSet dsUserDraftExists = objHotLeadBL.ChkUserPhoneNumberExists(SellerPhone);
+                    if (dsUserDraftExists.Tables[0].Rows.Count > 0)
+                    {
+                        Session["NewSaleCarID"] = dsUserDraftExists.Tables[0].Rows[0]["carid"].ToString();
+                        Session["NewSaleUID"] = dsUserDraftExists.Tables[0].Rows[0]["uid"].ToString();
+                        Session["NewSalePostingID"] = dsUserDraftExists.Tables[0].Rows[0]["postingID"].ToString();
+                        Session["NewSaleUserPackID"] = dsUserDraftExists.Tables[0].Rows[0]["UserPackID"].ToString();
+                        Session["NewSaleSellerID"] = dsUserDraftExists.Tables[0].Rows[0]["sellerID"].ToString();
+                        Session["NewSalePSID1"] = dsUserDraftExists.Tables[0].Rows[0]["PSID1"].ToString();
+                        if (dsUserDraftExists.Tables[0].Rows[0]["PSID2"].ToString() != "")
+                        {
+                            Session["NewSalePSID2"] = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["PSID2"].ToString());
+                        }
+                        if (dsUserDraftExists.Tables[0].Rows[0]["PaymentID"].ToString() != "")
+                        {
+                            Session["NewSalePaymentID"] = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["PaymentID"].ToString());
+                        }
+                        int SaleAgentID = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["SaleAgentID"].ToString());
+                        SaveInfo(LeadStatus, SaleAgentID);
+                        Session["AbandonSalePostingID"] = null;
+                        //mpealteruserUpdated.Show();
+                        //lblErrUpdated.Visible = true;
+                        //lblErrUpdated.Text = "The previous record is being updated and successfully saved with sale id " + Session["NewSaleCarID"].ToString();
+                        mdepAlertAfterSave.Show();
+                        lblAlertAfterSave.Visible = true;
+                        lblAlertAfterSave.Text = "The previous record is being updated and successfully saved with sale id " + Session["NewSaleCarID"].ToString() + "<br />Do you want to add another car for this customer?";
+                    }
+                    else
+                    {
+                        int SaleAgentID = 0;
+                        SaveInfo(LeadStatus, SaleAgentID);
+                        Session["AbandonSalePostingID"] = null;
+                        //mpealteruserUpdated.Show();
+                        //lblErrUpdated.Visible = true;
+                        //lblErrUpdated.Text = "Customer details saved successfully with sale id " + Session["NewSaleCarID"].ToString();
+                        mdepAlertAfterSave.Show();
+                        lblAlertAfterSave.Visible = true;
+                        lblAlertAfterSave.Text = "Customer details saved successfully with sale id " + Session["NewSaleCarID"].ToString() + "<br />Do you want to add another car for this customer?";
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
     }
     protected void btnAbandon_Click(object sender, EventArgs e)
     {
-        //try
-        //{
-        //    if (txtPhone.Text != "")
-        //    {
-        //        int LeadStatus = Convert.ToInt32(2);
-        //        string SellerPhone = txtPhone.Text;
-        //        SellerPhone = SellerPhone.Replace("-", "");
-        //        SellerPhone = SellerPhone.Replace("-", "");
-        //        DataSet dsReturnExists = objHotLeadBL.ChkUserPhoneNumberExistsForReturned(SellerPhone);
-        //        if (dsReturnExists.Tables[0].Rows.Count > 0)
-        //        {
-        //            Session["NewSaleCarID"] = dsReturnExists.Tables[0].Rows[0]["carid"].ToString();
-        //            Session["NewSaleUID"] = dsReturnExists.Tables[0].Rows[0]["uid"].ToString();
-        //            Session["NewSalePostingID"] = dsReturnExists.Tables[0].Rows[0]["postingID"].ToString();
-        //            Session["NewSaleUserPackID"] = dsReturnExists.Tables[0].Rows[0]["UserPackID"].ToString();
-        //            Session["NewSaleSellerID"] = dsReturnExists.Tables[0].Rows[0]["sellerID"].ToString();
-        //            Session["NewSalePSID1"] = dsReturnExists.Tables[0].Rows[0]["PSID1"].ToString();
-        //            if (dsReturnExists.Tables[0].Rows[0]["PSID2"].ToString() != "")
-        //            {
-        //                Session["NewSalePSID2"] = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["PSID2"].ToString());
-        //            }
-        //            if (dsReturnExists.Tables[0].Rows[0]["PaymentID"].ToString() != "")
-        //            {
-        //                Session["NewSalePaymentID"] = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["PaymentID"].ToString());
-        //            }
-        //            int SaleAgentID = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["SaleAgentID"].ToString());
-        //            SaveInfo(LeadStatus, SaleAgentID);
-        //            Session["AbandonSalePostingID"] = null;
-        //            Response.Redirect("NewSale.aspx");
-        //        }
-        //        else
-        //        {
-        //            DataSet dsUserExists = objHotLeadBL.ChkUserPhoneNumberExistsForSale(SellerPhone);
-        //            if (dsUserExists.Tables[0].Rows.Count > 0)
-        //            {
-        //                Session["AbandonSalePostingID"] = null;
-        //                Response.Redirect("NewSale.aspx");
-        //            }
-        //            else
-        //            {
-        //                DataSet dsUserDraftExists = objHotLeadBL.ChkUserPhoneNumberExists(SellerPhone);
-        //                if (dsUserDraftExists.Tables[0].Rows.Count > 0)
-        //                {
-        //                    Session["NewSaleCarID"] = dsUserDraftExists.Tables[0].Rows[0]["carid"].ToString();
-        //                    Session["NewSaleUID"] = dsUserDraftExists.Tables[0].Rows[0]["uid"].ToString();
-        //                    Session["NewSalePostingID"] = dsUserDraftExists.Tables[0].Rows[0]["postingID"].ToString();
-        //                    Session["NewSaleUserPackID"] = dsUserDraftExists.Tables[0].Rows[0]["UserPackID"].ToString();
-        //                    Session["NewSaleSellerID"] = dsUserDraftExists.Tables[0].Rows[0]["sellerID"].ToString();
-        //                    Session["NewSalePSID1"] = dsUserDraftExists.Tables[0].Rows[0]["PSID1"].ToString();
-        //                    if (dsUserDraftExists.Tables[0].Rows[0]["PSID2"].ToString() != "")
-        //                    {
-        //                        Session["NewSalePSID2"] = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["PSID2"].ToString());
-        //                    }
-        //                    if (dsUserDraftExists.Tables[0].Rows[0]["PaymentID"].ToString() != "")
-        //                    {
-        //                        Session["NewSalePaymentID"] = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["PaymentID"].ToString());
-        //                    }
-        //                    int SaleAgentID = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["SaleAgentID"].ToString());
-        //                    SaveInfo(LeadStatus, SaleAgentID);
-        //                    Session["AbandonSalePostingID"] = null;
-        //                    Response.Redirect("NewSale.aspx");
-        //                }
-        //                else
-        //                {
-        //                    int SaleAgentID = 0;
-        //                    SaveInfo(LeadStatus, SaleAgentID);
-        //                    Session["AbandonSalePostingID"] = null;
-        //                    Response.Redirect("NewSale.aspx");
-        //                }
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Session["AbandonSalePostingID"] = null;
-        //        Response.Redirect("NewSale.aspx");
-        //    }
-        //    //mpealteruserUpdated.Show();
-        //    //Response.Redirect("NewSale.aspx");
-        //    //lblErrUpdated.Visible = true;
-        //    //lblErrUpdated.Text = "Customer details saved successfully";
+        try
+        {
+            if (txtPhone.Text != "")
+            {
+                int LeadStatus = Convert.ToInt32(2);
+                string SellerPhone = txtPhone.Text;
+                SellerPhone = SellerPhone.Replace("-", "");
+                SellerPhone = SellerPhone.Replace("-", "");
+                DataSet dsReturnExists = objHotLeadBL.ChkUserPhoneNumberExistsForReturned(SellerPhone);
+                if (dsReturnExists.Tables[0].Rows.Count > 0)
+                {
+                    Session["NewSaleCarID"] = dsReturnExists.Tables[0].Rows[0]["carid"].ToString();
+                    Session["NewSaleUID"] = dsReturnExists.Tables[0].Rows[0]["uid"].ToString();
+                    Session["NewSalePostingID"] = dsReturnExists.Tables[0].Rows[0]["postingID"].ToString();
+                    Session["NewSaleUserPackID"] = dsReturnExists.Tables[0].Rows[0]["UserPackID"].ToString();
+                    Session["NewSaleSellerID"] = dsReturnExists.Tables[0].Rows[0]["sellerID"].ToString();
+                    Session["NewSalePSID1"] = dsReturnExists.Tables[0].Rows[0]["PSID1"].ToString();
+                    if (dsReturnExists.Tables[0].Rows[0]["PSID2"].ToString() != "")
+                    {
+                        Session["NewSalePSID2"] = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["PSID2"].ToString());
+                    }
+                    if (dsReturnExists.Tables[0].Rows[0]["PaymentID"].ToString() != "")
+                    {
+                        Session["NewSalePaymentID"] = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["PaymentID"].ToString());
+                    }
+                    int SaleAgentID = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["SaleAgentID"].ToString());
+                    SaveInfo(LeadStatus, SaleAgentID);
+                    Session["AbandonSalePostingID"] = null;
+                    Response.Redirect("NewSale.aspx");
+                }
+                else
+                {
+                    DataSet dsUserExists = objHotLeadBL.ChkUserPhoneNumberExistsForSale(SellerPhone);
+                    if (dsUserExists.Tables[0].Rows.Count > 0)
+                    {
+                        Session["AbandonSalePostingID"] = null;
+                        Response.Redirect("NewSale.aspx");
+                    }
+                    else
+                    {
+                        DataSet dsUserDraftExists = objHotLeadBL.ChkUserPhoneNumberExists(SellerPhone);
+                        if (dsUserDraftExists.Tables[0].Rows.Count > 0)
+                        {
+                            Session["NewSaleCarID"] = dsUserDraftExists.Tables[0].Rows[0]["carid"].ToString();
+                            Session["NewSaleUID"] = dsUserDraftExists.Tables[0].Rows[0]["uid"].ToString();
+                            Session["NewSalePostingID"] = dsUserDraftExists.Tables[0].Rows[0]["postingID"].ToString();
+                            Session["NewSaleUserPackID"] = dsUserDraftExists.Tables[0].Rows[0]["UserPackID"].ToString();
+                            Session["NewSaleSellerID"] = dsUserDraftExists.Tables[0].Rows[0]["sellerID"].ToString();
+                            Session["NewSalePSID1"] = dsUserDraftExists.Tables[0].Rows[0]["PSID1"].ToString();
+                            if (dsUserDraftExists.Tables[0].Rows[0]["PSID2"].ToString() != "")
+                            {
+                                Session["NewSalePSID2"] = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["PSID2"].ToString());
+                            }
+                            if (dsUserDraftExists.Tables[0].Rows[0]["PaymentID"].ToString() != "")
+                            {
+                                Session["NewSalePaymentID"] = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["PaymentID"].ToString());
+                            }
+                            int SaleAgentID = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["SaleAgentID"].ToString());
+                            SaveInfo(LeadStatus, SaleAgentID);
+                            Session["AbandonSalePostingID"] = null;
+                            Response.Redirect("NewSale.aspx");
+                        }
+                        else
+                        {
+                            int SaleAgentID = 0;
+                            SaveInfo(LeadStatus, SaleAgentID);
+                            Session["AbandonSalePostingID"] = null;
+                            Response.Redirect("NewSale.aspx");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Session["AbandonSalePostingID"] = null;
+                Response.Redirect("NewSale.aspx");
+            }
+            //mpealteruserUpdated.Show();
+            //Response.Redirect("NewSale.aspx");
+            //lblErrUpdated.Visible = true;
+            //lblErrUpdated.Text = "Customer details saved successfully";
 
-        //    // }
-        //}
-        //catch (Exception ex)
-        //{
-        //    throw ex;
-        //}
+            // }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
     }
 
     protected void btnSavedraft_Click(object sender, EventArgs e)
     {
-        //try
-        //{
-        //    int LeadStatus = Convert.ToInt32(3);
-        //    string SellerPhone = txtPhone.Text;
-        //    SellerPhone = SellerPhone.Replace("-", "");
-        //    SellerPhone = SellerPhone.Replace("-", "");
-        //    DataSet dsReturnExists = objHotLeadBL.ChkUserPhoneNumberExistsForReturned(SellerPhone);
-        //    if (dsReturnExists.Tables[0].Rows.Count > 0)
-        //    {
-        //        Session["NewSaleCarID"] = dsReturnExists.Tables[0].Rows[0]["carid"].ToString();
-        //        Session["NewSaleUID"] = dsReturnExists.Tables[0].Rows[0]["uid"].ToString();
-        //        Session["NewSalePostingID"] = dsReturnExists.Tables[0].Rows[0]["postingID"].ToString();
-        //        Session["NewSaleUserPackID"] = dsReturnExists.Tables[0].Rows[0]["UserPackID"].ToString();
-        //        Session["NewSaleSellerID"] = dsReturnExists.Tables[0].Rows[0]["sellerID"].ToString();
-        //        Session["NewSalePSID1"] = dsReturnExists.Tables[0].Rows[0]["PSID1"].ToString();
-        //        if (dsReturnExists.Tables[0].Rows[0]["PSID2"].ToString() != "")
-        //        {
-        //            Session["NewSalePSID2"] = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["PSID2"].ToString());
-        //        }
-        //        if (dsReturnExists.Tables[0].Rows[0]["PaymentID"].ToString() != "")
-        //        {
-        //            Session["NewSalePaymentID"] = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["PaymentID"].ToString());
-        //        }
-        //        int SaleAgentID = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["SaleAgentID"].ToString());
-        //        SaveInfo(LeadStatus, SaleAgentID);
-        //        Session["AbandonSalePostingID"] = null;
-        //    }
-        //    else
-        //    {
-        //        DataSet dsUserExists = objHotLeadBL.ChkUserPhoneNumberExistsForSale(SellerPhone);
-        //        if (dsUserExists.Tables[0].Rows.Count > 0)
-        //        {
-        //            mdepAlertExists.Show();
-        //            lblErrorExists.Visible = true;
-        //            lblErrorExists.Text = "Phone " + txtPhone.Text + " already exists.<br />Please change phone # to save";
-        //        }
-        //        else
-        //        {
-        //            DataSet dsUserDraftExists = objHotLeadBL.ChkUserPhoneNumberExists(SellerPhone);
-        //            if (dsUserDraftExists.Tables[0].Rows.Count > 0)
-        //            {
-        //                Session["NewSaleCarID"] = dsUserDraftExists.Tables[0].Rows[0]["carid"].ToString();
-        //                Session["NewSaleUID"] = dsUserDraftExists.Tables[0].Rows[0]["uid"].ToString();
-        //                Session["NewSalePostingID"] = dsUserDraftExists.Tables[0].Rows[0]["postingID"].ToString();
-        //                Session["NewSaleUserPackID"] = dsUserDraftExists.Tables[0].Rows[0]["UserPackID"].ToString();
-        //                Session["NewSaleSellerID"] = dsUserDraftExists.Tables[0].Rows[0]["sellerID"].ToString();
-        //                Session["NewSalePSID1"] = dsUserDraftExists.Tables[0].Rows[0]["PSID1"].ToString();
-        //                if (dsUserDraftExists.Tables[0].Rows[0]["PSID2"].ToString() != "")
-        //                {
-        //                    Session["NewSalePSID2"] = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["PSID2"].ToString());
-        //                }
-        //                if (dsUserDraftExists.Tables[0].Rows[0]["PaymentID"].ToString() != "")
-        //                {
-        //                    Session["NewSalePaymentID"] = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["PaymentID"].ToString());
-        //                }
-        //                int SaleAgentID = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["SaleAgentID"].ToString());
-        //                SaveInfo(LeadStatus, SaleAgentID);
-        //                Session["AbandonSalePostingID"] = null;
-        //            }
-        //            else
-        //            {
-        //                int SaleAgentID = 0;
-        //                SaveInfo(LeadStatus, SaleAgentID);
-        //                Session["AbandonSalePostingID"] = null;
-        //            }
-        //        }
-        //    }
-        //}
-        //catch (Exception ex)
-        //{
-        //    throw ex;
-        //}
+        try
+        {
+            int LeadStatus = Convert.ToInt32(3);
+            string SellerPhone = txtPhone.Text;
+            SellerPhone = SellerPhone.Replace("-", "");
+            SellerPhone = SellerPhone.Replace("-", "");
+            DataSet dsReturnExists = objHotLeadBL.ChkUserPhoneNumberExistsForReturned(SellerPhone);
+            if (dsReturnExists.Tables[0].Rows.Count > 0)
+            {
+                Session["NewSaleCarID"] = dsReturnExists.Tables[0].Rows[0]["carid"].ToString();
+                Session["NewSaleUID"] = dsReturnExists.Tables[0].Rows[0]["uid"].ToString();
+                Session["NewSalePostingID"] = dsReturnExists.Tables[0].Rows[0]["postingID"].ToString();
+                Session["NewSaleUserPackID"] = dsReturnExists.Tables[0].Rows[0]["UserPackID"].ToString();
+                Session["NewSaleSellerID"] = dsReturnExists.Tables[0].Rows[0]["sellerID"].ToString();
+                Session["NewSalePSID1"] = dsReturnExists.Tables[0].Rows[0]["PSID1"].ToString();
+                if (dsReturnExists.Tables[0].Rows[0]["PSID2"].ToString() != "")
+                {
+                    Session["NewSalePSID2"] = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["PSID2"].ToString());
+                }
+                if (dsReturnExists.Tables[0].Rows[0]["PaymentID"].ToString() != "")
+                {
+                    Session["NewSalePaymentID"] = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["PaymentID"].ToString());
+                }
+                int SaleAgentID = Convert.ToInt32(dsReturnExists.Tables[0].Rows[0]["SaleAgentID"].ToString());
+                SaveInfo(LeadStatus, SaleAgentID);
+                Session["AbandonSalePostingID"] = null;
+            }
+            else
+            {
+                DataSet dsUserExists = objHotLeadBL.ChkUserPhoneNumberExistsForSale(SellerPhone);
+                if (dsUserExists.Tables[0].Rows.Count > 0)
+                {
+                    mdepAlertExists.Show();
+                    lblErrorExists.Visible = true;
+                    lblErrorExists.Text = "Phone " + txtPhone.Text + " already exists.<br />Please change phone # to save";
+                }
+                else
+                {
+                    DataSet dsUserDraftExists = objHotLeadBL.ChkUserPhoneNumberExists(SellerPhone);
+                    if (dsUserDraftExists.Tables[0].Rows.Count > 0)
+                    {
+                        Session["NewSaleCarID"] = dsUserDraftExists.Tables[0].Rows[0]["carid"].ToString();
+                        Session["NewSaleUID"] = dsUserDraftExists.Tables[0].Rows[0]["uid"].ToString();
+                        Session["NewSalePostingID"] = dsUserDraftExists.Tables[0].Rows[0]["postingID"].ToString();
+                        Session["NewSaleUserPackID"] = dsUserDraftExists.Tables[0].Rows[0]["UserPackID"].ToString();
+                        Session["NewSaleSellerID"] = dsUserDraftExists.Tables[0].Rows[0]["sellerID"].ToString();
+                        Session["NewSalePSID1"] = dsUserDraftExists.Tables[0].Rows[0]["PSID1"].ToString();
+                        if (dsUserDraftExists.Tables[0].Rows[0]["PSID2"].ToString() != "")
+                        {
+                            Session["NewSalePSID2"] = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["PSID2"].ToString());
+                        }
+                        if (dsUserDraftExists.Tables[0].Rows[0]["PaymentID"].ToString() != "")
+                        {
+                            Session["NewSalePaymentID"] = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["PaymentID"].ToString());
+                        }
+                        int SaleAgentID = Convert.ToInt32(dsUserDraftExists.Tables[0].Rows[0]["SaleAgentID"].ToString());
+                        SaveInfo(LeadStatus, SaleAgentID);
+                        Session["AbandonSalePostingID"] = null;
+                    }
+                    else
+                    {
+                        int SaleAgentID = 0;
+                        SaveInfo(LeadStatus, SaleAgentID);
+                        Session["AbandonSalePostingID"] = null;
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
     }
     protected void ddlMake_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -1342,6 +1355,7 @@ public partial class NewEntrys : System.Web.UI.Page
             li.Text = Session[Constants.NAME].ToString();
             li.Value = Session[Constants.USER_ID].ToString();
             ddlSaleAgent.SelectedIndex = ddlSaleAgent.Items.IndexOf(li);
+            ddlSaleAgent.Items.Insert(0, new ListItem("Select", "0"));
         }
         catch (Exception ex)
         {
@@ -1351,24 +1365,24 @@ public partial class NewEntrys : System.Web.UI.Page
 
     private void FillVerifier()
     {
-    //    try
-    //    {
-    //        // DataSet dsverifier = objHotLeadBL.GetAgentsForVerifier(Convert.ToInt32(Session[Constants.CenterCodeID].ToString()));
-    //        DataSet dsverifier = objHotLeadBL.GetAgentsForAgents(Convert.ToInt32(Session[Constants.CenterCodeID].ToString()));
-    //        ddlVerifier.Items.Clear();
-    //        ddlVerifier.DataSource = dsverifier;
-    //        ddlVerifier.DataTextField = "AgentUFirstName";
-    //        ddlVerifier.DataValueField = "AgentUID";
-    //        ddlVerifier.DataBind();
-    //        ListItem li = new ListItem();
-    //        li.Text = Session[Constants.NAME].ToString();
-    //        li.Value = Session[Constants.USER_ID].ToString();
-    //        ddlVerifier.SelectedIndex = ddlVerifier.Items.IndexOf(li);
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        throw ex;
-    //    }
+        try
+        {
+           DataSet dsverifier = objHotLeadBL.GetAgentsForVerifier(Convert.ToInt32(Session[Constants.CenterCodeID].ToString()));
+            ddlVerifier.Items.Clear();
+            ddlVerifier.DataSource = dsverifier;
+            ddlVerifier.DataTextField = "AgentUFirstName";
+            ddlVerifier.DataValueField = "AgentUID";
+            ddlVerifier.DataBind();
+            ListItem li = new ListItem();
+            li.Text = Session[Constants.NAME].ToString();
+            li.Value = Session[Constants.USER_ID].ToString();
+            ddlVerifier.SelectedIndex = ddlVerifier.Items.IndexOf(li);
+            ddlVerifier.Items.Insert(0, new ListItem("Select", "0"));
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
 
     }
 
@@ -1802,7 +1816,7 @@ public partial class NewEntrys : System.Web.UI.Page
         try
         {
             Session["AbandonSalePostingID"] = null;
-            Response.Redirect("NewSale.aspx");
+            Response.Redirect("NewEntrys.aspx");
         }
         catch (Exception ex)
         {
@@ -1813,7 +1827,678 @@ public partial class NewEntrys : System.Web.UI.Page
     {
         try
         {
-            Response.Redirect("NewSale.aspx");
+            Response.Redirect("NewEntrys.aspx");
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+    private void SaveInfo(int LeadStatus, int SaleAgentID)
+    {
+        try
+        {
+            objUserregInfo.Name = objGeneralFunc.ToProper(txtFirstName.Text);
+            objUserregInfo.UserName = txtEmail.Text;
+            string SellerPhone = txtPhone.Text;
+            SellerPhone = SellerPhone.Replace("-", "");
+            SellerPhone = SellerPhone.Replace("-", "");
+            objUserregInfo.PhoneNumber = SellerPhone;
+            objUserregInfo.Address = objGeneralFunc.ToProper(txtAddress.Text);
+            objUserregInfo.City = objGeneralFunc.ToProper(txtCity.Text);
+            objUserregInfo.StateID = Convert.ToInt32(ddlLocationState.SelectedItem.Value);
+            objUserregInfo.Zip = txtZip.Text;
+            if (SaleAgentID == 0)
+            {
+                SaleAgentID = Convert.ToInt32(ddlSaleAgent.SelectedItem.Value);
+            }
+            int PackageID = Convert.ToInt32(ddlPackage.SelectedItem.Value);
+            string strIp;
+            string strHostName = Request.UserHostAddress.ToString();
+            strIp = System.Net.Dns.GetHostAddresses(strHostName).GetValue(0).ToString();
+            int YearOfMake = Convert.ToInt32(ddlYear.SelectedItem.Value);
+            Session["SelYear"] = ddlYear.SelectedItem.Text;
+            Session["SelMake"] = ddlMake.SelectedItem.Text;
+            Session["SelModel"] = ddlModel.SelectedItem.Text;
+            int MakeModelID = Convert.ToInt32(ddlModel.SelectedItem.Value);
+            int BodyTypeID = Convert.ToInt32(ddlBodyStyle.SelectedItem.Value);
+            string Price = string.Empty;
+            if (txtAskingPrice.Text == "")
+            {
+                Price = "0";
+            }
+            else
+            {
+                Price = txtAskingPrice.Text;
+                Price = Price.Replace(",", "");
+            }
+            string Mileage = string.Empty;
+            if (txtMileage.Text == "")
+            {
+                Mileage = "0";
+            }
+            else
+            {
+                Mileage = txtMileage.Text;
+                Mileage = Mileage.Replace(",", "");
+                Mileage = Mileage.Replace("mi", "");
+                Mileage = Mileage.Replace(" ", "");
+            }
+            string ExteriorColor = ddlExteriorColor.SelectedItem.Text;
+            string InteriorColor = ddlInteriorColor.SelectedItem.Text;
+            string Transmission = "Unspecified";
+            if (ddltransm.SelectedValue == "0")
+            {
+                Transmission = "Automatic";
+            }
+            else if (ddltransm.SelectedValue == "1")
+            {
+                Transmission = "Manual";
+            }
+            else if (ddltransm.SelectedValue == "2")
+            {
+                Transmission = "Tiptronic";
+            }
+            else if (ddltransm.SelectedValue == "3")
+            {
+                Transmission = "Unspecified";
+            }
+
+            string NumberOfDoors = string.Empty;
+            if (ddltransm.SelectedValue == "0")
+            {
+                NumberOfDoors = "Two Door";
+            }
+            else if (ddltransm.SelectedValue == "1")
+            {
+                NumberOfDoors = "Three Door";
+            }
+            else if (ddltransm.SelectedValue == "2")
+            {
+                NumberOfDoors = "Four Door";
+            }
+            else if (ddltransm.SelectedValue == "3")
+            {
+                NumberOfDoors = "Five Door";
+            }
+            else
+            {
+                NumberOfDoors = "Unspecified";
+            }
+            string DriveTrain = "Unspecified";
+            if (ddldrivetrain.SelectedValue == "0")
+            {
+                DriveTrain = "2 wheel drive";
+            }
+            else if (ddldrivetrain.SelectedValue == "1")
+            {
+                DriveTrain = "2 wheel drive - front";
+            }
+            else if (ddldrivetrain.SelectedValue == "2")
+            {
+                DriveTrain = "All wheel drive";
+            }
+            else if (ddldrivetrain.SelectedValue == "3")
+            {
+                DriveTrain = "Rear wheel drive";
+            }
+            else if (ddldrivetrain.SelectedValue == "4")
+            {
+                DriveTrain = "Unspecified";
+            }
+
+            string VIN = txtVin.Text;
+            string NumberOfCylinder = "Unspecified";
+            if (ddlcylindars.SelectedValue == "0")
+            {
+                NumberOfCylinder = "3 Cylinder";
+            }
+            else if (ddlcylindars.SelectedValue == "1")
+            {
+                NumberOfCylinder = "4 Cylinder";
+            }
+            else if (ddlcylindars.SelectedValue == "2")
+            {
+                NumberOfCylinder = "5 Cylinder";
+            }
+            else if (ddlcylindars.SelectedValue == "3")
+            {
+                NumberOfCylinder = "6 Cylinder";
+            }
+            else if (ddlcylindars.SelectedValue == "4")
+            {
+                NumberOfCylinder = "7 Cylinder";
+            }
+            else if (ddlcylindars.SelectedValue == "5")
+            {
+                NumberOfCylinder = "8 Cylinder";
+            }
+
+            int FuelTypeID = Convert.ToInt32(0);
+            if (ddlfueltype.SelectedValue == "0")
+            {
+                FuelTypeID = Convert.ToInt32(1);
+            }
+            else if (ddlfueltype.SelectedValue == "1")
+            {
+                FuelTypeID = Convert.ToInt32(2);
+            }
+            else if (ddlfueltype.SelectedValue == "2")
+            {
+                FuelTypeID = Convert.ToInt32(3);
+            }
+            else if (ddlfueltype.SelectedValue == "3")
+            {
+                FuelTypeID = Convert.ToInt32(4);
+            }
+            else if (ddlfueltype.SelectedValue == "4")
+            {
+                FuelTypeID = Convert.ToInt32(5);
+            }
+            else if (ddlfueltype.SelectedValue == "5")
+            {
+                FuelTypeID = Convert.ToInt32(6);
+            }
+            else if (ddlfueltype.SelectedValue == "6")
+            {
+                FuelTypeID = Convert.ToInt32(7);
+            }
+            else if (ddlfueltype.SelectedValue == "7")
+            {
+                FuelTypeID = Convert.ToInt32(0);
+            }
+
+            int ConditionID = Convert.ToInt32(0);
+            string Condition = "Unspecified";
+            if (ddlcondition.SelectedValue == "0")
+            {
+                ConditionID = Convert.ToInt32(1);
+                Condition = "Excellent";
+            }
+            else if (ddlcondition.SelectedValue == "1")
+            {
+                ConditionID = Convert.ToInt32(2);
+                Condition = "Very Good";
+            }
+            else if (ddlcondition.SelectedValue == "2")
+            {
+                ConditionID = Convert.ToInt32(3);
+                Condition = "Good";
+            }
+            else if (ddlcondition.SelectedValue == "3")
+            {
+                ConditionID = Convert.ToInt32(4);
+                Condition = "Fair";
+            }
+            else if (ddlcondition.SelectedValue == "4")
+            {
+                ConditionID = Convert.ToInt32(5);
+                Condition = "Poor";
+            }
+            else if (ddlcondition.SelectedValue == "5")
+            {
+                ConditionID = Convert.ToInt32(6);
+                Condition = "Parts or Salvage";
+            }
+            else if (ddlcondition.SelectedValue == "6")
+            {
+                ConditionID = Convert.ToInt32(0);
+                Condition = "Unspecified";
+            }
+
+
+            string Description = string.Empty;
+            Description = txtDescription.Text;
+
+            string Title = "";
+            string State = ddlLocationState.SelectedItem.Text;
+            String UpdatedBy = Session[Constants.NAME].ToString();
+            string InternalNotesNew = txtSaleNotes.Text.Trim();
+            InternalNotesNew = InternalNotesNew.Trim();
+            //string UpdateByWithDate = System.DateTime.Now.ToUniversalTime().AddHours(-4).ToString() + "-" + UpdatedBy + "<br>";
+            //if (InternalNotesNew != "")
+            //{
+            //    InternalNotesNew = UpdateByWithDate + InternalNotesNew.Trim() + "<br>" + "---------------------------------";
+            //}
+            //else
+            //{
+            //    InternalNotesNew = InternalNotesNew.Trim();
+            int SourceOfPhotos = Convert.ToInt32(ddlPhotosSource.SelectedItem.Value);
+            int SourceOfDescription = Convert.ToInt32(ddlDescriptionSource.SelectedItem.Value);
+
+            string LastName = objGeneralFunc.ToProper(txtLastName.Text.Trim());
+            int CarID;
+            int RegUID;
+            int PostingID;
+            int UserPackID;
+            int sellerID;
+
+            if ((Session["NewSaleCarID"] == null) || (Session["NewSaleCarID"].ToString() == ""))
+            {
+                CarID = Convert.ToInt32(0);
+            }
+            else
+            {
+                CarID = Convert.ToInt32(Session["NewSaleCarID"].ToString());
+            }
+            if ((Session["NewSaleUID"] == null) || (Session["NewSaleUID"].ToString() == ""))
+            {
+                RegUID = Convert.ToInt32(0);
+            }
+            else
+            {
+                RegUID = Convert.ToInt32(Session["NewSaleUID"].ToString());
+            }
+            if ((Session["NewSalePostingID"] == null) || (Session["NewSalePostingID"].ToString() == ""))
+            {
+                PostingID = Convert.ToInt32(0);
+            }
+            else
+            {
+                PostingID = Convert.ToInt32(Session["NewSalePostingID"].ToString());
+            }
+            if ((Session["NewSaleUserPackID"] == null) || (Session["NewSaleUserPackID"].ToString() == ""))
+            {
+                UserPackID = Convert.ToInt32(0);
+            }
+            else
+            {
+                UserPackID = Convert.ToInt32(Session["NewSaleUserPackID"].ToString());
+            }
+            if ((Session["NewSaleSellerID"] == null) || (Session["NewSaleSellerID"].ToString() == ""))
+            {
+                sellerID = Convert.ToInt32(0);
+            }
+            else
+            {
+                sellerID = Convert.ToInt32(Session["NewSaleSellerID"].ToString());
+            }
+            int VerifierID = Convert.ToInt32(ddlVerifier.SelectedItem.Value);
+            int SaleEnteredBy = 0;
+                try{
+                    SaleEnteredBy= Convert.ToInt32(Session[Constants.USEREmp_ID].ToString());
+          
+                }catch{}
+                int EmailExists = 1;
+            if (chkbxEMailNA.Checked == true)
+            {
+                EmailExists = 0;
+            }
+            int DiscountID = 0; decimal Discamount = 0;
+            DiscountID = Convert.ToInt32(ddlDiscount.SelectedValue);
+            if (DiscountID == 0) Discamount = 0;
+            else if (DiscountID == 1) Discamount = 25;
+            else if (DiscountID == 2) Discamount = 50;
+            DataSet dsdata = objHotLeadBL.SaveSaleStatusData(objUserregInfo, SaleAgentID, PackageID, Discamount, YearOfMake, MakeModelID, BodyTypeID, ConditionID, DriveTrain,
+                        Price, Mileage, ExteriorColor, InteriorColor, Transmission, NumberOfDoors, VIN, NumberOfCylinder, FuelTypeID, Description, Condition, Title,
+                        State, strIp, InternalNotesNew, LeadStatus, LastName, SourceOfPhotos, SourceOfDescription, CarID, RegUID, UserPackID, sellerID, PostingID, VerifierID, SaleEnteredBy, EmailExists);
+
+            CarID = Convert.ToInt32(dsdata.Tables[0].Rows[0]["CarID"].ToString());
+            Session["NewSaleCarID"] = CarID;
+            RegUID = Convert.ToInt32(dsdata.Tables[0].Rows[0]["UID"].ToString());
+            Session["NewSaleUID"] = RegUID;
+            PostingID = Convert.ToInt32(dsdata.Tables[0].Rows[0]["PostingID"].ToString());
+            Session["NewSalePostingID"] = PostingID;
+            UserPackID = Convert.ToInt32(dsdata.Tables[0].Rows[0]["UserPackID"].ToString());
+            Session["NewSaleUserPackID"] = UserPackID;
+            sellerID = Convert.ToInt32(dsdata.Tables[0].Rows[0]["sellerID"].ToString());
+            Session["NewSaleSellerID"] = sellerID;
+
+            int PaymentType = 0;
+            string Cardtype = string.Empty;
+            if (ddlpayme.SelectedValue == "1")
+            {
+                PaymentType = 1;
+                Cardtype = "VisaCard";
+            }
+            else if (ddlpayme.SelectedValue == "2")
+            {
+                PaymentType = 2;
+                Cardtype = "MasterCard";
+            }
+            else if (ddlpayme.SelectedValue == "3")
+            {
+                PaymentType = 4;
+                Cardtype = "DiscoverCard";
+            }
+            else if (ddlpayme.SelectedValue == "4")
+            {
+                PaymentType = 3;
+                Cardtype = "AmExCard";
+            }
+            else if (ddlpayme.SelectedValue == "5")
+            {
+                PaymentType = 6;
+            }
+            else if (ddlpayme.SelectedValue == "6")
+            {
+                PaymentType = 5;
+            }
+
+            string VoiceRecord = txtVoicefileConfirmNo.Text.Trim();
+            int VoiceFileLocation = Convert.ToInt32(ddlVoiceFileLocation.SelectedItem.Value);
+            int PSID1;
+            if ((Session["NewSalePSID1"] == null) || (Session["NewSalePSID1"].ToString() == ""))
+            {
+                PSID1 = Convert.ToInt32(0);
+            }
+            else
+            {
+                PSID1 = Convert.ToInt32(Session["NewSalePSID1"].ToString());
+            }
+            int PSID2;
+            if ((Session["NewSalePSID2"] == null) || (Session["NewSalePSID2"].ToString() == ""))
+            {
+                PSID2 = Convert.ToInt32(0);
+            }
+            else
+            {
+                PSID2 = Convert.ToInt32(Session["NewSalePSID2"].ToString());
+            }
+            int PaymentID;
+            if ((Session["NewSalePaymentID"] == null) || (Session["NewSalePaymentID"].ToString() == ""))
+            {
+                PaymentID = Convert.ToInt32(0);
+            }
+            else
+            {
+                PaymentID = Convert.ToInt32(Session["NewSalePaymentID"].ToString());
+            }
+
+            if ((  (ddlpayme.SelectedValue == "1") ||  (ddlpayme.SelectedValue == "2") ||  (ddlpayme.SelectedValue == "3") ||  (ddlpayme.SelectedValue == "4")))
+            {
+                if (chkboxlstPDsale.Checked == true)
+                {
+                    DateTime PaymentScheduleDate = Convert.ToDateTime(txtPaymentDate.Text);
+                    string Amount = txtPDAmountNow.Text;
+                    int PSStatusID;
+                    int pmntStatus;
+                    //int PSStatusID = 4;
+                    //int pmntStatus = 1;
+                    if (Convert.ToDouble(txtPDAmountNow.Text).ToString() == "0")
+                    {
+                        PSStatusID = 8;
+                        pmntStatus = 2;
+                    }
+                    else
+                    {
+                        PSStatusID = 4;
+                        pmntStatus = 1;
+                    }
+                    string CCCardNumber = CardNumber.Text;
+                    string CardExpDt = ExpMon.SelectedValue + "/" + CCExpiresYear.SelectedValue;
+                    string CardholderName = objGeneralFunc.ToProper(txtCardholderName.Text);
+                    string CardholderLastName = objGeneralFunc.ToProper(txtCardholderLastName.Text);
+                    string CardCode = cvv.Text;
+                    string BillingAdd = objGeneralFunc.ToProper(txtbillingaddress.Text);
+                    string BillingCity = objGeneralFunc.ToProper(txtbillingcity.Text);
+                    string BillingState = ddlbillingstate.SelectedItem.Value;
+                    string BillingZip = txtbillingzip.Text;
+                    DateTime PDDate = Convert.ToDateTime(ddlPDDate.SelectedItem.Text);
+                    //string PDPayAmountNow = txtPDAmountNow.Text;
+                    string PDPayAmountLater = txtPDAmountLater.Text;
+                    DataSet dsSaveCCInfo = objHotLeadBL.SaveCreditCardDataForPDSale(PSID1, PackageID, CarID, PaymentScheduleDate, Amount, PSStatusID, PaymentID, SaleAgentID, PaymentType,
+                                            pmntStatus, strIp, VoiceRecord, CCCardNumber, Cardtype, CardExpDt, CardholderName, CardholderLastName, CardCode, BillingZip, BillingAdd,
+                                            BillingCity, BillingState, PostingID, PSID2, PDDate, PDPayAmountLater, VoiceFileLocation);
+                    PSID1 = Convert.ToInt32(dsSaveCCInfo.Tables[0].Rows[0]["PSID1"].ToString());
+                    Session["NewSalePSID1"] = PSID1;
+                    PSID2 = Convert.ToInt32(dsSaveCCInfo.Tables[0].Rows[0]["PSID2"].ToString());
+                    Session["NewSalePSID2"] = PSID2;
+                    PaymentID = Convert.ToInt32(dsSaveCCInfo.Tables[0].Rows[0]["PaymentID"].ToString());
+                    Session["NewSalePaymentID"] = PaymentID;
+                    if (VoiceRecord.ToString() != "")
+                    {
+                        DataSet dsSaveLeadStatus = objHotLeadBL.SaveLeadStatusForSales(PostingID, LeadStatus);
+                    }
+                    else
+                    {
+                        if (LeadStatus != 1)
+                        {
+                            DataSet dsSaveLeadStatus = objHotLeadBL.SaveLeadStatusForSales(PostingID, LeadStatus);
+                        }
+                    }
+                }
+                else
+                {
+                    DateTime PaymentScheduleDate = Convert.ToDateTime(txtPaymentDate.Text);
+                    string Amount = txtPDAmountNow.Text;
+                    int PSStatusID = 4;
+                    int pmntStatus = 1;
+                    string CCCardNumber = CardNumber.Text;
+                    string CardExpDt = ExpMon.SelectedValue + "/" + CCExpiresYear.SelectedValue;
+                    string CardholderName = objGeneralFunc.ToProper(txtCardholderName.Text);
+                    string CardholderLastName = objGeneralFunc.ToProper(txtCardholderLastName.Text);
+                    string CardCode = cvv.Text;
+                    string BillingAdd = objGeneralFunc.ToProper(txtbillingaddress.Text);
+                    string BillingCity = objGeneralFunc.ToProper(txtbillingcity.Text);
+                    string BillingState = ddlbillingstate.SelectedItem.Value;
+                    string BillingZip = txtbillingzip.Text;
+                    DataSet dsSaveCCInfo = objHotLeadBL.SaveCreditCardData(PSID1, PackageID, CarID, PaymentScheduleDate, Amount, PSStatusID, PaymentID, SaleAgentID, PaymentType,
+                                            pmntStatus, strIp, VoiceRecord, CCCardNumber, Cardtype, CardExpDt, CardholderName, CardholderLastName, CardCode, BillingZip, BillingAdd,
+                                            BillingCity, BillingState, PostingID, VoiceFileLocation);
+
+                    PSID1 = Convert.ToInt32(dsSaveCCInfo.Tables[0].Rows[0]["PSID1"].ToString());
+                    Session["NewSalePSID1"] = PSID1;
+                    PaymentID = Convert.ToInt32(dsSaveCCInfo.Tables[0].Rows[0]["PaymentID"].ToString());
+                    Session["NewSalePaymentID"] = PaymentID;
+                    if (VoiceRecord.ToString() != "")
+                    {
+                        DataSet dsSaveLeadStatus = objHotLeadBL.SaveLeadStatusForSales(PostingID, LeadStatus);
+                    }
+                    else
+                    {
+                        if (LeadStatus != 1)
+                        {
+                            DataSet dsSaveLeadStatus = objHotLeadBL.SaveLeadStatusForSales(PostingID, LeadStatus);
+                        }
+                    }
+                }
+            }
+            if (ddlpayme.SelectedValue == "5")
+            {
+                DateTime PaymentScheduleDate = Convert.ToDateTime(txtPaymentDate.Text);
+                string Amount = txtPDAmountNow.Text;
+                int PSStatusID = 4;
+                int pmntStatus = 1;
+                string TransID = txtPaytransID.Text;
+                string PayPalEmailAcc = txtpayPalEmailAccount.Text;
+                DataSet dsSavePayPalInfo = objHotLeadBL.SavePayPalData(PSID1, PackageID, CarID, PaymentScheduleDate, Amount, PSStatusID, PaymentID, SaleAgentID, PaymentType,
+                                        pmntStatus, strIp, VoiceRecord, TransID, PayPalEmailAcc, PostingID, VoiceFileLocation);
+
+                PSID1 = Convert.ToInt32(dsSavePayPalInfo.Tables[0].Rows[0]["PSID1"].ToString());
+                Session["NewSalePSID1"] = PSID1;
+                PaymentID = Convert.ToInt32(dsSavePayPalInfo.Tables[0].Rows[0]["PaymentID"].ToString());
+                Session["NewSalePaymentID"] = PaymentID;
+                if (VoiceRecord.ToString() != "")
+                {
+                    DataSet dsSaveLeadStatus = objHotLeadBL.SaveLeadStatusForSales(PostingID, LeadStatus);
+                }
+                else
+                {
+                    if (LeadStatus != 1)
+                    {
+                        DataSet dsSaveLeadStatus = objHotLeadBL.SaveLeadStatusForSales(PostingID, LeadStatus);
+                    }
+                }
+                //    if (chkboxlstPDsale.Checked == true)
+                //    {
+                //        int pmntStatus = 1;
+                //        string Amount = txtPayAmount.Text;
+                //        DateTime PayDate = Convert.ToDateTime(ddlPaymentdate.SelectedItem.Text);
+                //        string TransID = txtPaytransID.Text;
+                //        string PayPalEmailAcc = txtpayPalEmailAccount.Text;
+                //        DateTime PDDate = Convert.ToDateTime(ddlPDDate.SelectedItem.Text);
+                //        string PDPayAmountNow = txtPDAmountNow.Text;
+                //        string PDPayAmountLater = txtPDAmountLater.Text;
+                //        DataSet dsSaveCCInfo = objHotLeadBL.SavePayPalDataForPDSale(UserPackID, PaymentType, pmntStatus, strIp, Amount, VoiceRecord, PostingID, PayDate, TransID, PayPalEmailAcc, PDDate, PDPayAmountNow, PDPayAmountLater);
+                //    }
+                //    else
+                //    {
+                //        int pmntStatus = 2;
+                //        string Amount = txtPayAmount.Text;
+                //        DateTime PayDate = Convert.ToDateTime(ddlPaymentdate.SelectedItem.Text);
+                //        string TransID = txtPaytransID.Text;
+                //        string PayPalEmailAcc = txtpayPalEmailAccount.Text;
+                //        DataSet dsSaveCCInfo = objHotLeadBL.SavePayPalData(UserPackID, PaymentType, pmntStatus, strIp, Amount, VoiceRecord, PostingID, PayDate, TransID, PayPalEmailAcc);
+                //    }
+            }
+           if (ddlpayme.SelectedValue == "6")
+            {
+                if (chkboxlstPDsale.Checked == true)
+                {
+                    DateTime PaymentScheduleDate = Convert.ToDateTime(txtPaymentDate.Text);
+                    string Amount = txtPDAmountNow.Text;
+                    int PSStatusID;
+                    int pmntStatus;
+                    //int PSStatusID = 4;
+                    //int pmntStatus = 1;
+                    if (Convert.ToDouble(txtPDAmountNow.Text).ToString() == "0")
+                    {
+                        PSStatusID = 8;
+                        pmntStatus = 2;
+                    }
+                    else
+                    {
+                        PSStatusID = 4;
+                        pmntStatus = 1;
+                    }
+                    int AccType = Convert.ToInt32(ddlAccType.SelectedItem.Value);
+                    string BankRouting = txtRoutingNumberForCheck.Text;
+                    string bankName = txtBankNameForCheck.Text;
+                    string AccNumber = txtAccNumberForCheck.Text;
+                    string AccHolderName = txtCustNameForCheck.Text;
+                    DateTime PDDate = Convert.ToDateTime(ddlPDDate.SelectedItem.Text);
+                    //string PDPayAmountNow = txtPDAmountNow.Text;
+                    string PDPayAmountLater = txtPDAmountLater.Text;
+                    string CheckNumber = "";
+                    int CheckType = Convert.ToInt32(5);
+                    DataSet dsSaveCheckInfo = objHotLeadBL.SaveCheckDataForPDSale(PSID1, PackageID, CarID, PaymentScheduleDate, Amount, PSStatusID, PaymentID, SaleAgentID, PaymentType,
+                                            pmntStatus, strIp, VoiceRecord, PostingID, AccType, BankRouting, bankName, AccNumber, AccHolderName, PSID2, PDDate, PDPayAmountLater, VoiceFileLocation, CheckType, CheckNumber);
+                    PSID1 = Convert.ToInt32(dsSaveCheckInfo.Tables[0].Rows[0]["PSID1"].ToString());
+                    Session["NewSalePSID1"] = PSID1;
+                    PSID2 = Convert.ToInt32(dsSaveCheckInfo.Tables[0].Rows[0]["PSID2"].ToString());
+                    Session["NewSalePSID2"] = PSID2;
+                    PaymentID = Convert.ToInt32(dsSaveCheckInfo.Tables[0].Rows[0]["PaymentID"].ToString());
+                    Session["NewSalePaymentID"] = PaymentID;
+                    if (VoiceRecord.ToString() != "")
+                    {
+                        DataSet dsSaveLeadStatus = objHotLeadBL.SaveLeadStatusForSales(PostingID, LeadStatus);
+                    }
+                    else
+                    {
+                        if (LeadStatus != 1)
+                        {
+                            DataSet dsSaveLeadStatus = objHotLeadBL.SaveLeadStatusForSales(PostingID, LeadStatus);
+                        }
+                    }
+                }
+                else
+                {
+                    DateTime PaymentScheduleDate = Convert.ToDateTime(txtPaymentDate.Text);
+                    string Amount = txtPDAmountNow.Text;
+                    int PSStatusID = 4;
+                    int pmntStatus = 1;
+                    int AccType = Convert.ToInt32(ddlAccType.SelectedItem.Value);
+                    string BankRouting = txtRoutingNumberForCheck.Text;
+                    string bankName = txtBankNameForCheck.Text;
+                    string AccNumber = txtAccNumberForCheck.Text;
+                    string AccHolderName = txtCustNameForCheck.Text;
+                    string CheckNumber = "";
+                    int CheckType = Convert.ToInt32(5);
+                    DataSet dsSaveCheckInfo = objHotLeadBL.SaveCheckData(PSID1, PackageID, CarID, PaymentScheduleDate, Amount, PSStatusID, PaymentID, SaleAgentID, PaymentType,
+                                            pmntStatus, strIp, VoiceRecord, PostingID, AccType, BankRouting, bankName, AccNumber, AccHolderName, VoiceFileLocation, CheckType, CheckNumber);
+                    PSID1 = Convert.ToInt32(dsSaveCheckInfo.Tables[0].Rows[0]["PSID1"].ToString());
+                    Session["NewSalePSID1"] = PSID1;
+                    PaymentID = Convert.ToInt32(dsSaveCheckInfo.Tables[0].Rows[0]["PaymentID"].ToString());
+                    Session["NewSalePaymentID"] = PaymentID;
+                    if (VoiceRecord.ToString() != "")
+                    {
+                        DataSet dsSaveLeadStatus = objHotLeadBL.SaveLeadStatusForSales(PostingID, LeadStatus);
+                    }
+                    else
+                    {
+                        if (LeadStatus != 1)
+                        {
+                            DataSet dsSaveLeadStatus = objHotLeadBL.SaveLeadStatusForSales(PostingID, LeadStatus);
+                        }
+                    }
+                }
+            }
+            int FeatureID;
+            int IsactiveFea;
+            for (int i = 1; i < 54; i++)
+            {
+                if (i != 10)
+                {
+                    if (i != 37)
+                    {
+                        if (i != 38)
+                        {
+                            string ChkBoxID = "chkFeatures" + i.ToString();
+                            CheckBox ChkedBox = (CheckBox)form1.FindControl(ChkBoxID);
+                            if (ChkedBox.Checked == true)
+                            {
+                                IsactiveFea = 1;
+                            }
+                            else
+                            {
+                                IsactiveFea = 0;
+                            }
+                            FeatureID = i;
+                            bool dsCarFeature = objHotLeadBL.SmartzUpdateFeatures(CarID, FeatureID, IsactiveFea, RegUID);
+                        }
+                    }
+                }
+            }
+            if (rdbtnLeather.Checked == true)
+            {
+                IsactiveFea = 1;
+                FeatureID = 10;
+                bool dsCarFeature = objHotLeadBL.SmartzUpdateFeatures(CarID, FeatureID, IsactiveFea, RegUID);
+            }
+            else
+            {
+                IsactiveFea = 0;
+                FeatureID = 10;
+                bool dsCarFeature = objHotLeadBL.SmartzUpdateFeatures(CarID, FeatureID, IsactiveFea, RegUID);
+            }
+            if (rdbtnVinyl.Checked == true)
+            {
+                IsactiveFea = 1;
+                FeatureID = 37;
+                bool dsCarFeature = objHotLeadBL.SmartzUpdateFeatures(CarID, FeatureID, IsactiveFea, RegUID);
+            }
+            else
+            {
+                IsactiveFea = 0;
+                FeatureID = 37;
+                bool dsCarFeature = objHotLeadBL.SmartzUpdateFeatures(CarID, FeatureID, IsactiveFea, RegUID);
+            }
+            if (rdbtnCloth.Checked == true)
+            {
+                IsactiveFea = 1;
+                FeatureID = 38;
+                bool dsCarFeature = objHotLeadBL.SmartzUpdateFeatures(CarID, FeatureID, IsactiveFea, RegUID);
+            }
+            else
+            {
+                IsactiveFea = 0;
+                FeatureID = 38;
+                bool dsCarFeature = objHotLeadBL.SmartzUpdateFeatures(CarID, FeatureID, IsactiveFea, RegUID);
+            }
+
+            if (rdbtnInteriorNA.Checked == true)
+            {
+                IsactiveFea = 1;
+                FeatureID = 54;
+                bool dsCarFeature = objHotLeadBL.SmartzUpdateFeatures(CarID, FeatureID, IsactiveFea, RegUID);
+            }
+            else
+            {
+                IsactiveFea = 0;
+                FeatureID = 54;
+                bool dsCarFeature = objHotLeadBL.SmartzUpdateFeatures(CarID, FeatureID, IsactiveFea, RegUID);
+            }
         }
         catch (Exception ex)
         {

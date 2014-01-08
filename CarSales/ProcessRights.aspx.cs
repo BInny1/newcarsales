@@ -539,14 +539,23 @@ public partial class ProcessRights : System.Web.UI.Page
         chkleadsadmin.Items[0].Selected = false;
 
     }
-    public void btndelete_Click(object sender, EventArgs e)
+    public void OnConfirm(object sender, EventArgs e)
     {
-        //Deactivating Empid from carsales.
-        string EMpid = Session["EMpid"].ToString();
-        DataSet dsSalesUpdateList = objHotLeadBL.DeleteEmployee(EMpid);
-        System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('" + EMpid + " has been deleted succesfully.');", true);
-        MpUpdaterights.Hide();
-        GetLeadsSattus();
+        string confirmValue = Request.Form["confirm_value"];
+        if (confirmValue == "Yes")
+        {
+
+            //Deactivating Empid from carsales.
+            string EMpid = Session["EMpid"].ToString();
+            DataSet dsSalesUpdateList = objHotLeadBL.DeleteEmployee(EMpid);
+            System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "alert('" + EMpid + " has been deleted succesfully.');", true);
+            MpUpdaterights.Hide();
+            GetLeadsSattus();
+        }
+        else
+        {
+
+        }
     }
 
 }

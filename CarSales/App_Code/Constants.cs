@@ -23,6 +23,7 @@ using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 public static class Constants
 {
     public static string USER_ID = "UserID";
+    public static string USEREmp_ID = "UserID";
 
     public static string USER_NAME = "USER_NAME";
     public static string CenterCode = "CeneterCode";

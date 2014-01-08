@@ -281,9 +281,11 @@ public partial class LeADSuPs : System.Web.UI.Page
                 //Response.Redirect(ConstantClass.StrErrorPageURL);
             }
         }
+        divresults.Visible = true;
     }
     private void ReadExcelData(string sFileName)
     {
+
         ArrayList RowNo = new ArrayList();
         ArrayList ColNo = new ArrayList();
 

@@ -112,6 +112,8 @@ public partial class Login : System.Web.UI.Page
                                         Session[Constants.CenterCode] = dsUserDetails.Tables[0].Rows[0]["LocationName"].ToString();
                                         Session[Constants.CenterCodeID] = dsUserDetails.Tables[0].Rows[0]["LocationId"].ToString();
                                         Session[Constants.USER_TYPE_ID] = dsUserDetails.Tables[0].Rows[0]["RoleId"].ToString();
+                                       Session[Constants.USEREmp_ID] = dsUserDetails.Tables[0].Rows[0]["EMPID"].ToString();
+                                        //Session[Constants.USER_ID] = dsUserDetails.Tables[0].Rows[0]["userId"].ToString();
                                         CreateUserLog(1);
                                         if (Convert.ToInt32(Session[Constants.USER_TYPE_ID].ToString()) == 1 || Convert.ToInt32(Session[Constants.USER_TYPE_ID].ToString()) == 2 || Convert.ToInt32(Session[Constants.USER_TYPE_ID].ToString()) == 4)
                                         {

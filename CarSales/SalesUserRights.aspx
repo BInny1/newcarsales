@@ -133,7 +133,7 @@
             var confirm_value = document.createElement("INPUT");
             confirm_value.type = "hidden";
             confirm_value.name = "confirm_value";
-            if (confirm("Do you want to save data?")) {
+            if (confirm("Do you want to delete Emplyee?")) {
             confirm_value.value ="";
                 confirm_value.value = "Yes";
             } else {
@@ -281,7 +281,7 @@
                         <li class="parent "><a href="#">Sales <span class="cert"></span></a>
                             <ul class="sub1">
                                 <li>
-                                    <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false" PostBackUrl="~/IntroMails.aspx"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false"  PostBackUrl="~/NewEntrys.aspx"></asp:LinkButton>
                                 </li>
@@ -649,7 +649,7 @@
                                     </asp:UpdatePanel>
                                 </div>
                                 <asp:Button ID="btnCancelPW" CssClass="btn  btn-default" runat="server" Text="Cancel"
-                                    Visible="false" OnClientClick="return ClosePopup10();" />
+                                   OnClientClick="return ClosePopup10();" />
                             </td>
                         </tr>
                     </table>

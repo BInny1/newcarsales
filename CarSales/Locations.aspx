@@ -8,7 +8,6 @@
     <title>..:: Car Sales System ::..</title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <link href="css/core.css" rel="stylesheet" type="text/css" />
-    
     <link href="css/core.theme.css" rel="stylesheet" type="text/css" />
     <link href="css/styleNew.css" rel="stylesheet" type="text/css" />
     <link href="css/menu1.css" rel="stylesheet" type="text/css" />
@@ -128,6 +127,16 @@
 
     <script type="text/javascript" language="javascript">
 
+          function ClosePopup11() {
+            $find('<%= ModalPopupExtender2.ClientID%>').hide();
+            return false;
+        }
+        
+        }
+    </script>
+
+    <script type="text/javascript" language="javascript">
+
 	var currentID = 0;	
 	var currentActiveIndex = 0;
 	
@@ -240,7 +249,8 @@
                                 <li>
                                     <asp:LinkButton ID="LeadsUpload" runat="server" Text="Upload" Enabled="false" PostBackUrl="~/LeadsUpload.aspx"></asp:LinkButton></li><li>
                                 <li>
-                                    <asp:LinkButton ID="LeadsDownLoad"  runat="server"   Text="Download"  Enabled="false"    PostBackUrl="~/LeadDownLoad.aspx"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="LeadsDownLoad" runat="server" Text="Download" Enabled="false"
+                                        PostBackUrl="~/LeadDownLoad.aspx"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="Abondoned" runat="server" Text="Abondon" Enabled="false"></asp:LinkButton></li>
                                 <li>
@@ -250,9 +260,9 @@
                         <li class="parent "><a href="#">Sales <span class="cert"></span></a>
                             <ul class="sub1">
                                 <li>
-                                    <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false" PostBackUrl="~/IntroMails.aspx"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false"></asp:LinkButton>
+                                    <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false" PostBackUrl="~/NewEntrys.aspx"></asp:LinkButton>
                                 </li>
                                 <li>
                                     <asp:LinkButton ID="Transferin" runat="server" Text="Transfer In" Enabled="false"></asp:LinkButton></li>
@@ -331,10 +341,12 @@
                                     <asp:LinkButton ID="CentersAdmin" runat="server" Text="Locations" PostBackUrl="~/Locations.aspx"
                                         Enabled="false"></asp:LinkButton></li>
                                 <li>
-                                    <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" PostBackUrl="~/UserLog.aspx" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="UsersLog" runat="server" Text="User Log" PostBackUrl="~/UserLog.aspx"
+                                        Enabled="false"></asp:LinkButton></li>
                                 <li class="last">
-                                    <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" PostBackUrl="~/EditLogs.aspx"  Enabled="false"></asp:LinkButton></li>
-                                       <li class="last">
+                                    <asp:LinkButton ID="EditLog" runat="server" Text="Edit Log" PostBackUrl="~/EditLogs.aspx"
+                                        Enabled="false"></asp:LinkButton></li>
+                                <li class="last">
                                     <asp:LinkButton ID="SuperAdmin" runat="server" Text="Super Admin" PostBackUrl="~/SuperadminRights.aspx"></asp:LinkButton></li>
                             </ul>
                         </li>
@@ -348,72 +360,70 @@
             <ContentTemplate>
                 <div class="inn">
                     <div class="box1 boxBlue">
-                        <h1 class="hed1 hed2" style="margin-bottom:0">
+                        <h1 class="hed1 hed2" style="margin-bottom: 0">
                             Update Locations
                             <%--<asp:Button id="btnl" runat="server" OnClick="btnl_click" Text="check"/>--%>
                         </h1>
-                        <div class="inn"  style="margin:0; padding:0;">
+                        <div class="inn" style="margin: 0; padding: 0;">
                             <!-- Grid Start -->
                             <asp:UpdatePanel ID="updtpnltblGrdcar" runat="server">
                                 <ContentTemplate>
-                                  
-                                                <asp:GridView ID="GridCentersUpades" runat="server" CellSpacing="0" CellPadding="0"
-                                                    AutoGenerateColumns="False" GridLines="None" CssClass="table table-hover table-striped MB0 noBorder"
-                                                    OnRowCreated="GridCentersUpades_RowCreated" OnRowDataBound="GridCentersUpades_RowDataBound"
-                                                    OnRowCommand="GridCentersUpades_RowCommand">
-                                                    <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
-                                                    <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
-                                                    <HeaderStyle CssClass="tbHed center" />
-                                                        <FooterStyle BackColor="#C6C3C6" CssClass="tbHed center" />
-                                                    <Columns>
-                                                        <asp:TemplateField FooterText="Count">
-                                                            <ItemTemplate>
-                                                                <asp:LinkButton ID="lnkUName1" runat="server" Text='<%# Eval("LocationName")%>' CommandName="PLoc" CommandArgument='<%# Eval("LocationId")%>'></asp:LinkButton>
-                                                                 <asp:HiddenField ID="centerid" runat="server" Value='<%# Eval("LocationId")%>' />
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderStyle-CssClass="BR BL">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="LeadsUpload" runat="server" ></asp:Label>
-                                                            </ItemTemplate>
-                                                             <ItemStyle CssClass="BR BL" />
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField>
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lblSales" runat="server"></asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField  HeaderStyle-CssClass="BR BL">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lblcustmerserv" runat="server" ></asp:Label>
-                                                            </ItemTemplate>
-                                                              <ItemStyle CssClass="BR BL" />
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField>
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lblprocess" runat="server"></asp:Label>
-                                                            </ItemTemplate>
-                                                            
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Transfers In"  HeaderStyle-CssClass="BL">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lbltransin" runat="server"></asp:Label>
-                                                            </ItemTemplate>
-                                                              <ItemStyle CssClass="BL" />
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Abondons">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lblabonds" runat="server" ></asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Free Posts">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lblfreeposts" runat="server" ></asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                    </Columns>
-                                                </asp:GridView>
-                                          
+                                    <asp:GridView ID="GridCentersUpades" runat="server" CellSpacing="0" CellPadding="0"
+                                        AutoGenerateColumns="False" GridLines="None" CssClass="table table-hover table-striped MB0 noBorder"
+                                        OnRowCreated="GridCentersUpades_RowCreated" OnRowDataBound="GridCentersUpades_RowDataBound"
+                                        OnRowCommand="GridCentersUpades_RowCommand">
+                                        <PagerStyle HorizontalAlign="Right" BackColor="#C6C3C6" ForeColor="Black" />
+                                        <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
+                                        <HeaderStyle CssClass="tbHed center" />
+                                        <FooterStyle BackColor="#C6C3C6" CssClass="tbHed center" />
+                                        <Columns>
+                                            <asp:TemplateField FooterText="Count">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="lnkUName1" runat="server" Text='<%# Eval("LocationName")%>' CommandName="PLoc"
+                                                        CommandArgument='<%# Eval("LocationId")%>'></asp:LinkButton>
+                                                    <asp:HiddenField ID="centerid" runat="server" Value='<%# Eval("LocationId")%>' />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderStyle-CssClass="BR BL">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="LeadsUpload" runat="server"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle CssClass="BR BL" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblSales" runat="server"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderStyle-CssClass="BR BL">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblcustmerserv" runat="server"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle CssClass="BR BL" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblprocess" runat="server"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Transfers In" HeaderStyle-CssClass="BL">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbltransin" runat="server"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle CssClass="BL" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Abondons">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblabonds" runat="server"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Free Posts">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblfreeposts" runat="server"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                             <!-- Grid End  -->
@@ -428,78 +438,15 @@
     <!-- Content End  -->
     <div class="clear">
         &nbsp;</div>
-    </div>
-    
-      <cc1:ModalPopupExtender ID="MpUpdaterights" runat="server" PopupControlID="tblChangePW"
-        BackgroundCssClass="ModalPopupBG" TargetControlID="hdnChangePW" CancelControlID="ImageButton1">
+    <cc1:ModalPopupExtender ID="ModalPopupExtender2" runat="server" PopupControlID="updateLoc"
+        BackgroundCssClass="ModalPopupBG" TargetControlID="hdnChangePW" CancelControlID="Img1">
     </cc1:ModalPopupExtender>
     <asp:HiddenField ID="hdnChangePW" runat="server" />
-    <div id="tblChangePW" style="display: none; width: 550px;" class="popup">
-        <h2>
-            Update Rights
-             <asp:LinkButton ID="btndelete" runat="server" Text="Delete User" style="padding-left: 255px;font-size: 14px;"
-                                     CssClass="underline" ></asp:LinkButton>
-            <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
-        <div class="content">
-            <asp:UpdatePanel ID="p1" runat="server">
-                <ContentTemplate>
-                    <table style="width: 96%; margin: 0 auto;">
-                        <tr>
-                            <td>
-                                <b>Leads Upload</b>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="txtldupload" runat="server" Text="Leads Upload"></asp:TextBox>
-                            </td>
-                        </tr>
-                           <tr>
-                            <td>
-                                <b>Sales</b>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="txtsales" runat="server" Text="Sales"></asp:TextBox>
-                            </td>
-                        </tr>
-                           <tr>
-                            <td>
-                                <b></b>
-                            </td>
-                            <td>
-                                <asp:TextBox ID="TextBox2" runat="server" Text="Leads Upload"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="right">
-                            </td>
-                            <td align="left">
-                                <div style="margin: 0; padding-left: 0px; display: inline-block">
-                                    <asp:UpdatePanel ID="updtPnlChangePwd" runat="server">
-                                        <ContentTemplate>
-                                            <asp:Button ID="btnAddVehicle" CssClass="btn  btn-warning" runat="server" Text="Update"
-                                                 />&nbsp;
-                                          
-                                        </ContentTemplate>
-                                    </asp:UpdatePanel>
-                                </div>
-                                <asp:Button ID="btnCancelPW" CssClass="btn btn-default" runat="server" Text="Cancel"
-                                   OnClientClick="return ClosePopup10();" />
-                            </td>
-                        </tr>
-                    </table>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>
-    </div>
-    
-    <cc1:ModalPopupExtender ID="ModalPopupExtender2" runat="server" PopupControlID="updateLoc"
-        BackgroundCssClass="ModalPopupBG" TargetControlID="hdnChangePW" CancelControlID="btnCancel">
-    </cc1:ModalPopupExtender>
     <div id="updateLoc" style="display: none; width: 550px;" class="popup">
-    <h2>
-            
-             <asp:LinkButton ID="LinkButton1" runat="server"  style="padding-left: 255px;font-size: 14px;"
-                                     CssClass="underline" ></asp:LinkButton>
-            <asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
+        <h2>
+            <asp:LinkButton ID="LinkButton1" runat="server" Style="padding-left: 255px; font-size: 14px;"
+                CssClass="underline"></asp:LinkButton>
+            <asp:ImageButton ID="Img1" runat="server" ImageUrl="images\close.png" CssClass="floarR" /></h2>
         <div class="content">
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
@@ -511,25 +458,29 @@
                             <td>
                                 <asp:TextBox ID="TextBox1" runat="server" Text=""></asp:TextBox>
                             </td>
-                             <td>
-                                <asp:DropDownList ID="DropDownList1" runat="server" ></asp:DropDownList>
+                            <td>
+                                <asp:DropDownList ID="DropDownList1" runat="server">
+                                </asp:DropDownList>
                             </td>
-                             <td>
-                                <asp:Button ID="btn_Add1" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add1_Click"></asp:Button>
+                            <td>
+                                <asp:Button ID="btn_Add1" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add1_Click">
+                                </asp:Button>
                             </td>
                         </tr>
-                           <tr>
+                        <tr>
                             <td>
                                 <b>Sales</b>
                             </td>
                             <td>
                                 <asp:TextBox ID="TextBox3" runat="server" Text=""></asp:TextBox>
                             </td>
-                             <td>
-                                <asp:DropDownList ID="DropDownList2" runat="server" ></asp:DropDownList>
+                            <td>
+                                <asp:DropDownList ID="DropDownList2" runat="server">
+                                </asp:DropDownList>
                             </td>
-                             <td>
-                                <asp:Button ID="btn_Add2" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add2_Click"></asp:Button>
+                            <td>
+                                <asp:Button ID="btn_Add2" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add2_Click">
+                                </asp:Button>
                             </td>
                         </tr>
                         <tr>
@@ -539,11 +490,13 @@
                             <td>
                                 <asp:TextBox ID="TextBox4" runat="server" Text=""></asp:TextBox>
                             </td>
-                             <td>
-                                <asp:DropDownList ID="DropDownList3" runat="server" ></asp:DropDownList>
+                            <td>
+                                <asp:DropDownList ID="DropDownList3" runat="server">
+                                </asp:DropDownList>
                             </td>
-                             <td>
-                                <asp:Button ID="btn_Add3" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add3_Click" ></asp:Button>
+                            <td>
+                                <asp:Button ID="btn_Add3" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add3_Click">
+                                </asp:Button>
                             </td>
                         </tr>
                         <tr>
@@ -553,11 +506,13 @@
                             <td>
                                 <asp:TextBox ID="TextBox7" runat="server" Text=""></asp:TextBox>
                             </td>
-                             <td>
-                                <asp:DropDownList ID="DropDownList4" runat="server" ></asp:DropDownList>
+                            <td>
+                                <asp:DropDownList ID="DropDownList4" runat="server">
+                                </asp:DropDownList>
                             </td>
-                             <td>
-                                <asp:Button ID="btn_Add4" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add4_Click"></asp:Button>
+                            <td>
+                                <asp:Button ID="btn_Add4" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add4_Click">
+                                </asp:Button>
                             </td>
                         </tr>
                         <tr>
@@ -567,11 +522,13 @@
                             <td>
                                 <asp:TextBox ID="TextBox8" runat="server" Text=""></asp:TextBox>
                             </td>
-                             <td>
-                                <asp:DropDownList ID="DropDownList5" runat="server" ></asp:DropDownList>
+                            <td>
+                                <asp:DropDownList ID="DropDownList5" runat="server">
+                                </asp:DropDownList>
                             </td>
-                             <td>
-                                <asp:Button ID="btn_Add5" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add5_Click"></asp:Button>
+                            <td>
+                                <asp:Button ID="btn_Add5" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add5_Click">
+                                </asp:Button>
                             </td>
                         </tr>
                         <tr>
@@ -581,11 +538,13 @@
                             <td>
                                 <asp:TextBox ID="TextBox9" runat="server" Text=""></asp:TextBox>
                             </td>
-                             <td>
-                                <asp:DropDownList ID="DropDownList6" runat="server" ></asp:DropDownList>
+                            <td>
+                                <asp:DropDownList ID="DropDownList6" runat="server">
+                                </asp:DropDownList>
                             </td>
-                             <td>
-                                <asp:Button ID="btn_Add6" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add6_Click"></asp:Button>
+                            <td>
+                                <asp:Button ID="btn_Add6" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add6_Click">
+                                </asp:Button>
                             </td>
                         </tr>
                         <tr>
@@ -595,25 +554,32 @@
                             <td>
                                 <asp:TextBox ID="TextBox10" runat="server" Text=""></asp:TextBox>
                             </td>
-                             <td>
-                                <asp:DropDownList ID="DropDownList7" runat="server" ></asp:DropDownList>
+                            <td>
+                                <asp:DropDownList ID="DropDownList7" runat="server">
+                                </asp:DropDownList>
                             </td>
-                             <td>
-                                <asp:Button ID="btn_Add7" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add7_Click"></asp:Button>
+                            <td>
+                                <asp:Button ID="btn_Add7" runat="server" Text="Add" CssClass="btn btn-default" OnClick="btn_Add7_Click">
+                                </asp:Button>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                
                             </td>
                             <td>
-                                <asp:Button ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click"></asp:Button>
+                                <asp:Button ID="btnUpdate" runat="server" Text="Update" OnClick="btnUpdate_Click">
+                                </asp:Button>
                             </td>
-                             <td>
-                                <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click"></asp:Button>
+                            <td>
+                            <asp:UpdatePanel ID="u1" runat="server">
+                            <ContentTemplate>
+                               <asp:Button ID="btnCancel1" runat="server" Text="Cancel" OnClientClick="return ClosePopup11();">
+                                </asp:Button>
+                            </ContentTemplate>
+                            </asp:UpdatePanel>
+                             
                             </td>
-                             <td>
-                                
+                            <td>
                             </td>
                         </tr>
                     </table>

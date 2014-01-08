@@ -69,6 +69,39 @@
             
     </script>
 
+  <script type="text/javascript">
+      
+
+        function ValidateUpload() {
+            debugger
+            var valid = true;
+            if ($('#ddlVehicleType option:selected').val() == "0") {
+                alert("Select a vehicle type");
+                $('#ddlVehicleType').focus();
+                valid = false;
+            }
+            else if ($('#fuAttachments').val().length < 1) {
+                alert("Select lead file to upload");
+                $('#fuAttachments').focus();
+                valid = false;
+            }
+            else if ($('#txtNoofRecords').val().length < 1) {
+                alert("Enter no of records to upload");
+                $('#txtNoofRecords').focus();
+                valid = false;
+            }
+            else if ($('#txtNoofRecords').val() < 1) {
+                alert("Enter valid no of records To Upload");
+                $('#txtNoofRecords').focus();
+                valid = false;
+            }
+            if (valid == true) {
+                $('#btnSubmit').val('Please Wait');
+            }
+            return valid;
+
+        }
+    </script>
     <script type="text/javascript">
  function pageLoad()
    { 
@@ -88,8 +121,9 @@
             $('#txtStartDate').val((date.getMonth()+1)+'/'+date.getDate()+'/'+date.getFullYear());            
             
         });
-         
+          $('.sample4').numeric({ allow: "-" });
    }
+   
    
     var ssTime,TimerID;
    function  InitializeTimer()
@@ -153,6 +187,7 @@
 
     </script>
 
+ 
     <script type="text/javascript" language="javascript">
 
 	var currentID = 0;	
@@ -222,41 +257,8 @@
 	});
     </script>
 
-    <script type="text/javascript">
-        function pageLoad() {
-            $('.sample4').numeric({ allow: "-" });
-        }
 
-        function ValidateUpload() {
-            debugger
-            var valid = true;
-            if ($('#ddlVehicleType option:selected').val() == "0") {
-                alert("Select a vehicle type");
-                $('#ddlVehicleType').focus();
-                valid = false;
-            }
-            else if ($('#fuAttachments').val().length < 1) {
-                alert("Select lead file to upload");
-                $('#fuAttachments').focus();
-                valid = false;
-            }
-            else if ($('#txtNoofRecords').val().length < 1) {
-                alert("Enter no of records to upload");
-                $('#txtNoofRecords').focus();
-                valid = false;
-            }
-            else if ($('#txtNoofRecords').val() < 1) {
-                alert("Enter valid no of records To Upload");
-                $('#txtNoofRecords').focus();
-                valid = false;
-            }
-            if (valid == true) {
-                $('#btnSubmit').val('Please Wait');
-            }
-            return valid;
-
-        }
-    </script>
+  
 
 </head>
 <body>
@@ -302,7 +304,7 @@
                         <li class="parent "><a href="#">Sales <span class="cert"></span></a>
                             <ul class="sub1">
                                 <li>
-                                    <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false" PostBackUrl="~/IntroMails.aspx"></asp:LinkButton></li>
                                 <li>
                                     <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false" PostBackUrl="~/NewEntrys.aspx"></asp:LinkButton>
                                 </li>
@@ -399,98 +401,101 @@
         <!-- Headder End  -->
         <!-- Content Start  -->
         <div class="content wid1000">
-            <div class=" box1 box75p" style="margin-left:auto; margin-right:auto; float:none;">
-                <h1 class="hed1 hed2">Leads Upload</h1>
+            <div class=" box1 box75p" style="margin-left: auto; margin-right: auto; float: none;">
+                <h1 class="hed1 hed2">
+                    Leads Upload</h1>
                 <div class="inn">
                     <!-- Start  -->
                     <table class="table2">
-                                <tr>
-                                    <td align="center">
-                                        Vehicle Category <span class="star">*</span>
-                                    </td>
-                                    <td style="width: 200px;">
-                                        <asp:DropDownList ID="ddlVehicleType" runat="server" AppendDataBoundItems="true">
-                                            <asp:ListItem Text="Select" Value="0"></asp:ListItem>
-                                            <asp:ListItem Text="Cars" Value="1"></asp:ListItem>
-                                            <asp:ListItem Text="RVs" Value="2"></asp:ListItem>
-                                            <asp:ListItem Text="Bikes" Value="3"></asp:ListItem>
-                                            <asp:ListItem Text="Boats" Value="4"></asp:ListItem>
-                                        </asp:DropDownList>
-                                    </td>
-                                    <td>
-                                        <asp:LinkButton runat="server" ID="LinkButton4" Text="Leads UpLoad History" PostBackUrl="~/LeadsUploadHistory.aspx"
-                                            Style="color: blue; text-decoration: underline;" CssClass="floarR"></asp:LinkButton>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="center">
-                                        Select Sale file <span class="star">*</span>
-                                    </td>
-                                    <td>
-                                        <asp:FileUpload ID="fuAttachments" runat="server" />
-                                        &nbsp;
-                                        <asp:LinkButton runat="server" ID="lnkRefQCText" Text="Help" onmouseover="return overlib1(document.getElementById('SalesUploadHelp').innerHTML,STICKY, MOUSEOFF, CENTER, ABOVE,OFFSETX,30,  WIDTH, 260,  CSSCLASS,TEXTFONTCLASS,'summaryfontClass',FGCLASS,'summaryfgClass',BGCLASS,'summarybgClass',CAPTIONFONTCLASS,'summarycapfontClass', CLOSEFONTCLASS, 'summarycapfontClass');"
-                                            onmouseout="return nd1(4000);" Font-Size="11px"></asp:LinkButton>
-                                        <br />
-                                        <small style="color: #777"><i>( Max 8000 records can upload )</i></small>
-                                    </td>
-                                    <td>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    </td>
-                                    <td>
-                                    </td>
-                                    <td>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="center">
-                                        # of Records <span class="star">*</span>
-                                    </td>
-                                    <td colspan="2">
-                                        <asp:TextBox ID="txtNoofRecords" runat="server" Width="145px" CssClass="sample4"
-                                            MaxLength="4"></asp:TextBox><br />
-                                        <asp:Label ID="lblErrorMsg" runat="server" Style="color: red; display: inline-block;
-                                            line-height: 30px;"></asp:Label>
-                                    </td>
-                                    <td>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        &nbsp;
-                                    </td>
-                                    <td>
+                        <tr>
+                            <td align="center">
+                                Vehicle Category <span class="star">*</span>
+                            </td>
+                            <td style="width: 200px;">
+                                <asp:DropDownList ID="ddlVehicleType" runat="server" AppendDataBoundItems="true">
+                                    <asp:ListItem Text="Select" Value="0"></asp:ListItem>
+                                    <asp:ListItem Text="Cars" Value="1"></asp:ListItem>
+                                    <asp:ListItem Text="RVs" Value="2"></asp:ListItem>
+                                    <asp:ListItem Text="Bikes" Value="3"></asp:ListItem>
+                                    <asp:ListItem Text="Boats" Value="4"></asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                            <td>
+                                <asp:LinkButton runat="server" ID="LinkButton4" Text="Leads UpLoad History" PostBackUrl="~/LeadsUploadHistory.aspx"
+                                    Style="color: blue; text-decoration: underline;" CssClass="floarR"></asp:LinkButton>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                Select Sale file <span class="star">*</span>
+                            </td>
+                            <td>
+                                <asp:FileUpload ID="fuAttachments" runat="server" />
+                                &nbsp;
+                                <asp:LinkButton runat="server" ID="lnkRefQCText" Text="Help" onmouseover="return overlib1(document.getElementById('SalesUploadHelp').innerHTML,STICKY, MOUSEOFF, CENTER, ABOVE,OFFSETX,30,  WIDTH, 260,  CSSCLASS,TEXTFONTCLASS,'summaryfontClass',FGCLASS,'summaryfgClass',BGCLASS,'summarybgClass',CAPTIONFONTCLASS,'summarycapfontClass', CLOSEFONTCLASS, 'summarycapfontClass');"
+                                    onmouseout="return nd1(4000);" Font-Size="11px"></asp:LinkButton>
+                                <br />
+                                <small style="color: #777"><i>( Max 8000 records can upload )</i></small>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                # of Records <span class="star">*</span>
+                            </td>
+                            <td colspan="2">
+                                <asp:TextBox ID="txtNoofRecords" runat="server" Width="145px" CssClass="sample4"
+                                    MaxLength="4"></asp:TextBox><br />
+                                <asp:Label ID="lblErrorMsg" runat="server" Style="color: red; display: inline-block;
+                                    line-height: 30px;"></asp:Label>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                            <%--    <asp:UpdatePanel ID="Up1" runat="server">
+                                    <ContentTemplate>--%>
                                         <asp:Button runat="server" ID="btnSubmit" Text="Process" CssClass="btn btn-warning"
-                                            OnClick="btnSubmit_Click" />
+                                            OnClick="btnSubmit_Click" OnClientClick=" return ValidateUpload(); " />
                                         <asp:Button runat="server" ID="btnUpload" Text="Upload" Enabled="false" CssClass="btn btn-default"
                                             OnClick="btnUpload_Click" />
-                                    </td>
-                                    <td>
-                                    </td>
-                                </tr>
-                            </table>
+                                 <%--   </ContentTemplate>
+                                </asp:UpdatePanel>--%>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
                     <!-- End  -->
                 </div>
             </div>
             <div class="clear">
-            &nbsp;</div>
+                &nbsp;</div>
         </div>
-        <div class="content wid1000">
+        <div class="content wid1000" id="divresults" runat="server" visible="false">
             <div class=" box1 boxBlue">
-                
-                
                 <div class="inn" style="margin: 0; padding: 0;">
                     <!-- Start  -->
                     <table>
                         <tr>
                             <td>
-                                <div style="width: 100%;" id="divresults" runat="server">
-                                    <div style="width: 750px; position: relative; padding: 0 3px; height: 1px" class=" "
+                                <div style="width: 100%;" >
+                                  <%--  <div style="width: 750px; position: relative; padding: 0 3px; height: 1px" class=" "
                                         class="table table-hover table-striped">
-                                        <table id="Header" class="table table-hover table-striped MB0 table1 MB0 noBorder" >
+                                        <table id="Header" class="table table-hover table-striped MB0 table1 MB0 noBorder">
                                             <tr class="tbHed">
                                                 <td width="200px">
                                                     <asp:Label ID="lblPhoneno" runat="server" Text="Phoneno"></asp:Label>
@@ -515,14 +520,14 @@
                                                 </td>
                                             </tr>
                                         </table>
-                                    </div>
+                                    </div>--%>
                                     <div style="width: 100%; overflow-y: scroll; overflow-x: hidden; padding: 26px 3px 3px 3px;
                                         border: #ccc 1px solid; height: 400px">
                                         <asp:Panel ID="pnl1" Width="100%" runat="server">
                                             <asp:UpdatePanel ID="UpdPnlGrid" runat="server">
                                                 <ContentTemplate>
                                                     <asp:GridView ID="grdErrors" runat="server" CellPadding="0" TabIndex="8" CssClass="scrollTable table table-hover table-striped MB0 noBorder"
-                                                        Width="99%" GridLines="Both" AutoGenerateColumns="False">
+                                                        Width="99%" GridLines="Both" AutoGenerateColumns="False" >
                                                         <HeaderStyle CssClass="" />
                                                         <PagerSettings Position="Top" />
                                                         <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
@@ -604,7 +609,6 @@
                                             </asp:UpdatePanel>
                                         </asp:Panel>
                                     </div>
-                                   
                                     <asp:UpdatePanel ID="UpdatePane1BtnRefresh" runat="server">
                                     </asp:UpdatePanel>
                                 </div>

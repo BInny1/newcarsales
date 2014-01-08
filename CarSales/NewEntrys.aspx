@@ -62,7 +62,7 @@
         });
          
    }
-    <script type="text/javascript" language="javascript">
+   
         //-------------------------- Agents Centers Info END ------------------------------------------
 //    $(window).load(function(){
 //        TransfersInfoBinding();
@@ -329,7 +329,97 @@
        
 
     </script>
+<script type="text/javascript" language="javascript">
+    function CopySellerInfo()
+        {
+         
+            var valid=true;   
+                if (document.getElementById('<%= txtFirstName.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtFirstName.ClientID%>').focus();
+                alert("Enter customer first name");
+                document.getElementById('<%=txtFirstName.ClientID%>').value = ""
+                document.getElementById('<%=txtFirstName.ClientID%>').focus()                
+                valid = false;
+                 return valid;     
+              }           
+             else if (document.getElementById('<%= txtAddress.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtAddress.ClientID%>').focus();
+                alert("Enter customer address");
+                document.getElementById('<%=txtAddress.ClientID%>').value = ""
+                document.getElementById('<%=txtAddress.ClientID%>').focus()                
+                valid = false;
+                 return valid;     
+             }    
+             else if (document.getElementById('<%= txtCity.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtCity.ClientID%>').focus();
+                alert("Enter customer city");
+                document.getElementById('<%=txtCity.ClientID%>').value = ""
+                document.getElementById('<%=txtCity.ClientID%>').focus()                
+                valid = false;
+                 return valid;     
+             }   
+            else if(document.getElementById('<%=ddlLocationState.ClientID%>').value =="0")
+            {
+                alert("Please select customer state"); 
+                valid=false;
+                document.getElementById('ddlLocationState').focus();  
+                return valid;               
+            } 
+            else if (document.getElementById('<%= txtZip.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtZip.ClientID%>').focus();
+                alert("Enter zip");
+                document.getElementById('<%=txtZip.ClientID%>').value = ""
+                document.getElementById('<%=txtZip.ClientID%>').focus()                
+                valid = false;
+                 return valid;     
+             }  
+            else if((document.getElementById('<%=txtZip.ClientID%>').value.trim().length > 0) && (document.getElementById('<%=txtZip.ClientID%>').value.trim().length < 5))
+             {          
 
+                    document.getElementById('<%= txtZip.ClientID%>').focus();
+                    alert("Please enter valid zipcode");
+                    document.getElementById('<%=txtZip.ClientID%>').value = ""
+                    document.getElementById('<%=txtZip.ClientID%>').focus()
+                    valid = false;  
+                    return valid;      
+                                                     
+             }   
+              else
+              {
+                
+                 document.getElementById('<%= txtCardholderName.ClientID%>').value =  document.getElementById('<%= txtFirstName.ClientID%>').value;                
+                 document.getElementById('<%= txtCardholderLastName.ClientID%>').value =  document.getElementById('<%= txtLastName.ClientID%>').value;
+                 document.getElementById('<%= txtbillingaddress.ClientID%>').value =  document.getElementById('<%= txtAddress.ClientID%>').value;
+                 document.getElementById('<%= txtbillingcity.ClientID%>').value =  document.getElementById('<%= txtCity.ClientID%>').value;
+                 document.getElementById('<%= ddlbillingstate.ClientID%>').value =  document.getElementById('<%= ddlLocationState.ClientID%>').value;                 
+                 document.getElementById('<%= txtbillingzip.ClientID%>').value =  document.getElementById('<%= txtZip.ClientID%>').value;
+              }             
+              return valid;      
+        } 
+          
+         function CopySellerInfoForCheck()
+        {
+         
+            var valid=true;   
+                if (document.getElementById('<%= txtFirstName.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtFirstName.ClientID%>').focus();
+                alert("Enter customer first name");
+                document.getElementById('<%=txtFirstName.ClientID%>').value = ""
+                document.getElementById('<%=txtFirstName.ClientID%>').focus()                
+                valid = false;
+                 return valid;     
+              }   
+              else
+              {
+                
+                 document.getElementById('<%= txtCustNameForCheck.ClientID%>').value =  document.getElementById('<%= txtFirstName.ClientID%>').value;                            
+                           
+              }             
+              return valid;      
+        } 
+            
+          
+    </script>
     <script type="text/javascript" language="javascript">
 
 	var currentID = 0;	
@@ -398,7 +488,1313 @@
 		
 	});
     </script>
+
+    <script type="text/javascript" language="javascript">
+     function echeck(str) {
+            var at = "@"
+            var dot = "."
+            var lat = str.indexOf(at)
+            var lstr = str.length
+            var ldot = str.indexOf(dot)
+            if (str.indexOf(at) == -1) {
+                alert("Enter valid email")
+                return false
+            }
+
+            if (str.indexOf(at) == -1 || str.indexOf(at) == 0 || str.indexOf(at) == lstr) {
+                alert("Enter valid email")
+                return false
+            }
+
+            if (str.indexOf(dot) == -1 || str.indexOf(dot) == 0 || str.indexOf(dot) == lstr) {
+                alert("Enter valid email")
+                return false
+            }
+
+            if (str.indexOf(at, (lat + 1)) != -1) {
+                alert("Enter valid email")
+                return false
+            }
+
+            if (str.substring(lat - 1, lat) == dot || str.substring(lat + 1, lat + 2) == dot) {
+                alert("Enter valid email")
+                return false
+            }
+
+            if (str.indexOf(dot, (lat + 2)) == -1) {
+                alert("Enter valid email")
+                return false
+            }
+
+            if (str.indexOf(" ") != -1) {
+                alert("Enter valid email")
+                return false
+            }
+
+            return true
+        }
+ function ChangeValuesHidden()
+      {
+       document.getElementById("<%=hdnChange.ClientID%>").value ="1";
+      } 
+       function ChangeValues()
+       {
+         var hidden = document.getElementById("<%=hdnChange.ClientID%>").value ;
+         if( hidden == '1')
+         {
+           var answer = confirm("If you move out of this page, changes will be permanently lost. Are you sure you want to move out of this page?")
+           if (answer)
+           {
+              return true;
+//              window.location.href = "CustomerView.aspx ";  
+           }
+           else           
+           {
+              return false;
+           }
+         }
+       }    
+    </script>
+
+    <script type="text/javascript" language="javascript">
+    function ValidatePhone(){
+            if (document.getElementById('<%= txtLoadPhone.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtLoadPhone.ClientID%>').focus();
+                alert("Enter customer phone number");
+                document.getElementById('<%=txtLoadPhone.ClientID%>').value = ""
+                document.getElementById('<%=txtLoadPhone.ClientID%>').focus()                
+                valid = false;
+                 return valid;     
+             }    
+             if((document.getElementById('<%= txtLoadPhone.ClientID%>').value.trim().length > 0) && (document.getElementById('<%= txtLoadPhone.ClientID%>').value.trim().length < 10)) {
+                document.getElementById('<%= txtLoadPhone.ClientID%>').focus();
+                document.getElementById('<%=txtLoadPhone.ClientID%>').value = "";
+                alert("Enter valid phone number");
+                valid = false; 
+                 return valid;                
+            
+              }  
+    }
     
+     function ValidateAbandonData()
+      {
+         var valid = true;        
+               
+//              if (document.getElementById('<%= txtPhone.ClientID%>').value.trim().length < 1) {
+//                document.getElementById('<%= txtPhone.ClientID%>').focus();
+//                alert("Enter customer phone number");
+//                document.getElementById('<%=txtPhone.ClientID%>').value = ""
+//                document.getElementById('<%=txtPhone.ClientID%>').focus()                
+//                valid = false;
+//                 return valid;     
+//             }    
+             if((document.getElementById('<%= txtPhone.ClientID%>').value.trim().length > 0) && (document.getElementById('<%= txtPhone.ClientID%>').value.trim().length < 10)) {
+                document.getElementById('<%= txtPhone.ClientID%>').focus();
+                document.getElementById('<%=txtPhone.ClientID%>').value = "";
+                alert("Enter valid phone number");
+                valid = false; 
+                 return valid;                
+            
+              }  
+             if ((document.getElementById('<%=txtEmail.ClientID%>').value.trim().length > 0) && (echeck(document.getElementById('<%=txtEmail.ClientID%>').value.trim()) == false) )
+             {               
+                document.getElementById('<%=txtEmail.ClientID%>').value = ""
+                document.getElementById('<%=txtEmail.ClientID%>').focus()
+                valid = false;               
+                return valid;     
+             }        
+            
+             if(document.getElementById('<%=txtZip.ClientID%>').value.trim().length > 0)
+             {
+                  var isValid = /^[0-9]{5}(?:-[0-9]{4})?$/.test(document.getElementById('<%=txtZip.ClientID%>').value);             
+                   if (isValid == false)
+                   {
+                         document.getElementById('<%= txtZip.ClientID%>').focus();
+                    alert("Please enter valid zipcode");
+                     document.getElementById('<%=txtZip.ClientID%>').value = ""
+                    document.getElementById('<%=txtZip.ClientID%>').focus()
+                    valid = false;  
+                     return valid;      
+                   }                                   
+             } 
+               
+             return valid;
+      }
+    </script>
+
+    <script type="text/javascript" language="javascript">
+     function ValidateDraftData()
+      {
+         var valid = true;        
+               
+              if (document.getElementById('<%= txtPhone.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtPhone.ClientID%>').focus();
+                alert("Phone number is mandatory to save");
+                document.getElementById('<%=txtPhone.ClientID%>').value = ""
+                document.getElementById('<%=txtPhone.ClientID%>').focus()                
+                valid = false;
+                 return valid;     
+             }    
+             if((document.getElementById('<%= txtPhone.ClientID%>').value.trim().length > 0) && (document.getElementById('<%= txtPhone.ClientID%>').value.trim().length < 10)) {
+                document.getElementById('<%= txtPhone.ClientID%>').focus();
+                document.getElementById('<%=txtPhone.ClientID%>').value = "";
+                alert("Enter valid phone number");
+                valid = false; 
+                 return valid;                
+            
+              }  
+             if ((document.getElementById('<%=txtEmail.ClientID%>').value.trim().length > 0) && (echeck(document.getElementById('<%=txtEmail.ClientID%>').value.trim()) == false) )
+             {               
+                document.getElementById('<%=txtEmail.ClientID%>').value = ""
+                document.getElementById('<%=txtEmail.ClientID%>').focus()
+                valid = false;               
+                return valid;     
+             }        
+            
+             if(document.getElementById('<%=txtZip.ClientID%>').value.trim().length > 0)
+             {
+                  var isValid = /^[0-9]{5}(?:-[0-9]{4})?$/.test(document.getElementById('<%=txtZip.ClientID%>').value);             
+                   if (isValid == false)
+                   {
+                         document.getElementById('<%= txtZip.ClientID%>').focus();
+                    alert("Please enter valid zipcode");
+                     document.getElementById('<%=txtZip.ClientID%>').value = ""
+                    document.getElementById('<%=txtZip.ClientID%>').focus()
+                    valid = false;  
+                     return valid;      
+                   }                                   
+             } 
+               
+             return valid;
+      }
+    </script>
+
+    <script type="text/javascript" language="javascript">
+    
+      function ValidateSavedData()
+      {
+         var valid = true;         
+               
+                if(document.getElementById('<%= ddlPackage.ClientID%>').value == "0") {
+                document.getElementById('<%= ddlPackage.ClientID%>').focus();
+                alert("Select package");                 
+                document.getElementById('<%=ddlPackage.ClientID%>').focus()
+                valid = false;            
+                 return valid;     
+               }  
+               if (document.getElementById('<%= txtFirstName.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtFirstName.ClientID%>').focus();
+                alert("Enter customer first name");
+                document.getElementById('<%=txtFirstName.ClientID%>').value = ""
+                document.getElementById('<%=txtFirstName.ClientID%>').focus()                
+                valid = false;
+                 return valid;     
+              } 
+                if (document.getElementById('<%= txtLastName.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtLastName.ClientID%>').focus();
+                alert("Enter customer last name");
+                document.getElementById('<%=txtLastName.ClientID%>').value = ""
+                document.getElementById('<%=txtLastName.ClientID%>').focus()                
+                valid = false;
+                 return valid;     
+              }   
+               
+              if (document.getElementById('<%= txtPhone.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtPhone.ClientID%>').focus();
+                alert("Enter customer phone number");
+                document.getElementById('<%=txtPhone.ClientID%>').value = ""
+                document.getElementById('<%=txtPhone.ClientID%>').focus()                
+                valid = false;
+                 return valid;     
+             }    
+             if((document.getElementById('<%= txtPhone.ClientID%>').value.trim().length > 0) && (document.getElementById('<%= txtPhone.ClientID%>').value.trim().length < 10)) {
+                document.getElementById('<%= txtPhone.ClientID%>').focus();
+                document.getElementById('<%=txtPhone.ClientID%>').value = "";
+                alert("Enter valid phone number");
+                valid = false; 
+                 return valid;                
+            
+              }   
+           
+                 if(document.getElementById('<%= chkbxEMailNA.ClientID%>').checked == false)
+                {
+                      if (document.getElementById('<%= txtEmail.ClientID%>').value.trim().length < 1) {
+                        document.getElementById('<%= txtEmail.ClientID%>').focus();
+                        alert("Enter customer email");
+                        document.getElementById('<%=txtEmail.ClientID%>').value = ""
+                        document.getElementById('<%=txtEmail.ClientID%>').focus()                
+                        valid = false;
+                         return valid;     
+                     } 
+                 }
+            
+              if ((document.getElementById('<%=txtEmail.ClientID%>').value.trim().length > 0) && (echeck(document.getElementById('<%=txtEmail.ClientID%>').value.trim()) == false) )
+             {               
+                document.getElementById('<%=txtEmail.ClientID%>').value = ""
+                document.getElementById('<%=txtEmail.ClientID%>').focus()
+                valid = false;               
+                return valid;     
+             }         
+              if (document.getElementById('<%= txtAddress.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtAddress.ClientID%>').focus();
+                alert("Enter customer address");
+                document.getElementById('<%=txtAddress.ClientID%>').value = ""
+                document.getElementById('<%=txtAddress.ClientID%>').focus()                
+                valid = false;
+                 return valid;     
+             }    
+                if (document.getElementById('<%= txtCity.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtCity.ClientID%>').focus();
+                alert("Enter customer city");
+                document.getElementById('<%=txtCity.ClientID%>').value = ""
+                document.getElementById('<%=txtCity.ClientID%>').focus()                
+                valid = false;
+                 return valid;     
+             }   
+            if(document.getElementById('<%=ddlLocationState.ClientID%>').value =="0")
+            {
+                alert("Please select customer state"); 
+                valid=false;
+                document.getElementById('ddlLocationState').focus();  
+                return valid;               
+            } 
+        if (document.getElementById('<%= txtZip.ClientID%>').value.trim().length < 1) {
+            document.getElementById('<%= txtZip.ClientID%>').focus();
+            alert("Enter zipcode");
+            document.getElementById('<%=txtZip.ClientID%>').value = ""
+            document.getElementById('<%=txtZip.ClientID%>').focus()                
+            valid = false;
+            return valid;     
+            }   
+             if(document.getElementById('<%=txtZip.ClientID%>').value.trim().length > 0)
+             {
+                  var isValid = /^[0-9]{5}(?:-[0-9]{4})?$/.test(document.getElementById('<%=txtZip.ClientID%>').value);             
+                   if (isValid == false)
+                   {
+                         document.getElementById('<%= txtZip.ClientID%>').focus();
+                    alert("Please enter valid zipcode");
+                     document.getElementById('<%=txtZip.ClientID%>').value = ""
+                    document.getElementById('<%=txtZip.ClientID%>').focus()
+                    valid = false;  
+                     return valid;      
+                   }                                   
+             }  
+             if(document.getElementById('<%=ddlMake.ClientID%>').value =="0")
+            {
+                alert("Please select make"); 
+                valid=false;
+                document.getElementById('ddlMake').focus();  
+                return valid;               
+            }             
+             if(document.getElementById('<%=ddlModel.ClientID%>').value =="0")
+            {
+                alert("Please select model"); 
+                valid=false;
+                document.getElementById('ddlModel').focus();
+                return valid;               
+            } 
+            if (document.getElementById('<%=ddlYear.ClientID%>').value =="0")
+            {
+                alert('Please select year')
+                valid=false;
+                document.getElementById('ddlYear').focus();  
+                return valid;
+            }               
+              if (document.getElementById('<%= txtAskingPrice.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtAskingPrice.ClientID%>').focus();
+                alert("Enter price");
+                document.getElementById('<%=txtAskingPrice.ClientID%>').value = ""
+                document.getElementById('<%=txtAskingPrice.ClientID%>').focus()                
+                valid = false;
+                 return valid;     
+            }   
+/* payments */
+
+   if(document.getElementById('<%= ddlpayme.ClientID%>').value == "0")
+            {
+                if (document.getElementById('<%= txtCardholderName.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtCardholderName.ClientID%>').focus();
+                alert("Enter card holder first name");
+                document.getElementById('<%=txtCardholderName.ClientID%>').value = ""
+                document.getElementById('<%=txtCardholderName.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                
+                if (document.getElementById('<%= txtCardholderLastName.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtCardholderLastName.ClientID%>').focus();
+                alert("Enter card holder last name");
+                document.getElementById('<%=txtCardholderLastName.ClientID%>').value = ""
+                document.getElementById('<%=txtCardholderLastName.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                } 
+                if (document.getElementById('<%= CardNumber.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= CardNumber.ClientID%>').focus();
+                alert("Enter card number");
+                document.getElementById('<%=CardNumber.ClientID%>').value = ""
+                document.getElementById('<%=CardNumber.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                if((document.getElementById('<%= CardNumber.ClientID%>').value.trim().length > 0) && (document.getElementById('<%= CardNumber.ClientID%>').value.trim().length != 15)) {
+                document.getElementById('<%= CardNumber.ClientID%>').focus();             
+                alert("Enter valid card number");
+                valid = false; 
+                return valid;              
+
+                }           
+                var CCNum = document.getElementById('<%= CardNumber.ClientID%>').value.trim();
+                if(document.getElementById('<%= CardNumber.ClientID%>').value.trim().length > 0) 
+                {
+                CCNum = CCNum.charAt(0);
+                if(CCNum != "3")
+                {
+                document.getElementById('<%= CardNumber.ClientID%>').focus();             
+                alert("This is not a Amex card number");
+                valid = false; 
+                return valid;  
+                }
+                }               
+                if(document.getElementById('<%=ExpMon.ClientID%>').value =="0")
+                {
+                alert("Please select the expiration month"); 
+                valid=false;
+                document.getElementById('ExpMon').focus();  
+                return valid;               
+                }
+                if(document.getElementById('<%=CCExpiresYear.ClientID%>').value =="0")
+                {
+                alert("Please select the expiration year"); 
+                valid=false;
+                document.getElementById('CCExpiresYear').focus();  
+                return valid;               
+                }  
+                if (document.getElementById('<%= cvv.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= cvv.ClientID%>').focus();
+                alert("Enter cvv number");
+                document.getElementById('<%=cvv.ClientID%>').value = ""
+                document.getElementById('<%=cvv.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                if((document.getElementById('<%= cvv.ClientID%>').value.trim().length > 0) && (document.getElementById('<%= cvv.ClientID%>').value.trim().length != 4)) {
+                document.getElementById('<%= cvv.ClientID%>').focus();             
+                alert("Enter valid cvv number");
+                valid = false; 
+                return valid;              
+
+                }   
+               
+                if (document.getElementById('<%= txtbillingaddress.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtbillingaddress.ClientID%>').focus();
+                alert("Enter billing address");
+                document.getElementById('<%=txtbillingaddress.ClientID%>').value = ""
+                document.getElementById('<%=txtbillingaddress.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }    
+                if (document.getElementById('<%= txtbillingcity.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtbillingcity.ClientID%>').focus();
+                alert("Enter city");
+                document.getElementById('<%=txtbillingcity.ClientID%>').value = ""
+                document.getElementById('<%=txtbillingcity.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                if(document.getElementById('<%=ddlbillingstate.ClientID%>').value =="0")
+                {
+                alert("Please select state"); 
+                valid=false;
+                document.getElementById('ddlbillingstate').focus();  
+                return valid;               
+                } 
+                if (document.getElementById('<%= txtbillingzip.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtbillingzip.ClientID%>').focus();
+                alert("Enter zipcode");
+                document.getElementById('<%=txtbillingzip.ClientID%>').value = ""
+                document.getElementById('<%=txtbillingzip.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                if(document.getElementById('<%=txtbillingzip.ClientID%>').value.trim().length > 0)
+                {
+                var isValid = /^[0-9]{5}(?:-[0-9]{4})?$/.test(document.getElementById('<%=txtbillingzip.ClientID%>').value);             
+                if (isValid == false)
+                {
+                document.getElementById('<%= txtbillingzip.ClientID%>').focus();
+                alert("Please enter valid zipcode");
+                document.getElementById('<%=txtbillingzip.ClientID%>').value = ""
+                document.getElementById('<%=txtbillingzip.ClientID%>').focus()
+                valid = false;  
+                return valid;      
+                }                                   
+                }  
+
+           }
+            if(document.getElementById('<%= ddlpayme.ClientID%>').value == "1")
+            {
+                if (document.getElementById('<%= txtCardholderName.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtCardholderName.ClientID%>').focus();
+                alert("Enter card holder name");
+                document.getElementById('<%=txtCardholderName.ClientID%>').value = ""
+                document.getElementById('<%=txtCardholderName.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                   
+                if (document.getElementById('<%= txtCardholderLastName.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtCardholderLastName.ClientID%>').focus();
+                alert("Enter card holder last name");
+                document.getElementById('<%=txtCardholderLastName.ClientID%>').value = ""
+                document.getElementById('<%=txtCardholderLastName.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                } 
+                if (document.getElementById('<%= CardNumber.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= CardNumber.ClientID%>').focus();
+                alert("Enter card number");
+                document.getElementById('<%=CardNumber.ClientID%>').value = ""
+                document.getElementById('<%=CardNumber.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                if((document.getElementById('<%= CardNumber.ClientID%>').value.trim().length > 0) && (document.getElementById('<%= CardNumber.ClientID%>').value.trim().length != 16)) {
+                document.getElementById('<%= CardNumber.ClientID%>').focus();             
+                alert("Enter valid card number");
+                valid = false; 
+                return valid;              
+
+                }           
+                var CCNum = document.getElementById('<%= CardNumber.ClientID%>').value.trim();
+                if(document.getElementById('<%= CardNumber.ClientID%>').value.trim().length > 0) 
+                {
+                CCNum = CCNum.charAt(0);
+                if(CCNum != "4")
+                {
+                document.getElementById('<%= CardNumber.ClientID%>').focus();             
+                alert("This is not a Visa card number");
+                valid = false; 
+                return valid;  
+                }
+                }               
+                if(document.getElementById('<%=ExpMon.ClientID%>').value =="0")
+                {
+                alert("Please select the expiration month"); 
+                valid=false;
+                document.getElementById('ExpMon').focus();  
+                return valid;               
+                }
+                if(document.getElementById('<%=CCExpiresYear.ClientID%>').value =="0")
+                {
+                alert("Please select the expiration year"); 
+                valid=false;
+                document.getElementById('CCExpiresYear').focus();  
+                return valid;               
+                }  
+                if (document.getElementById('<%= cvv.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= cvv.ClientID%>').focus();
+                alert("Enter cvv number");
+                document.getElementById('<%=cvv.ClientID%>').value = ""
+                document.getElementById('<%=cvv.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                if((document.getElementById('<%= cvv.ClientID%>').value.trim().length > 0) && (document.getElementById('<%= cvv.ClientID%>').value.trim().length != 3)) {
+                document.getElementById('<%= cvv.ClientID%>').focus();             
+                alert("Enter valid cvv number");
+                valid = false; 
+                return valid;              
+
+                }   
+                
+                if (document.getElementById('<%= txtbillingaddress.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtbillingaddress.ClientID%>').focus();
+                alert("Enter billing address");
+                document.getElementById('<%=txtbillingaddress.ClientID%>').value = ""
+                document.getElementById('<%=txtbillingaddress.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }    
+                if (document.getElementById('<%= txtbillingcity.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtbillingcity.ClientID%>').focus();
+                alert("Enter city");
+                document.getElementById('<%=txtbillingcity.ClientID%>').value = ""
+                document.getElementById('<%=txtbillingcity.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                if(document.getElementById('<%=ddlbillingstate.ClientID%>').value =="0")
+                {
+                alert("Please select state"); 
+                valid=false;
+                document.getElementById('ddlbillingstate').focus();  
+                return valid;               
+                } 
+                if (document.getElementById('<%= txtbillingzip.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtbillingzip.ClientID%>').focus();
+                alert("Enter zipcode");
+                document.getElementById('<%=txtbillingzip.ClientID%>').value = ""
+                document.getElementById('<%=txtbillingzip.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                if(document.getElementById('<%=txtbillingzip.ClientID%>').value.trim().length > 0)
+                {
+                var isValid = /^[0-9]{5}(?:-[0-9]{4})?$/.test(document.getElementById('<%=txtbillingzip.ClientID%>').value);             
+                if (isValid == false)
+                {
+                document.getElementById('<%= txtbillingzip.ClientID%>').focus();
+                alert("Please enter valid zipcode");
+                document.getElementById('<%=txtbillingzip.ClientID%>').value = ""
+                document.getElementById('<%=txtbillingzip.ClientID%>').focus()
+                valid = false;  
+                return valid;      
+                }                                   
+                }  
+
+           }    
+            
+              if(document.getElementById('<%= ddlpayme.ClientID%>').value == "2")
+            {
+                if (document.getElementById('<%= txtCardholderName.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtCardholderName.ClientID%>').focus();
+                alert("Enter card holder name");
+                document.getElementById('<%=txtCardholderName.ClientID%>').value = ""
+                document.getElementById('<%=txtCardholderName.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                   
+                if (document.getElementById('<%= txtCardholderLastName.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtCardholderLastName.ClientID%>').focus();
+                alert("Enter card holder last name");
+                document.getElementById('<%=txtCardholderLastName.ClientID%>').value = ""
+                document.getElementById('<%=txtCardholderLastName.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                } 
+                if (document.getElementById('<%= CardNumber.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= CardNumber.ClientID%>').focus();
+                alert("Enter card number");
+                document.getElementById('<%=CardNumber.ClientID%>').value = ""
+                document.getElementById('<%=CardNumber.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                if((document.getElementById('<%= CardNumber.ClientID%>').value.trim().length > 0) && (document.getElementById('<%= CardNumber.ClientID%>').value.trim().length != 16)) {
+                document.getElementById('<%= CardNumber.ClientID%>').focus();             
+                alert("Enter valid card number");
+                valid = false; 
+                return valid;              
+
+                }           
+                var CCNum = document.getElementById('<%= CardNumber.ClientID%>').value.trim();
+                if(document.getElementById('<%= CardNumber.ClientID%>').value.trim().length > 0) 
+                {
+                CCNum = CCNum.charAt(0);
+                if(CCNum != "5")
+                {
+                document.getElementById('<%= CardNumber.ClientID%>').focus();             
+                alert("This is not a Master card number");
+                valid = false; 
+                return valid;  
+                }
+                }               
+                if(document.getElementById('<%=ExpMon.ClientID%>').value =="0")
+                {
+                alert("Please select the expiration month"); 
+                valid=false;
+                document.getElementById('ExpMon').focus();  
+                return valid;               
+                }
+                if(document.getElementById('<%=CCExpiresYear.ClientID%>').value =="0")
+                {
+                alert("Please select the expiration year"); 
+                valid=false;
+                document.getElementById('CCExpiresYear').focus();  
+                return valid;               
+                }  
+                if (document.getElementById('<%= cvv.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= cvv.ClientID%>').focus();
+                alert("Enter cvv number");
+                document.getElementById('<%=cvv.ClientID%>').value = ""
+                document.getElementById('<%=cvv.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                if((document.getElementById('<%= cvv.ClientID%>').value.trim().length > 0) && (document.getElementById('<%= cvv.ClientID%>').value.trim().length != 3)) {
+                document.getElementById('<%= cvv.ClientID%>').focus();             
+                alert("Enter valid cvv number");
+                valid = false; 
+                return valid;              
+
+                }   
+             
+
+                if (document.getElementById('<%= txtbillingaddress.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtbillingaddress.ClientID%>').focus();
+                alert("Enter billing address");
+                document.getElementById('<%=txtbillingaddress.ClientID%>').value = ""
+                document.getElementById('<%=txtbillingaddress.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }    
+                if (document.getElementById('<%= txtbillingcity.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtbillingcity.ClientID%>').focus();
+                alert("Enter city");
+                document.getElementById('<%=txtbillingcity.ClientID%>').value = ""
+                document.getElementById('<%=txtbillingcity.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                if(document.getElementById('<%=ddlbillingstate.ClientID%>').value =="0")
+                {
+                alert("Please select state"); 
+                valid=false;
+                document.getElementById('ddlbillingstate').focus();  
+                return valid;               
+                } 
+                if (document.getElementById('<%= txtbillingzip.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtbillingzip.ClientID%>').focus();
+                alert("Enter zipcode");
+                document.getElementById('<%=txtbillingzip.ClientID%>').value = ""
+                document.getElementById('<%=txtbillingzip.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                if(document.getElementById('<%=txtbillingzip.ClientID%>').value.trim().length > 0)
+                {
+                var isValid = /^[0-9]{5}(?:-[0-9]{4})?$/.test(document.getElementById('<%=txtbillingzip.ClientID%>').value);             
+                if (isValid == false)
+                {
+                document.getElementById('<%= txtbillingzip.ClientID%>').focus();
+                alert("Please enter valid zipcode");
+                document.getElementById('<%=txtbillingzip.ClientID%>').value = ""
+                document.getElementById('<%=txtbillingzip.ClientID%>').focus()
+                valid = false;  
+                return valid;      
+                }                                   
+                }  
+
+           }       
+               if(document.getElementById('<%= ddlpayme.ClientID%>').value == "3")
+            {
+                if (document.getElementById('<%= txtCardholderName.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtCardholderName.ClientID%>').focus();
+                alert("Enter card holder name");
+                document.getElementById('<%=txtCardholderName.ClientID%>').value = ""
+                document.getElementById('<%=txtCardholderName.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                } 
+                   
+                if (document.getElementById('<%= txtCardholderLastName.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtCardholderLastName.ClientID%>').focus();
+                alert("Enter card holder last name");
+                document.getElementById('<%=txtCardholderLastName.ClientID%>').value = ""
+                document.getElementById('<%=txtCardholderLastName.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                if (document.getElementById('<%= CardNumber.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= CardNumber.ClientID%>').focus();
+                alert("Enter card number");
+                document.getElementById('<%=CardNumber.ClientID%>').value = ""
+                document.getElementById('<%=CardNumber.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                if((document.getElementById('<%= CardNumber.ClientID%>').value.trim().length > 0) && (document.getElementById('<%= CardNumber.ClientID%>').value.trim().length != 16)) {
+                document.getElementById('<%= CardNumber.ClientID%>').focus();             
+                alert("Enter valid card number");
+                valid = false; 
+                return valid;              
+
+                }           
+                var CCNum = document.getElementById('<%= CardNumber.ClientID%>').value.trim();
+                if(document.getElementById('<%= CardNumber.ClientID%>').value.trim().length > 0) 
+                {
+                CCNum = CCNum.charAt(0);
+                if(CCNum != "6")
+                {
+                document.getElementById('<%= CardNumber.ClientID%>').focus();             
+                alert("This is not a Discover card number");
+                valid = false; 
+                return valid;  
+                }
+                }               
+                if(document.getElementById('<%=ExpMon.ClientID%>').value =="0")
+                {
+                alert("Please select the expiration month"); 
+                valid=false;
+                document.getElementById('ExpMon').focus();  
+                return valid;               
+                }
+                if(document.getElementById('<%=CCExpiresYear.ClientID%>').value =="0")
+                {
+                alert("Please select the expiration year"); 
+                valid=false;
+                document.getElementById('CCExpiresYear').focus();  
+                return valid;               
+                }  
+                if (document.getElementById('<%= cvv.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= cvv.ClientID%>').focus();
+                alert("Enter cvv number");
+                document.getElementById('<%=cvv.ClientID%>').value = ""
+                document.getElementById('<%=cvv.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                if((document.getElementById('<%= cvv.ClientID%>').value.trim().length > 0) && (document.getElementById('<%= cvv.ClientID%>').value.trim().length != 3)) {
+                document.getElementById('<%= cvv.ClientID%>').focus();             
+                alert("Enter valid cvv number");
+                valid = false; 
+                return valid;              
+
+                } 
+                
+
+                if (document.getElementById('<%= txtbillingaddress.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtbillingaddress.ClientID%>').focus();
+                alert("Enter billing address");
+                document.getElementById('<%=txtbillingaddress.ClientID%>').value = ""
+                document.getElementById('<%=txtbillingaddress.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }    
+                if (document.getElementById('<%= txtbillingcity.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtbillingcity.ClientID%>').focus();
+                alert("Enter city");
+                document.getElementById('<%=txtbillingcity.ClientID%>').value = ""
+                document.getElementById('<%=txtbillingcity.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                if(document.getElementById('<%=ddlbillingstate.ClientID%>').value =="0")
+                {
+                alert("Please select state"); 
+                valid=false;
+                document.getElementById('ddlbillingstate').focus();  
+                return valid;               
+                } 
+                if (document.getElementById('<%= txtbillingzip.ClientID%>').value.trim().length < 1) {
+                document.getElementById('<%= txtbillingzip.ClientID%>').focus();
+                alert("Enter zipcode");
+                document.getElementById('<%=txtbillingzip.ClientID%>').value = ""
+                document.getElementById('<%=txtbillingzip.ClientID%>').focus()                
+                valid = false;
+                return valid;     
+                }   
+                if(document.getElementById('<%=txtbillingzip.ClientID%>').value.trim().length > 0)
+                {
+                var isValid = /^[0-9]{5}(?:-[0-9]{4})?$/.test(document.getElementById('<%=txtbillingzip.ClientID%>').value);             
+                if (isValid == false)
+                {
+                document.getElementById('<%= txtbillingzip.ClientID%>').focus();
+                alert("Please enter valid zipcode");
+                document.getElementById('<%=txtbillingzip.ClientID%>').value = ""
+                document.getElementById('<%=txtbillingzip.ClientID%>').focus()
+                valid = false;  
+                return valid;      
+                }                                   
+                }  
+
+           }       
+             if(document.getElementById('<%= ddlpayme.ClientID%>').value == "4")
+            {                   
+                    if(document.getElementById('<%= txtPaytransID.ClientID%>').value.length < 1) {
+                    document.getElementById('<%= txtPaytransID.ClientID%>').focus();
+                    alert("Enter Payment Trans ID");
+                    document.getElementById('<%=txtPaytransID.ClientID%>').value = ""
+                    document.getElementById('<%=txtPaytransID.ClientID%>').focus()
+                    valid = false;            
+                    return valid;     
+                    }    
+
+                    if(document.getElementById('<%= txtpayPalEmailAccount.ClientID%>').value.length < 1) {
+                    document.getElementById('<%= txtpayPalEmailAccount.ClientID%>').focus();
+                    alert("Enter paypal account email");
+                    document.getElementById('<%=txtpayPalEmailAccount.ClientID%>').value = ""
+                    document.getElementById('<%=txtpayPalEmailAccount.ClientID%>').focus()
+                    valid = false;            
+                    return valid;     
+                    }            
+                    if ((document.getElementById('<%=txtpayPalEmailAccount.ClientID%>').value.length > 0) && (echeck(document.getElementById('<%=txtpayPalEmailAccount.ClientID%>').value) == false) )
+                    {               
+                    document.getElementById('<%=txtpayPalEmailAccount.ClientID%>').value = ""
+                    document.getElementById('<%=txtpayPalEmailAccount.ClientID%>').focus()
+                    valid = false;               
+                    return valid;     
+                    }          
+            }    
+            
+             if(document.getElementById('<%= ddlpayme.ClientID%>').value == "5")
+            {
+                      if(document.getElementById('<%= txtAccNumberForCheck.ClientID%>').value.length < 1) {
+                    document.getElementById('<%= txtAccNumberForCheck.ClientID%>').focus();
+                    alert("Enter account number");
+                    document.getElementById('<%=txtAccNumberForCheck.ClientID%>').value = ""
+                    document.getElementById('<%=txtAccNumberForCheck.ClientID%>').focus()
+                    valid = false;            
+                    return valid;     
+                    }  
+                      if((document.getElementById('<%= txtAccNumberForCheck.ClientID%>').value.trim().length > 0) && (document.getElementById('<%= txtAccNumberForCheck.ClientID%>').value.trim().length < 4)) {
+                    document.getElementById('<%= txtAccNumberForCheck.ClientID%>').focus();
+                    document.getElementById('<%=txtAccNumberForCheck.ClientID%>').value = "";
+                    alert("Enter valid account number");
+                    valid = false; 
+                    return valid; 
+                    } 
+                     if(document.getElementById('<%=ddlAccType.ClientID%>').value =="0")
+                    {
+                    alert("Please select account type"); 
+                    valid=false;
+                    document.getElementById('ddlAccType').focus();  
+                    return valid;               
+                    }   
+                    if(document.getElementById('<%= txtRoutingNumberForCheck.ClientID%>').value.length < 1) {
+                    document.getElementById('<%= txtRoutingNumberForCheck.ClientID%>').focus();
+                    alert("Enter routing number");
+                    document.getElementById('<%=txtRoutingNumberForCheck.ClientID%>').value = ""
+                    document.getElementById('<%=txtRoutingNumberForCheck.ClientID%>').focus()
+                    valid = false;            
+                    return valid;     
+                    }  
+                      if((document.getElementById('<%= txtRoutingNumberForCheck.ClientID%>').value.trim().length > 0) && (document.getElementById('<%= txtRoutingNumberForCheck.ClientID%>').value.trim().length < 9)) {
+                    document.getElementById('<%= txtRoutingNumberForCheck.ClientID%>').focus();
+                    document.getElementById('<%=txtRoutingNumberForCheck.ClientID%>').value = "";
+                    alert("Enter valid routing number");
+                    valid = false; 
+                    return valid; 
+                    } 
+                     if(document.getElementById('<%= txtCustNameForCheck.ClientID%>').value.length < 1) {
+                    document.getElementById('<%= txtCustNameForCheck.ClientID%>').focus();
+                    alert("Enter account holder name");
+                    document.getElementById('<%=txtCustNameForCheck.ClientID%>').value = ""
+                    document.getElementById('<%=txtCustNameForCheck.ClientID%>').focus()
+                    valid = false;            
+                    return valid;     
+                    }                                           
+            }
+
+/* Ends Pa*/
+
+}
+     function PhoneOnblur()
+     {
+           if((document.getElementById('<%= txtPhone.ClientID%>').value.trim().length > 0) && (document.getElementById('<%= txtPhone.ClientID%>').value.trim().length < 10)) {                           
+                alert("Enter valid phone number");
+                document.getElementById('<%= txtPhone.ClientID%>').focus();  
+                valid = false; 
+                 return valid;              
+            
+            } 
+          
+           if((document.getElementById('<%= txtPhone.ClientID%>').value.trim().length > 0) && (document.getElementById('<%= txtPhone.ClientID%>').value.trim().length == 10)) {
+              var phone = document.getElementById('<%= txtPhone.ClientID%>').value;
+               formatted = phone.substr(0, 3) + '-' + phone.substr(3, 3) + '-' + phone.substr(6,4);                
+                document.getElementById('<%=txtPhone.ClientID%>').value = formatted;               
+                valid = true; 
+                 return valid;                
+            
+            }   
+                      
+     }
+ 
+     function ZipOnblur()
+     {
+          if(document.getElementById('<%=txtZip.ClientID%>').value.trim().length > 0)
+             {
+                  var isValid = /^[0-9]{5}(?:-[0-9]{4})?$/.test(document.getElementById('<%=txtZip.ClientID%>').value);             
+                   if (isValid == false)
+                   {
+                         document.getElementById('<%= txtZip.ClientID%>').focus();
+                    alert("Please enter valid zipcode");
+                     document.getElementById('<%=txtZip.ClientID%>').value = ""
+                    document.getElementById('<%=txtZip.ClientID%>').focus()
+                    valid = false;  
+                     return valid;      
+                   }                                   
+             }  
+                      
+     }
+     function billingZipOnblur()
+     {
+          if(document.getElementById('<%=txtbillingzip.ClientID%>').value.trim().length > 0)
+             {
+                  var isValid = /^[0-9]{5}(?:-[0-9]{4})?$/.test(document.getElementById('<%=txtbillingzip.ClientID%>').value);             
+                   if (isValid == false)
+                   {
+                         document.getElementById('<%= txtbillingzip.ClientID%>').focus();
+                    alert("Please enter valid zipcode");
+                     document.getElementById('<%=txtbillingzip.ClientID%>').value = ""
+                    document.getElementById('<%=txtbillingzip.ClientID%>').focus()
+                    valid = false;  
+                     return valid;      
+                   }                                   
+             }  
+                      
+     }
+     
+      function PhoneOnfocus()
+     {           
+              var phone = document.getElementById('<%= txtPhone.ClientID%>').value;
+               formatted =phone.replace("-","");
+               formatted =formatted.replace("-","");
+                document.getElementById('<%=txtPhone.ClientID%>').value = formatted;            
+                       
+     }
+   
+        function EmailOnblur()
+     {           
+               if ((document.getElementById('<%=txtEmail.ClientID%>').value.trim().length > 0) && (echeck(document.getElementById('<%=txtEmail.ClientID%>').value.trim()) == false) )
+             {                           
+                document.getElementById('<%=txtEmail.ClientID%>').focus()
+                valid = false;               
+                return valid;     
+            }     
+                       
+     }
+     function PaypalEmailblur()
+     {           
+         if ((document.getElementById('<%=txtpayPalEmailAccount.ClientID%>').value.trim().length > 0) && (echeck(document.getElementById('<%=txtpayPalEmailAccount.ClientID%>').value.trim()) == false) )
+         {                           
+            document.getElementById('<%=txtpayPalEmailAccount.ClientID%>').focus()
+            valid = false;               
+            return valid;     
+         }              
+     }
+     function EmailNAClick(){
+     var checkbox = document.getElementById("chkbxEMailNA");
+      if(checkbox.checked){        
+        document.getElementById('<%= txtEmail.ClientID%>').disabled  = true;            
+      }
+      else
+      {
+         document.getElementById('<%= txtEmail.ClientID%>').disabled  = false;
+      }
+    }              
+              
+    </script>
+
+    <script type="text/javascript" language="javascript">
+     function echeck(str) {
+            var at = "@"
+            var dot = "."
+            var lat = str.indexOf(at)
+            var lstr = str.length
+            var ldot = str.indexOf(dot)
+            if (str.indexOf(at) == -1) {
+                alert("Enter valid email")
+                return false
+            }
+
+            if (str.indexOf(at) == -1 || str.indexOf(at) == 0 || str.indexOf(at) == lstr) {
+                alert("Enter valid email")
+                return false
+            }
+
+            if (str.indexOf(dot) == -1 || str.indexOf(dot) == 0 || str.indexOf(dot) == lstr) {
+                alert("Enter valid email")
+                return false
+            }
+
+            if (str.indexOf(at, (lat + 1)) != -1) {
+                alert("Enter valid email")
+                return false
+            }
+
+            if (str.substring(lat - 1, lat) == dot || str.substring(lat + 1, lat + 2) == dot) {
+                alert("Enter valid email")
+                return false
+            }
+
+            if (str.indexOf(dot, (lat + 2)) == -1) {
+                alert("Enter valid email")
+                return false
+            }
+
+            if (str.indexOf(" ") != -1) {
+                alert("Enter valid email")
+                return false
+            }
+
+            return true
+        }
+ function ChangeValuesHidden()
+      {
+       document.getElementById("<%=hdnChange.ClientID%>").value ="1";
+      } 
+       function ChangeValues()
+       {
+         var hidden = document.getElementById("<%=hdnChange.ClientID%>").value ;
+         if( hidden == '1')
+         {
+           var answer = confirm("If you move out of this page, changes will be permanently lost. Are you sure you want to move out of this page?")
+           if (answer)
+           {
+              return true;
+//              window.location.href = "CustomerView.aspx ";  
+           }
+           else           
+           {
+              return false;
+           }
+         }
+       }    
+    </script>
+
+    <script type="text/javascript" language="javascript">
+       function isNumberKey(evt)
+         {
+         debugger
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
+        }
+        function isNumberKeyWithDot(evt)
+         {
+         debugger
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 46)
+                return false;
+
+            return true;
+        }
+         function isNumberKeyWithDashForZip(evt)
+         {
+         debugger
+         
+            var charCode = (evt.which) ? evt.which : event.keyCode         
+            if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode != 45)
+                return false;
+
+            return true;
+        }
+         function isNumberKeyForDt(evt)
+              {	
+	    
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57)&& charCode != 47)
+                return false;
+            return true;
+        }
+          function isKeyNotAcceptSpace(evt)
+          {		    
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode == 32)
+                return false;
+            return true;
+        }
+    </script>
+
+    <script type="text/javascript" language="javascript">   
+        
+      var dtCh = "/";
+        var Chktoday = new Date();
+        var minYear = Chktoday.getFullYear() - 1;
+        var maxYear = Chktoday.getFullYear();
+
+        function isInteger(s) {
+            var i;
+            for (i = 0; i < s.length; i++) {
+                // Check that current character is number.
+                var c = s.charAt(i);
+                if (((c < "0") || (c > "9"))) return false;
+            }
+            // All characters are numbers.
+            return true;
+        }
+
+        function stripCharsInBag(s, bag) {
+            var i;
+            var returnString = "";
+            // Search through string's characters one by one.
+            // If character is not in bag, append to returnString.
+            for (i = 0; i < s.length; i++) {
+                var c = s.charAt(i);
+                if (bag.indexOf(c) == -1) returnString += c;
+            }
+            return returnString;
+        }
+
+        function daysInFebruary(year) {
+            // February has 29 days in any year evenly divisible by four,
+            // EXCEPT for centurial years which are not also divisible by 400.
+            return (((year % 4 == 0) && ((!(year % 100 == 0)) || (year % 400 == 0))) ? 29 : 28);
+        }
+        function DaysArray(n) {
+            for (var i = 1; i <= n; i++) {
+                this[i] = 31
+                if (i == 4 || i == 6 || i == 9 || i == 11) { this[i] = 30 }
+                if (i == 2) { this[i] = 29 }
+            }
+            return this
+        }
+
+        function isDate(dtStr) {
+            var daysInMonth = DaysArray(12)
+            var pos1 = dtStr.indexOf(dtCh)
+            var pos2 = dtStr.indexOf(dtCh, pos1 + 1)
+            var strMonth = dtStr.substring(0, pos1)
+            var strDay = dtStr.substring(pos1 + 1, pos2)
+            var strYear = dtStr.substring(pos2 + 1)
+            strYr = strYear
+            if (strDay.charAt(0) == "0" && strDay.length > 1) strDay = strDay.substring(1)
+            if (strMonth.charAt(0) == "0" && strMonth.length > 1) strMonth = strMonth.substring(1)
+            for (var i = 1; i <= 3; i++) {
+                if (strYr.charAt(0) == "0" && strYr.length > 1) strYr = strYr.substring(1)
+            }
+            month = parseInt(strMonth)
+            day = parseInt(strDay)
+            year = parseInt(strYr)
+            if (pos1 == -1 || pos2 == -1) {
+                alert("The date format should be : mm/dd/yyyy")
+                return false
+            }
+            if (strMonth.length < 1 || month < 1 || month > 12) {
+                alert("Please enter a valid month")
+                return false
+            }
+            if (strDay.length < 1 || day < 1 || day > 31 || (month == 2 && day > daysInFebruary(year)) || day > daysInMonth[month]) {
+                alert("Please enter a valid day")
+                return false
+            }
+
+            if (strYear.length != 4 || year == 0 || year < minYear || year > maxYear) {
+                //alert("Enter only these years "+minYear+" "+maxYear+" to get data");		
+                alert("Please enter a valid year");
+                return false
+            }
+            if (dtStr.indexOf(dtCh, pos2 + 1) != -1 || isInteger(stripCharsInBag(dtStr, dtCh)) == false) {
+                alert("Please enter a valid date")
+                return false
+            }
+            return true
+        }
+    
+    
+    
+    
+    
+    
+    $('#txtPDAmountNow').live('focus',function(){
+        if($('#ddlPackage option:selected').text() == 'Select'){ 
+            $('#ddlPackage').focus();
+            alert('Select package');
+        }
+    });
+     function OnchangeDropdown(){  
+           
+            if($('#ddlPackage option:selected').text() != 'Select'){  
+               var string = $('#ddlPackage option:selected').text();
+                var p =string.split('$');
+                var pp = p[1].split(')');
+                //alert(pp[0]);
+                //pp[0] = parseInt(pp[0]);
+                pp[0] = parseFloat(pp[0]);
+                var selectedPack = pp[0].toFixed(2);
+                selectedPack = parseFloat(selectedPack); 
+             
+                  //for selected discount amount
+                var string1 = $('#ddlDiscount option:selected').val();
+                var curr1 ;
+                if(string1==0)curr1="0";
+                else  if(string1==1)curr1="25"; 
+                else  if(string1==2)curr1="50"; 
+                curr1=parseFloat(curr1);
+                var curr2=(selectedPack-curr1);
+                curr2=curr2.toFixed(2);
+                $('#txtPDAmountNow').val(curr2);
+                 $('#txtTotalAmount').val(curr2);
+                  if(document.getElementById('<%= chkboxlstPDsale.ClientID%>').checked == true)
+                  {
+                    $('#txtPDAmountLater').val('0.00');
+                  }
+                  else
+                  {
+                     $('#txtPDAmountLater').val('');
+                  }
+                }else{
+                 $('#txtPDAmountNow').val('');
+                 $('#txtTotalAmount').val('');
+                  if(document.getElementById('<%= chkboxlstPDsale.ClientID%>').checked == true)
+                  {
+                    $('#txtPDAmountLater').val('');
+                  }
+                   else
+                  {
+                     $('#txtPDAmountLater').val('');
+                  }
+                }                            
+                      
+            }           
+    /*
+    $('#txtPDAmountNow').live('keydown', function(){
+        //console.log($(this).val())
+        $(this).val($(this).val().toString().replace(/^[0-9]\./g, ',').replace(/\./g, ''));
+    });
+    */
+    
+    
+             
+    $('#txtPDAmountNow').live('blur', function(){
+            $('#txtPDAmountLater').val('');
+            if($('#txtPDAmountNow').val().length>0 && ($('#ddlPackage option:selected').text() != 'Select')){   
+                var curr = parseFloat($('#txtPDAmountNow').val());
+                curr = curr.toFixed(2)         
+                var string = $('#ddlPackage option:selected').text();
+                var p =string.split('$');
+                var pp = p[1].split(')');
+                //alert(pp[0]);
+                //pp[0] = parseInt(pp[0]);
+                pp[0] = parseFloat(pp[0]);
+                var selectedPack = pp[0].toFixed(2);
+                selectedPack = parseFloat(selectedPack); 
+               
+                //for selected discount amount
+                  var string1 = $('#ddlDiscount option:selected').val();
+                  var curr1 ;
+                if(string1==0)curr1="0";
+                else  if(string1==1)curr1="25"; 
+                
+               // console.log(curr1);
+                   var finalpack =(selectedPack-curr1);
+                   //finalpack=finalpack.toFixed(2);
+               
+                if(finalpack < curr){
+              
+                    alert('Entered amount can not be graterthen selected package..')
+                     document.getElementById('<%=txtPDAmountNow.ClientID%>').focus()
+                }else{
+                    var value = parseFloat(selectedPack-curr-curr1);
+                    value = value.toFixed(2); 
+                    $('#txtPDAmountLater').val(value);
+                    var amntval=selectedPack- curr1;
+                    amntval=amntval.toFixed(2);
+                    $('#txtTotalAmount').val(amntval);
+                }                            
+                      
+            }            
+    });
+    
+    function  OnchangeCheckDiscount() 
+    {
+    if( $('#ddlPackage option:selected').text() == 'Gold Deluxe ($199.99)')
+    $('#discount').show();
+    else
+    {
+     $('#ddlDiscount').val(0);
+     $('#discount').hide();
+     }
+   return this
+  }
+   
+   
+    </script>
 
 </head>
 <body>
@@ -408,6 +1804,13 @@
             <asp:ServiceReference Path="~/WebService.asmx" />
         </Services>
     </asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+        <ContentTemplate>
+            <asp:HiddenField ID="hdnChange" runat="server" Value="0" />
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    <div style="height: 10px;">
+    </div>
     <!-- Main Wrapper Start  -->
     <div class="wrapper">
         <!-- Headder Start  -->
@@ -444,7 +1847,7 @@
                         <li class="parent active"><a href="#">Sales <span class="cert"></span></a>
                             <ul class="sub1">
                                 <li>
-                                    <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false"></asp:LinkButton></li>
+                                    <asp:LinkButton ID="IntroMail" runat="server" Text="Intro Mial" Enabled="false" PostBackUrl="~/IntroMails.aspx"></asp:LinkButton></li>
                                 <li class="act">
                                     <asp:LinkButton ID="NewEntry" runat="server" Text="New Entry" Enabled="false" PostBackUrl="~/NewEntrys.aspx"></asp:LinkButton>
                                 </li>
@@ -544,7 +1947,6 @@
                 &nbsp;</div>
             <div class="box1">
                 <div class="inn">
-                   
                     <table style="display: none" id="tblAgents" runat="server">
                         <tr>
                             <td>
@@ -665,90 +2067,94 @@
             <div class=" box1 boxBlue">
                 <h1 class="hed1 hed2">
                     SELLER INFORMATION</h1>
-                <div class="inn">
-                    <!-- Start  -->
-                    <table class="table2">
-                        <tr>
-                            <td style="width: 49%;">
-                                <h4 class="field">
-                                    <label class="left">
-                                        <span class="star">*</span>First name:</label>
-                                    <span class="left2">
-                                        <asp:TextBox ID="txtFirstName" runat="server" MaxLength="30"></asp:TextBox>
-                                </h4>
-                            </td>
-                            <td style="width: 40px;">
-                                &nbsp;
-                            </td>
-                            <td>
-                                <h4 class="field">
-                                    <label class="left">
-                                        <span class="star">*</span>Last name:</label>
-                                    <span class="left2">
-                                        <asp:TextBox ID="txtLastName" runat="server" MaxLength="30"></asp:TextBox>
-                                </h4>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h4 class="field">
-                                    <label class="left">
-                                        <span class="star">*</span>Phone #:</label>
-                                    <span class="left2">
-                                        <asp:TextBox ID="txtPhone" runat="server" MaxLength="10" onkeypress="return isNumberKey(event)"
-                                            onblur="return PhoneOnblur();" onfocus="return PhoneOnfocus();"></asp:TextBox>
-                                </h4>
-                            </td>
-                            <td>
-                                &nbsp;
-                            </td>
-                            <td>
-                                <h4 class="field">
-                                    <label class="left">
-                                        <span class="star">*</span>Email:</label>
-                                    <span class="left2">
-                                        <asp:TextBox ID="txtEmail" runat="server" MaxLength="60" onblur="return EmailOnblur();"
-                                            Style="width: 336px;"></asp:TextBox>
-                                        <asp:CheckBox ID="chkbxEMailNA" runat="server" Text="NA" Font-Bold="true" onclick="return EmailNAClick();" />
-                                    </span>
-                                </h4>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h4 class="field">
-                                    <label class="left">
-                                        <span class="star">*</span>Address:</label>
-                                    <span class="left2">
-                                        <asp:TextBox ID="txtAddress" runat="server" MaxLength="40"></asp:TextBox>
-                                </h4>
-                            </td>
-                            <td>
-                                &nbsp;
-                            </td>
-                            <td>
-                                <h4 class="field">
-                                    <label class="left">
-                                        <span class="star">*</span>City:</label>
-                                    <span class="left2">
-                                        <asp:TextBox ID="txtCity" runat="server" MaxLength="40" Style="width: 110px;"></asp:TextBox>
+                <asp:UpdatePanel ID="updtpnl" runat="server">
+                    <ContentTemplate>
+                        <div class="inn">
+                            <!-- Start  -->
+                            <table class="table2">
+                                <tr>
+                                    <td style="width: 49%;">
+                                        <h4 class="field">
+                                            <label class="left">
+                                                <span class="star">*</span>First name:</label>
+                                            <span class="left2">
+                                                <asp:TextBox ID="txtFirstName" runat="server" MaxLength="30"></asp:TextBox>
+                                        </h4>
+                                    </td>
+                                    <td style="width: 40px;">
                                         &nbsp;
-                                        <label>
-                                            <span class="star">*</span>State:</label>
-                                        <asp:DropDownList ID="ddlLocationState" runat="server" Style="width: 100px">
-                                        </asp:DropDownList>
+                                    </td>
+                                    <td>
+                                        <h4 class="field">
+                                            <label class="left">
+                                                <span class="star">*</span>Last name:</label>
+                                            <span class="left2">
+                                                <asp:TextBox ID="txtLastName" runat="server" MaxLength="30"></asp:TextBox>
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4 class="field">
+                                            <label class="left">
+                                                <span class="star">*</span>Phone #:</label>
+                                            <span class="left2">
+                                                <asp:TextBox ID="txtPhone" runat="server" MaxLength="10" onkeypress="return isNumberKey(event)"
+                                                    onblur="return PhoneOnblur();" onfocus="return PhoneOnfocus();"></asp:TextBox>
+                                        </h4>
+                                    </td>
+                                    <td>
                                         &nbsp;
-                                        <label>
-                                            <span class="star">*</span>ZIP:</label>
-                                        <asp:TextBox ID="txtZip" runat="server" Style="width: 74px" MaxLength="5" class="sample4"
-                                            onkeypress="return isNumberKey(event)" onblur="return ZipOnblur();"></asp:TextBox>
-                                    </span>
-                                </h4>
-                            </td>
-                        </tr>
-                    </table>
-                    <!-- End  -->
-                </div>
+                                    </td>
+                                    <td>
+                                        <h4 class="field">
+                                            <label class="left">
+                                                <span class="star">*</span>Email:</label>
+                                            <span class="left2">
+                                                <asp:TextBox ID="txtEmail" runat="server" MaxLength="60" onblur="return EmailOnblur();"
+                                                    Style="width: 336px;"></asp:TextBox>
+                                                <asp:CheckBox ID="chkbxEMailNA" runat="server" Text="NA" Font-Bold="true" onclick="return EmailNAClick();" />
+                                            </span>
+                                        </h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4 class="field">
+                                            <label class="left">
+                                                <span class="star">*</span>Address:</label>
+                                            <span class="left2">
+                                                <asp:TextBox ID="txtAddress" runat="server" MaxLength="40"></asp:TextBox>
+                                        </h4>
+                                    </td>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                    <td>
+                                        <h4 class="field">
+                                            <label class="left">
+                                                <span class="star">*</span>City:</label>
+                                            <span class="left2">
+                                                <asp:TextBox ID="txtCity" runat="server" MaxLength="40" Style="width: 110px;"></asp:TextBox>
+                                                &nbsp;
+                                                <label>
+                                                    <span class="star">*</span>State:</label>
+                                                <asp:DropDownList ID="ddlLocationState" runat="server" Style="width: 100px">
+                                                </asp:DropDownList>
+                                                &nbsp;
+                                                <label>
+                                                    <span class="star">*</span>ZIP:</label>
+                                                <asp:TextBox ID="txtZip" runat="server" Style="width: 74px" MaxLength="5" class="sample4"
+                                                    onkeypress="return isNumberKey(event)" onblur="return ZipOnblur();"></asp:TextBox>
+                                            </span>
+                                        </h4>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- End  -->
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
                 <div class="clear">
                     &nbsp;</div>
             </div>
@@ -1264,6 +2670,8 @@
                         &nbsp;</div>
                     <br />
                     <!-- Card Details Start -->
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                                    <ContentTemplate>
                     <fieldset class="filedSet">
                         <div id="divcard" runat="server">
                             <legend>Card Details <span>
@@ -1374,7 +2782,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <h4 class="h4" style="display: none;">
+                                            <h4 class="h4" >
                                                 <span class="star" style="color: Red">*</span><strong style="width: 40px">CVV#</strong>
                                                 <asp:TextBox ID="cvv" MaxLength="4" runat="server" onkeypress="return isNumberKey(event)"
                                                     onblur="return CVVOnblur(); " />
@@ -1519,6 +2927,8 @@
                         <div class="clear">
                             &nbsp;</div>
                     </fieldset>
+                    </ContentTemplate>
+                    </asp:UpdatePanel>
                     <!-- Card Details End -->
                     <!-- Payment Schedule Start  -->
                     <fieldset class="filedSet">
@@ -1696,8 +3106,8 @@
                         <tr align="center">
                             <td colspan="4" style="padding-top: 15px;">
                                 <div style="width: 240px; margin: 0 auto;">
-                                    <asp:Button ID="btnPhoneOk" runat="server" Text="Ok" CssClass="btn btn-warning"
-                                        OnClientClick="return ValidatePhone();" OnClick="btnPhoneOk_Click" />
+                                    <asp:Button ID="btnPhoneOk" runat="server" Text="Ok" CssClass="btn btn-warning" OnClientClick="return ValidatePhone();"
+                                        OnClick="btnPhoneOk_Click" />
                                     <asp:Button ID="btnPhoneCancel" runat="server" Text="Cancel" CssClass="btn btn-default" />
                                 </div>
                             </td>
@@ -1711,13 +3121,13 @@
         BackgroundCssClass="ModalPopupBG" TargetControlID="hdnDraftExistsShow">
     </cc1:ModalPopupExtender>
     <asp:HiddenField ID="hdnDraftExistsShow" runat="server" />
-    <div id="divDraftExistsShow" class="alert" style="display: none">
+    <div id="divDraftExistsShow" class="popup" style="display: none">
         <h4 id="H6">
             Alert
             <!-- <div class="cls">
             </div> -->
         </h4>
-        <div class="data">
+        <div class="content">
             <p>
                 <asp:UpdatePanel ID="UpdatePanel8" runat="server">
                     <ContentTemplate>
@@ -1794,6 +3204,55 @@
                 </asp:UpdatePanel>
             </p>
             <asp:Button ID="btnAlertExistShow" class="btn" runat="server" Text="Ok" OnClick="btnAlertExistShow_Click" />
+        </div>
+    </div>
+    
+    
+     <cc1:ModalPopupExtender ID="mdepAlertExists" runat="server" PopupControlID="divExists"
+        BackgroundCssClass="ModalPopupBG" TargetControlID="hdnExists" OkControlID="btnExustCls"
+        CancelControlID="btnOk">
+    </cc1:ModalPopupExtender>
+    <asp:HiddenField ID="hdnExists" runat="server" />
+    <div id="divExists" class="alert" style="display: none">
+        <h4 id="H2">
+            Alert
+            <asp:Button ID="btnExustCls" class="cls" runat="server" Text="" BorderWidth="0" />
+            <!-- <div class="cls">
+            </div> -->
+        </h4>
+        <div class="data">
+            <p>
+                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                    <ContentTemplate>
+                        <asp:Label ID="lblErrorExists" runat="server" Visible="false"></asp:Label>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </p>
+            <asp:Button ID="btnOk" class="btn" runat="server" Text="Ok" />
+        </div>
+    </div>
+    
+     <cc1:ModalPopupExtender ID="mpealteruserUpdated" runat="server" PopupControlID="AlertUserUpdated"
+        BackgroundCssClass="ModalPopupBG" TargetControlID="hdnAlertuserUpdated">
+    </cc1:ModalPopupExtender>
+    <asp:HiddenField ID="hdnAlertuserUpdated" runat="server" />
+    <div id="AlertUserUpdated" class="alert" style="display: none">
+        <h4 id="H3">
+            Alert
+            <asp:Button ID="BtnClsUpdated" class="cls" runat="server" Text="" BorderWidth="0"
+                OnClick="BtnClsUpdated_Click" />
+            <!-- <div class="cls">
+            </div> -->
+        </h4>
+        <div class="data">
+            <p>
+                <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                    <ContentTemplate>
+                        <asp:Label ID="lblErrUpdated" runat="server" Visible="false"></asp:Label>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </p>
+            <asp:Button ID="btnYesUpdated" class="btn" runat="server" Text="Ok" OnClick="BtnClsUpdated_Click" />
         </div>
     </div>
     </form>
